@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Basic -->
+    <title>Using Fragments | Apollo React Docs</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png" sizes="16x16 32x32 64x64">
+
+    <!-- Social -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="http://dev.apollodata.com/react">
+    <meta property="og:title" content="Using Fragments | Apollo React Docs">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="">
+    <meta name="twitter:card" content="summary_image_large">
+    <meta name="twitter:site" content="@apollographql">
+    <meta name="twitter:title" content="Using Fragments | Apollo React Docs">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="">
+
+    <!-- Misc -->
+    <meta name="google-site-verification" content="" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,200,300italic,400italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/react/style/style.css">
+  </head>
+  <body class="">
+    
+
+<div class="nav dark">
+  <div class="nav-group">
+    <div class="nav-item show-mobile">
+      <span class="js-sidebar-toggle ">
+        <span class="icon-menu"></span>
+      </span>
+    </div>
+    <div class="nav-item">
+      
+      <a class="logo-wrapper" href="http://dev.apollodata.com/" title="Apollo Developers"  >
+        <img src="images/logo-apollo-space-left.svg" alt="Apollo" class="logo"/><img src="images/logo-apollo-subbrands-developers-space.svg" class="logo-subbrand" alt="Developers"/>
+      </a>
+    </div>
+  </div>
+
+  <div class="nav-group right">
+    
+      
+      <div class="nav-item show-desktop active ">
+        <a class="link" href="http://dev.apollodata.com/react"  >
+          <span>React</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/angular2"  >
+          <span>Angular</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/ios"  >
+          <span>iOS</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/android"  >
+          <span>Android</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/core"  >
+          <span>Vanilla JS</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false separator">
+        <a class="link" href="http://dev.apollodata.com/tools"  >
+          <span>Server</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="https://medium.com/apollo-stack" target=_new >
+          <span>Blog</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/community"  >
+          <span>Community</span>
+        </a>
+      </div>
+    
+  </div>
+</div>
+
+<div class="sidebar">
+  <div class="panel">
+    <div class="panel-item">
+      <a class="" href="http:/dev.apollodata.com/" title="Apollo"  >
+        <span>Apollo Developers</span>
+      </a>
+    </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/react"  >
+          <span>React</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/angular2"  >
+          <span>Angular</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/ios"  >
+          <span>iOS</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/android"  >
+          <span>Android</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/core"  >
+          <span>Vanilla JS</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/tools"  >
+          <span>Server</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="https://medium.com/apollo-stack" target=_new >
+          <span>Blog</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/community"  >
+          <span>Community</span>
+        </a>
+      </div>
+    
+  </div>
+
+  <div class="sidebar-content">
+    <div class="topcap">
+      <span class="title-sidebar">Apollo React Docs</span>
+      
+    </div>
+
+    
+    <div class="wrapper-search">
+      <div class="input-symbol small round">
+        <input type="text" placeholder="Search React Guide" id="desktop-search-input" />
+        <span class="icon-search"></span>
+      </div>
+      <div class="wrapper-desktop-search-results"></div>
+    </div>
+
+    
+
+    <ul class="toc">
+      
+        <li>
+          
+          <ul class="list-toc">
+            
+              
+              <li class="item-toc ">
+                <a href="index.html" class="sidebar-link ">
+                  <span>Introduction</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="initialization.html" class="sidebar-link ">
+                  <span>Setup and options</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="simple-example.html" class="sidebar-link ">
+                  <span>Small Example: Snack</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="example-schema.html" class="sidebar-link ">
+                  <span>Full Example: GitHunt</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="migration.html" class="sidebar-link ">
+                  <span>Migrating to 1.0</span>
+                </a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        <li>
+          
+            <div class="heading-toc">Usage</div>
+          
+          <ul class="list-toc">
+            
+              
+              <li class="item-toc ">
+                <a href="queries.html" class="sidebar-link ">
+                  <span>Queries</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="mutations.html" class="sidebar-link ">
+                  <span>Mutations</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="subscriptions.html" class="sidebar-link ">
+                  <span>Subscriptions</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="receiving-updates.html" class="sidebar-link ">
+                  <span>Syncing with the Server</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="cache-updates.html" class="sidebar-link ">
+                  <span>Updating the Store</span>
+                </a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        <li>
+          
+            <div class="heading-toc">API Reference</div>
+          
+          <ul class="list-toc">
+            
+              
+              <li class="item-toc ">
+                <a href="api.html" class="sidebar-link ">
+                  <span>General</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="api-graphql.html" class="sidebar-link ">
+                  <span>graphql: Container</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="api-queries.html" class="sidebar-link ">
+                  <span>graphql: Queries</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="api-mutations.html" class="sidebar-link ">
+                  <span>graphql: Mutations</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="api-server.html" class="sidebar-link ">
+                  <span>Server Side Rendering</span>
+                </a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        <li>
+          
+            <div class="heading-toc">Recipes</div>
+          
+          <ul class="list-toc">
+            
+              
+              <li class="item-toc ">
+                <a href="auth.html" class="sidebar-link ">
+                  <span>Authentication</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="pagination.html" class="sidebar-link ">
+                  <span>Pagination</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="optimistic-ui.html" class="sidebar-link ">
+                  <span>Optimistic UI</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc  current">
+                <a href="" class="sidebar-link  current">
+                  <span>Using Fragments</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="prefetching.html" class="sidebar-link ">
+                  <span>Prefetching data</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="react-native.html" class="sidebar-link ">
+                  <span>Integrating with React Native</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="redux.html" class="sidebar-link ">
+                  <span>Integrating with Redux</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="webpack.html" class="sidebar-link ">
+                  <span>Webpack loader</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="server-side-rendering.html" class="sidebar-link ">
+                  <span>Server Side Rendering</span>
+                </a>
+              </li>
+            
+          </ul>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="content">
+  <div class="content-wrapper">
+    <div class="header-content">
+      <h1 class="title-page">Using Fragments</h1>
+      
+
+      <div class="page-actions">
+        <div class="actions-group">
+          <a class="btn tertiary small round lowercase" href="https://github.com/apollographql/react-docs/tree/master/source/fragments.md" target="_blank"><span class="icon-github"></span> <span>Edit on GitHub</span></a>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="document-formatting">
+      <p>A <a href="http://graphql.org/learn/queries/#fragments" target="_blank" rel="external">GraphQL fragment</a> is a shared piece of query logic.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">fragment NameParts on Person &#123;</div><div class="line">  firstName</div><div class="line">  lastName</div><div class="line">&#125;</div><div class="line"></div><div class="line">query getPerson &#123;</div><div class="line">  people(id: &quot;7&quot;) &#123;</div><div class="line">    ...NameParts</div><div class="line">    avatar(size: LARGE)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>There are two principal uses for fragments in Apollo:</p>
+<ul>
+<li>Sharing fields between multiple queries, mutations or subscriptions.</li>
+<li>Breaking your queries up to allow you to co-locate field access with the places they are used.</li>
+</ul>
+<p>In this document we’ll outline patterns to do both; we’ll also make use of utilities in the <a href="https://github.com/apollographql/graphql-anywhere" target="_blank" rel="external"><code>graphql-anywhere</code></a> and <a href="https://github.com/apollographql/graphql-tag" target="_blank" rel="external"><code>graphql-tag</code></a> packages which aim to help us, especially with the second problem.</p>
+<h2 id="reusing-fragments">Reusing Fragments</h2>
+
+<p>The most straightforward use of fragments is to reuse parts of queries (or mutations or subscriptions) in various parts of your application. For instance, in GitHunt on the comments page, we want to fetch the same fields after posting a comment as we originally query. This way we can be sure that we render consistent comment objects as the data changes.</p>
+<p>To do so, we can simply share a fragment describing the fields we need for a comment:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; gql &#125; <span class="keyword">from</span> <span class="string">'react-apollo'</span>;</div><div class="line"></div><div class="line">CommentsPage.fragments = &#123;</div><div class="line">  <span class="attr">comment</span>: gql<span class="string">`</span></div><div class="line">    fragment CommentsPageComment on Comment &#123;</div><div class="line">      id</div><div class="line">      postedBy &#123;</div><div class="line">        login</div><div class="line">        html_url</div><div class="line">      &#125;</div><div class="line">      createdAt</div><div class="line">      content</div><div class="line">    &#125;</div><div class="line">  `,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>We put the fragment on <code>CommentsPage.fragments.comment</code> by convention, and use the familiar <code>gql</code> helper to create it.</p>
+<p>When it’s time to embed the fragment in a query, we simply use the <code>...Name</code> syntax in our GraphQL, and embed the fragment inside our query GraphQL document:</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">const SUBMIT_COMMENT_MUTATION = gql`</div><div class="line">  mutation submitComment(<span class="variable">$repoFullName</span>: String!, <span class="variable">$commentContent</span>: String!) &#123;</div><div class="line">    submitComment(repoFullName: <span class="variable">$repoFullName</span>, commentContent: <span class="variable">$commentContent</span>) &#123;</div><div class="line">      <span class="built_in">..</span>.CommentsPageComment</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="variable">$&#123;CommentsPage.fragments.comment&#125;</span></div><div class="line">`;</div><div class="line"></div><div class="line"><span class="builtin-name">export</span> const COMMENT_QUERY = gql`</div><div class="line">  query Comment(<span class="variable">$repoName</span>: String!) &#123;</div><div class="line">    # <span class="built_in">..</span>.</div><div class="line">    entry(repoFullName: <span class="variable">$repoName</span>) &#123;</div><div class="line">      # <span class="built_in">..</span>.</div><div class="line">      comments &#123;</div><div class="line">        <span class="built_in">..</span>.CommentsPageComment</div><div class="line">      &#125;</div><div class="line">      # <span class="built_in">..</span>.</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="variable">$&#123;CommentsPage.fragments.comment&#125;</span></div><div class="line">`;</div></pre></td></tr></table></figure>
+<p>You can see the full source code to the <code>CommentsPage</code> in GitHunt <a href="https://github.com/apollographql/GitHunt-React/blob/master/ui/routes/CommentsPage.js" target="_blank" rel="external">here</a>.</p>
+<h2 id="colocating-fragments">Colocating Fragments</h2>
+
+<p>A key advantage of GraphQL is the tree-like nature of the response data, which in many cases mirrors your rendered component hierarchy. This, combined with GraphQL’s support for fragments, allows you to split your queries up in such a way that the various fields fetched by the queries are located right alongside the code that uses the field.</p>
+<p>Although this technique doesn’t always make sense (for instance it’s not always the case that the GraphQL schema is driven by the UI requirements), when it does, it’s possible to use some patterns in Apollo client to take full advantage of it.</p>
+<p>In GitHunt, we show an example of this on the <a href="https://github.com/apollographql/GitHunt-React/blob/master/ui/routes/FeedPage.js" target="_blank" rel="external"><code>FeedPage</code></a>, which constructs the follow view hierarchy:</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">FeedPage</span></div><div class="line">└── Feed</div><div class="line">    └── FeedEntry</div><div class="line">        ├── RepoInfo</div><div class="line">        └── VoteButtons</div></pre></td></tr></table></figure>
+<p>The <code>FeedPage</code> conducts a query to fetch a list of <code>Entry</code>s, and each of the subcomponents requires different subfields of each <code>Entry</code>.</p>
+<p>The <code>graphql-anywhere</code> package gives us tools to easily construct a single query that provides all the fields that each subcomponent needs, and allows to easily pass the exact field that a component needs to it.</p>
+<h3 id="creating-fragments">Creating Fragments</h3>
+
+<p>To create the fragments, we again use the <code>gql</code> helper and attach to subfields of <code>ComponentClass.fragment</code>, for example:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">VoteButtons.fragments = &#123;</div><div class="line">  <span class="attr">entry</span>: gql<span class="string">`</span></div><div class="line">    fragment VoteButtons on Entry &#123;</div><div class="line">      score</div><div class="line">      vote &#123;</div><div class="line">        vote_value</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  `,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>One nice tool that the <code>graphql-anywhere</code> package gives us is a <a href="https://facebook.github.io/react/docs/reusable-components.html" target="_blank" rel="external"><code>PropType</code></a> checker that we can use to ensure that we do indeed receive those fields in the component’s <code>entry</code> prop:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; propType &#125; <span class="keyword">from</span> <span class="string">'graphql-anywhere'</span>;</div><div class="line"></div><div class="line">VoteButtons.propTypes = &#123;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">  entry: propType(VoteButtons.fragments.entry).isRequired,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>If our fragments include sub-fragments then we can pass them into the <code>gql</code> helper:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">FeedEntry.fragments = &#123;</div><div class="line">  <span class="attr">entry</span>: gql<span class="string">`</span></div><div class="line">    fragment FeedEntry on Entry &#123;</div><div class="line">      commentCount</div><div class="line">      repository &#123;</div><div class="line">        full_name</div><div class="line">        html_url</div><div class="line">        owner &#123;</div><div class="line">          avatar_url</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">      ...VoteButtons</div><div class="line">      ...RepoInfo</div><div class="line">    &#125;</div><div class="line">    <span class="subst">$&#123;VoteButtons.fragments.entry&#125;</span></div><div class="line">    <span class="subst">$&#123;RepoInfo.fragments.entry&#125;</span></div><div class="line">  `,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="filtering-with-fragments">Filtering With Fragments</h3>
+
+<p>We can also use the <code>graphql-anywhere</code> package to filter the exact fields from the <code>entry</code> before passing them to the subcomponent. So when we render a <code>VoteButtons</code>, we can simply do:</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; filter &#125; <span class="keyword">from</span> <span class="string">'graphql-anywhere'</span>;</div><div class="line"></div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">VoteButtons</span></span></span></div><div class="line">  <span class="attr">entry</span>=<span class="string">&#123;filter(VoteButtons.fragments.entry,</span> <span class="attr">entry</span>)&#125;</div><div class="line">  <span class="attr">canVote</span>=<span class="string">&#123;loggedIn&#125;</span></div><div class="line">  <span class="attr">onVote</span>=<span class="string">&#123;type</span> =&gt; onVote(&#123;</div><div class="line">    repoFullName: full_name,</div><div class="line">    type,</div><div class="line">  &#125;)&#125;</div><div class="line">/&gt;</div></pre></td></tr></table></figure>
+<p>The <code>filter()</code> function will grab exactly the fields from the <code>entry</code> that the fragment defines.</p>
+<h3 id="webpack-importing-fragments" title="Fragments with Webpack">Importing fragments when using Webpack</h3>
+
+<p>When loading <code>.graphql</code> files with <a href="https://github.com/apollographql/graphql-tag/blob/master/loader.js" target="_blank" rel="external">graphql-tag/loader</a>, we can include fragments using <code>import</code> statements. For example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#import &quot;./someFragment.graphql&quot;</div></pre></td></tr></table></figure>
+<p>Will make the contents of <code>someFragment.graphql</code> available to the current file. See the <a href="webpack.html#Fragments">Webpack Fragments</a> section for additional details.</p>
+
+    </div>
+  </div>
+
+  <div class="pagination">
+    <div class="content-wrapper">
+      
+      
+        <a class="link primary prev"
+          href="optimistic-ui.html">
+          <span class="icon-arrow-left-alt"></span>
+          <span class="subtitle-pagination">Previous</span>
+          Optimistic UI
+        </a>
+      
+      
+        <a class="link primary next"
+          href="prefetching.html">
+          <span class="subtitle-pagination">Next</span>
+          Prefetching data
+          <span class="icon-arrow-right-alt"></span>
+        </a>
+      
+    </div>
+  </div>
+
+  <div class="github">
+    <a class="link tertiary " href="https://github.com/apollographql/react-docs/tree/master/source/fragments.md" target="_blank">
+      <span class="icon-github"></span>Edit on GitHub</a>
+  </div>
+
+  
+</div>
+
+    <script src="/react/script/smooth-scroll.min.js"></script>
+    <script src="/react/script/main.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+    <script>
+      // nectar ninja
+      (function(){
+        var handle = '@meteorjs';
+        var a = document.createElement('script');
+        var m = document.getElementsByTagName('script')[0];
+        a.async = 1;
+        a.src = 'https://nectar.ninja/api/v1/' + handle.slice(1);
+        m.parentNode.insertBefore(a, m);
+      })();
+
+     
+
+      
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-PNFDVBB');
+      
+
+      
+        // Segment Tracking
+        !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+        analytics.load("wgrIo8Bul0Ujl8USETG3DB6hONdy4kTg");
+        analytics.page()
+        }}();
+      
+
+      // search box
+      
+
+        ['desktop', 'mobile'].forEach(function(type) {
+          var search = docsearch({
+            apiKey: '768e823959d35bbd51e4b2439be13fb7',
+            indexName: 'apollodata',
+            inputSelector: '#' + type + '-search-input',
+            autocompleteOptions: {
+              dropdownMenuContainer: '.wrapper-' + type + '-search-results',
+              debug: true
+            },
+            algoliaOptions: {
+              hitsPerPage: 20
+            }
+          }).autocomplete;
+
+          var sidebar = document.querySelector('.sidebar-content');
+          search.on('autocomplete:opened', function() {
+            sidebar.classList.add('searching');
+          });
+          search.on('autocomplete:closed', function() {
+            sidebar.classList.remove('searching');
+          });
+          search.on('autocomplete:updated', function() {
+            if (search.val() === '') {
+              search.autocomplete.close();
+            }
+          });
+        });
+      
+
+      
+    </script>
+  </body>
+</html>
