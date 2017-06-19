@@ -41,15 +41,15 @@ sidebar_categories:
     - redux
     - webpack
     - server-side-rendering
-github_repo: apollographql/react-docs
+github_repo: apollographqlcn/react-docs-cn
 content_root: source
 
 typescript_api_box:
   data_file: docs.json
 
 social_links:
-  github: 'https://github.com/apollographql'
-  twitter: '@apollographql'
+  github: 'https://github.com/apollographqlcn'
+  twitter: '@apollographqlcn'
 
 # API keys
 apis:
@@ -61,8 +61,8 @@ apis:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://dev.apollodata.com/react
-root: /react/
+url: https://apollographqlcn.github.io/react-docs-cn/
+root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 
