@@ -1,16 +1,16 @@
 ---
-title: Subscriptions
+title: 订阅
 ---
 
-In addition to fetching data using queries and modifying data using mutations, the GraphQL spec will soon be gaining a third operation type, called `subscription`. You can [read the RFC on GitHub](https://github.com/facebook/graphql/blob/master/rfcs/Subscriptions.md). While minor changes in the specification might happen before it's finalized, you can use subscriptions today with Apollo.
+除了使用查询获取数据和使用变量修改数据之外，GraphQL规范将很快获得第三种操作类型，称为 `订阅`。您可以[阅读GitHub上的RFC](https://github.com/facebook/graphql/blob/master/rfcs/Subscriptions.md)。虽然规范中的细微变化可能会在最终确定之前发生，但您可以在今天使用Apollo订阅。
 
-GraphQL subscriptions are a way to push data from the server to the clients that choose to listen to real time messages from the server. Subscriptions are similar to queries in that they specify a set of fields to be delivered to the client, but instead of immediately returning a single answer, a result is sent every time a particular event happens on the server.
+GraphQL订阅是将数据从服务器推送到选择从服务器收听实时消息的客户端的一种方法。订阅与查询类似，因为它们指定要传递给客户端的一组字段，而不是立即返回单个答案，每次在服务器上发生特定事件时都会发送结果。
 
-A common use case for subscriptions is notifying the client side about particular events, for example the creation of a new object, updated fields and so on.
+订阅的常见用例是向客户端通知特定事件，例如创建新对象，更新字段等。
 
-<h2 id="overview">Overview</h2>
+<h2 id="overview">概述</h2>
 
-GraphQL subscriptions have to be defined in the schema, just like queries and mutations:
+GraphQL订阅必须在模式中定义，就像查询和突变：
 
 ```js
 type Subscription {
@@ -18,7 +18,7 @@ type Subscription {
 }
 ```
 
-On the client, subscription queries look just like any other kind of operation:
+在客户端上，订阅查询与任何其他操作类似：
 
 ```js
 subscription onCommentAdded($repoFullName: String!){
@@ -29,7 +29,7 @@ subscription onCommentAdded($repoFullName: String!){
 }
 ```
 
-The response sent to the client looks as follows:
+发送给客户端的响应如下：
 
 ```json
 {
@@ -42,30 +42,30 @@ The response sent to the client looks as follows:
 }
 ```
 
-In the above example, the server is written to send a new result every time a comment is added on GitHunt for a specific repository. Note that the code above only defines the GraphQL subscription in the schema. Read [setting up subscriptions on the client](#subscriptions-client) and [setting up GraphQL subscriptions for the server](http://dev.apollodata.com/tools/graphql-subscriptions/index.html) to learn how to add subscriptions to your app.
+在上面的例子中，服务器被写入每次在GitHunt上添加一个特定存储库的注释时发送一个新的结果。请注意，上述代码仅在模式中定义GraphQL预订。阅读[在客户端上设置订阅](#subscriptions-client)和[设置服务器的GraphQL订阅](http://dev.apollodata.com/tools/graphql-subscriptions/index.html)，了解如何添加订阅您的应用程序
 
-<h3 id="when-to-use">When to use subscriptions</h3>
+<h3 id="when-to-use">何时使用订阅</h3>
 
-In most cases, intermittent polling or manual refetching are actually the best way to keep your client up to date. So when is a subscription the best option? Subscriptions are especially useful if:
+在大多数情况下，间歇性轮询或手动重新取样实际上是保持客户端更新的最佳方式。那么订阅什么时候最好的选择呢？订阅在以下情况下特别有用：
 
-1. The initial state is large, but the incremental change sets are small. The starting state can be fetched with a query and subsequently updated through a subscription.
-2. You care about low-latency updates in the case of specific events, for example in the case of a chat application where users expect to receive new messages in a matter of seconds.
+1. 初始状态很大，但增量变化集较小。可以使用查询获取起始状态，并随后通过订阅进行更新。
+2. 在特定事件的情况下，您关心低延迟更新，例如在用户希望在几秒钟内接收新消息的聊天应用程序的情况下。
 
-A future version of Apollo or GraphQL might include support for live queries, which would be a low-latency way to replace polling, but at this point general live queries in GraphQL are not yet possible outside of some relatively experimental setups.
+Apollo或GraphQL的未来版本可能包括对实时查询的支持，这将是一种低延迟的替代轮询方式，但在这一点上，GraphQL中的一般实时查询在一些相对实验的设置之外尚不可能。
 
-<h2 id="subscriptions-client">Client setup</h2>
+<h2 id="subscriptions-client">客户端设置</h2>
 
-The most popular transport for GraphQL subscriptions today is [`subscriptions-transport-ws`](https://github.com/apollographql/subscriptions-transport-ws). This package is maintained by the Apollo community, but can be used with any client or server GraphQL implemenetation. In this article, we'll explain how to set it up on the client, but you'll also need a server implementation. You can [read about how to use subscriptions with a JavaScript server](/tools/graphql-subscriptions/setup.html), or enjoy subscriptions set up out of the box if you are using a GraphQL backend as a service like [Graphcool](https://www.graph.cool/docs/tutorials/worldchat-subscriptions-example-ui0eizishe/) or [Scaphold](https://scaphold.io/blog/2016/11/09/build-realtime-apps-with-subs.html).
+GraphQL订阅最流行的传输方式是[`subscriptions-transport-ws`](https://github.com/apollographql/subscriptions-transport-ws)。此包由Apollo社区维护，但可以与任何客户端或服务器GraphQL实现一起使用。在本文中，我们将介绍如何在客户端上进行设置，但是您还需要一个服务器实现。服务，您可以[阅读关于如何使用JavaScript服务器的订阅](/tools/graphql-subscriptions/setup.html)，或者如果您使用GraphQL后端作为后端，即可享受开箱即用的订阅，比如[Graphcool](https://www.graph.cool/docs/tutorials/worldchat-subscriptions-example-ui0eizishe/)或[Scaphold](https://scaphold.io/blog/2016/11/09/build-realtime-apps-with-subs.html)。
 
-Let's look at how to add support for this transport to Apollo Client.
+我们来看看如何添加对这个传输的支持给Apollo Client。
 
-First, install `subscriptions-transport-ws` from npm:
+首先，从npm安装`subscriptions-transport-ws`：
 
 ```shell
 npm install --save subscriptions-transport-ws
 ```
 
-Then, initialize a GraphQL subscriptions transport client:
+然后，初始化一个GraphQL订阅传输客户机：
 
 ```js
 import { SubscriptionClient } from 'subscriptions-transport-ws';
@@ -74,44 +74,43 @@ const wsClient = new SubscriptionClient(`ws://localhost:5000/`, {
   reconnect: true
 });
 ```
-
-Then, extend your existing Apollo Client network interface using the `addGraphQLSubscriptions` function:
+然后，使用 `addGraphQLSubscriptions` 函数扩展现有的Apollo Client网络接口：
 
 ```js
 import { ApolloClient, createNetworkInterface } from 'react-apollo';
 import { SubscriptionClient, addGraphQLSubscriptions } from 'subscriptions-transport-ws';
 
-// Create a normal network interface:
+// 创建一个普通的网络接口：
 const networkInterface = createNetworkInterface({
   uri: 'http://localhost:3000'
 });
 
-// Extend the network interface with the WebSocket
+// 使用WebSocket扩展网络接口
 const networkInterfaceWithSubscriptions = addGraphQLSubscriptions(
   networkInterface,
   wsClient
 );
 
-// Finally, create your ApolloClient instance with the modified network interface
+// 最后，使用修改的网络接口创建您的ApolloClient实例
 const client = new ApolloClient({
   networkInterface: networkInterfaceWithSubscriptions
 });
 ```
 
-Now, queries and mutations will go over HTTP as normal, but subscriptions will be done over the websocket transport.
+现在，查询和突变将按照HTTP正常进行，但订阅将通过websocket传输完成。
 
 <h2 id="subscribe-to-more">subscribeToMore</h2>
 
-With GraphQL subscriptions your client will be alerted on push from the server and you should choose the pattern that fits your application the most:
+使用GraphQL订阅，您的客户端将从服务器推送提醒，您应该选择最适合您的应用程序的模式：
 
-* Use it as a notification and run any logic you want when it fires, for example alerting the user or refetching data
-* Use the data sent along with the notification and merge it directly into the store (existing queries are automatically notified)
+* 将其用作通知，并在其触发时运行所需的任何逻辑，例如提醒用户或重新获取数据
+* 使用与通知一起发送的数据，并将其直接合并到商店（现有查询会自动通知）
 
-With `subscribeToMore`, you can easily do the latter.
+用`subscribeToMore`，你可以轻松地做后者。
 
-`subscribeToMore` is a function available on every query result in `react-apollo`. It works just like [`fetchMore`](/react/cache-updates.html#fetchMore), except that the update function gets called every time the subscription returns, instead of only once.
+`subscribeToMore`是一个可用于 `react-apollo` 的每个查询结果的函数。它的工作原理就像[`fetchMore`](/reactions/cache-updates.html＃fetchMore)，不同之处在于每次订阅返回时都会调用更新函数，而不是只有一次。
 
-Here is a regular query:
+这是常规查询：
 
 ```js
 import { CommentsPage } from './comments-page.js';
@@ -141,11 +140,11 @@ const withData = graphql(COMMENT_QUERY, {
 export const CommentsPageWithData = withData(CommentsPage);
 ```
 
-Now, let's add the subscription.
+现在，我们来添加订阅。
 
-Add a function called `subscribeToNewComments` that will subscribe using `subscribeToMore` and update the query's store with the new data using `updateQuery`.
+添加一个名为 `subscribeToNewComments` 的函数，它将使用`subscribeToMore` 订阅并使用`updateQuery`更新新数据的查询存储。
 
-Note that the `updateQuery` callback must return an object of the same shape as the initial query data, otherwise the new data won't be merged. Here the new comment is pushed in the `comments` list of the `entry`:
+请注意，`updateQuery`回调必须返回与初始查询数据相同形状的对象，否则新数据将不会被合并。这里的新注释被推入`entry`的`comments`列表中：
 
 ```js
 const COMMENTS_SUBSCRIPTION = gql`
@@ -192,7 +191,7 @@ const withData = graphql(COMMENT_QUERY, {
 });
 ```
 
-and start the actual subscription by calling the `subscribeToNewComments` function with the subscription variables:
+并通过使用订阅变量调用`subscribeToNewComments`函数来启动实际订阅：
 
 ```js
 export class CommentsPage extends Component {
@@ -209,9 +208,9 @@ export class CommentsPage extends Component {
 }
 ```
 
-<h2 id="authentication">Authentication over WebSocket</h2>
+<h2 id="authentication">通过WebSocket验证</h2>
 
-In many cases it is necessary to authenticate clients before allowing them to receive subscription results. To do this, the `SubscriptionClient` constructor accepts a `connectionParams` field, which passes a custom object that the server can use to validate the connection before setting up any subscriptions.
+在许多情况下，必须先验证客户端，然后才能接收订阅结果。为此，`SubscriptionClient`构造函数接受一个`connectionParams`字段，该字段在设置任何订阅之前传递服务器可以用来验证连接的自定义对象。
 
 ```js
 import {SubscriptionClient} from 'subscriptions-transport-ws';
@@ -224,4 +223,4 @@ const wsClient = new SubscriptionClient(`ws://localhost:5000/`, {
 });
 ```
 
-> You can use `connectionParams` for anything else you might need, not only authentication, and check its payload on the server side with [SubscriptionsServer](/tools/graphql-subscriptions/index.html).
+> 您可以使用 `connectionParams` 作为您可能需要的其他任何内容，而不仅仅是身份验证，并使用[SubscriptionsServer](/tools/graphql-subscriptions/index.html)在服务器端检查其有效负载。

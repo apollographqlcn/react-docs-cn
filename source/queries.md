@@ -1,16 +1,16 @@
 ---
-title: Queries
+title: 查询
 ---
 
-On this page, you can learn how to use `react-apollo` to attach GraphQL query results to your React UI. This guide assumes some familiarity with GraphQL itself. You can read about GraphQL queries themselves in detail at [graphql.org](http://graphql.org/docs/queries/).
+在此页面上，您可以学习如何使用 `react-apollo` 将GraphQL查询结果附加到您的React UI。本指南介绍了对GraphQL本身的熟悉程度。您可以在[graphql.org](http://graphql.org/docs/queries/)上详细了解GraphQL查询。
 
-One of our core values is "it's just GraphQL". When using `react-apollo`, you don't have to learn anything special about the query syntax, since everything is just standard GraphQL. Anything you can type into the GraphiQL query IDE, you can also put into your `react-apollo` code.
+我们的核心价值观之一就是“它只是GraphQL”。当使用 `react-apollo` 时，您不需要学习关于查询语法的任何特别的东西，因为所有内容都只是标准的GraphQL。您可以在GraphiQL查询IDE中输入任何内容，也可以将其添加到 `react-apollo` 代码中。
 
-<h2 id="basics">Basic queries</h2>
+<h2 id="basics">基本查询</h2>
 
-When we are running a basic query we can use the `graphql` container in a very simple way. We simply parse our query using the `gql` template literal and then pass it into the `graphql` container as the first argument.
+当我们运行一个基本的查询时，我们可以用一个非常简单的方式使用 `graphql` 容器。我们只需使用 `gql` 模板文字解析我们的查询，然后将其作为第一个参数传递给`graphql`容器。
 
-For instance, in GitHunt, we want to display the currently logged-in user in the `Profile` component:
+例如，在GitHunt中，我们要在 `Profile` 组件中显示当前登录的用户：
 
 ```js
 import React, { Component, PropTypes } from 'react';
@@ -18,7 +18,7 @@ import { gql, graphql } from 'react-apollo';
 
 class Profile extends Component { ... }
 
-// We use the gql tag to parse our query string into a query document
+// 我们使用gql标签来将查询字符串解析成查询文档
 const CurrentUserForLayout = gql`
   query CurrentUserForLayout {
     currentUser {
@@ -31,12 +31,12 @@ const CurrentUserForLayout = gql`
 const ProfileWithData = graphql(CurrentUserForLayout)(Profile);
 ```
 
-When we use `graphql` with a GraphQL query document, two things happen:
+当我们用GraphQL查询文档使用 `graphql` 时，会发生两件事情：
 
-1. The query is loaded from the Apollo client-side data store, or the server if the data is not in the store
-2. Our component subscribes to the store, so that it is updated if the data changes as the result of a mutation or some other response from the server
+1.查询是从Apollo客户端数据存储库中加载的，如果数据不在存储器中，则从服务器加载
+2.我们的组件订阅商店，以便如果数据因服务器的突变或某些其他响应而发生变化，则会更新该商店
 
-In addition to the `currentUser` field selected in the query, the `data` prop also includes a field called `loading`, a Boolean value indicating if the query is currently being loaded from the server. So if we were to declare `propTypes` they would look like this:
+除了在查询中选择的 `currentUser` 字段之外，`data` prop还包含一个名为 `loading` 的字段，一个布尔值表示当前是否正在从服务器加载该查询。所以如果我们要声明 `propTypes`，他们会看起来像这样：
 
 ```js
 Profile.propTypes = {
@@ -47,19 +47,19 @@ Profile.propTypes = {
 };
 ```
 
-The `data.currentUser` prop will change as what the client knows about the current user changes over time. That information is stored in Apollo Client's global cache, so if some other query fetches new information about the current user, this component will update to remain consistent. You can read more about techniques to bring the cache up to date with the server in the [article about cache updates](cache-updates.html).
+`data.currentUser` 属性将随着客户端了解当前用户随时间的变化而改变。该信息存储在Apollo Client的全局缓存中，因此如果某些其他查询获取有关当前用户的新信息，则此组件将更新以保持一致。您可以在[关于缓存更新的文章](cache-updates.html)中阅读有关使缓存与服务器最新的技术相关的更多信息。
 
-<h2 id="default-result-props" title="The data prop">The structure of the `data` prop</h2>
+<h2 id="default-result-props" title="The data prop">`data` 属性的结构</h2>
 
-As seen above, `graphql` will pass the result of the query to the wrapped component in a prop called `data`. It will also pass through all of the props of the parent container.
+如上所述，`graphql` 将把查询的结果传递给一个名为 `data` 的prop中的包装组件。它也将通过父容器的所有道具。
 
-For queries, the shape of the `data` prop is the following:
+对于查询，`data` 属性的形状如下所示：
 
-- `...fields`: One key for each root field in the query.
-- `loading`: This field is `true` if there is currently a query fetch in flight, including after calling `refetch`. `false` otherwise.
-- `error`: An ApolloError object that represents the different possible errors that might happen when running a query.
+- `...fields`: 查询中每个根字段的一个键。
+- `loading`: 如果目前在飞行中有查询提取，包括调用`refetch`后，该字段为 `true`。 `false` 否则。
+- `error`: 一个ApolloError对象，表示运行查询时可能发生的不同可能的错误。
 
-There are a lot more methods as well, which you can read about [in the API docs for queries](api-queries.html#graphql-query-data). As an example, for a query like this:
+还有更多的方法，您可以阅读关于[在API文档中查询](api-queries.html＃graphql-query-data)。例如，对于像这样的查询：
 
 ```graphql
 query getUserAndLikes($id: ID!) {
@@ -68,7 +68,7 @@ query getUserAndLikes($id: ID!) {
 }
 ```
 
-You could get props like:
+你可以得到如下属性：
 
 ```js
 data: {
@@ -81,18 +81,20 @@ data: {
   fetchMore() { ... },
   startPolling() { ... },
   stopPolling() { ... },
-  // ... more methods
+  // ... 等更多方法
 }
 ```
 
+如果你使用 `props` 选项来指定你的子组件的[自定义 `props`](＃graphql-props)，那么这个对象将被传递给 `data` 参数的 `props` 设置。
+
 If you use the `props` option to the wrapper to specify [custom `props`](#graphql-props) for your child component, this object will be passed to the `props` option on the parameter named `data`.
 
-<h2 id="graphql-options">Variables and options</h2>
+<h2 id="graphql-options">变量和选项</h2>
 
-If you want to configure the query, you can provide an `options` key on the second argument to `graphql`, and your options will be passed along to [`ApolloClient.watchQuery`](/core/apollo-client-api.html#watchQuery). If your query requires variables, this is the place to pass them in:
+如果要配置查询，可以在 `graphql` 的第二个参数上提供一个 `options` 键，您的选项将被传递给[`ApolloClient.watchQuery`](/core/apollo-client-api.html＃watchQuery)。如果您的查询需要变量，这是传递他们的地方：
 
 ```js
-// Suppose our profile query took an avatar size
+// 假设我们的个人资料查询采用了头像大小
 const CurrentUserForLayout = gql`
   query CurrentUserForLayout($avatarSize: Int!) {
     currentUser {
@@ -108,42 +110,42 @@ const ProfileWithData = graphql(CurrentUserForLayout, {
 
 ```
 
-<h3 id="options-from-props">Computing from props</h3>
+<h3 id="options-from-props">从属性计算</h3>
 
-Typically, variables to the query will be computed from the `props` of the wrapper component. Wherever the component is used in your application, the caller would pass arguments. So `options` can be a function that takes the props passed into the component:
+通常，查询的变量将从包装器组件的 `props` 中计算出来。无论在应用程序中使用组件的何处，调用者都会传递参数。所以 `options` 可以是将道具传递给组件的一个功能：
 
 ```js
-// The caller could do something like:
+// 调用者可以执行以下操作：
 <ProfileWithData avatarSize={300} />
 
-// And our HOC could look like:
+// 我们的HOC可能看起来像：
 const ProfileWithData = graphql(CurrentUserForLayout, {
   options: ({ avatarSize }) => ({ variables: { avatarSize } }),
 })(Profile);
 ```
 
-By default, `graphql` will attempt to pick up any missing variables from the query from `ownProps`. So in our example above, we could have used the simpler `graphql(CurrentUserForLayout)(Profile);`. However, if you need to change the name of a variable, compute the value, or just want to be more explicit about things, the `options` function is the place to do it.
+默认情况下，`graphql` 将尝试从 `ownProps` 的查询中提取任何缺失的变量。所以在上面的例子中，我们可以使用更简单的 `graphql(CurrentUserForLayout)(Profile);`。但是，如果您需要更改变量的名称，计算该值，或者只是希望对事物进行更明确的定义，那么 `options` 函数就是这样做的地方。
 
-<h3 id="other-graphql-options">Other options</h3>
+<h3 id="other-graphql-options">其他选项</h3>
 
-There are a lot of other options you can pass in other than just `variables`, for example `pollInterval`:
+除了 `variables` 之外，还有很多其他可以传递的选项，例如 `pollInterval`：
 
 ```js
 const ProfileWithData = graphql(CurrentUserForLayout, {
-  // See the watchQuery API for the options you can provide here
+  // 查看watchQuery API以获取您可以在这里提供的选项
   options: { pollInterval: 20000 },
 })(Profile);
 ```
 
-If you use a function to compute options from props, all of these `options` will be automatically recalculated whenever the props change.
+如果您使用功能来计算属性中的选项，则每当道具更改时，所有这些 `options` 将自动重新计算。
 
-[Read about all of the query options in the API documentation.](api-queries.html#graphql-query-options)
+[阅读API文档中的所有查询选项。](api-queries.html#graphql-query-options)
 
-<h2 id="graphql-skip">Skipping an operation</h2>
+<h2 id="graphql-skip">跳过操作</h2>
 
-The `graphql` container API is intentionally fully static, so you can't dynamically change the query or wrapped component at runtime without generating a new React component. However, sometimes you may want to do some conditional logic to skip a query based on the passed in props. To do this you can use the `skip` config.
+`graphql` 容器API是有意完全静态的，所以你不能在运行时动态地改变查询或包装组件，而不生成一个新的React组件。但是，有时候，您可能需要执行一些条件逻辑来根据传入的道具来跳过查询。为此，您可以使用 `skip` 配置。
 
-For example, you could use this if you want to ignore a query if a user isn't authenticated:
+例如，如果您想忽略用户未通过身份验证的查询，则可以使用此选项：
 
 ```js
 const ProfileWithData = graphql(CurrentUserForLayout, {
@@ -151,7 +153,7 @@ const ProfileWithData = graphql(CurrentUserForLayout, {
 })(Profile);
 ```
 
-`skip` can also be a static property:
+`skip` 也可以是静态属性：
 
 ```js
 const ProfileWithData = graphql(CurrentUserForLayout, {
@@ -159,17 +161,17 @@ const ProfileWithData = graphql(CurrentUserForLayout, {
 })(Profile);
 ```
 
-Passing the `skip` config completely bypasses the higher-order component, as if it weren't there at all. This means your child component doesn't get a `data` prop at all, and the `options` or `props` methods are not called.
+传递 `skip` 配置完全绕过高阶组件，就好像它根本没有。这意味着你的子组件根本没有得到一个 `data` 属性，而 `options` 或 `props` 方法没有被调用。
 
-<h2 id="graphql-props">Controlling child props</h2>
+<h2 id="graphql-props">控制子属性</h2>
 
-By default, `graphql` used with a query will provide a `data` prop to the wrapped component with various information about the state of the query. We'll also see that [mutations](mutations.html) provide a callback on the `mutate` prop. It's possible to write your whole app just using these default prop names.
+默认情况下，与查询一起使用的 `graphql` 将为包装组件提供一个 `data` 属性，其中包含有关查询状态的各种信息。我们还会看到[突变](mutations.html)在`mutate` 属性上提供回调。可以使用这些默认的名称来编写整个应用程序。
 
-However, if you want to decouple your UI components from Apollo and make them more reusable in different contexts, you may want to modify these default props and wrap them with your own custom objects and functions.
+但是，如果要将您的UI组件与Apollo分离，并使其在不同的上下文中可重用，您可能需要修改这些默认道具，并将其包含在自己的自定义对象和函数中。
 
-<h3 id="graphql-name">Changing the prop name</h3>
+<h3 id="graphql-name">更改属性名称</h3>
 
-If you want to change the name of the default `data` prop, but keep the exact same shape, you can use `name` option to the `graphql` container. This is especially useful when one component is using multiple queries via nested `graphql` containers, where the `data` prop would otherwise be overwritten.
+如果要更改默认的 `data` 属性的名称，但保持完全相同的形状，可以使用 `graphql` 容器的 `name` 选项。当一个组件通过嵌套的`graphql`容器使用多个查询时，这是特别有用的，其中 `data` 属性将被覆盖。
 
 ```js
 import React, { Component, PropTypes } from 'react';
@@ -193,23 +195,22 @@ const CurrentUserForLayout = gql`
   }
 `;
 
-// We want the prop to be called 'CurrentUserForLayout' instead of data
+// 我们希望prop被称为'CurrentUserForLayout'而不是数据
 const ProfileWithData = graphql(CurrentUserForLayout, {
   name: 'CurrentUserForLayout'
 })(Profile);
 ```
 
-<h3 id="graphql-props-option">Arbitrary transformation</h3>
+<h3 id="graphql-props-option">任意转换</h3>
 
-If you want complete control over the props of the child component, use the `props` option to map the query `data` object into any number of props that will be passed into the child:
+如果要完全控制子组件的道具，请使用 `props` 选项将查询 `data` 对象映射到任何数量的传递给子组件的属性：
 
 ```js
 
 import React, { Component, PropTypes } from 'react';
 import { gql, graphql } from 'react-apollo';
 
-// Here Profile has a more generic API, that's not coupled to Apollo or the
-// shape of the query that we've used
+// 这里，Profile有一个更通用的API，它没有耦合到Apollo或者我们使用的查询的形状
 class Profile extends Component { ... }
 Profile.propTypes = {
   userLoading: PropTypes.bool.isRequired,
@@ -228,8 +229,7 @@ const CurrentUserForLayout = gql`
 `;
 
 const ProfileWithData = graphql(CurrentUserForLayout, {
-  // ownProps are the props that are passed into the `ProfileWithData`
-  // when it is used by a parent component
+  // ownProps是由父组件使用时传递到“ProfileWithData”的属性
   props: ({ ownProps, data: { loading, currentUser, refetch } }) => ({
     userLoading: loading,
     user: currentUser,
@@ -238,8 +238,8 @@ const ProfileWithData = graphql(CurrentUserForLayout, {
 })(Profile);
 ```
 
-This style of usage leads to the greatest decoupling between your presentational component (`Profile`) and Apollo.
+这种使用风格导致您的演示组件(`Profile`)和Apollo之间的最佳解耦。
 
-<h2 id="full-api">Full API</h2>
+<h2 id="full-api">完整API</h2>
 
-For more information about all of the options and features supported by React Apollo for GraphQL queries be sure to review the [API reference on `graphql()` queries](api-queries.html).
+有关React Apollo for GraphQL查询支持的所有选项和功能的详细信息，请务必查看[关于 `graphql()` 查询的 API 参考](api-queries.html)。

@@ -1,8 +1,8 @@
 ---
-title: Mutations
+title: 突变
 ---
 
-In addition to fetching data using queries, Apollo also helps you handle GraphQL mutations. In GraphQL, mutations are identical to queries in syntax, the only difference being that you use the keyword `mutation` instead of `query` to indicate that the root fields on this query are going to be performing writes to the backend.
+除了使用查询获取数据，Apollo还可以帮助您处理GraphQL突变。在GraphQL中，突变与语法中的查询相同，唯一的区别是您使用关键字 `mutation` 而不是 `query` 来表示此查询的根字段将对后端执行写入操作。
 
 ```js
 mutation {
@@ -13,12 +13,12 @@ mutation {
 }
 ```
 
-GraphQL mutations represent two things in one query string:
+GraphQL突变在一个查询字符串中代表两件事情：
 
-1. The mutation field name with arguments, `submitRepository`, which represents the actual operation to be done on the server.
-2. The fields you want back from the result of the mutation to update the client, in this case `{ id, repoName }`.
+1.变量字段名称，带有参数`submitRepository`，表示在服务器上要完成的实际操作。
+2.您想要从突变结果中更新客户端的字段，在这种情况下为 `{ id, repoName }`。
 
-The above mutation will submit a new GitHub repository to GitHunt, saving an entry to the database. The result might be:
+上述突变将向GitHunt提交一个新的GitHub存储库，将一个条目保存到数据库中。结果可能是：
 
 ```
 {
@@ -31,11 +31,11 @@ The above mutation will submit a new GitHub repository to GitHunt, saving an ent
 }
 ```
 
-When we use mutations in Apollo, the result is typically integrated into the cache automatically [based on the id of the result](cache-updates.html#dataIdFromObject), which in turn updates the UI automatically, so we often don't need to explicitly handle the results. In order for the client to correctly do this, we need to ensure we select the necessary fields in the result. One good strategy can be to simply ask for any fields that might have been affected by the mutation. Alternatively, you can use [fragments](fragments.html) to share the fields between a query and a mutation that updates that query.
+当我们在Apollo中使用突变时，结果通常会[根据结果的id](cache-updates.html＃dataIdFromObject)自动整合到缓存中，而这又自动更新UI，所以我们经常不需要明确处理结果。为了让客户端正确地执行此操作，我们需要确保在结果中选择必要的字段。一个好的策略可以是简单地询问可能受到突变影响的任何领域。或者，您可以使用[fragments](fragments.html)共享查询和更新该查询的突变之间的字段。
 
-<h2 id="basics">Basic mutations</h2>
+<h2 id="basics">基本突变</h2>
 
-Using `graphql` with mutations makes it easy to bind actions to your components. Unlike queries, which provide a complicated object with lots of metadata and methods, mutations provide only a simple function to the wrapped component, in a prop called `mutate`.
+使用 `graphql` 与突变可以很容易地将操作绑定到您的组件。不同于查询，它提供了一个具有大量元数据和方法的复杂对象，突变只能在一个称为 `mutate` 的属性中为包装组件提供一个简单的功能。
 
 ```js
 import React, { Component, PropTypes } from 'react';
@@ -54,7 +54,7 @@ const submitRepository = gql`
 const NewEntryWithData = graphql(submitRepository)(NewEntry);
 ```
 
-If we were to write `propTypes` for the component above, they would look like:
+如果我们为上面的组件编写 `propTypes`，它们将如下所示：
 
 ```js
 NewEntry.propTypes = {
@@ -62,11 +62,11 @@ NewEntry.propTypes = {
 };
 ```
 
-<h2 id="calling-mutations">Calling mutations</h2>
+<h2 id="calling-mutations">调用突变</h2>
 
-Most mutations will require arguments in the form of query variables, and you may wish to also provide other options as well. [See the complete set of mutation options in the API docs.](api-mutations.html#graphql-mutation-options)
+大多数突变将需要查询变量形式的参数，您也可以提供其他选项。 [参见API文档中的完整突变选项集](api-mutations.html＃graphql-mutation-options)
 
-The simplest option is to directly pass options to the default `mutate` prop when you call it in the wrapped component:
+最简单的选择是在包装组件中调用它时直接将选项传递给默认的 `mutate` 属性：
 
 ```js
 import React, { Component, PropTypes } from 'react';
@@ -100,9 +100,9 @@ const submitRepository = gql`
 const NewEntryWithData = graphql(submitRepository)(NewEntry);
 ```
 
-<h3 id="custom-arguments">Custom arguments</h3>
+<h3 id="custom-arguments">自定义参数</h3>
 
-While the above approach with the default prop works just fine, typically you'd want to keep the concern of formatting the mutation options out of your presentational component. The best way to do this is to use the [`props`](api-graphql.html#graphql-config-props) config to wrap the mutation in a function that accepts exactly the arguments it needs:
+虽然上述方法与默认支持工作正常，通常你会想要保持格式化变化选项从你的演示组件的关注。最好的方法是使用[`props`](api-graphql.html＃graphql-config-props)配置将突变包装在一个完全接受需要的参数的函数中：
 
 ```js
 const NewEntryWithData = graphql(submitRepository, {
@@ -112,7 +112,7 @@ const NewEntryWithData = graphql(submitRepository, {
 })(NewEntry);
 ```
 
-Here's that in context with a component, which can now be much simpler because it just needs to pass one argument:
+这是在一个组件的上下文中，现在可以简单得多，因为它只需要传递一个参数：
 
 ```js
 import React, { Component, PropTypes } from 'react';
@@ -124,7 +124,7 @@ const NewEntry = ({ submit }) => (
   </div>
 );
 
-const submitRepository = gql`...`; // Same query as above
+const submitRepository = gql`...`; // 与上述相同的查询
 
 const NewEntryWithData = graphql(submitRepository, {
   props: ({ mutate }) => ({
@@ -133,11 +133,11 @@ const NewEntryWithData = graphql(submitRepository, {
 })(NewEntry);
 ```
 
-Note that, in general, you don't need to use the results from the mutation callback directly. Instead you should usually rely on Apollo's id-based cache updating to take care of it for you. If that doesn't cover your needs, there are [several different options for updating the store after a mutation](cache-updates.html). That way, you can keep your UI components as stateless and declarative as possible.
+请注意，一般来说，您不需要直接使用突变回调的结果。相反，您通常应该依赖于Apollo的基于id的缓存更新来为您处理。如果这不能满足您的需求，[有几个不同的选项可以在更新 store 后发生变化](cache-updates.html)。这样，您可以将UI组件保持为无状态并尽可能声明性。
 
-<h2 id="multiple-mutations">Multiple mutations</h2>
+<h2 id="multiple-mutations">多重突变</h2>
 
-If you need more than one mutation on a component, you make a graphql container for each:
+如果组件上需要多个突变，则可以为每个组件创建一个graphql容器：
 
 ```js
 const ComponentWithMutations =
@@ -146,9 +146,9 @@ const ComponentWithMutations =
   )
 ```
 
-Make sure to use the [`name` option on the `graphql()` container](api-graphql.html#graphql-config-name) to name the provided prop, so that the two containers don't both try to name their function `mutate`.
+确保使用[`graphql()` 容器上的 `name` 选项](api-graphql.html＃graphql-config-name)来命名提供的属性，这样两个容器都不会同时命名他们的`mutate`函数。
 
-If you want a better syntax for the above, consider using [`compose`](api-graphql.html#compose):
+如果你想要语法更优雅，考虑使用[`compose`](api-graphql.html＃compose)：
 
 ```js
 import { compose } from 'react-apollo';
@@ -159,13 +159,13 @@ const ComponentWithMutations = compose(
 )(Component);
 ```
 
-This does the exact same thing as the previous snippet, but with a nicer syntax that flattens things out.
+这与前面的代码段完全相同，但是使用更好的语法来平衡事物。
 
-<h2 id="optimistic-ui">Optimistic UI</h2>
+<h2 id="optimistic-ui">乐观UI</h2>
 
-Sometimes your client code can easily predict the result of a successful mutation even before the server responds with the result. For instance, in GitHunt, when a user comments on a repository, we want to show the new comment in the UI immediately, without waiting on the latency of a round trip to the server, giving the user a faster UI experience. This is what we call [Optimistic UI](optimistic-ui.html). This is possible with Apollo if the client can predict an *optimistic response* for the mutation.
+有时您的客户端代码即使在服务器响应结果之前也可以很容易地预测成功突变的结果。例如，在GitHunt中，当用户对存储库进行评论时，我们希望立即在UI中显示新的注释，而不用等待来回服务器的延迟，为用户提供更快的用户界面体验。这就是我们所说的[Optimistic UI](optimistic-ui.html)。如果客户可以预测突变的*乐观响应*，则可以通过Apollo进行。
 
-All you need to do is specify the `optimisticResponse` option. This "fake result" will be used to update active queries immediately, in the same way that the server's mutation response would have done. The optimistic patches are stored in a separate place in the cache, so once the actual mutation returns, the relevant optimistic update is automatically thrown away and replaced with the real result.
+所有您需要做的是指定 `optimisticResponse` 选项。这个“假结果”将用于立即更新活动查询，就像服务器的突变响应一样。乐观补丁存储在缓存中的一个单独的位置，所以一旦实际的突变返回，相关的乐观更新被自动抛弃，并被替换成真实的结果。
 
 ```js
 import React, { Component, PropTypes } from 'react';
@@ -198,8 +198,7 @@ const CommentPageWithData = graphql(submitComment, {
         __typename: 'Mutation',
         submitComment: {
           __typename: 'Comment',
-          // Note that we can access the props of the container at `ownProps` if we
-          // need that information to compute the optimistic response
+          // 注意，如果我们需要这些信息来计算乐观的响应，我们可以访问“ownProps”的容器的属性
           postedBy: ownProps.currentUser,
           createdAt: +new Date,
           content: commentContent,
@@ -210,18 +209,18 @@ const CommentPageWithData = graphql(submitComment, {
 })(CommentPage);
 ```
 
-For the example above, it is easy to construct an optimistic response, since we know the shape of the new comment and can approximately predict the created data. The optimistic response doesn't have to be exactly correct because it will always will be replaced with the real result from the server, but it should be close enough to make users feel like there is no delay.
+对于上面的例子，很容易构造乐观的响应，因为我们知道新注释的形状，并且可以大致预测创建的数据。乐观的反应不一定是完全正确的，因为它总是会被服务器的真正的结果所取代，但它应该足够接近，使用户觉得没有任何延迟。
 
-<h2 id="mutation-results">Designing mutation results</h2>
+<h2 id="mutation-results">设计突变结果</h2>
 
-When people talk about GraphQL, they often focus on the data fetching side of things, because that's where GraphQL brings the most value. Mutations can be pretty elegant if done well, but the principles of designing good mutations, and especially good mutation result types, are not yet well-understood in the open source community. So when you are working with mutations it might often feel like you need to make a lot of application-specific decisions.
+当人们谈论GraphQL时，他们经常关注事物的数据获取方面，因为这就是GraphQL带来的最大价值。突变可以非常优雅，如果做得好，但设计好突变的原则，特别是良好的突变结果类型，在开源社区尚未被很好的理解。因此，当您使用突变时，您可能经常觉得您需要做出很多应用程序决定。
 
-In GraphQL, mutations can return any type, and that type can be queried just like a regular GraphQL query. So the question is - what type should a particular mutation return?
+在GraphQL中，突变可以返回任何类型，并且可以像常规GraphQL查询一样查询该类型。所以问题是 - 什么样的特定突变返回？
 
-In most cases, the data available from a mutation result should be the server developer's best guess of the data a client would need to understand what happened on the server. For example, a mutation that creates a new comment on a blog post might return the comment itself. A mutation that reorders an array might need to return the whole array.
+在大多数情况下，从突变结果可获得的数据应该是服务器开发人员对客户端需要了解服务器发生的情况的数据的最佳猜测。例如，在博客文章上创建新评论的突变可能会返回评论本身。重新排列阵列的突变可能需要返回整个数组。
 
-<h2 id="update-after-mutation">Store updates</h2>
+<h2 id="update-after-mutation">存储更新</h2>
 
-Most of the time it is not necessary to tell Apollo which parts of the cache to update, but if your mutation is creating a new object or deleting something, you will need to write some extra logic. Read about it in the [article about updating the store](cache-updates.html).
+大多数情况下，不需要告诉Apollo缓存的哪些部分进行更新，但如果您的突变正在创建新对象或删除某些内容，则需要编写一些额外的逻辑。 请阅读[关于更新store的文章](cache-updates.html)。
 
-For more information about all of the options and features supported by React Apollo for GraphQL mutations be sure to review the [API reference on `graphql()` mutations](api.html#mutations).
+有关React Apollo for GraphQL突变支持的所有选项和功能的详细信息，请务必查看[`graphql()` 突变 API 参考](api.html#mutations)。
