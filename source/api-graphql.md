@@ -1,6 +1,6 @@
 ---
-sidebar_title: "graphql: Container"
-title: "API: graphql container"
+sidebar_title: "graphql: 容器"
+title: "API: graphql 容器"
 ---
 
 <h2 id="graphql" title="graphql(...)">`graphql(query, [config])(component)`</h2>
@@ -9,12 +9,12 @@ title: "API: graphql container"
 import { graphql } from 'react-apollo';
 ```
 
-The `graphql()` function is the most important thing exported by `react-apollo`. With this function you can create higher-order components that can execute queries and update reactively based on the data in your Apollo store. The `graphql()` function returns a function which will “enhance” any component with reactive GraphQL capabilities. This follows the React [higher-order component][] pattern which is also used by [`react-redux`’s `connect`][] function.
+`graphql()`函数是`react-apollo`导出的最重要的东西。使用此功能，您可以创建可以基于Apollo store中的数据来执行查询和反应更新的高阶组件。 `graphql()`函数返回一个函数，它将“增强”任何具有反应性GraphQL功能的组件。这就是[`react-redux`’s `connect`][]函数使用的React [高阶分量] []模式。
 
-[higher-order component]: https://facebook.github.io/react/docs/higher-order-components.html
-[`react-redux`’s `connect`]: https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options
+[高阶组件]: https://facebook.github.io/react/docs/higher-order-components.html
+[`react-redux` 的 `connect`]: https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options
 
-The `graphql()` function may be used like this:
+`graphql()`函数可以这样使用：
 
 ```js
 function TodoApp({ data: { todos } }) {
@@ -37,24 +37,24 @@ export default graphql(gql`
 `)(TodoApp);
 ```
 
-You may also define an intermediate function and hook up your component with the `graphql()` function like this:
+您还可以定义一个中间函数，并使用`graphql()`函数挂接组件，如下所示：
 
 ```js
-// Create our enhancer function.
+// 创建我们的增强器函数。
 const withTodoAppQuery = graphql(gql`query { ... }`);
 
-// Enhance our component.
+// 增强我们的组件。
 const TodoAppWithData = withTodoAppQuery(TodoApp);
 
-// Export the enhanced component.
+// 导出增强的组件。
 export default TodoAppWithData;
 ```
 
-Alternatively, you can also use the `graphql()` function as a [decorator][] on your React class component.
+或者，您还可以在React类组件上使用`graphql()`函数作为[装饰器][]。
 
-[decorator]: https://github.com/wycats/javascript-decorators
+[装饰器]: https://github.com/wycats/javascript-decorators
 
-If so your code may look like this:
+如果是这样，你的代码可能如下所示：
 
 ```js
 @graphql(gql`
@@ -79,41 +79,42 @@ export default class TodoApp extends Component {
 }
 ```
 
-The `graphql()` function will only be able to provide access to your GraphQL data if there is a [`<ApolloProvider/>`](#ApolloProvider) component higher up in your tree to provide an [`ApolloClient`][] instance that will be used to fetch your data.
+如果您的组件树中有一个[`<ApolloProvider/>`](#ApolloProvider)组件高于[`ApolloClient`][]，`graphql()`函数将只能提供对GraphQL数据的访问。将用于获取数据的实例。
 
 [`ApolloClient`]: ../core/apollo-client-api.html#apollo-client
 
-The behavior of your component enhanced with the `graphql()` function will be different depending on if your GraphQL operation is a [query](#queries), a [mutation](#mutations), or a [subscription](#subscriptions). Go to the appropriate API documentation for more information about the functionality and available options for each type.
+根据GraphQL操作是一个[查询](#queries)，一个[突变](#mutations)或一个[订阅](#subscriptions)，您使用`graphql()`函数增强的组件的行为会有所不同）。有关每种类型的功能和可用选项的更多信息，请参阅相应的API文档。
 
-Before we look into the specific behaviors of each operation, let us look at the `config` object.
+在我们研究每个操作的具体行为之前，让我们看看`config`对象。
+
 
 <h2 id="graphql-config">`config`</h2>
 
-The `config` object is the second argument you pass into the `graphql()` function, after your GraphQL document. The config is optional and allows you to add some custom behavior to your higher order component.
+在你的GraphQL文件之后，`config`对象是你传入`graphql()`函数的第二个参数。该配置是可选的，并允许您向高阶组件添加一些自定义行为。
 
 ```js
 export default graphql(
   gql`{ ... }`,
-  config, // <- The `config` object.
+  config, // <- `config` 对象.
 )(MyComponent);
 ```
 
-Lets go through all of the properties that may live on your `config` object.
+让我们来看看你的`config`对象的所有属性。
 
 <h3 id="graphql-config-options">`config.options`</h3>
 
-`config.options` is an object or a function that allows you to define the specific behavior your component should use in handling your GraphQL data.
+`config.options` 是一个对象或函数，它允许您定义组件在处理GraphQL数据时应使用的具体行为。
 
-The specific options available for configuration depend on the operation you pass as the first argument to `graphql()`. There are options specific to [queries](#graphql-query-options) and [mutations](#graphql-mutation-options).
+可用于配置的具体选项取决于您作为`graphql()`的第一个参数传递的操作。有[查询](#graphql-query-options)和[mutations](#graphql-mutation-options)的特定选项。
 
-You can define `config.options` as a plain object, or you can compute your options from a function that takes the component’s props as an argument.
+您可以将`config.options`定义为普通对象，或者您可以从将组件道具视为参数的函数中计算您的选项。
 
-**Example:**
+**例：**
 
 ```js
 export default graphql(gql`{ ... }`, {
   options: {
-    // Options go here.
+    // 在这里填写配置。
   },
 })(MyComponent);
 ```
@@ -121,26 +122,26 @@ export default graphql(gql`{ ... }`, {
 ```js
 export default graphql(gql`{ ... }`, {
   options: (props) => ({
-    // Options are computed from `props` here.
+    // 选项从`props`在这里计算。
   }),
 })(MyComponent);
 ```
 
 <h3 id="graphql-config-props">`config.props`</h3>
 
-The `config.props` property allows you to define a map function that takes your props including the props added by the `graphql()` function ([`props.data`](#graphql-query-data) for queries and [`props.mutate`](#graphql-mutation-mutate) for mutations) and allows you to compute a new props object that will be provided to the component that `graphql()` is wrapping.
+`config.props`属性允许你定义一个map函数，它包含你的道具，包括由`graphql()`函数（[`props.data`](#graphql-query-data)添加的道具，用于查询和[`props.mutate`](#graphql-mutation-mutate) 用于突变），并允许您计算将提供给`graphql()`正在包装的组件的新道具对象。
 
-The function you define behaves almost exactly like [`mapProps` from Recompose][] providing the same benefits without the need for another library.
+您定义的函数几乎完全像[`mapProps` from Recompose][]提供了相同的优点，而不需要另一个库。
 
-[`mapProps` from Recompose]: https://github.com/acdlite/recompose/blob/2e71fdf4270cc8022a6574aaf00731bfc25dcae6/docs/API.md#mapprops
+[Recompose 中的 `mapProps`]: https://github.com/acdlite/recompose/blob/2e71fdf4270cc8022a6574aaf00731bfc25dcae6/docs/API.md#mapprops
 
-`config.props` is most useful when you want to abstract away complex functions calls into a simple prop that you can pass down to your component.
+当你想将复杂的函数调用抽象成一个简单的代码，你可以传递给你的组件，`config.props`是最有用的。
 
-Another benefit of `config.props` is that it also allows you to decouple your pure UI components from your GraphQL and Apollo concerns. You can write your pure UI components in one file and then keep the logic required for them to interact with the store in a completely different place in your project. You can accomplish this by your pure UI components only asking for the props needed to render and `config.props` can contain the logic to provide exactly the props your pure component needs from the data provided by your GraphQL API.
+`config.props`的另一个好处是它也允许你将你的纯UI组件与GraphQL和Apollo的关系分离开来。您可以将纯UI组件写入一个文件，然后保留所需的逻辑，以便它们与项目中完全不同的位置与商店进行交互。您可以通过纯粹的UI组件完成此任务，只需要渲染所需的道具，`config.props` 可以包含从GraphQL API提供的数据完全提供纯组件所需的道具的逻辑。
 
-**Example:**
+**例：**
 
-This example uses [`props.data.fetchMore`](#graphql-query-data-fetchMore).
+此示例使用[`props.data.fetchMore`](#graphql-query-data-fetchMore)。
 
 ```js
 export default graphql(gql`{ ... }`, {
@@ -162,13 +163,13 @@ function MyComponent({ onLoadMore }) {
 
 <h3 id="graphql-config-skip">`config.skip`</h3>
 
-If `config.skip` is true then all of the React Apollo code will be skipped *entirely*. It will be as if the `graphql()` function were a simple identity function. Your component will behave as if the `graphql()` function were not there at all.
+如果`config.skip`是true，那么所有的React Apollo代码将被*完全*跳过。就好像`graphql()`函数是一个简单的身份函数。您的组件将会像`graphql()`函数那样不起作用。
 
-Instead of passing a boolean to `config.skip`, you may also pass a function to `config.skip`. The function will take your components props and should return a boolean. If the boolean returns true then the skip behavior will go into effect.
+而不是将布尔值传递给`config.skip`，您也可以将函数传递给`config.skip`。该函数将占用您的组件道具，并返回一个布尔值。如果布尔值返回true，则跳过行为将生效。
 
-`config.skip` is especially useful if you want to use a different query based on some prop. You can see this in an example below.
+`config.skip`是特别有用的，如果你想使用一个不同的查询基于一些道具。您可以在下面的示例中看到这一点。
 
-**Example:**
+**例：**
 
 ```js
 export default graphql(gql`{ ... }`, {
@@ -176,7 +177,7 @@ export default graphql(gql`{ ... }`, {
 })(MyComponent);
 ```
 
-The following example uses the [`compose()`](#compose) function to use multiple `graphql()` enhancers at once.
+以下示例使用[`compose()`](#compose)函数同时使用多个 `graphql()` 增强器。
 
 ```js
 export default compose(
@@ -185,19 +186,18 @@ export default compose(
 )(MyComponent);
 
 function MyComponent({ data }) {
-  // The data may be from `MyQuery1` or `MyQuery2` depending on the value
-  // of the prop `useQuery1`.
+  // 数据可能来自“`MyQuery1`或`MyQuery2`，具体取决于`useQuery1` 属性的值。
   console.log(data);
 }
 ```
 
 <h3 id="graphql-config-name">`config.name`</h3>
 
-This property allows you to configure the name of the prop that gets passed down to your component. By default if the GraphQL document you pass into `graphql()` is a query then your prop will be named [`data`](#graphql-query-data). If you pass a mutation then your prop will be named [`mutate`](#graphql-mutation-mutate). While appropriate these default names collide when you are trying to use multiple queries or mutations with the same component. To avoid collisions you may use `config.name` to provide the prop from each query or mutation HOC a new name.
+该属性允许您配置传递给组件的prop的名称。默认情况下，如果您传递给`graphql()`的GraphQL文档是一个查询，那么您的prop将被命名为[`data`](#graphql-query-data)。如果你传递一个突变，那么你的prop将被命名为[`mutate`](#graphql-mutation-mutate)。当您尝试使用相同组件的多个查询或突变时，适当的这些默认名称会相冲突。为了避免冲突，您可以使用`config.name`从每个查询中提供prop或者HOC一个新的名字。
 
-**Example:**
+**例：**
 
-This example uses the [`compose`](#compose) function to use multiple `graphql()` HOCs together.
+此示例使用[`compose`](#compose)函数将多个`graphql()`HOC组合在一起。
 
 ```js
 export default compose(
@@ -207,8 +207,7 @@ export default compose(
 )(MyComponent);
 
 function MyComponent(props) {
-  // Instead of the default prop name, `mutate`,
-  // we have three different prop names.
+  // 而不是默认的prop名称`mutate`， 我们有三个不同的名称。
   console.log(props.createTodo);
   console.log(props.updateTodo);
   console.log(props.deleteTodo);
@@ -219,17 +218,17 @@ function MyComponent(props) {
 
 <h3 id="graphql-config-withRef">`config.withRef`</h3>
 
-By setting `config.withRef` to true you will be able to get the instance of your wrapped component from your higher-order GraphQL component using a `getWrappedInstance` method available on the instance of your higher-order GraphQL component.
+通过将`config.withRef`设置为true，您可以使用高阶GraphQL组件实例上的 `getWrappedInstance` 方法从高阶GraphQL组件获取包装组件的实例。
 
-You may want to set this to true when you want to call functions or get access to properties that are defined on your wrapped component’s class instance.
+当您想要调用函数或访问在包装组件的类实例上定义的属性时，可能需要将其设置为true。
 
-Below you can see an example of this behavior.
+下面你可以看到一个这个行为的例子。
 
-**Example:**
+**例：**
 
-This example uses the [React `ref` feature][].
+此示例使用[React`ref`功能][]。
 
-[React `ref` feature]: https://facebook.github.io/react/docs/refs-and-the-dom.html
+[React `ref` 功能]: https://facebook.github.io/react/docs/refs-and-the-dom.html
 
 ```js
 class MyComponent extends Component {
@@ -253,7 +252,7 @@ class MyContainerComponent extends Component {
       <MyGraphQLComponent
         ref={component => {
           assert(component.getWrappedInstance() instanceof MyComponent);
-          // We can call methods on the component class instance.
+          // 我们可以在组件类实例上调用方法。
           component.saySomething();
         }}
       />
@@ -264,15 +263,15 @@ class MyContainerComponent extends Component {
 
 <h3 id="graphql-config-alias">`config.alias`</h3>
 
-By default the display name for React Apollo components is `Apollo(${WrappedComponent.displayName})`. This is a pattern used by most React libraries that make use of higher order components. However, it may get a little confusing when you are using more then one higher order components and you look at the [React Devtools][].
+默认情况下，React Apollo组件的显示名称为`Apollo(${WrappedComponent.displayName})`。这是大多数使用更高阶组件的React库使用的模式。但是，当您使用多个更高级别的组件并且您查看[React Devtools][]时，可能会有点混乱。
 
-[React Devtools]: https://camo.githubusercontent.com/42385f70ef638c48310ce01a675ceceb4d4b84a9/68747470733a2f2f64337676366c703535716a6171632e636c6f756466726f6e742e6e65742f6974656d732f30543361333532443366325330423049314e31662f53637265656e25323053686f74253230323031372d30312d3132253230617425323031362e33372e30302e706e673f582d436c6f75644170702d56697369746f722d49643d626536623231313261633434616130636135386432623562616265373336323626763d3236623964363434
+[React 开发者工具]: https://camo.githubusercontent.com/42385f70ef638c48310ce01a675ceceb4d4b84a9/68747470733a2f2f64337676366c703535716a6171632e636c6f756466726f6e742e6e65742f6974656d732f30543361333532443366325330423049314e31662f53637265656e25323053686f74253230323031372d30312d3132253230617425323031362e33372e30302e706e673f582d436c6f75644170702d56697369746f722d49643d626536623231313261633434616130636135386432623562616265373336323626763d3236623964363434
 
-To configure the name of your higher order component wrapper, you may use the `config.alias` property. So for example, if you set `config.alias` to `'withCurrentUser'` your wrapper component display name would be `withCurrentUser(${WrappedComponent.displayName})` instead of `Apollo(${WrappedComponent.displayName})`.
+要配置高阶组件包装器的名称，可以使用`config.alias`属性。所以例如，如果你将`config.alias`设置为`'withCurrentUser'`，你的包装器组件显示名称将是`withCurrentUser(${WrappedComponent.displayName})`而不是 `Apollo(${WrappedComponent.displayName})`。
 
-**Example:**
+**例：**
 
-This example uses the [`compose`](#compose) function to use multiple `graphql()` HOCs together.
+此示例使用[`compose`](#compose) 函数将多个`graphql()`HOC组合在一起。
 
 ```js
 export default compose(
@@ -287,16 +286,16 @@ export default compose(
 import { compose } from 'react-apollo';
 ```
 
-For utility purposes, `react-apollo` exports a `compose` function. Using this function you may cleanly use several component enhancers at once. Including multiple [`graphql()`](#graphql), [`withApollo()`](#withApollo), or [Redux `connect()`][] enhancers. This should clean up your code when you use multiple enhancers. [Redux][] also exports a `compose` function, and so does [Recompose][] so you may choose to use the function from whichever library feels most appropriate.
+为了实用目的，`react-apollo` 导出一个`compose`函数。使用此功能，您可以一次干净地使用几个组件增强器。包括多个[`graphql()`](#graphql)，[`withApollo()`](#withApollo)或[Redux `connect()`][]增强器。当您使用多个增强器时，这应该会清理您的代码。 [Redux][]还导出一个`compose`函数，[Recompose][]也是如此，所以你可以选择使用这个函数，无论哪个库最适合。
 
-An important note is that `compose()` executes the last enhancer _first_ and works its way backwards through the list of enhancers. To illustrate calling three functions like this: `funcC(funcB(funcA(component)))` is equivalent to calling `compose()` like this: `compose(funcC, funcB, funcA)(component)`. If this does not make sense to you consider using [`flowRight()` from Lodash][] which otherwise has the same behavior.
+一个重要的注意事项是，`compose()` 执行最后一个增强器_first_，并通过增强器列表向后运行。为了说明这样调用三个函数：`funcC(funcB(funcA(component)))` 相当于这样调用`compose()`：`compose(funcC, funcB, funcA)(component)`。如果这样做没有意义，你可以考虑使用[Lodash 中的`flowRight()`][]，否则它们具有相同的行为。
 
 [Redux `connect()`]: https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options
 [Redux]: http://redux.js.org/
 [Recompose]: https://github.com/acdlite/recompose
-[`flowRight()` from Lodash]: https://lodash.com/docs/4.17.4#flowRight
+[Lodash 中的 `flowRight()`]: https://lodash.com/docs/4.17.4#flowRight
 
-**Example:**
+**例：**
 
 ```js
 export default compose(

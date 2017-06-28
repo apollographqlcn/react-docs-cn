@@ -1,25 +1,24 @@
 ---
-title: Server Side Rendering
+title: 服务端渲染
 ---
 
 
-Apollo provides two techniques to allow your applications to load quickly, avoiding unnecessary delays to users:
+Apollo提供两种技术，可让您的应用程序快速加载，避免不必要的延迟给用户：
 
- - Store rehydration, which allows your initial set of queries to return data immediately without a server roundtrip.
- - Server side rendering, which renders the initial HTML view on the server before sending it to the client.
+- Store 覆水，允许您的初始查询集立即返回数据，而无需服务器往返。
+- 服务端渲染，它将服务器上的初始HTML视图发送给客户端。
 
-You can use one or both of these techniques to provide a better user experience.
+您可以使用这些技术中的一种或两种来提供更好的用户体验。
 
-<h2 id="store-rehydration">Store rehydration</h2>
+<h2 id="store-rehydration">Store 覆水</h2>
 
-For applications that can perform some queries on the server prior to rendering the UI on the client, Apollo allows for setting the initial state of data. This is sometimes called rehydration, since the data is "dehydrated" when it is serialized and included in the initial HTML payload.
+对于在客户机上呈现UI之前可以在服务器上执行某些查询的应用程序，Apollo允许设置数据的初始状态。这有时被称为覆水，因为数据被序列化并包含在初始HTML有效载荷中时，数据被“脱水”。
 
-For example, a typical approach is to include a script tag that looks something like:
+例如，一个典型的方法是包括一个脚本标签，看起来像这样：
 
 ```html
 <script>
-  // `initialState` should have the shape of the Apollo store
-  // state. Make sure to include only the data though. E.g.:
+  // `initialState` 应该具有阿波罗存储状态的形状。确保只包括数据，例如：
   // const initialState = {[client.reduxRootKey]: {
   //   data: client.store.getState()[client.reduxRootKey].data
   // }};
@@ -27,20 +26,20 @@ For example, a typical approach is to include a script tag that looks something 
 </script>
 ```
 
-You can then rehydrate the client using the initial state passed from the server:
+然后可以使用从服务器传递的初始状态来重新使用客户端：
 ```js
 const client = new ApolloClient({
   initialState: window.__APOLLO_STATE__,
 });
 ```
 
-We'll see below how you can generate both the HTML and the Apollo store's state using Node and `react-apollo`'s server rendering functions. However if you are rendering HTML via some other means, you will have to generate the state manually.
+我们将在下面看到如何使用Node和`react-apollo`的服务器渲染功能生成HTML和Apollo商店的状态。但是，如果您通过其他方式呈现HTML，则必须手动生成该状态。
 
-If you are using [Redux](redux.html) externally to Apollo, and already have store rehydration, you should pass the store state into the [`Store` constructor](http://redux.js.org/docs/basics/Store.html).
+如果您在Apollo外部使用[Redux](redux.html)，并且已经具有存储补液，则应将存储状态传递到[`Store`构造函数](http://redux.js.org/docs/basics/Store.html)。
 
-Then, when the client runs the first set of queries, the data will be returned instantly because it is already in the store!
+然后，当客户端运行第一组查询时，数据将立即返回，因为它已经在存储中！
 
-If you are using [`forceFetch`](cache-updates.html#forceFetch) on some of the initial queries, you can pass the `ssrForceFetchDelay` option to skip force fetching during initialization, so that even those queries run using the cache:
+如果您在某些初始查询中使用[`forceFetch`](cache-updates.html#forceFetch)，则可以在初始化期间传递 `ssrForceFetchDelay` 选项来跳过强制提取，以便即使这些查询也使用缓存运行：
 
 ```js
 const client = new ApolloClient({
@@ -49,53 +48,50 @@ const client = new ApolloClient({
 });
 ```
 
-<h2 id="server-rendering">Server-side rendering</h2>
+<h2 id="server-rendering">服务端渲染</h2>
 
-You can render your entire React-based Apollo application on a Node server using rendering functions built into `react-apollo`. These functions take care of the job of fetching all queries that are required to rendering your component tree. Typically you would use these functions from within a HTTP server such as [Express](https://expressjs.com).
+您可以使用`react-apollo`中内置的渲染函数在Node服务器上渲染整个基于React的Apollo应用程序。这些功能负责提取渲染组件树所需的所有查询。通常，您可以在HTTP服务器（如[Express](https://expressjs.com)）中使用这些功能。
 
-No changes are required to client queries to support this, so your Apollo-based React UI should support SSR out of the box.
+不需要更改客户端查询来支持此操作，因此您的基于Apollo的React UI应支持SSR开箱即用。
 
-<h3 id="server-initialization">Server initialization</h3>
+<h3 id="server-initialization">服务端初始化</h3>
 
-In order to render your application on the server, you need to handle a HTTP request (using a server like Express, and a server-capable Router like React-Router), and then render your application to a string to pass back on the response.
+为了在服务器上呈现应用程序，您需要处理HTTP请求（使用像Express这样的服务器和支持服务器的路由器，如React-Router），然后将应用程序渲染为一个字符串以传回响应。
 
-We'll see how to take your component tree and turn it into a string in the next section, but you'll need to be a little careful in how you construct your Apollo Client instance on the server to ensure everything works there as well:
+我们将在下一部分中看到如何使用组件树并将其转换为一个字符串，但是您需要对如何在服务器上构建Apollo Client实例有一点小心，以确保一切都在此处工作：
 
-1. When [creating an Apollo Client instance](initialization.html) on the server, you'll need to set up you network interface to connect to the API server correctly. This might look different to how you do it on the client, since you'll probably have to use an absolute URL to the server if you were using a relative URL on the client.
+1. 当服务器上的[创建Apollo Client实例](initialization.html)时，需要设置网络接口才能正确连接到API服务器。这可能与您在客户端上的操作看起来有所不同，因为如果您在客户端上使用相对URL，则可能需要使用绝对URL到服务器。
 
-2. Since you only want to fetch each query result once, pass the `ssrMode: true` option to the Apollo Client constructor to avoid repeated force-fetching.
+2. 由于您只想获取每个查询结果一次，请将`ssrMode: true`选项传递给Apollo Client构造函数，以避免重复强制提取。
 
-3. You need to ensure that you create a new client or store instance for each request, rather than re-using the same client for multiple requests. Otherwise the UI will be getting stale data and you'll have problems with [authentication](auth.html).
+3. 您需要确保为每个请求创建一个新的客户端或存储实例，而不是为多个请求重新使用相同的客户端。否则，用户界面将变得过时，您将会遇到[authentication](auth.html)的问题。
 
-Once you put that all together, you'll end up with initialization code that looks like this:
+一旦你把它们放在一起，你会得到如下初始化代码：
 
 ```js
 import { ApolloClient, createNetworkInterface, ApolloProvider } from 'react-apollo';
 import Express from 'express';
 import { match, RouterContext } from 'react-router';
 
-// A Routes file is a good shared entry-point between client and server
+// 路由文件是客户端和服务器之间良好的共享入口点
 import routes from './routes';
 
-// Note you don't have to use any particular http server, but
-// we're using Express in this example
+// 请注意，您不必使用任何特定的http服务器，但是我们在这个例子中使用Express
 const app = new Express();
 app.use((req, res) => {
 
-  // This example uses React Router, although it should work equally well with other
-  // routers that support SSR
+  // 此示例使用React Router，尽管它应该与支持SSR的其他路由器同样好
   match({ routes, location: req.originalUrl }, (error, redirectLocation, renderProps) => {
 
     const client = new ApolloClient({
       ssrMode: true,
-      // Remember that this is the interface the SSR server will use to connect to the
-      // API server, so we need to ensure it isn't firewalled, etc
+      // 请记住，这是SSR服务器将用于连接到API服务器的接口，因此我们需要确保它不被防火墙等
       networkInterface: createNetworkInterface({
         uri: 'http://localhost:3010',
         opts: {
           credentials: 'same-origin',
-          // transfer request headers to networkInterface so that they're accessible to proxy server
-          // Addresses this issue: https://github.com/matthew-andrews/isomorphic-fetch/issues/83
+          // 将请求标头传输到networkInterface，以便代理服务器可以访问它们
+          // 解决这个issue: https://github.com/matthew-andrews/isomorphic-fetch/issues/83
           headers: req.headers,
         },
       }),
@@ -107,7 +103,7 @@ app.use((req, res) => {
       </ApolloProvider>
     );
 
-    // rendering code (see below)
+    // 渲染代码（见下文）
   });
 });
 
@@ -115,24 +111,24 @@ app.listen(basePort, () => console.log( // eslint-disable-line no-console
   `App Server is now running on http://localhost:${basePort}`
 ));
 ```
-You can check out the [GitHunt app's `ui/server.js`](https://github.com/apollographql/GitHunt-React/blob/master/ui/server.js) for a complete working example.
+您可以查看[GitHunt应用程序的`ui/server.js`](https://github.com/apollographql/GitHunt-React/blob/master/ui/server.js) 以获取完整的工作示例。
 
-Next we'll see what that rendering code actually does.
+接下来我们将看看渲染代码实际上是什么。
 
-<h3 id="getDataFromTree">Using `getDataFromTree`</h3>
+<h3 id="getDataFromTree">使用 `getDataFromTree`</h3>
 
-The `getDataFromTree` function takes your React tree, determines which queries are needed to render them, and then fetches them all. It does this recursively down the whole tree if you have nested queries. It returns a promise which resolves when the data is ready in your Apollo Client store.
+`getDataFromTree` 方法使用React树，确定需要哪些查询来渲染它们，然后将其全部获取。如果你有嵌套查询，它会递归地放在整个树上。它返回一个承诺，当您的Apollo Client存储中的数据准备就绪时可以解决。
 
-At the point that the promise resolves, your Apollo Client store will be completely initialized, which should mean your app will now render instantly (since all queries are prefetched) and you can return the stringified results in the response:
+在承诺解决之前，您的Apollo Client存储将被完全初始化，这意味着您的应用程序现在将立即呈现（因为所有查询都被预取），并且您可以在响应中返回字符串结果：
 
 ```js
 import { getDataFromTree } from "react-apollo"
 
 const client = new ApolloClient(....);
 
-// during request (see above)
+// 请求（见上文）
 getDataFromTree(app).then(() => {
-  // We are ready to render for real
+  // 我们准备好渲染真实的DOM
   const content = ReactDOM.renderToString(app);
   const initialState = {[client.reduxRootKey]: client.getInitialState()  };
 
@@ -144,7 +140,7 @@ getDataFromTree(app).then(() => {
 });
 ```
 
-Your markup in this case can look something like:
+在这种情况下，您的标记可以看起来像这样：
 
 ```js
 function Html({ content, state }) {
@@ -161,31 +157,34 @@ function Html({ content, state }) {
 }
 ```
 
-<h3 id="local-queries">Avoiding the network for local queries</h3>
+<h3 id="local-queries">避免本地查询的网络</h3>
+
+如果您的GraphQL端点位于与您呈现的同一台服务器上，则可能希望在进行SSR查询时避免使用网络。特别是，如果本地主机在您的生产环境（例如Heroku）上进行防火墙，则会对这些查询进行网络请求不起作用。该问题的一个解决方案是[apollo-local-query](https://github.com/af/apollo-local-query) 模块，它允许您为apollo创建一个实际不使用的 `networkInterface` 网络。
+
 
 If your GraphQL endpoint is on the same server that you're rendering from, you may want to avoid using the network when making your SSR queries. In particular, if localhost is firewalled on your production environment (eg. Heroku), making network requests for these queries will not work. One solution to this problem is the [apollo-local-query](https://github.com/af/apollo-local-query) module, which lets you create a `networkInterface` for apollo that doesn't actually use the network.
 
-<h3 id="skip-for-ssr">Skipping queries for SSR</h3>
+<h3 id="skip-for-ssr">跳过SSR查询</h3>
 
-If you want to intentionally skip a query during SSR, you can pass `ssr: false` in the query options. Typically, this will mean the component will get rendered in its loading state on the server. For example:
+如果要在SSR期间有意地跳过查询，可以在查询选项中传递`ssr: false`。通常，这将意味着组件将在服务器上处于加载状态。例如：
 
 ```js
 const withClientOnlyUser = graphql(GET_USER_WITH_ID, {
-  options: { ssr: false }, // won't be called during SSR
+  options: { ssr: false }, // 不会在SSR期间调用
 });
 ```
 
-<h3 id="renderToStringWithData">Using `renderToStringWithData`</h3>
+<h3 id="renderToStringWithData">使用 `renderToStringWithData`</h3>
 
-The `renderToStringWithData` function simplifies the above and simply returns the content string  that you need to render. So it reduces the number of steps slightly:
+`renderToStringWithData` 方法简化了上面的内容，只需返回需要渲染的内容字符串即可。所以它略微减少了步数：
 
 ```js
-// server application code (integrated usage)
+// 服务器应用程序代码（集成使用）
 import { renderToStringWithData } from "react-apollo"
 
 const client = new ApolloClient(....);
 
-// during request
+// 在请求期间
 renderToStringWithData(app).then((content) => {
   const initialState = {[client.reduxRootKey]: client.getInitialState() };
   const html = <Html content={content} state={initialState} />;
