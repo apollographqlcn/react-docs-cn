@@ -3,9 +3,9 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Apollo React Docs
+title: Apollo React 中文文档
 propertytitle: Using GraphQL with React
-subtitle: React Guide
+subtitle: React 指南
 description: A guide to using the Apollo GraphQL Client with React.
 author:
 language:

@@ -1,9 +1,9 @@
 ---
-sidebar_title: Server Side Rendering
-title: "API: Server Side Rendering"
+sidebar_title: 服务端渲染
+title: "API: 服务端渲染"
 ---
 
-`react-apollo` provides some utilities to aid in server side rendering and store hydration. To learn how to server side render in your app be sure to read the [recipe for server side rendering](server-side-rendering.html). The following is simply a reference for the APIs of the methods used in server side rendering and not a tutorial teaching you how to set it up.
+`react-apollo` 提供了一些实用程序来帮助服务器端呈现和存储水合。要了解如何在应用程序中进行服务器端渲染，请务必阅读[服务器端渲染的技巧](server-side-rendering.html)。以下仅仅是服务器端渲染中使用的方法的API的参考，而不是教你如何设置它的教程。
 
 <h2 id="getDataFromTree" title="getDataFromTree">`getDataFromTree(jsx)`</h2>
 
@@ -11,18 +11,18 @@ title: "API: Server Side Rendering"
 import { getDataFromTree } from 'react-apollo';
 ```
 
-This function will walk through your React tree to find any components enhanced with `graphql()`. It will take those components which are queries, execute the queries, and return a promise to notify you when all of the queries have been resolved. This promise resolves to no value. You will not be able to see the data returned by the queries that were found.
+此函数将遍历您的React树，以查找使用 `graphql()` 增强的任何组件。它将采用查询的组件，执行查询，并返回承诺，以便在所有查询已解决时通知您。这个承诺解决了没有价值。您将无法查看找到的查询返回的数据。
 
-After executing `getDataFromTree` when you render with the [`react-dom/server` methods][] like `renderToString` or `renderToStaticMarkup` the Apollo cache will be primed and your components will render with the fetched data in your cache. You may also choose to use the `react-apollo` [`renderToStringWithData()`](#renderToStringWithData) method which will call this function and then follow that with a call to [`react-dom/server`’s `renderToString`][].
+当使用[`react-dom/server` 的方法][]像 `renderToString` 或 `renderToStaticMarkup` 渲染时执行`getDataFromTree`后，Apollo缓存将被启动，您的组件将使用缓存中的获取数据进行渲染。您也可以选择使用`react-apollo` [`renderToStringWithData()`](#renderToStringWithData) 方法，该方法将调用此函数，然后调用[`react-dom/server`的 `renderToString`][]。
 
-If one of the queries fails the promise won’t reject until all of the queries have either resolved or rejected. At that point we will reject the promise returned from `getDataFromTree` with an error that has the property `error.queryErrors` which is an array of all the errors from the queries we executed. At that point you may decide to either render your tree anyway (if so, errored components will be in a loading state), or render an error page and do a full re-render on the client.
+如果其中一个查询失败，承诺将不会拒绝，直到所有查询都已解决或拒绝。在这一点上，我们将拒绝从 `getDataFromTree` 返回的承诺，其中的错误属性为`error.queryErrors`，它是我们执行的查询中的所有错误的数组。在这一点上，您可能会决定是否渲染树（如果是，错误的组件将处于加载状态），或者渲染错误页面并在客户端上进行完全重新渲染。
 
-For more information see the [recipe for server side rendering](server-side-rendering.html).
+有关更多信息，请参阅[服务端渲染的技巧](server-side-rendering.html)。
 
-[`react-dom/server` methods]: https://facebook.github.io/react/docs/react-dom-server.html
-[`react-dom/server`’s `renderToString`]: https://facebook.github.io/react/docs/react-dom-server.html#rendertostring
+[`react-dom/server` 的方法]: https://facebook.github.io/react/docs/react-dom-server.html
+[`react-dom/server`的 `renderToString`]: https://facebook.github.io/react/docs/react-dom-server.html#rendertostring
 
-**Example:**
+**例：**
 
 ```js
 const jsx = (
@@ -48,13 +48,13 @@ getDataFromTree(jsx)
 import { renderToStringWithData } from 'react-apollo';
 ```
 
-This function calls [`getDataFromTree()`](#getDataFromTree) and when the promise returned by that function resolves it calls [`react-dom/server`’s `renderToString`][].
+这个函数调用[`getDataFromTree()`](#getDataFromTree)，当该函数返回的承诺解析它调用[`react-dom/server`’s `renderToString`][]。
 
-For more information see the documentation for [`getDataFromTree()`](#getDataFromTree) or the [recipe for server side rendering](server-side-rendering.html).
+有关更多信息，请参阅[`getDataFromTree()`](#getDataFromTree)或[服务器端渲染的技巧](server-side-rendering.html)的文档。
 
-[`react-dom/server`’s `renderToString`]: https://facebook.github.io/react/docs/react-dom-server.html#rendertostring
+[`react-dom/server` 的 `renderToString`]: https://facebook.github.io/react/docs/react-dom-server.html#rendertostring
 
-**Example:**
+**例：**
 
 ```js
 renderToStringWithData(
