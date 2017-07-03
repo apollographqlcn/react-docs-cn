@@ -2,17 +2,17 @@
 title: Optimistic UI
 ---
 
-As explained in the [mutations](mutations.html#optimistic-ui) section, optimistic UI is a pattern that you can use to simulate the results of a mutation and update the UI even before receiving a response from the server. Once the response is received from the server, optimistic result is thrown away and replaced with the actual result.
+如[mutations](mutations.html#optimistic-ui)部分所述，optimistic UI是一种模式，您可以使用它来模拟突变的结果，甚至在从服务器接收响应之前更新UI。一旦从服务器接收到响应，乐观的结果将被丢弃并替换为实际结果。
 
-Optimistic UI provides an easy way to make your UI respond much faster, while ensuring that the data becomes consistent with the actual response when it arrives.
+乐观的UI提供了一种简单的方法，使您的UI响应更快，同时确保数据在实际响应达到时保持一致。
 
-<h2 id="optimistic-basics">Basic optimistic UI</h2>
+<h2 id =“optimistic-basics”>基本 optimistic UI </h2>
 
-Let's say we have an "edit comment" mutation, and we want the UI to update immediately when the user submits the mutation, instead of waiting for the server response. This is what the `optimisticResponse` parameter to the `mutate` function provides.
+假设我们有一个“编辑评论”突变，我们希望UI在用户提交突变时立即更新，而不是等待服务器响应。这是mutate函数提供的 `optimisticResponse` 参数。
 
-The main way to get GraphQL data into your UI components with Apollo is to use a query, so if we want our optimistic response to update the UI, we have to make sure to return an optimistic response that will update the correct query result. Learn more about how to do this with the [`dataIdFromObject`](cache-updates.html#dataIdFromObject) option.
+使用Apollo获取GraphQL数据到UI组件的主要方法是使用查询，因此如果我们希望我们的乐观响应更新UI，我们必须确保返回一个乐观的响应，以更新正确的查询结果。使用[`dataIdFromObject`](cache-updates.html#dataIdFromObject) 选项进一步了解如何执行此操作。
 
-Here's what this looks like in the code:
+以下是代码中的内容：
 
 ```js
 
@@ -45,15 +45,15 @@ const CommentPageWithData = graphql(submitComment, {
 })(CommentPage);
 ```
 
-We select `id` and `__typename` because that's what our `dataIdFromObject` uses to determine a globally unique object ID. We need to make sure to provide the right values for those fields, so that Apollo knows what object we are referring to.
+我们选择 `id` 和 `__typename`，因为这是我们的 `dataIdFromObject` 用来确定一个全局唯一的对象ID。我们需要确保为这些字段提供正确的值，以便阿波罗知道我们所指的对象。
 
-<h2 id="optimistic-advanced">Adding to a list</h2>
+<h2 id="optimistic-advanced">添加到列表</h2>
 
-In the example above, we showed how to seamlessly edit an existing object in the store with an optimistic mutation result. However, many mutations don't just update an existing object in the store, but they insert a new one.
+在上面的例子中，我们展示了如何使用乐观的突变结果无缝地编辑 Store 中的现有对象。然而，许多突变不只是更新存储中的现有对象，而是插入一个新对象。
 
-In that case we need to specify how to integrate the new data into existing queries, and thus our UI. You can read in detail about how to do that in the article about [controlling the store](cache-updates.html)--in particular, we can use the `update` function to insert a result into an existing query's result set. `update` works exactly the same way for optimistic results and the real results returned from the server, so just like above we only need to add the `optimisticResponse` option.
+在这种情况下，我们需要指定如何将新数据集成到现有查询中，从而将UI整合到我们的UI中。您可以在有关[控制 Store](cache-updates.html) 的文章中详细阅读有关如何做的事情 - 特别是我们可以使用`update`函数将结果插入到现有查询的结果集中。 `update`对于乐观的结果和从服务器返回的真实结果的工作方式完全相同，所以就像上面我们只需要添加 `optimisticResponse` 选项。
 
-Here is a concrete example from GitHunt, which inserts a comment into an existing list of comments.
+这是 GitHunt 的一个具体例子，它将注释插入现有的注释列表。
 
 ```js
 import React from 'react';
@@ -91,11 +91,11 @@ const CommentsPageWithMutations = graphql(SUBMIT_COMMENT_MUTATION, {
             },
           },
           update: (store, { data: { submitComment } }) => {
-            // Read the data from our cache for this query.
+            // 从我们的缓存中读取此查询的数据。
             const data = store.readQuery({ query: CommentAppQuery });
-            // Add our comment from the mutation to the end.
+            // 将我们的评论从突变添加到最后。
             data.comments.push(submitComment);
-            // Write our data back to the cache.
+            // 将我们的数据写回缓存。
             store.writeQuery({ query: CommentAppQuery, data });
           },
         });
