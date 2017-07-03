@@ -1,13 +1,13 @@
 ---
-sidebar_title: "graphql: Mutations"
-title: "API: graphql container with mutations"
+sidebar_title: "graphql: 突变"
+title: "API: 具有突变的graphql容器"
 ---
 
-> This article is specifically about using mutations with the `graphql()` higher order component. To see options that apply to all operations, see the [general graphql container API docs](/react/api-graphql.html).
+> 这篇文章特别关于使用 `graphql()` 更高阶组件的突变。要查看适用于所有操作的选项，请参阅[一般graphql容器API文档]（/ reactions / api-graphql.html）。
 
-The operation that you pass into your `graphql()` function decides how your component will behave. If you pass a mutation into your `graphql()` function then Apollo will set up a `mutate` function in your components props that you may call at any time.
+您传递到 `graphql()` 函数的操作决定了组件的行为方式。如果您将变量传递到您的 `graphql()` 函数中，那么Apollo将在您的组件道具中随时设置一个`mutate` 函数。
 
-Here is an example component that uses a mutation with the `graphql()` function:
+这是一个使用 `graphql()` 函数的变量的示例组件：
 
 ```js
 export default graphql(gql`
@@ -29,21 +29,21 @@ function TodoCompleteButton({ todoID, mutate }) {
 }
 ```
 
-For a more natural overview of mutations with the `graphql()` function be sure to read the [Mutations documentation article](mutations.html). For a technical overview of all the features supported by the `graphql()` function for mutations, continue on.
+为了更自然地使用`graphql()`函数的突变概述，请务必阅读[突变文档文章](mutations.html)。有关用于突变的 `graphql()` 函数支持的所有功能的技术概述，请继续。
 
 <h2 id="graphql-mutation-mutate">`props.mutate`</h2>
 
-The higher order component created when you pass a mutation to `graphql()` will provide your component with a single prop named `mutate`. Unlike the `data` prop which you get when you pass a query to `graphql()`, `mutate` is a function.
+当将变量传递给 `graphql()` 时创建的高阶组件将为您的组件提供一个名为 `mutate` 的单个参考。与`graphql（）`传递查询时所得到的`data` 属性不同，mutate是一个函数。
 
-The `mutate` function will actually execute your mutation using the network interface therefore mutating your data. The `mutate` function will also then update your cache in ways you define.
+`mutate` 函数实际上将使用网络接口来执行您的突变，从而突变您的数据。`mutate` 函数还将以您定义的方式更新缓存。
 
-To learn more about how mutations work, be sure to check out the [mutations usage documentation](mutations.html).
+要了解有关突变如何工作的更多信息，请务必查看[突变使用文档](mutations.html)。
 
-The `mutate` function accepts the same options that [`config.options` for mutations](#graphql-mutation-options) accepts, so to make sure to read through the documentation for that to know what you can pass into the `mutate` function.
+`mutate`函数接受与[`config.options` for mutations](#graphql-mutation-options)相同的选项，所以要确保阅读文档，以了解可以传入 `mutate` 函数的内容。
 
-The reason the `mutate` function accepts the same options is that it will use the options from [`config.options`](#graphql-mutation-options) _by default_. When you pass an object into the `mutate` function you are just overriding what is already in [`config.options`](#graphql-mutation-options).
+`mutate`函数接受相同选项的原因是它将使用[`config.options`](#graphql-mutation-options) _by default_中的选项。当您将对象传递到`mutate` 函数中时，您只需覆盖[`config.options`](#graphql-mutation-options) 中已有的内容。
 
-**Example:**
+**例：**
 
 ```js
 function MyComponent({ mutate }) {
@@ -63,20 +63,20 @@ export default graphql(gql`mutation { ... }`)(MyComponent);
 
 <h2 id="graphql-mutation-options">`config.options`</h2>
 
-An object or function that returns an object of options that are used to configure how the query is fetched and updated.
+返回用于配置如何获取和更新查询的选项对象的对象或函数。
 
-If `config.options` is a function then it will take the component’s props as its first argument.
+如果`config.options`是一个函数，那么它将以组件的属性为第一个参数。
 
-The options available for use in this object depend on the operation type you pass in as the first argument to `graphql()`. The references below will document which options are availble when your operation is a mutation. To see what other options are available for different operations, see the generic documentation for [`config.options`](#graphql-config-options).
+可用于此对象的选项取决于您作为`graphql()`的第一个参数传入的操作类型。以下参考文献将记录当您的手术发生突变时哪些选项可用。要查看其他可用于不同操作的选项，请参阅[`config.options`](#graphql-config-options)的通用文档。
 
-The properties accepted in this options object may also be excepted by the [`props.mutate`](#graphql-mutation-mutate) function. Any options passed into the `mutate` function will take precedence over the options defined in the `config` object.
+此选项对象中接受的属性也可以被[`props.mutate`](#graphql-mutation-mutate) 函数除外。传入 `mutate` 函数的任何选项将优先于 `config` 对象中定义的选项。
 
-**Example:**
+**例：**
 
 ```js
 export default graphql(gql`mutation { ... }`, {
   options: {
-    // Options go here.
+    // 这里填写选项。
   },
 })(MyComponent);
 ```
@@ -84,7 +84,7 @@ export default graphql(gql`mutation { ... }`, {
 ```js
 export default graphql(gql`mutation { ... }`, {
   options: (props) => ({
-    // Options are computed from `props` here.
+    // 这里根据props计算选项。
   }),
 })(MyComponent);
 ```
@@ -94,7 +94,7 @@ function MyComponent({ mutate }) {
   return (
     <button onClick={() => {
       mutate({
-        // Options are component from `props` and component state here.
+        // 选项是这里的`props`和组件状态的组件。
       });
     }}>
       Mutate
@@ -107,9 +107,9 @@ export default graphql(gql`mutation { ... }`)(MyComponent);
 
 <h3 id="graphql-mutation-options-variables">`options.variables`</h3>
 
-The variables which will be used to execute the mutation operation. These variables should correspond to the variables that your mutation definition accepts. If you define `config.options` as a function, or you pass variables into the [`props.mutate`](#graphql-mutation-mutate) function then you may compute your variables from props and component state.
+用于执行变异操作的变量。这些变量应该与您的突变定义接受的变量相对应。如果将`config.options`定义为函数，或者将变量传递到[`props.mutate`](#graphql-mutation-mutate) 函数中，那么可以从道具和组件状态计算变量。
 
-**Example:**
+**例：**
 
 ```js
 export default graphql(gql`
@@ -128,13 +128,13 @@ export default graphql(gql`
 
 <h3 id="graphql-mutation-options-optimisticResponse">`options.optimisticResponse`</h3>
 
-Often when you mutate data it is fairly easy to predict what the response of the mutation will be before asking your server. The optimistic response option allows you to make your mutations feel faster by simulating the result of your mutation in your UI before the mutation actually finishes.
+通常，当您突变数据时，很容易就可以预测在询问服务器之前，突变的响应是什么。乐观的回应选项可让您通过在突变实际完成之前模拟UI中突变的结果，使您的突变变得更快。
 
-To learn more about the benefits of optimistic data and how to use it be sure to read the recipe on [Optimistic UI](optimistic-ui.html).
+要了解更多关于乐观数据的好处以及如何使用它，请务必阅读[Optimistic UI](optimistic-ui.html) 上的文章。
 
-This optimistic response will be used with [`options.update`](#graphql-mutation-options-update) and [`options.updateQueries`](#graphql-mutation-options-updateQueries) to apply an update to your cache which will be rolled back before applying the update from the actual response.
+这个乐观的响应将与[`options.update`](#graphql-mutation-options-update) 和[`options.updateQueries`](#graphql-mutation-options-updateQueries) 一起使用，以将更新应用于缓存中在应用实际响应的更新之前将会回滚。
 
-**Example:**
+**例：**
 
 ```js
 function MyComponent({ newText, mutate }) {
@@ -144,11 +144,10 @@ function MyComponent({ newText, mutate }) {
         variables: {
           text: newText,
         },
-        // The optimistic response has all of the fields that are included in
-        // the GraphQL mutation document below.
+        // 乐观的响应包含下面的GraphQL突变文档中包含的所有字段。
         optimisticResponse: {
           createTodo: {
-            id: -1, // A temporary id. The server decides the real id.
+            id: -1, // 一个临时id。服务器返回真实的ID。
             text: newText,
             completed: false,
           },
@@ -173,15 +172,15 @@ export default graphql(gql`
 
 <h3 id="graphql-mutation-options-update">`options.update`</h3>
 
-This option allows you to update your store based on your mutation’s result. By default Apollo Client will update all of the overlapping nodes in your store. Anything that shares the same id as returned by the `dataIdFromObject` you defined will be updated with the new fields from your mutation results. However, sometimes this alone is not sufficient. Sometimes you may want to update your cache in a way that is dependent on the data currently in your cache. For these updates you may use an `options.update` function.
+此选项允许您根据突变的结果更新您的Store。默认情况下，Apollo Client将更新您Store中的所有重叠节点。与您定义的 `dataIdFromObject` 返回的共享ID相同的任何内容将使用您的突变结果的新字段进行更新。但是，有时这个还不够。有时您可能希望以取决于缓存中当前数据的方式更新缓存。对于这些更新，您可以使用`options.update`函数。
 
-`options.update` takes two arguments. The first is an instance of a [`DataProxy`][] object which has some methods which will allow you to interact with the data in your store. The second is the response from your mutation - either the optimistic response, or the actual response returned by your server.
+`options.update`需要两个参数。第一个是[`DataProxy`][]对象的一个​​实例，它有一些方法可以让您与商店中的数据进行交互。第二个是您的突变的响应 - 乐观的响应或服务器返回的实际响应。
 
-In order to change the data in your store call methods on your [`DataProxy`][] instance like [`writeQuery`][] and [`writeFragment`][]. This will update your cache and reactively re-render any of your GraphQL components which are querying affected data.
+为了更改您的[`DataProxy`][]实例上的存储调用方法中的数据，如[`writeQuery`] []和[`writeFragment`] []。这将更新您的缓存并反应性地重新呈现任何查询受影响数据的GraphQL组件。
 
-To read the data from the store that you are changing, make sure to use methods on your [`DataProxy`][] like [`readQuery`][] and [`readFragment`][].
+要读取您正在更改的商店中的数据，请确保使用[`DataProxy`][]的诸如[`readQuery`] []和[`readFragment`] []的方法。
 
-For more information on updating your cache after a mutation with the `options.update` function make sure to read the [Apollo Client technical documentation on the subject](../core/read-and-write.html#updating-the-cache-after-a-mutation).
+有关使用`options.update`函数进行突变之后更新缓存的更多信息，请务必阅读[Apollo Client技术文档相关的主题](../core/read-and-write.html#updating-the-cache-after-a-mutation)。
 
 [`DataProxy`]: ../core/apollo-client-api.html#DataProxy
 [`writeQuery`]: ../core/apollo-client-api.html#DataProxy.writeQuery
@@ -189,7 +188,7 @@ For more information on updating your cache after a mutation with the `options.u
 [`readQuery`]: ../core/apollo-client-api.html#DataProxy.readQuery
 [`readFragment`]: ../core/apollo-client-api.html#DataProxy.readFragment
 
-**Example:**
+**例：**
 
 ```js
 const query = gql`{ todos { ... } }`
@@ -211,22 +210,22 @@ export default graphql(gql`
 
 <h3 id="graphql-mutation-options-refetchQueries">`options.refetchQueries`</h3>
 
-Sometimes when you make a mutation you also want to update the data in your queries so that your users may see an up-to-date user interface. There are more fine-grained ways to update the data in your cache which include [`options.updateQueries`](#graphql-mutation-options-updateQueries), and [`options.update`](#graphql-mutation-options-update). However, you can update the data in your cache more reliably at the cost of efficiency by using `options.refetchQueries`.
+有时，当您进行突变时，您还需要更新查询中的数据，以便用户可以看到最新的用户界面。有更多细微的方式来更新缓存中的数据，包括[`options.updateQueries`](#graphql-mutation-options-updateQueries)和[`options.update`](#graphql-mutation-options-update)。但是，您可以通过使用`options.refetchQueries`以更高的效率更高效地更新缓存中的数据。
 
-`options.refetchQueries` will execute one or more queries using your network interface and will then normalize the results of those queries into your cache. Allowing you to potentially refetch queries you had fetched before, or fetch brand new queries.
+`options.refetchQueries`将使用您的网络接口执行一个或多个查询，然后将这些查询的结果归一化到缓存中。允许您可能会重新提取您之前提取的查询，或者获取全新的查询。
 
-`options.refetchQueries` is an array of either strings or objects.
+`options.refetchQueries`是一个字符串或对象的数组。
 
-If `options.refetchQueries` is an array of strings then Apollo Client will look for any queries with the same names as the provided strings and will refetch those queries with their current variables. So for example if you have a GraphQL query component with a query named `Comments` (the query may look like: `query Comments { ... }`), and you pass an array of strings containing `Comments` to `options.refetchQueries` then the `Comments` query will be re-executed and when it resolves the latest data will be reflected in your UI.
+如果`options.refetchQueries`是一个字符串数组，那么Apollo Client将寻找与提供的字符串相同名称的任何查询，并使用它们当前的变量来获取这些查询。因此，例如，如果您有一个名为`Comments`的查询的GraphQL查询组件（查询可能看起来像：`query Comments {...}`），并且将包含 `Comments` 的字符串数组传递给`options.refetchQueries`，那么`Comments`查询将被重新执行，当它解析最新的数据将被反映在你的UI中。
 
-If `options.refetchQueries` is an array of objects then the objects must have two properties:
+如果`options.refetchQueries`是一个对象的数组，那么对象必须有两个属性：
 
-- `query`: Query is a required property that accepts a GraphQL query created with `graphql-tag`’s `gql` template string tag. It should contain a single GraphQL query operation that will be executed once the mutation has completed.
-- `[variables]`: Is an optional object of variables that is required when `query` accepts some variables.
+- `query`: Query是一个必需的属性，它接受使用`graphql-tag` 的 `gql` 标记创建的GraphQL查询。它应该包含一个单独的GraphQL查询操作，一旦突变完成，它将被执行。
+- `[variables]`: 当 `query` 接受一些变量时，这是一个可选的变量对象。
 
-If an array of objects with this shape is specified then Apollo Client will refetch these queries with their variables.
+如果指定了具有此形状的对象数组，那么Apollo Client将使用它们的变量来提取这些查询。
 
-**Example:**
+**例：**
 
 ```js
 export default graphql(gql`mutation { ... }`, {
@@ -267,11 +266,11 @@ export default graphql(gql`mutation { ... }`, {
 
 <h3 id="graphql-mutation-options-updateQueries">`options.updateQueries`</h3>
 
-**Note: We recommend using [update](#graphql-mutation-options-update) instead of `updateQueries`.**
+**注意：我们建议使用[update](#graphql-mutation-options-update) 而不是`updateQueries`。**
 
-This option allows you to update your store based on your mutation’s result. By default Apollo Client will update all of the overlapping nodes in your store. Anything that shares the same id as returned by the `dataIdFromObject` you defined will be updated with the new fields from your mutation results. However, sometimes this alone is not sufficient. Sometimes you may want to update your cache in a way that is dependent on the data currently in your cache. For these updates you may use an `options.updateQueries` function.
+此选项允许您根据突变的结果更新您的 Store。默认情况下，Apollo Client将更新您商店中的所有重叠节点。与您定义的 `dataIdFromObject` 返回的共享ID相同的任何内容将使用您的突变结果的新字段进行更新。但是，有时这个还不够。有时您可能希望以取决于缓存中当前数据的方式更新缓存。对于这些更新，您可以使用`options.updateQueries`函数。
 
-`options.updateQueries` takes an object where query names are the keys and reducer functions are the values. If you are familiar with Redux, defining your `options.updateQueries` reducers is very similar to defining your Redux reducers. The object looks something like this:
+`options.updateQueries`需要一个对象，其中查询名称是关键字，而reducer函数是这些值。如果您熟悉Redux，定义 `options.updateQueries` reducers与定义Redux reducer非常相似。对象看起来像这样：
 
 ```js
 {
@@ -279,7 +278,7 @@ This option allows you to update your store based on your mutation’s result. B
 }
 ```
 
-Make sure that the key of your `options.updateQueries` object corresponds to an actual query that you have made somewhere else in your app. The query name will be the name you put after specifying the `query` operation type. So for example in the following query:
+确保您的`options.updateQueries`对象的键对应于您在应用程序中的其他位置的实际查询。查询名称将是在指定`query`操作类型后放置的名称。所以例如在以下查询中：
 
 ```graphql
 query Comments {
@@ -291,21 +290,21 @@ query Comments {
 }
 ```
 
-The query name would be `Comments`. If you have not executed a GraphQL query with the name of `Comments` before somewhere in your application, then the reducer function will never be run by Apollo and the key/value pair in `options.updateQueries` will be ignored.
+查询名称将为 `Comments`。如果您的应用程序中某个地方尚未执行一个名为 `Comments` 的GraphQL查询，那么reducer函数将永远不会由Apollo运行，`options.updateQueries` 中的键/值对将被忽略。
 
-The first argument to the function you provide as the value for your object will be the previous data for your query. So if your key is `Comments` then the first argument will be the last data object that was returned for your `Comments` query, or the current object that is being rendered by any component using the `Comments` query.
+您提供的函数的第一个参数作为对象的值将是您的查询的先前数据。所以如果你的键是 `Comments`，那么第一个参数将是你的`Comments`查询返回的最后一个数据对象，或者是使用`Comments`查询的任何组件呈现的当前对象。
 
-The second argument to your function value will be an object with three properties:
+函数值的第二个参数是具有三个属性的对象：
 
-- `mutationResult`: The `mutationResult` property will represent the result of your mutation after hitting the server. If you provided an [`options.optimisticResponse`](#graphql-mutation-options-optimisticResponse) then `mutationResult` may be that object.
-- `queryVariables`: The last set of variables that the query was executed with. This is helpful because when you specify the query name it will only update the data in the store for your current variable set.
-- `queryName`: This is the name of the query you are updating. It is the same name as the key you provided to `options.updateQueries`.
+- `mutationResult`：`mutationResult` 属性将表示您在点击服务器后的突变结果。如果你提供了一个[`options.optimisticResponse`](#graphql-mutation-options-optimisticResponse)，那么`mutationResult`可能就是那个对象。
+- `queryVariables`：执行查询的最后一组变量。这是有帮助的，因为当您指定查询名称时，它将只更新当前变量集存储中的数据。
+- `queryName`：这是您正在更新的查询的名称。它与您为`options.updateQueries`提供的密钥相同。
 
-The return value of your `options.updateQueries` functions _must_ have the same shape as your first `previousData` argument. However, you _must not_ mutate the `previousData` object. Instead you must create a new object with your changes. Just like in a Redux reducer.
+你的`options.updateQueries`函数的返回值_必须_与你的第一个`previousData`参数的结构相同。但是，你_绝不能_ 更改 `previousData` 对象。相反，您必须使用更改创建一个新对象。就像Redux reducer。
 
-To learn more about `options.updateQueries` read our usage documentation on [controlling the store with `updateQueries`](cache-updates.html#updateQueries).
+要了解有关`options.updateQueries`的更多信息，请阅读我们的使用说明文件[使用`updateQueries`控制 Store](cache-updates.html#updateQueries)。
 
-**Example:**
+**例：**
 
 ```js
 export default graphql(gql`
@@ -317,8 +316,7 @@ export default graphql(gql`
     updateQueries: {
       Comments: (previousData, { mutationResult }) => {
         const newComment = mutationResult.data.submitComment;
-        // Note how we return a new copy of `previousData` instead of mutating
-        // it. This is just like a Redux reducer!
+        // 注意我们如何返回一个新的 `previousData` 副本，而不是使它变异。这就像一个Redux reducer！
         return {
           ...previousData,
           entry: {
