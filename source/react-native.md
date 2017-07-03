@@ -1,10 +1,10 @@
 ---
-title: Integrating with React Native
+title: 与 React Native 集成
 ---
 
-You can use Apollo with React Native exactly as you would with React Web.
+您可以使用Apollo与React Native，就像使用React Web一样。
 
-To introduce Apollo to your app, install `react-apollo` from npm and use them in your app as outlined in the [setup](initialization.html) article:
+要将Apollo引入您的应用程序，请从npm安装 `react-apollo`，并在[设置](initialization.html)文章中概述的应用程序中使用它们：
 
 ```bash
 npm install react-apollo --save
@@ -15,7 +15,7 @@ import React from 'react';
 import { AppRegistry } from 'react-native';
 import { ApolloClient, ApolloProvider } from 'react-apollo';
 
-// Create the client as outlined above
+// 如上所述创建客户端
 const client = new ApolloClient();
 
 const App = () => (
@@ -27,13 +27,13 @@ const App = () => (
 AppRegistry.registerComponent('MyApplication', () => App);
 ```
 
-If you are new to using Apollo with React, you should probably read the [React guide](index.html).
+如果您刚开始使用 Apollo with React，您应该阅读[React guide](index.html)。
 
-<h2 id="examples">Examples</h2>
+<h2 id="examples">示例</h2>
 
-There are some Apollo examples written in React Native that you may wish to refer to:
+有一些阿波罗的例子写在React Native中，您可能希望参考：
 
-1. The ["Hello World" example](https://github.com/apollographql/frontpage-react-native-app) used at dev.apolldata.com.
-2. A [GitHub API Example](https://github.com/apollographql/GitHub-GraphQL-API-Example) built to work with GitHub's new GraphQL API.
+1. dev.apolldata.com 使用的[“Hello World”示例](https://github.com/apollographql/frontpage-react-native-app)。
+2. 一个[GitHub API示例](https://github.com/apollographql/GitHub-GraphQL-API-Example)构建为与GitHub的新GraphQL API配合使用。
 
-> If you've got an example to post here, please hit the "Edit on GitHub" button above and let us know!
+> 如果你有一个例子来发布在这里，请点击上面的“编辑GitHub”按钮，让我们知道！

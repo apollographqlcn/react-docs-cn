@@ -1,10 +1,10 @@
 ---
-title: Prefetching data
+title: 预取数据
 ---
 
-Prefetching is one of the easiest ways to make your application's UI feel a lot faster with Apollo Client. Prefetching simply means loading data into the cache before it needs to be rendered on the screen. Essentially, we want to load all data required for a view as soon as we can guess that a user will navigate to it.
+预取是使 Apollo Client 能够使应用程序的UI感觉更快的最简单的方法之一。预取仅仅意味着在数据需要在屏幕上呈现之前将数据加载到缓存中。基本上，我们想要加载视图所需的所有数据，一旦我们猜到用户将导航到它。
 
-In Apollo Client, prefetching is very simple and can be done by running a component's query before it is rendered. As a simple example, in GitHunt, we use the `withApollo` higher-order component to directly call a `query` as soon as the user hovers over a link to the comments page. With the data prefetched, the comments page renders immediately, and the user often experiences no delay at all:
+在 Apollo Client 中，预取非常简单，可以在渲染组件的查询之前运行它。作为一个简单的例子，在 GitHunt 中，一旦用户将鼠标悬停在指向注释页面的链接上，我们就会使用 `withApollo` 高阶组件直接调用 `query`。在预取数据的情况下，注释页面立即呈现，用户通常不会有延迟：
 
 ```js
 const FeedEntry = ({ entry, currentUser, onVote, client }) => {
@@ -40,10 +40,10 @@ const FeedEntry = ({ entry, currentUser, onVote, client }) => {
 const FeedEntryWithApollo = withApollo(FeedEntry);
 ```
 
-There are a lot of different ways to anticipate that the user will end up needing some data in the UI. In addition to using the hover state, here are some other places you can preload data:
+有很多不同的方法来预测用户将最终在UI中需要一些数据。除了使用悬停状态，这里还有一些其他可以预加载数据的地方：
 
-1. The next step of a multi-step wizard immediately
-2. The route of a call-to-action button
-3. All of the data for a sub-area of the application, to make navigating within that area instant
+1. 立即执行多步骤向导的下一步
+2. 号召性用语按钮的路线
+3. 应用程序的一个子区域的所有数据，即可在该区域内导航
 
-If you have some other ideas, please send a PR to this article, and maybe add some more code snippets. A special form of prefetching is [store hydration from the server](/react/server-side-rendering.html#store-rehydration), so you might also consider hydrating more data than is actually needed for the first page load to make other interactions faster.
+如果您有其他一些想法，请发送PR到这篇文章，也许添加一些更多的代码片段。预取的一种特殊形式是[服务端 Store 水化](/react/server-side-rendering.html#store-rehydration)，因此您可能还会考虑比首页加载实际需要更多的数据，以使其他数据交互更快。
