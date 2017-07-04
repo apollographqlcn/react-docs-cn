@@ -1,32 +1,32 @@
 ---
 title: React Apollo
 sidebar_title: 简介
-description: Apollo Client在您的React应用程序中管理服务器端GraphQL数据，因此您不必亲自管理。
+description: Apollo Client 会管理好 React 应用的后台 GraphQ L 数据，不用你自己操心。
 ---
 
-这是使用[react-apollo](https://github.com/apollographql/react-apollo)模块在您的React或React Native应用程序中使用GraphQL的官方指南。 React-Apollo是将GraphQL查询绑定到您的React组件的一种方便而强大的方法，因此您可以专注于开发UI，同时数据获取和管理不方便。同时，它拥有所有的钩子和扩展点，使您得到充分的控制。
+这是一份官方指南，指导您如何在 React 或 React Native 应用中借助 [react-apollo](https://github.com/apollographql/react-apollo) 来使用 Graphql。通过 React-Apollo 将 GraphQL 查询绑定到 React 组件，这种方式既简便又强大，因为它帮你做好数据请求和管理，然后你就可以专心开发 UI。同时，它提供丰富的钩子方法和扩展机制，让您完全可控。
 
-按照GitHub上的资料库：[React-Apollo](https://github.com/apollographql/react-apollo)，[Apollo Client](https://github.com/apollographql/apollo-client)和[这docs site](https://github.com/apollographql/react-docs)。
+关注 GitHub 上的仓库：[React-Apollo](https://github.com/apollographql/react-apollo)，[Apollo Client](https://github.com/apollographql/apollo-client) 和 [这docs site](https://github.com/apollographql/react-docs)。
 
-<h2 id="tutorials">入门指南</h2>
+<h2 id="tutorials">快速入门</h2>
 
-如果您熟悉Web开发，但以前没有尝试过GraphQL或Apollo，我们已经覆盖了您。这里有一组可以查看的小型教程和示例，在短短几个小时内，您将成为一名专家GraphQL开发人员！或者，您可以直接进入[安装库](initialization.html)。
+如果你熟悉 Web 开发，但以前没有用过 GraphQL 或 Apollo，不怕，这里有一套简明教程和例子，花几个小时，你就可以成为高级 GraphQL 开发了！如果你熟悉 Graphql，则可以直接进入[安装](initialization.html)。
 
 <h3 id="simple-example"> [1.简单的例子](simple-example.html)</h3>
 
-潜入一个基本的应用程序，显示一个视图与React Native和Apollo。这是您在Apollo Client主页上看到的应用程序，但有一些如何与之进行交互的建议，代码更详细地解释。
+快速进入一个简单 app，展示一个用 React Native 与 Apollo 开发的界面。这就是在 Apollo Client 主页上看到的 app，不过多了一些操作交互的建议，还有更详细的代码解释。
 
 <h3 id="full-stack-graphql"> [2.全栈 GraphQL + React 教程](https://dev-blog.apollodata.com/full-stack-react-graphql-tutorial-582ac8d24e3b#.cwvxzphyc)</h3>
 
-本教程将介绍如何设置Apollo Client，如何编写简单的服务器，以及如何将它们连接在一起，而且每个星期几乎都在生产更多的部件。这是由React-Apollo的主要开发者[Jonas Helfer](https://twitter.com/helferjs)编写的。
+本教程将介绍如何搭建 Apollo Client、编写简单服务器，以及如何将它们连接在一起，这个教程几乎每周都在更新。这是由 React-Apollo 的核心开发者 [Jonas Helfer](https://twitter.com/helferjs) 编写的。
 
-<h3 id="learn-apollo"> [3.学习阿波罗](https://www.learnapollo.com)</h3>
+<h3 id="learn-apollo"> [3.学习 Apollo](https://www.learnapollo.com)</h3>
 
-这个社区开发的教程包括从头到尾构建一个简单的Pokedex应用程序的客户端。它可用于[React](https://www.learnapollo.com/tutorial-react/react-01)，[React Native](https://www.learnapollo.com/tutorial-react-native/react-native-01)等平台。学习Apollo由团队和社区围绕[Graphcool](https://www.graph.cool/)进行维护，这是一个托管的GraphQL后端平台，可让您在没有编写任何代码的情况下站起来。
+这份社区发起的教程，知道你从零开始构建一个简单的 宠物小精灵 前端应用。有 [React](https://www.learnapollo.com/tutorial-react/react-01) 版，[React Native](https://www.learnapollo.com/tutorial-react-native/react-native-01) 版 和其他平台版本。这个「学习 Apollo」教程是由 [Graphcool](https://www.graph.cool/) 团队和社区进行维护，还提供一个托管的 GraphQL 后端平台，让你不用写一行代码就可以跑 GraphQl 服务器。
 
-<h3 id="usage-recipes"> [4.使用和配方](queries.html)</h3>
+<h3 id="usage-recipes"> [4. 使用与实践](queries.html)</h3>
 
-完成交互式示例和教程后，您可以更深入地深入了解。我们已经尝试编写本指南，以便您可以像书一样阅读它，并发现您可以使用Apollo和GraphQL所做的一切。特别是，查看“使用”部分，了解查询和突变等基本功能，以及有关如何实现更高级目标（如服务器端呈现）的具体方向的“配方”部分。如果您遇到任何问题，请随时向[Apollo标签](http://stackoverflow.com/questions/tagged/apollo)上的[Stack Overflow]或[Apollo社区Slack]([ http://dev.apollodata.com/#slack)！
+学习完例子和教程，就可以更加深入了。我们花了很多时间编写这份指南，让你可以像看书一样学习一切 Apollo 和 GraphQL 能做的。特别是，查看「使用」部分，了解 querys 和 mutations 等基本功能，而「实践」部分则用于一些实现更高级目标的特定场景，例如服务端渲染。如果您遇到任何问题，随时向 [Stack Overflow (带上 `apollo` 标签)](http://stackoverflow.com/questions/tagged/apollo) 或 [Apollo 社区 Slack]([ http://dev.apollodata.com/#slack) 提问！
 
 <h2 id="compatibility">兼容工具</h2>
 
