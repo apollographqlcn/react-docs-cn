@@ -116,5 +116,9 @@ theme: meteor
 
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
-deploy:
-  type:
+deploy: 
+  type: git
+  repo: git@github.com:apollographqlcn/react-docs-cn.git
+  branch: gh-pages
+  message: "Deploy github pages."
+
