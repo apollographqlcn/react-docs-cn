@@ -33,10 +33,10 @@ const ProfileWithData = graphql(CurrentUserForLayout)(Profile);
 
 当我们把 GraphQL 查询文档作为参数调用 `graphql` 时，会发生两件事情：
 
-1. 查询是从 Apollo 客户端数据存储器中加载的，如果数据不在存储器中，则向服务端请求；
-2. 我们的组件订阅存储器的数据，以便如果数据因服务端的突变或某些其他响应而发生变化，则会更新该存储器的数据。
+1. 查询是从 Apollo 客户端数据 store 中加载的，如果数据不在 store 中，则向服务端请求；
+2. 我们的组件订阅 store 中的数据，以便如果数据因服务端的突变或某些其他响应而发生变化，则会更新该 store 的数据。
 
-除了在查询中选择的 `currentUser` 字段之外，`data` 属性还包含一个名为 `loading` 的字段，表示当前是否正在从服务端加载该查询的一个布尔值。所以如果我们要声明 `propTypes`，代码看起来会像这样：
+除了在查询中选择的 `currentUser` 字段之外，`data` props 还包含一个名为 `loading` 的字段，表示当前是否正在从服务端加载该查询的一个布尔值。所以如果我们要声明 `propTypes`，代码看起来会像这样：
 
 ```js
 Profile.propTypes = {
@@ -47,13 +47,13 @@ Profile.propTypes = {
 };
 ```
 
-随着时间的变化，`data.currentUser` 属性将随着客户端获取到的当前用户数据而改变。该信息存储在 Apollo 客户端的全局缓存中，因此如果某些其他查询获取有关当前用户的新信息，则此组件将更新以保持一致。您可以在[关于缓存更新的文章](cache-updates.html)中阅读有关使缓存获取服务器最新数据的技术的相关信息。
+随着时间的变化，`data.currentUser` props 将随着客户端获取到的当前用户数据而改变。该信息存储在 Apollo 客户端的全局缓存中，因此如果某些其他查询获取有关当前用户的新信息，则此组件将更新以保持一致。您可以在[关于缓存更新的文章](cache-updates.html)中阅读有关使缓存获取服务器最新数据的技术的相关信息。
 
-<h2 id="default-result-props" title="The data prop">`data` 属性的结构</h2>
+<h2 id="default-result-props" title="The data prop">`data` props的结构</h2>
 
-如上所述，`graphql` 将把查询的结果传递给包装组件的一个名为 `data` 的属性中，它也将传递父容器的所有属性。
+如上所述，`graphql` 将把查询的结果传递给包装组件的一个名为 `data` 的 props 中，它也将传递父容器的所有 props。
 
-对于查询，`data` 属性的结构如下所示：
+对于查询，`data` props 的结构如下所示：
 
 - `...fields`: 查询中每个根字段的一个键。
 - `loading`: 如果当前查询还在请求中的状态，包括调用 `refetch` 后，该字段为 `true`，否则为 `false`。
@@ -68,7 +68,7 @@ query getUserAndLikes($id: ID!) {
 }
 ```
 
-你可以得到如下属性：
+你可以得到如下 props：
 
 ```js
 data: {
@@ -108,9 +108,9 @@ const ProfileWithData = graphql(CurrentUserForLayout, {
 
 ```
 
-<h3 id="options-from-props">根据属性计算</h3>
+<h3 id="options-from-props">根据 props 计算</h3>
 
-通常，查询的变量将从包装组件的 `props` 中计算出来。无论在应用程序中何处使用组件，调用者都会传递参数。所以 `options` 可以是将属性传递给组件的一个功能：
+通常，查询的变量将从包装组件的 `props` 中计算出来。无论在应用程序中何处使用组件，调用者都会传递参数。所以 `options` 可以是将 props 传递给组件的一个功能：
 
 ```js
 // 调用者可以执行以下操作：
@@ -135,13 +135,13 @@ const ProfileWithData = graphql(CurrentUserForLayout, {
 })(Profile);
 ```
 
-如果您使用函数来计算属性中的选项，则每当属性更改时，所有这些 `options` 将自动重新计算。
+如果您使用函数来计算 props 中的选项，则每当 props 更改时，所有这些 `options` 将自动重新计算。
 
 [阅读API文档中的所有查询选项。](api-queries.html#graphql-query-options)
 
 <h2 id="graphql-skip">跳过操作</h2>
 
-`graphql` 容器API是有意设计成完全静态的，所以你不能在运行时动态地改变查询或包装组件，而不是生成一个新的React组件。但是，有时候，您可能需要执行一些条件判断来根据传入的属性跳过查询。因此，您可以使用 `skip` 选项。
+`graphql` 容器API是有意设计成完全静态的，所以你不能在运行时动态地改变查询或包装组件，而不是生成一个新的React组件。但是，有时候，您可能需要执行一些条件判断来根据传入的 props 跳过查询。因此，您可以使用 `skip` 选项。
 
 例如，如果您想忽略未通过身份验证的用户的查询，则可以使用此选项：
 
@@ -159,17 +159,17 @@ const ProfileWithData = graphql(CurrentUserForLayout, {
 })(Profile);
 ```
 
-传递 `skip` 配置值为 true 将完全绕过高阶组件，就好像它根本不存在一样。这也意味着你的子组件根本不会得到一个 `data` 属性，而且 `options` 或 `props` 方法也不会被调用。
+传递 `skip` 配置值为 true 将完全绕过高阶组件，就好像它根本不存在一样。这也意味着你的子组件根本不会得到一个 `data`  props ，而且 `options` 或 `props` 方法也不会被调用。
 
-<h2 id="graphql-props">控制子属性</h2>
+<h2 id="graphql-props">控制子 props</h2>
 
-默认情况下，与查询一起使用的 `graphql` 将为包装组件提供一个 `data` 属性，其中包含有关查询状态的各种信息。我们还会看到[突变](mutations.html)在 `mutate` 属性上提供回调。光是使用这些默认的名称就足以编写整个应用程序。
+默认情况下，与查询一起使用的 `graphql` 将为包装组件提供一个 `data` props ，其中包含有关查询状态的各种信息。我们还会看到[突变](mutations.html)在 `mutate` prop 上提供回调。光是使用这些默认的名称就足以编写整个应用程序。
 
-但是，如果要将您的 UI 组件与 Apollo 分离，并使其在不同的上下文中可复用，您可能需要修改这些默认属性，并将其包含在自己的自定义对象和函数中。
+但是，如果要将您的 UI 组件与 Apollo 分离，并使其在不同的上下文中可复用，您可能需要修改这些默认 props ，并将其包含在自己的自定义对象和函数中。
 
-<h3 id="graphql-name">更改属性名称</h3>
+<h3 id="graphql-name">更改 prop 名称</h3>
 
-如果要更改默认的 `data` 属性的名称，但保持完全相同的结构，可以使用 `graphql` 容器的 `name` 选项。当一个组件通过嵌套的 `graphql` 容器使用多个查询时，将会变得十分有用，其中 `data` 属性将被覆盖。
+如果要更改默认的 `data` props 的名称，但保持完全相同的结构，可以使用 `graphql` 容器的 `name` 选项。当一个组件通过嵌套的 `graphql` 容器使用多个查询时，将会变得十分有用，其中 `data` props 将被覆盖。
 
 ```js
 import React, { Component, PropTypes } from 'react';
@@ -201,7 +201,7 @@ const ProfileWithData = graphql(CurrentUserForLayout, {
 
 <h3 id="graphql-props-option">任意转换</h3>
 
-如果想要完全控制子组件的属性，请使用 `props` 选项将查询 `data` 对象映射到传递给子组件的任意数量的属性：
+如果想要完全控制子组件的 props，请使用 `props` 选项将查询 `data` 对象映射到传递给子组件的任意数量的 props ：
 
 ```js
 
@@ -227,7 +227,7 @@ const CurrentUserForLayout = gql`
 `;
 
 const ProfileWithData = graphql(CurrentUserForLayout, {
-  // ownProps 是由父组件调用时传递到 “ProfileWithData” 的属性
+  // ownProps 是由父组件调用时传递到 “ProfileWithData” 的 props 
   props: ({ ownProps, data: { loading, currentUser, refetch } }) => ({
     userLoading: loading,
     user: currentUser,

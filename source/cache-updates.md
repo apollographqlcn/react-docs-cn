@@ -2,47 +2,47 @@
 title: 更新 Store
 ---
 
-Apollo执行两个重要的核心任务：执行查询和突变，并缓存结果。
+Apollo 的核心任务中重要的有两个：执行查询和突变，并缓存结果。
 
-感谢Apollo的商店设计，查询或变更的结果可能会在所有正确的地方更新您的UI。在许多情况下，这可能会自动发生，而在其他情况下，您需要帮助客户端这样做。
+得益于 Apollo 的 store 设计，查询或突变的结果能在所有必要的地方更新您的 UI。在大多数情况下，这个过程可以自动执行，而在某些情况下，您需要手动指定客户端执行更新。
 
-<h2 id="normalization">使用 `dataIdFromObject` 进行范式化</h2>
+<h2 id="normalization">使用 `dataIdFromObject` 范式化缓存</h2>
 
-阿波罗根据两件事情做出缓存：
+Apollo 基于如下两点执行缓存：
 
-1. GraphQL查询的形状及其结果。
-2. 从服务器返回的对象的标识。
+1. GraphQL 查询文档的结构及其响应。
+2. 从服务端返回的对象的标识。
 
-基于对象标识将缓存平坦化称为高速缓存归一化。您可以在我们的博客文章["GraphQL Concepts Visualized"](https://medium.com/apollo-stack/the-concepts-of-graphql-bc68bd819be3)中详细阅读我们的缓存模型。
+基于对象标识将缓存扁平化称为缓存范式化。您可以在我们的博客文章 ["GraphQL Concepts Visualized"](https://medium.com/apollo-stack/the-concepts-of-graphql-bc68bd819be3) 中详细阅读我们的缓存模型。
 
-默认情况下，Apollo基于两个属性来标识对象：`__typename`和一个ID字段，可以是`id`或`_id`。客户端会自动将`__typename`字段添加到查询中，因此您必须确保获取`id`字段（如果有）。
+默认情况下，Apollo基于两个属性来标识对象：`__typename` 和一个 ID 字段，可以是 `id` 或 `_id`。客户端会自动将 `__typename` 字段添加到查询中，因此您必须确保获取 `id` 字段（如果有）。
 
 ```js
-// 这个结果
+// 该结果...
 {
   __typename: 'Person',
   id: '1234',
   name: 'Jonas',
 }
 
-// 将获得以下ID
+// ...将获得以下 ID
 'Person:1234'
 ```
 
-您还可以指定一个自定义函数，从每个对象生成ID，并将其作为[`ApolloClient`构造函数](initialization.html＃creation-client)中的`dataIdFromObject`提供，如果要指定阿波罗将如何识别和取消复制从服务器返回的对象。
+如果要指定 Apollo 对服务端返回的对象如何标识和去重，您还可以指定一个自定义函数，从各个对象中生成 ID，并将其作为 [`ApolloClient` 构造函数](initialization.html＃creation-client)中的 `dataIdFromObject` 值。
 
 ```js
 import { ApolloClient } from 'react-apollo';
 
-// 如果您的数据库具有所有类型对象的唯一ID，您可以使用非常简单的功能！
+// 如果您的数据库具有所有类型对象的唯一 ID，您可以如下提供一个简易的函数
 const client = new ApolloClient({
   dataIdFromObject: o => o.id
 });
 ```
 
-这些ID允许阿波罗客户端反应地告知所有查询特定对象关于该部分商店更新的查询。
+这些 ID 允许 Apollo 客户端被动地告知所有查询获取特定对象以更新该部分 store。
 
-如果要获取dataIdFromObjectFunction（例如使用[`readFragment`函数](/core/apollo-client-api.html＃ApolloClient\.readFragment)），可以以`client.dataIdFromObject` 方式访问它。
+如果要获取 dataIdFromObjectFunction（例如使用 [`readFragment` 函数](/core/apollo-client-api.html＃ApolloClient\.readFragment)），可以以`client.dataIdFromObject` 方式访问它。
 
 ```js
 const person = {
@@ -53,9 +53,9 @@ const person = {
 client.dataIdFromObject(person); // 'Person:1234'
 ```
 
-<h3 id="automatic-updates">自动存储更新</h3>
+<h3 id="automatic-updates">store 自动更新</h3>
 
-我们来看一下刚刚使用缓存归一化的情况，导致我们商店的正确更新。假设我们做以下查询：
+我们来看一下刚刚使用缓存范式化导致的 store 得以正确更新的情况。假设我们执行以下查询：
 
 ```graphql
 {
@@ -66,7 +66,7 @@ client.dataIdFromObject(person); // 'Person:1234'
 }
 ```
 
-然后，我们进行以下突变：
+然后，我们执行以下突变：
 
 ```graphql
 mutation {
@@ -77,7 +77,7 @@ mutation {
 }
 ```
 
-如果两个结果的 `id` 字段匹配，那么我们的UI中的 `score` 字段将自动更新！尽可能利用此属性的一个好方法是使您的突变结果具有更新先前提取的查询所需的所有数据。一个简单的技巧是使用[fragments](fragments.html)来共享查询和影响它的突变之间的字段。
+如果两个结果的 `id` 字段匹配，那么我们的 UI 中的 `score` 字段将自动更新！尽可能利用此特性能使您的突变结果更新之前查询获取的相应数据。其中一个简单的技巧是使用 [片段](fragments.html) 来共享查询和突变之间的字段。
 
 <h2 id="after-mutations">突变后更新</h2>
 
