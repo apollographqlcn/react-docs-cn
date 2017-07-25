@@ -4,7 +4,7 @@ title: 更新 Store
 
 Apollo 的核心任务中重要的有两个：执行查询和突变，并缓存结果。
 
-得益于 Apollo 的 store 设计，查询或突变的结果能在所有必要的地方更新您的 UI。在大多数情况下，这个过程可以自动执行，而在某些情况下，您需要手动指定客户端执行更新。
+得益于 Apollo 的 store 设计，查询或突变的结果能在所有必要的地方更新您的 UI。在大多数情况下，这个过程会被自动执行，而在某些情况下，您需要手动指定客户端执行更新。
 
 <h2 id="normalization">使用 `dataIdFromObject` 范式化缓存</h2>
 
@@ -13,9 +13,9 @@ Apollo 基于如下两点执行缓存：
 1. GraphQL 查询文档的结构及其响应。
 2. 从服务端返回的对象的标识。
 
-基于对象标识将缓存扁平化称为缓存范式化。您可以在我们的博客文章 ["GraphQL Concepts Visualized"](https://medium.com/apollo-stack/the-concepts-of-graphql-bc68bd819be3) 中详细阅读我们的缓存模型。
+基于对象标识将缓存扁平化称为缓存范式化。您可以在我们的博客文章 ["GraphQL 概念可视化"](https://medium.com/apollo-stack/the-concepts-of-graphql-bc68bd819be3) 中详细阅读我们的缓存模型。
 
-默认情况下，Apollo基于两个属性来标识对象：`__typename` 和一个 ID 字段，可以是 `id` 或 `_id`。客户端会自动将 `__typename` 字段添加到查询中，因此您必须确保获取 `id` 字段（如果有）。
+默认情况下，Apollo 基于两个属性来标识对象：`__typename` 和一个 ID 字段，可以是 `id` 或 `_id`。客户端会自动将 `__typename` 字段添加到查询中，因此您必须确保获取 `id` 字段（如果有的话）。
 
 ```js
 // 该结果...
@@ -40,7 +40,7 @@ const client = new ApolloClient({
 });
 ```
 
-这些 ID 允许 Apollo 客户端被动地告知所有查询获取特定对象以更新该部分 store。
+这些 ID 允许 Apollo 客户端指定所有查询获取特定对象以更新该部分 store。
 
 如果要获取 dataIdFromObjectFunction（例如使用 [`readFragment` 函数](/core/apollo-client-api.html＃ApolloClient\.readFragment)），可以以`client.dataIdFromObject` 方式访问它。
 
@@ -53,9 +53,9 @@ const person = {
 client.dataIdFromObject(person); // 'Person:1234'
 ```
 
-<h3 id="automatic-updates">store 自动更新</h3>
+<h3 id="automatic-updates">自动更新 store</h3>
 
-我们来看一下刚刚使用缓存范式化导致的 store 得以正确更新的情况。假设我们执行以下查询：
+我们来看一下刚刚使用范式化缓存使 store 得以正确更新的情况。假设我们执行以下查询：
 
 ```graphql
 {
@@ -79,13 +79,13 @@ mutation {
 
 如果两个结果的 `id` 字段匹配，那么我们的 UI 中的 `score` 字段将自动更新！尽可能利用此特性能使您的突变结果更新之前查询获取的相应数据。其中一个简单的技巧是使用 [片段](fragments.html) 来共享查询和突变之间的字段。
 
-<h2 id="after-mutations">突变后更新</h2>
+<h2 id="after-mutations">突变后的更新</h2>
 
-在某些情况下，只需使用 `dataIdFromObject` 即可更新应用程序UI。例如，如果要在不重写整个列表的情况下将对象添加到对象列表中，或者如果存在无法分配对象标识符的某些对象，则Apollo Client无法为您更新现有查询。继续阅读，了解您可以使用的其他工具。
+在某些情况下，只需使用 `dataIdFromObject` 即可更新应用 UI。例如，如果要在不重写整个列表的情况下将对象添加到对象列表中，或者如果存在无法指定对象标识符的某些对象，则 Apollo 客户端无法为您更新现有查询。请继续阅读下文以了解您可以使用的其他方法。
 
 <h3 id="refetchQueries">`refetchQueries`</h3>
 
-`refetchQueries`是更新缓存的最简单的方法。使用`refetchQueries`，您可以指定一个或多个要在突变完成后运行的查询，以便重新获取可能受突变影响的存储部分：
+`refetchQueries` 是更新缓存的最简单方法。使用 `refetchQueries`，您可以指定一个或多个要在突变完成后执行的查询，以便重新获取可能受突变影响的部分 store 的数据：
 
 ```javascript
 mutate({
@@ -111,7 +111,7 @@ mutate({
 })
 ```
 
-使用`refetchQueries`的一个很常见的方法是导入为其他组件定义的查询，以确保这些组件将被更新：
+`refetchQueries` 的一个常见用法是导入为其他组件定义的查询，以确保这些组件将被更新：
 
 ```javascript
 import RepoCommentsQuery from '../queries/RepoCommentsQuery';
@@ -128,7 +128,7 @@ mutate({
 
 <h3 id="directAccess">`update`</h3>
 
-使用`update`可以完全控制缓存，从而可以根据您喜欢的任何方式更改数据模型。 `update`是在查询后更新缓存的推荐方法。完整地解释了[这里](http://dev.apollodata.com/react/api-mutations.html#graphql-mutation-options-update)。
+使用 `update` 可以完全控制缓存，从而可以根据您喜欢的任意方式更改数据模型。如果要在查询后更新缓存，那么推荐 `update` 方法。[这里](http://dev.apollodata.com/react/api-mutations.html#graphql-mutation-options-update)能找到完整示意。
 
 ```javascript
 import CommentAppQuery from '../queries/CommentAppQuery';
@@ -156,9 +156,9 @@ const CommentsPageWithMutations = graphql(SUBMIT_COMMENT_MUTATION, {
           update: (store, { data: { submitComment } }) => {
             // 从我们的缓存中读取此查询的数据。
             const data = store.readQuery({ query: CommentAppQuery });
-            // 将我们的评论从突变添加到最后。
+            // 将新增的评论从突变中添加到缓存数据列表末尾。
             data.comments.push(submitComment);
-            // 将我们的数据写回缓存。
+            // 将更改后的数据写回缓存。
             store.writeQuery({ query: CommentAppQuery, data });
           },
         });
@@ -170,19 +170,19 @@ const CommentsPageWithMutations = graphql(SUBMIT_COMMENT_MUTATION, {
 
 <h3 id="updateQueries">`updateQueries`</h3>
 
-**注意：我们建议使用更灵活的 `update` API而不是 `updateQueries`。 `updateQueries` API将来可能会被弃用。**
+**注意：我们建议使用更灵活的 `update` API而不是 `updateQueries`。 `updateQueries` API将来可能会被废弃。**
 
-顾名思义，`updateQueries`可以根据突变的结果来更新你的UI。要重新强调：大多数情况下，只要对象ID与您的商店中已存在的ID相匹配，您的UI会根据突变结果自动更新。有关如何利用此功能的更多信息，请参阅上述[`normalization`](#normalization)文档。
+顾名思义，`updateQueries` 可以根据突变的结果来更新你的 UI。再次重申：大多数情况下，只要对象ID与您的商店中已存在的ID相匹配，您的 UI 会根据突变结果自动更新。更多有关如何利用此功能的信息，请参阅上述[`范式化`](#normalization)文档。
 
-但是，如果要删除或添加项目到具有突变的列表或不能将对象标识符分配给相关对象，则必须使用 `updateQueries` 确保您的UI正确反映了更改。
+但是，如果使用突变删除或添加项目至列表，或无法为相关对象指定对象标识符，则必须使用 `updateQueries` 确保您的 UI 正确反映了更新。
 
-我们将以GitHunt中的评论页为例。当我们提交一个新的评论时，“提交”按钮将触发一个突变，在服务器上保留的注释的“列表”中添加一个新的注释。实际上，服务器不知道有一个列表 - 它只是知道在SQL中的 `comments` 表中添加了一些东西，所以服务器不能真正地告诉我们确切的结果。获取列表注释的原始查询也不了解此新评论，因此Apollo无法自动将其添加到列表中。
+我们将以 GitHunt 中的评论页为例。当我们提交一个新的评论时，“提交”按钮将触发一个突变，往服务端的评论“列表”中添加一条新的评论。实际上，服务端并不知道有这样一个列表 - 它只是知道向 SQL 中的 `comments` 表中添加一些数据，所以服务端无法告诉我们确切的结果。最初获取注释列表的查询也无法预知该条新评论，因此 Apollo 无法自动将其添加到列表中。
 
-在这种情况下，我们可以使用 `updateQueries` 来确保查询结果更新，这也将更新阿波罗的规范化存储，使所有内容保持一致。
+在这种情况下，我们可以使用 `updateQueries` 来确保更新查询结果，同时更新 Apollo 的范式化缓存，使所有内容保持一致。
 
-如果您熟悉Redux，请将 `updateQueries` 选项作为reducer，除了直接更新商店之外，我们正在更新查询结果形状，这意味着我们不必担心商店内部工作如何工作。
+如果您熟悉Redux，请将 `updateQueries` 选项作为 reducer，除了直接更新 store 之外，还能更新查询结果的结构，这意味着我们不必关心 store 内部是如何工作的。
 
-我们通过 `CommentsPage` 组件可以调用的函数prop来暴露这个突变。这是代码如下所示：
+我们通过 `CommentsPage` 组件可以调用的函数 prop 来封装这个突变。代码如下所示：
 
 ```javascript
 import update from 'immutability-helper';
@@ -227,9 +227,9 @@ const CommentsPageWithMutations = graphql(SUBMIT_COMMENT_MUTATION, {
 })(CommentsPage);
 ```
 
-如果我们仔细查看服务器架构，我们会看到这个突变实际上返回了有关添加的单个新注释的信息;它不会提取整个注释列表。这很有意义：如果我们在页面上有一千条评论，如果我们添加一个新的评论，我们不想重新获取所有评论。
+如果我们仔细查看服务端的 schema，我们会看到这个突变实际上返回的是即将被添加的单个注释的信息；它不会重新获取整个注释列表。这么做是有道理的：假设我们在页面上有一千条评论，如果要添加一条新的评论，那么不必重新获取所有评论。
 
-评论页面本身使用以下查询呈现：
+评论页由以下查询结果渲染而成：
 
 ```javascript
 const COMMENT_QUERY = gql`
@@ -265,7 +265,7 @@ const COMMENT_QUERY = gql`
   }`;
 ```
 
-现在，我们必须将由突变返回的新添加的注释合并到已经在页面加载时被触发的`COMMENT_QUERY`返回的信息中。我们通过`updateQueries`完成这个。放大该部分代码：
+现在，我们必须将突变返回的新添加的评论，合并到页面加载时已被触发的 `COMMENT_QUERY` 返回的数据中。我们通过 `updateQueries` 实现该功能。代码大致如下：
 
 ```javascript
 mutate({
@@ -285,17 +285,17 @@ mutate({
 })
 ```
 
-从根本上说，`updateQueries` 是一个从查询名称（在我们的例子中是 `Comment`）的地图，它接收到这个查询接收到的先前结果以及突变返回结果的函数。在我们的例子中，突变返回有关新注释的信息。该函数应该将突变结果合并到包含查询先前接收的结果（`prev`）的新对象中，并返回该新对象。
+本质上，`updateQueries` 是一个从查询的名称（本例中是 `Comment`），到接收这个查询及突变返回结果作为参数的函数的映射关系。在本例中，突变返回有关新增评论的信息。然后该函数将突变结果合并到之前查询返回的结果（`prev`）对象中，并返回该新对象。
 
-请注意，该函数不能更改`prev`对象（因为`prev`与返回的新对象进行比较，以查看功能所做的更改，因此需要更新）。
+请注意，该函数中不能更改 `prev` 对象（因为要用到 `prev` 与返回的新对象进行比较，以检查该函数更新点，来决定哪些 props 需要更新）。
 
-在`Comment`查询的`updateQueries`函数中，我们正在做一些非常简单的事情：只需将我们刚刚提交的注释添加到查询所要求的注释列表中。我们正在使用[immutability-helper](https://github.com/kolodny/immutability-helper)软件包中的`update`函数，只是简单的做。但是，如果你想，你可以编写一些不需要帮助的Javascript来将两个传入的对象组合成一个新的对象。
+在 `Comment` 查询的 `updateQueries` 函数中，我们要实现的功能非常简单：只需将我们刚刚提交的评论添加到查询所返回的评论列表中。我们只是简单地使用了 [immutability-helper](https://github.com/kolodny/immutability-helper) 模块中的 `update` 函数。当然，如果你愿意的话，你可以编写一些不需要帮助函数的 JS 代码来将两个传入的对象合并成一个新的对象。
 
-一旦突变触发并且结果从服务器到达（或者通过乐观UI提供结果），则将调用`Comment`查询的`updateQueries`函数，并且相应地更新`Comment`查询。结果中的这些更改将映射到React道具，我们的UI将会更新新的信息！
+一旦突变触发并且从服务端获取结果之后（或者通过乐观 UI 提供结果），则将调用 `Comment` 查询的 `updateQueries` 函数，并且相应地更新 `Comment` 查询的结果。结果的变更将映射到 React 的 props，我们的 UI 也将会更新新的信息！
 
 <h3 id="resultReducers">查询 `reducer`</h3>
 
-**注意：我们建议使用更灵活的`update`API而不是`reducer`。 `reducer`API将来可能会被废弃。**
+**注意：我们建议使用更灵活的 `update` API 而不是 `reducer`。 `reducer` API 将来可能会被废弃。**
 
 `updateQueries` 和 `update` 只能根据突变的结果来更新其他查询，`reducer`选项可以让您根据任何Apollo操作更新查询结果，包括其他查询的结果，突变或订阅。它的行为就像一个Reduce reducer对非规范化的查询结果：
 
@@ -404,6 +404,43 @@ return fetchMore({
 这里，`fetchMore`查询与与该组件关联的查询相同。我们的`updateQuery`会返回新的Feed项，并将它们附加到我们以前要求的Feed项目中。这样，UI将会更新，Feed将包含下一页的项目！
 
 虽然`fetchMore`通常用于分页，但还有许多其他适用的情况。例如，假设您有一个项目列表（例如，协作待办事项列表），并且您有一种方式来获取在一定时间后更新的项目。然后，您不必重新获取整个待办事项列表即可获取更新：只要新增的项目与`fetchMore`相结合，只要您的`updateQuery`函数正确地合并新结果即可。
+
+<h3 id="connection-directive">The `@connection` directive</h3>
+By default, the result of a `fetchMore` will be stored in the cache according to the initial query executed and its parameters. Due to this behavior, it can be hard to know the location in the cache to run an imperative update on if the variables from the initial query are not known, which often happens if we are running store updates from a different place than where the queries are executed.
+
+To have a stable cache location for query results, Apollo Client 1.6 introduced the `@connection` directive, which can be used to specify a custom store key for results. To use the `@connection` directive, simply add the directive to the segment of the query you want a custom store key for and provide the `key` parameter to specify the store key. In addition to the `key` parameter, you can also include the optional `filter` parameter, which takes an array of query argument names to include in the generated custom store key.
+
+```
+const query = gql`query Feed($type: FeedType!, $offset: Int, $limit: Int) {
+  feed(type: $type, offset: $offset, limit: $limit) @connection(key: "feed", filter: ["type"]) {
+    ...FeedEntry
+  }
+}`
+```
+
+With the above query, even with multiple `fetchMore`s, the results of each feed update will always result in the `feed` key in the store being updated with the latest accumulated values. In this example, we also use the `@connection` directive's optional `filter` argument to include the `type` query argument in the store key, which results in multiple store values that accumulate queries from each type of feed.
+
+Now that we have a stable store key, we can easily use `writeQuery` to perform a store update, in this case clearing out the feed.
+
+```
+client.writeQuery({
+  query: gql`
+    query Feed($type: FeedType!) {
+      feed(type: $type) @connection(key: "feed", filter: ["type"]) {
+        id
+      }
+    }
+  `,
+  variables: {
+    type: "top",
+  },
+  data: {
+    feed: [],
+  },
+});
+```
+
+Note that because we are only using the `type` argument in the store key, we don't have to provide `offset` or `limit`.
 
 <h2 id="cacheRedirect">使用`customResolvers`缓存重定向</h2>
 

@@ -33,7 +33,7 @@ AppRegistry.registerComponent('MyApplication', () => App);
 
 有一些阿波罗的例子写在React Native中，您可能希望参考：
 
-1. dev.apolldata.com 使用的[“Hello World”示例](https://github.com/apollographql/frontpage-react-native-app)。
+1. dev.apollodata.com 使用的[“Hello World”示例](https://github.com/apollographql/frontpage-react-native-app)。
 2. 一个[GitHub API示例](https://github.com/apollographql/GitHub-GraphQL-API-Example)构建为与GitHub的新GraphQL API配合使用。
 
 > 如果你有一个例子来发布在这里，请点击上面的“编辑GitHub”按钮，让我们知道！
