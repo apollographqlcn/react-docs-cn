@@ -3,7 +3,7 @@ title: 简易示例：Snack
 description: 一个微型应用程序，从我们的GitHunt示例应用程序实现一个视图，您可以直接从浏览器运行和编辑。
 ---
 
-查看Apollo Client和GraphQL可以为您做的最简单的方法是自己尝试。以下是单个React Native视图的简单示例，它使用Apollo Client与我们的托管示例应用程序[GitHunt](example-schema.md)进行通信。我们已经在[Expo](https://expo.io)中的[Snack](https://blog.expo.io/sketch-a-playground-forrereate-native-16b2401f44a2)编辑器的页面中嵌入了该页面。
+查看Apollo Client和GraphQL可以为您做的最简单的方法是自己尝试。以下是单个React Native视图的简单示例，它使用Apollo Client与我们的托管示例应用程序[GitHunt](example-schema.html)进行通信。我们已经在[Expo](https://expo.io)中的[Snack](https://blog.expo.io/sketch-a-playground-forrereate-native-16b2401f44a2)编辑器的页面中嵌入了该页面。
 
 <div data-snack-id="HkhGxRFhe" data-snack-platform="ios" data-snack-preview="true" style="overflow:hidden;background:#fafafa;border:1px solid rgba(0,0,0,.16);border-radius:4px;height:514px;width:100%"></div>
 <script async src="https://snack.expo.io/embed.js"></script>

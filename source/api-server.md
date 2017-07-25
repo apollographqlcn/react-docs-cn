@@ -3,7 +3,8 @@ sidebar_title: 服务端渲染
 title: "API: 服务端渲染"
 ---
 
-`react-apollo` 提供了一些实用程序来帮助服务器端呈现和存储水合。要了解如何在应用程序中进行服务器端渲染，请务必阅读[服务器端渲染的技巧](server-side-rendering.html)。以下仅仅是服务器端渲染中使用的方法的API的参考，而不是教你如何设置它的教程。
+`react-apollo` 提供了一些实用程序来帮助服务器端呈现和存储水合。 要了解如何在应用程序中实现服务器端呈现，请务必阅读[服务器端渲染的技巧](server-side-rendering.html)。以下仅仅是服务器端渲染中使用的方法的API的参考，而不是教你如何设置的教程。
+
 
 <h2 id="getDataFromTree" title="getDataFromTree">`getDataFromTree(jsx)`</h2>
 

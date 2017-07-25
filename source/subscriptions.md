@@ -82,7 +82,7 @@ import { SubscriptionClient, addGraphQLSubscriptions } from 'subscriptions-trans
 
 // 创建一个普通的网络接口：
 const networkInterface = createNetworkInterface({
-  uri: 'http://localhost:3000'
+  uri: 'http://localhost:3000/graphql'
 });
 
 // 使用WebSocket扩展网络接口

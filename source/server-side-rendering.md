@@ -90,9 +90,9 @@ app.use((req, res) => {
         uri: 'http://localhost:3010',
         opts: {
           credentials: 'same-origin',
-          // 将请求标头传输到networkInterface，以便代理服务器可以访问它们
-          // 解决这个issue: https://github.com/matthew-andrews/isomorphic-fetch/issues/83
-          headers: req.headers,
+          headers: {
+            cookie: req.header('Cookie'),
+          },
         },
       }),
     });

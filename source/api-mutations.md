@@ -69,7 +69,7 @@ export default graphql(gql`mutation { ... }`)(MyComponent);
 
 可用于此对象的选项取决于您作为`graphql()`的第一个参数传入的操作类型。以下参考文献将记录当您的手术发生突变时哪些选项可用。要查看其他可用于不同操作的选项，请参阅[`config.options`](#graphql-config-options)的通用文档。
 
-此选项对象中接受的属性也可以被[`props.mutate`](#graphql-mutation-mutate) 函数除外。传入 `mutate` 函数的任何选项将优先于 `config` 对象中定义的选项。
+此选项对象中接受的属性也可以被[`props.mutate`](#graphql-mutation-mutate) 函数接受。传入 `mutate` 函数的任何选项将优先于 `config` 对象中定义的选项。
 
 **例：**
 
