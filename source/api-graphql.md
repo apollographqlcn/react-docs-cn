@@ -105,7 +105,7 @@ export default graphql(
 
 `config.options` 是一个对象或函数，它允许您定义组件在处理GraphQL数据时应使用的具体行为。
 
-可用于配置的具体选项取决于您作为`graphql()`的第一个参数传递的操作。有[查询](#graphql-query-options)和[mutations](#graphql-mutation-options)的特定选项。
+可用于配置的具体选项取决于您作为`graphql()`的第一个参数传递的操作。有[查询](api-queries.html#graphql-query-options)和[mutations](api-mutations.html#graphql-mutation-options)的特定选项。
 
 您可以将`config.options`定义为普通对象，或者您可以从将组件道具视为参数的函数中计算您的选项。
 

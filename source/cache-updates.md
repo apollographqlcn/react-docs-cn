@@ -405,6 +405,43 @@ return fetchMore({
 
 虽然`fetchMore`通常用于分页，但还有许多其他适用的情况。例如，假设您有一个项目列表（例如，协作待办事项列表），并且您有一种方式来获取在一定时间后更新的项目。然后，您不必重新获取整个待办事项列表即可获取更新：只要新增的项目与`fetchMore`相结合，只要您的`updateQuery`函数正确地合并新结果即可。
 
+<h3 id="connection-directive">The `@connection` directive</h3>
+By default, the result of a `fetchMore` will be stored in the cache according to the initial query executed and its parameters. Due to this behavior, it can be hard to know the location in the cache to run an imperative update on if the variables from the initial query are not known, which often happens if we are running store updates from a different place than where the queries are executed.
+
+To have a stable cache location for query results, Apollo Client 1.6 introduced the `@connection` directive, which can be used to specify a custom store key for results. To use the `@connection` directive, simply add the directive to the segment of the query you want a custom store key for and provide the `key` parameter to specify the store key. In addition to the `key` parameter, you can also include the optional `filter` parameter, which takes an array of query argument names to include in the generated custom store key.
+
+```
+const query = gql`query Feed($type: FeedType!, $offset: Int, $limit: Int) {
+  feed(type: $type, offset: $offset, limit: $limit) @connection(key: "feed", filter: ["type"]) {
+    ...FeedEntry
+  }
+}`
+```
+
+With the above query, even with multiple `fetchMore`s, the results of each feed update will always result in the `feed` key in the store being updated with the latest accumulated values. In this example, we also use the `@connection` directive's optional `filter` argument to include the `type` query argument in the store key, which results in multiple store values that accumulate queries from each type of feed.
+
+Now that we have a stable store key, we can easily use `writeQuery` to perform a store update, in this case clearing out the feed.
+
+```
+client.writeQuery({
+  query: gql`
+    query Feed($type: FeedType!) {
+      feed(type: $type) @connection(key: "feed", filter: ["type"]) {
+        id
+      }
+    }
+  `,
+  variables: {
+    type: "top",
+  },
+  data: {
+    feed: [],
+  },
+});
+```
+
+Note that because we are only using the `type` argument in the store key, we don't have to provide `offset` or `limit`.
+
 <h2 id="cacheRedirect">使用`customResolvers`缓存重定向</h2>
 
 在某些情况下，查询会以不同的密钥请求客户端存储中已存在的数据。一个非常常见的例子是当您的UI具有列表视图和使用相同数据的详细视图。列表视图可能会运行以下查询：

@@ -220,7 +220,7 @@ data.fetchMore({
       ...previousResult,
       // 将新的Feed数据添加到旧Feed数据的末尾。
       feed: [...previousResult.feed, ...fetchMoreResult.feed],
-    },
+    };
   },
 });
 ```
@@ -360,7 +360,7 @@ data.updateQuery((previousResult) => ({
 
 如果`config.options`是一个函数，那么它将以组件的道具为第一个参数。
 
-可用于此对象的选项取决于您作为 `graphql()` 的第一个参数传入的操作类型。以下参考文献将记录您的操作是查询时哪些选项可用。要查看其他可用于不同操作的选项，请参阅[`config.options`](#graphql-config-options)的通用文档。
+可用于此对象的选项取决于您作为 `graphql()` 的第一个参数传入的操作类型。以下参考文献将记录您的操作是查询时哪些选项可用。要查看其他可用于不同操作的选项，请参阅[`config.options`](api-graphql.html#graphql-config-options)的通用文档。
 
 **例：**
 
