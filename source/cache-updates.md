@@ -295,9 +295,9 @@ mutate({
 
 <h3 id="resultReducers">查询 `reducer`</h3>
 
-**注意：我们建议使用更灵活的 `update` API 而不是 `reducer`。 `reducer` API 将来可能会被废弃。**
+**注意：我们建议使用更灵活的 `update` API 而不是 `reducer`。`reducer` API 将来可能会被废弃。**
 
-`updateQueries` 和 `update` 只能根据突变的结果来更新其他查询，`reducer`选项可以让您根据任何Apollo操作更新查询结果，包括其他查询的结果，突变或订阅。它的行为就像一个Reduce reducer对非规范化的查询结果：
+`updateQueries` 和 `update` 只能根据突变的结果来更新其他查询，`reducer` 选项可以让您根据任何 Apollo 操作更新查询结果，包括其他查询、突变或订阅的结果。它就像 Redux 的 reducer 处理非规范化的查询结果：
 
 ```javascript
 import update from 'immutability-helper';
@@ -310,9 +310,9 @@ const CommentsPageWithData = graphql(CommentsPageQuery, {
     return {
       reducer: (previousResult, action, variables) => {
         if (action.type === 'APOLLO_MUTATION_RESULT' && action.operationName === 'submitComment'){
-          // 注意：通常建议采用一些更健全的检查方法，以确保previousResult不为空，并且突变结果包含我们预期的数据。
+          // 注意：通常建议采用一些更完善的检查方式，以确保 previousResult 不为空，并且突变结果包含我们预期的数据。
 
-          // 注意：变量包含当前的查询变量，而不是导致操作的查询或变量的变量。那些可以在`action`参数中找到。
+          // 注意：variables 包含当前的查询变量，而不是 action 触发的查询或突变的变量，这些可以在 `action` 参数中找到。
 
           return update(previousResult, {
             entry: {
@@ -329,15 +329,15 @@ const CommentsPageWithData = graphql(CommentsPageQuery, {
 })(CommentsPage);
 ```
 
-您可以看到，`reducer` 选项可用于实现与`updateQueries`相同的目标，但它更灵活，适用于任何类型的阿波罗动作，而不仅仅是突变。例如，可以基于另一查询的结果来更新查询结果。
+您可以看到，`reducer` 选项可用于实现与 `updateQueries` 相同的目的，但它更灵活，适用于任何类型的 Apollo 操作，而不仅仅是突变。例如，可以基于一个查询的结果来更新另一查询的结果。
 
->目前无法响应您的自定义Redux操作，从Abollo外部到达结果缩减器。有关详细信息，请参阅[这个](https://github.com/apollographql/apollo-client/issues/1013)。
+> 目前还无法在 reducer 中处理 Abollo 内部以外的自定义的 Redux action。有关详细信息，请参阅[这里](https://github.com/apollographql/apollo-client/issues/1013)。
 
-**什么时候应该使用update vs. reducer vs. updateQueries vs. refetchQueries？**
+**什么时候应该使用 update vs. reducer vs. updateQueries vs. refetchQueries？**
 
-应该使用`refetchQueries`，只要突变结果单独不足以推断出缓存的所有更改。 `refetchQueries`也是一个非常好的选择，如果一个额外的往返和可能的过时提取不是您的应用程序所关心的，这在原型设计中通常是正确的。与`update`，`updateQueries`和`reducer`相比，`refetchQueries`是最容易编写和维护的。
+只要突变结果不足以单独推断出缓存的所有变更，则应该使用`refetchQueries`。如果额外的请求花销和可能的请求冗余并不是您的应用程序所关注的，这在原型设计过程中很常见，则 `refetchQueries` 也是一个非常好的选择。与 `update`，`updateQueries` 和 `reducer` 相比，`refetchQueries` 是最容易编写和维护的。
 
-`updateQueries`，`reducer`和`update`都提供类似的功能。他们按照这个顺序进行介绍，每个人都试图解决前一个问题的缺点。虽然目前可以使用所有三个API，但我们强烈建议尽可能使用`update`，因为将来可能会弃用其他两个API（`updateQueries`和`reducer`）。我们建议`更新`，因为它的API是最强大和最容易理解的三个。我们考虑弃用`reducer`和`updateQueries`的原因是它们都依赖于客户端的内部状态，这使得它们比`update`更难理解和维护，而不需要提供任何额外的功能。
+`updateQueries`，`reducer` 和 `update` 都提供相似的功能，它们依次被引入，每个都试图解决前一个存在的缺陷。虽然目前这三个 API 都可以使用，但我们强烈建议尽可能使用 `update`，因为将来可能会弃用其他两个 API（`updateQueries` 和 `reducer`）。我们推崇 `update`，是因为它的 API 是这三个中最强大和最容易理解的。我们考虑弃用 `reducer` 和 `updateQueries` 的原因是它们都依赖于客户端的内部状态，这使得它们在不借助额外方法的情况下，比 `update` 更难理解和维护。
 
 <h2 id="fetchMore">增量加载： `fetchMore`</h2>
 
