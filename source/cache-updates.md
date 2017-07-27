@@ -337,15 +337,15 @@ const CommentsPageWithData = graphql(CommentsPageQuery, {
 
 只要突变结果不足以单独推断出缓存的所有变更，则应该使用`refetchQueries`。如果额外的请求花销和可能的请求冗余并不是您的应用程序所关注的，这在原型设计过程中很常见，则 `refetchQueries` 也是一个非常好的选择。与 `update`，`updateQueries` 和 `reducer` 相比，`refetchQueries` 是最容易编写和维护的。
 
-`updateQueries`，`reducer` 和 `update` 都提供相似的功能，它们依次被引入，每个都试图解决前一个存在的缺陷。虽然目前这三个 API 都可以使用，但我们强烈建议尽可能使用 `update`，因为将来可能会弃用其他两个 API（`updateQueries` 和 `reducer`）。我们推崇 `update`，是因为它的 API 是这三个中最强大和最容易理解的。我们考虑弃用 `reducer` 和 `updateQueries` 的原因是它们都依赖于客户端的内部状态，这使得它们在不借助额外方法的情况下，比 `update` 更难理解和维护。
+`updateQueries`，`reducer` 和 `update` 都提供相似的功能，它们依次被引入，每个都试图解决前一个存在的缺陷。虽然目前这三个 API 都可以使用，但我们强烈建议尽可能使用 `update`，因为将来可能会弃用其他两个 API（`updateQueries` 和 `reducer`）。我们推崇 `update`，是因为它的 API 是这三个中最强大和最容易理解的。我们考虑弃用 `reducer` 和 `updateQueries` 的原因是它们都依赖于客户端的内部状态，这使得它们在不借助外部方法的情况下，比 `update` 更难理解和维护。
 
-<h2 id="fetchMore">增量加载： `fetchMore`</h2>
+<h2 id="fetchMore">增量加载：`fetchMore`</h2>
 
-`fetchMore`可以根据另一个查询返回的数据来更新查询的结果。大多数情况下，它用于处理无限卷动分页或其他情况，当您已经有一些时，您正在加载更多的数据。
+`fetchMore` 可以根据另一个查询返回的数据来更新之前查询的结果。大多数情况下，它用于处理无限滚动分页或其他需要增量加载数据的情况。
 
-在我们的GitHunt示例中，我们有一个分页的feed显示GitHub存储库的列表。当我们点击“加载更多”按钮时，我们不希望Apollo Client丢弃已经加载的存储库信息。相反，它应该将新加载的存储库附加到Apollo Client已经在商店中的列表中。通过此更新，我们的UI组件应该重新渲染并显示所有可用的存储库。
+在我们的 GitHunt 示例中，我们有一个分页显示GitHub 仓库的 feed 列表。当我们点击“加载更多”按钮时，我们不希望 Apollo 客户端丢弃已经加载的仓库信息。相反，它应该将新加载的仓库信息附加到已经存在于 Apollo 客户端 store 的列表中。通过此举，我们的 UI 组件应该重新渲染并显示所有可用的仓库信息。
 
-让我们看一下如何使用`fetchMore`方法对查询进行处理：
+让我们看一下如何使用 `fetchMore` 方法对查询进行处理：
 
 ```javascript
 const FeedQuery = gql`
@@ -379,7 +379,7 @@ const FeedWithData = graphql(FeedQuery, {
 })(Feed);
 ```
 
-这里有两个组件：`FeedWithData`和`Feed`。 `FeedWithData` 容器实现产生了将`props`传递给演示文稿`Feed`组件。具体来说，我们将`loadNextPage`的参数映射到以下内容：
+这里有两个组件：`FeedWithData` 和 `Feed`。`FeedWithData` 容器组件将 `props` 传递给展示组件 `Feed`。具体来说，`loadNextPage` 属性映射如下：
 
 ```js
 return fetchMore({
@@ -395,20 +395,21 @@ return fetchMore({
 });
 ```
 
-`fetchMore`方法使用新查询发送的`变量`映射。在这里，我们将偏移量设置为`feed.length`，以便我们获取未在Feed中显示的项目。该变量映射与为与组件相关联的查询指定的映射合并。这意味着其他变量，例如。 `limit`变量的值与组件查询中的值相同。
+`fetchMore` 方法使用一组新的 `variables` 键值对发送新查询。在这里，我们将偏移量设置为 `feed.length`，以便我们获取尚未在 Feed 中显示的项目。该 `variables` 键值对将与相关组件内查询指定的变量合并。这意味着其他变量，比如 `limit`变量的值与组件查询中的值相同。
 
-它也可以使用一个`query`命名的参数，它可以是一个GraphQL文档，其中包含一个将被提取以获取更多信息的查询;我们将其称为`fetchMore`查询。默认情况下，`fetchMore`查询是与容器关联的查询，在这种情况下`FEED_QUERY`。
+也可以使用一个名为 `query` 的参数，它可以是一个 GraphQL 文档，其中包含一个请求更多信息的查询；我们将其称为 `fetchMore` 查询。默认情况下，`fetchMore` 查询与容器组件相关联，在本例中是 `FEED_QUERY`。
 
-当我们调用`fetchMore`时，Apollo Client将触发`fetchMore`查询，并使用`updateQuery`选项中的逻辑把它合并到原来的结果中。命名参数`updateQuery`应该是一个函数，它接收与您的组件相关联的查询的先前结果（即在这种情况下为`FEED_QUERY`）以及`fetchMore`查询返回的信息，并返回两者的组合。
+当我们调用 `fetchMore` 时，Apollo 客户端将触发 `fetchMore` 查询，并使用 `updateQuery` 选项中的逻辑把它的结果合并到原来的结果中。参数 `updateQuery` 应该是一个函数，它接收组件之前的相关查询结果（本例中为 `FEED_QUERY`）以及 `fetchMore` 查询返回的信息，并返回两者的组合。
 
-这里，`fetchMore`查询与与该组件关联的查询相同。我们的`updateQuery`会返回新的Feed项，并将它们附加到我们以前要求的Feed项目中。这样，UI将会更新，Feed将包含下一页的项目！
+这里，`fetchMore` 查询与与该组件相关的查询相同。我们的 `updateQuery` 会返回新的 Feed 项，并将它们附加到我们之前请求的 Feed 项中。如此一来，UI 将会更新，Feed 将包含下一页展示的项！
 
-虽然`fetchMore`通常用于分页，但还有许多其他适用的情况。例如，假设您有一个项目列表（例如，协作待办事项列表），并且您有一种方式来获取在一定时间后更新的项目。然后，您不必重新获取整个待办事项列表即可获取更新：只要新增的项目与`fetchMore`相结合，只要您的`updateQuery`函数正确地合并新结果即可。
+尽管 `fetchMore` 通常用于分页，但还有许多其他适用的情况。例如，假设您有一个项目列表（例如，协作待办事项列表），并且有办法获取一定时间间隔后更新的项目。那么，您不必重新获取整个待办事项列表即可获取更新：您可以合并 `fetchMore` 中新增的项，只要您的 `updateQuery` 函数正确地合并了新结果即可。
 
-<h3 id="connection-directive">The `@connection` directive</h3>
-By default, the result of a `fetchMore` will be stored in the cache according to the initial query executed and its parameters. Due to this behavior, it can be hard to know the location in the cache to run an imperative update on if the variables from the initial query are not known, which often happens if we are running store updates from a different place than where the queries are executed.
+<h3 id="connection-directive">`@connection` 指令</h3>
 
-To have a stable cache location for query results, Apollo Client 1.6 introduced the `@connection` directive, which can be used to specify a custom store key for results. To use the `@connection` directive, simply add the directive to the segment of the query you want a custom store key for and provide the `key` parameter to specify the store key. In addition to the `key` parameter, you can also include the optional `filter` parameter, which takes an array of query argument names to include in the generated custom store key.
+默认情况下，`fetchMore` 的结果将根据执行的初始查询及其参数存储在缓存中。正因如此，如果不知道初始查询的变量，则很难知道其在缓存中的位置，从而运行命令式更新，这通常发生在查询的执行与 store 更新不在同一处的情况下。
+
+为了使查询结果具有可靠的缓存位置，Apollo 客户端在1.6版本中引入了 `@connection` 指令，可用于为结果指定一个自定义存储键。要使用 `@connection` 指令，只需将该指令添加到您想要自定义存储键的查询语句中，并提供参数 `key` 来指定存储键。除了 `key` 参数之外，您还可以添加可选的过滤器参数，该参数接收一个查询参数名称数组，以包含在生成的自定义存储键中。
 
 ```
 const query = gql`query Feed($type: FeedType!, $offset: Int, $limit: Int) {
@@ -418,9 +419,9 @@ const query = gql`query Feed($type: FeedType!, $offset: Int, $limit: Int) {
 }`
 ```
 
-With the above query, even with multiple `fetchMore`s, the results of each feed update will always result in the `feed` key in the store being updated with the latest accumulated values. In this example, we also use the `@connection` directive's optional `filter` argument to include the `type` query argument in the store key, which results in multiple store values that accumulate queries from each type of feed.
+通过上述查询，即使使用多个 `fetchMore`，每个 feed 查询更新的结果均会导致 store 中的 `feed` 键被更新为最新的累积值。在这个例子中，我们还使用 `@connection` 指令的可选参数 `filter` 在 store 键中包含 `type` 查询参数，这样可以产生多个 store 值，以便从每种类型的 feed 中累积查询。
 
-Now that we have a stable store key, we can easily use `writeQuery` to perform a store update, in this case clearing out the feed.
+现在我们拥有了一个可靠的 store 键，我们可以很容易地使用 `writeQuery` 来执行一个 store 更新操作，本例中即更新 feed。
 
 ```
 client.writeQuery({
@@ -440,11 +441,11 @@ client.writeQuery({
 });
 ```
 
-Note that because we are only using the `type` argument in the store key, we don't have to provide `offset` or `limit`.
+请注意，由于我们只在 store 键中使用 `type` 参数，所以我们不必提供 `offset` 或 `limit`。
 
-<h2 id="cacheRedirect">使用`customResolvers`缓存重定向</h2>
+<h2 id="cacheRedirect">使用 `customResolvers` 重定向缓存</h2>
 
-在某些情况下，查询会以不同的密钥请求客户端存储中已存在的数据。一个非常常见的例子是当您的UI具有列表视图和使用相同数据的详细视图。列表视图可能会运行以下查询：
+在某些情况下，查询会以不同的键请求客户端 store 中已存在的数据。一个非常常见的例子是您的 UI 同时拥有使用相同数据的列表视图和详细视图。列表视图可能会运行以下查询：
 
 ```
 query ListView {
@@ -456,7 +457,7 @@ query ListView {
 }
 ```
 
-当选择特定书籍时，详细信息视图将显示使用此查询的单个项目：
+当选择某本书籍时，详细信息视图将显示使用此查询的单个项：
 
 ```
 query DetailView {
@@ -468,7 +469,9 @@ query DetailView {
 }
 ```
 
-我们知道数据很可能已经在客户端缓存中，但是由于使用不同的查询请求，Apollo Client不知道。为了告诉Apollo Client在哪里查找数据，我们可以定义自定义解析器：
+> 注意：列表查询返回的数据必须包含指定查询所需的所有数据。 如果单个书籍查询请求了列表查询没有返回的字段，则无法从缓存中获取数据。
+
+我们知道数据很可能已经在客户端缓存中，但是由于使用不同的查询请求，Apollo 客户端并不知道。为了告诉 Apollo 客户端在哪里查找数据，我们可以定义自定义解析器：
 
 ```
 import ApolloClient, { toIdValue } from 'apollo-client';
@@ -477,22 +480,43 @@ const client = new ApolloClient({
   networkInterface,
   customResolvers: {
     Query: {
-      book: (_, args) => toIdValue(dataIdFromObject({ __typename: 'book', id: args['id'] })),
+      book: (_, args) => toIdValue(client.dataIdFromObject({ __typename: 'Book', id: args.id })),
     },
   },
-  dataIdFromObject,
 });
 ```
 
-Apollo Client将使用自定义解析器的返回值来查找其缓存中的项目。必须使用`toIdValue`来表示返回的值应该被解释为一个id，而不是一个标量值或一个对象。此示例中的`Query`键是您的根查询类型名称。
+> 注意：只要功能相同，也可以使用自定义的 `dataIdFromObject` 方法。
 
-还可以返回一个ID列表：
+Apollo 客户端将使用自定义解析器的返回值来查找其缓存中的项目。必须使用 `toIdValue` 来表示返回的值，且该值应该能被解析执行为一个 id，而不是一个标量值或一个对象。此示例中的 `Query` 键是您的根查询类型名称。
+
+若要弄清你应该在 `__typename` 属性中存放的值是什么，在 GraphiQL 中运行如下查询并获取 `__typename` 字段：
+
+```
+query ListView {
+  books {
+    __typename
+  }
+}
+
+# 或者
+
+query DetailView {
+  book(id: $id) {
+    __typename
+  }
+}
+```
+
+返回的值（类型的名称）是您应该放入 `__typename` 属性中的值。
+
+亦可返回一个 ID 列表：
 
 ```
 customResolvers: {
   Query: {
-    books: (_, args) => args['ids'].map(id =>
-      toIdValue(dataIdFromObject({ __typename: 'book', id: id }))),
+    books: (_, args) => args.ids.map(id =>
+      toIdValue(dataIdFromObject({ __typename: 'Book', id: id }))),
   },
 },
 ```
