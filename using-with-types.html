@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Basic -->
+    <title>在 TypeScript 和 Flow 中使用 Apollo | Apollo React 中文文档</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png" sizes="16x16 32x32 64x64">
+
+    <!-- Social -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://apollographqlcn.github.io/react-docs-cn">
+    <meta property="og:title" content="在 TypeScript 和 Flow 中使用 Apollo | Apollo React 中文文档">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="">
+    <meta name="twitter:card" content="summary_image_large">
+    <meta name="twitter:site" content="@apollographqlcn">
+    <meta name="twitter:title" content="在 TypeScript 和 Flow 中使用 Apollo | Apollo React 中文文档">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="">
+
+    <!-- Misc -->
+    <meta name="google-site-verification" content="" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,200,300italic,400italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/react-docs-cn/style/style.css">
+  </head>
+  <body class="">
+    
+
+<div class="nav dark">
+  <div class="nav-group">
+    <div class="nav-item show-mobile">
+      <span class="js-sidebar-toggle ">
+        <span class="icon-menu"></span>
+      </span>
+    </div>
+    <div class="nav-item">
+      
+      <a class="logo-wrapper" href="http://dev.apollodata.com/" title="Apollo Developers"  >
+        <img src="images/logo-apollo-space-left.svg" alt="Apollo" class="logo"/><img src="images/logo-apollo-subbrands-developers-space.svg" class="logo-subbrand" alt="Developers"/>
+      </a>
+    </div>
+  </div>
+
+  <div class="nav-group right">
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="https://apollographqlcn.github.io/react-docs-cn/"  >
+          <span>React</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/angular2"  >
+          <span>Angular</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/ios"  >
+          <span>iOS</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/android"  >
+          <span>Android</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/core"  >
+          <span>Vanilla JS</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false separator">
+        <a class="link" href="http://dev.apollodata.com/tools"  >
+          <span>Server</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="https://medium.com/apollo-stack" target=_new >
+          <span>Blog</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/community"  >
+          <span>Community</span>
+        </a>
+      </div>
+    
+  </div>
+</div>
+
+<div class="sidebar">
+  <div class="panel">
+    <div class="panel-item">
+      <a class="" href="http:/dev.apollodata.com/" title="Apollo"  >
+        <span>Apollo Developers</span>
+      </a>
+    </div>
+    
+      <div class="panel-item "">
+        <a class="" href="https://apollographqlcn.github.io/react-docs-cn/"  >
+          <span>React</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/angular2"  >
+          <span>Angular</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/ios"  >
+          <span>iOS</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/android"  >
+          <span>Android</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/core"  >
+          <span>Vanilla JS</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/tools"  >
+          <span>Server</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="https://medium.com/apollo-stack" target=_new >
+          <span>Blog</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/community"  >
+          <span>Community</span>
+        </a>
+      </div>
+    
+  </div>
+
+  <div class="sidebar-content">
+    <div class="topcap">
+      <span class="title-sidebar">Apollo React 中文文档</span>
+      
+    </div>
+
+    
+
+    <ul class="toc">
+      
+        <li>
+          
+          <ul class="list-toc">
+            
+              
+              <li class="item-toc ">
+                <a href="index.html" class="sidebar-link ">
+                  <span>简介</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="initialization.html" class="sidebar-link ">
+                  <span>设置和选项</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="simple-example.html" class="sidebar-link ">
+                  <span>简易示例：Snack</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="example-schema.html" class="sidebar-link ">
+                  <span>完整示例：GitHunt</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="migration.html" class="sidebar-link ">
+                  <span>迁移到1.0</span>
+                </a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        <li>
+          
+            <div class="heading-toc">Usage</div>
+          
+          <ul class="list-toc">
+            
+              
+              <li class="item-toc ">
+                <a href="queries.html" class="sidebar-link ">
+                  <span>查询</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="mutations.html" class="sidebar-link ">
+                  <span>突变</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="subscriptions.html" class="sidebar-link ">
+                  <span>订阅</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="receiving-updates.html" class="sidebar-link ">
+                  <span>同步服务端数据</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="cache-updates.html" class="sidebar-link ">
+                  <span>更新 Store</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc  current">
+                <a href="" class="sidebar-link  current">
+                  <span>使用 TypeScript 和 Flow</span>
+                </a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        <li>
+          
+            <div class="heading-toc">API Reference</div>
+          
+          <ul class="list-toc">
+            
+              
+              <li class="item-toc ">
+                <a href="api.html" class="sidebar-link ">
+                  <span>综合</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="api-graphql.html" class="sidebar-link ">
+                  <span>graphql: 容器</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="api-queries.html" class="sidebar-link ">
+                  <span>graphql: 查询</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="api-mutations.html" class="sidebar-link ">
+                  <span>graphql: 突变</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="api-server.html" class="sidebar-link ">
+                  <span>服务端渲染</span>
+                </a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        <li>
+          
+            <div class="heading-toc">Recipes</div>
+          
+          <ul class="list-toc">
+            
+              
+              <li class="item-toc ">
+                <a href="auth.html" class="sidebar-link ">
+                  <span>认证</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="pagination.html" class="sidebar-link ">
+                  <span>分页</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="optimistic-ui.html" class="sidebar-link ">
+                  <span>Optimistic UI</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="fragments.html" class="sidebar-link ">
+                  <span>使用片段</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="prefetching.html" class="sidebar-link ">
+                  <span>预取数据</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="query-splitting.html" class="sidebar-link ">
+                  <span>Query Splitting</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="react-native.html" class="sidebar-link ">
+                  <span>与 React Native 集成</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="redux.html" class="sidebar-link ">
+                  <span>与 Redux 集成</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="webpack.html" class="sidebar-link ">
+                  <span>Webpack加载器</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="server-side-rendering.html" class="sidebar-link ">
+                  <span>服务端渲染</span>
+                </a>
+              </li>
+            
+          </ul>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="content">
+  <div class="content-wrapper">
+    <div class="header-content">
+      <h1 class="title-page">在 TypeScript 和 Flow 中使用 Apollo</h1>
+      
+
+      <div class="page-actions">
+        <div class="actions-group">
+          <a class="btn tertiary small round lowercase" href="https://github.com/apollographqlcn/react-docs-cn/tree/master/source/using-with-types.md" target="_blank"><span class="icon-github"></span> <span>Edit on GitHub</span></a>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="document-formatting">
+      <p>随着应用程序规模的增长，您可能会需要引入一个类型系统来提升开发效率。Apollo 同时支持 Flow 和 TypeScript 两种类型定义系统。 <code>apollo-client</code> 和 <code>react-apollo</code> 都在它们的 npm 包中包含了类型定义，所以在你的项目中引入这些库后，类型定义文件也都安装好了。</p>
+<p>本篇文档假设您已经在项目中配置好了 Flow 或 TypeScript，如果没有的话请查看 <a href="https://flow.org/en/docs/install/" target="_blank" rel="external">Flow</a> 或 <a href="https://github.com/Microsoft/TypeScript-React-Conversion-Guide#typescript-react-conversion-guide" target="_blank" rel="external">TypeScript</a> 的配置文档。</p>
+<h2 id="operation-result">操作结果</h2>
+
+<p>使用 GraphQL 类型系统时最常见的需求是标注操作结果的类型。鉴于 GraphQL 服务端的 schema 是强类型的，我们甚至可以用 <a href="https://github.com/apollographql/apollo-codegen" target="_blank" rel="external">apollo-codegen</a>  等工具自动生成 Flow 或 TypeScript 类型定义。然而，在本篇文档中，我们将手动编写结果类型。</p>
+<p>由于查询的结果将被发送到包裹组件作为 props，我们希望能够告诉我们的类型系统这些 props 的模型。以下是使用 Flow 设置类型的操作示例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// @flow</span></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">"react"</span>;</div><div class="line"><span class="keyword">import</span> gql <span class="keyword">from</span> <span class="string">"graphql-tag"</span>;</div><div class="line"><span class="keyword">import</span> &#123; graphql &#125; <span class="keyword">from</span> <span class="string">"react-apollo"</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> type &#123; OperationComponent &#125; <span class="keyword">from</span> <span class="string">"react-apollo"</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> HERO_QUERY = gql<span class="string">`</span></div><div class="line">  query GetCharacter($episode: Episode!) &#123;</div><div class="line">    hero(episode: $episode) &#123;</div><div class="line">      name</div><div class="line">      id</div><div class="line">      friends &#123;</div><div class="line">        name</div><div class="line">        id</div><div class="line">        appearsIn</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">`;</div><div class="line"></div><div class="line">type Hero = &#123;</div><div class="line">  <span class="attr">name</span>: string,</div><div class="line">  <span class="attr">id</span>: string,</div><div class="line">  <span class="attr">appearsIn</span>: string[],</div><div class="line">  <span class="attr">friends</span>: Hero[]</div><div class="line">&#125;;</div><div class="line"></div><div class="line">type Response = &#123;</div><div class="line">  <span class="attr">hero</span>: Hero</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">const</span> withCharacter: OperationComponent&lt;Response&gt; = graphql(HERO_QUERY, &#123;</div><div class="line">  <span class="attr">options</span>: <span class="function"><span class="params">()</span> =&gt;</span> (&#123;</div><div class="line">    <span class="attr">variables</span>: &#123; <span class="attr">episode</span>: <span class="string">"JEDI"</span> &#125;</div><div class="line">  &#125;)</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> withCharacter(<span class="function">(<span class="params">&#123; data: &#123; loading, hero, error &#125; &#125;</span>) =&gt;</span> &#123;</div><div class="line">  <span class="keyword">if</span> (loading) <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Loading<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</div><div class="line">  <span class="keyword">if</span> (error) <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>ERROR<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>;</div><div class="line">  <span class="keyword">return</span> ...<span class="comment">// 具有数据的实际组件;</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>使用 TypeScript 时，同样的例子如下所示：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">"react"</span>;</div><div class="line"><span class="keyword">import</span> gql <span class="keyword">from</span> <span class="string">"graphql-tag"</span>;</div><div class="line"><span class="keyword">import</span> &#123; graphql &#125; <span class="keyword">from</span> <span class="string">"react-apollo"</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> HERO_QUERY = gql<span class="string">`</span></div><div class="line">  query GetCharacter($episode: Episode!) &#123;</div><div class="line">    hero(episode: $episode) &#123;</div><div class="line">      name</div><div class="line">      id</div><div class="line">      friends &#123;</div><div class="line">        name</div><div class="line">        id</div><div class="line">        appearsIn</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">`;</div><div class="line"></div><div class="line">type Hero = &#123;</div><div class="line">  <span class="attr">name</span>: string;</div><div class="line">  id: string;</div><div class="line">  appearsIn: string[];</div><div class="line">  friends: Hero[];</div><div class="line">&#125;;</div><div class="line"></div><div class="line">type Response = &#123;</div><div class="line">  <span class="attr">hero</span>: Hero;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">const</span> withCharacter = graphql&lt;Response&gt;(HERO_QUERY, &#123;</div><div class="line">  <span class="attr">options</span>: <span class="function"><span class="params">()</span> =&gt;</span> (&#123;</div><div class="line">    <span class="attr">variables</span>: &#123; <span class="attr">episode</span>: <span class="string">"JEDI"</span> &#125;</div><div class="line">  &#125;)</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> withCharacter(<span class="function">(<span class="params">&#123; data: &#123; loading, hero, error &#125; &#125;</span>) =&gt;</span> &#123;</div><div class="line">  <span class="keyword">if</span> (loading) <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Loading<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</div><div class="line">  <span class="keyword">if</span> (error) <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>ERROR<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>;</div><div class="line">  <span class="keyword">return</span> ...<span class="comment">// 具有数据的实际组件;</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>两个类型系统之间的主要区别之一是它们如何处理推断类型。 因为 TypeScript 不做类型推断，所以集成了 Apollo 的 React 代码导出额外的类型定义，使得添加类型更容易。</p>
+<h2 id="options">选项</h2>
+
+<p>通常，查询的变量将由包裹组件的 props 计算而来。以下是使用 Flow 设置 props 类型的示例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// @flow</span></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">"react"</span>;</div><div class="line"><span class="keyword">import</span> gql <span class="keyword">from</span> <span class="string">"graphql-tag"</span>;</div><div class="line"><span class="keyword">import</span> &#123; graphql &#125; <span class="keyword">from</span> <span class="string">"react-apollo"</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> type &#123; OperationComponent &#125; <span class="keyword">from</span> <span class="string">"react-apollo"</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> HERO_QUERY = gql<span class="string">`</span></div><div class="line">  query GetCharacter($episode: Episode!) &#123;</div><div class="line">    hero(episode: $episode) &#123;</div><div class="line">      name</div><div class="line">      id</div><div class="line">      friends &#123;</div><div class="line">        name</div><div class="line">        id</div><div class="line">        appearsIn</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">`;</div><div class="line"></div><div class="line">type Hero = &#123;</div><div class="line">  <span class="attr">name</span>: string,</div><div class="line">  <span class="attr">id</span>: string,</div><div class="line">  <span class="attr">appearsIn</span>: string[],</div><div class="line">  <span class="attr">friends</span>: Hero[]</div><div class="line">&#125;;</div><div class="line"></div><div class="line">type Response = &#123;</div><div class="line">  <span class="attr">hero</span>: Hero</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">export</span> type InputProps = &#123;</div><div class="line">  <span class="attr">episode</span>: string</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">const</span> withCharacter: OperationComponent&lt;Response, InputProps&gt; = graphql(HERO_QUERY, &#123;</div><div class="line">  <span class="attr">options</span>: <span class="function">(<span class="params">&#123; episode &#125;</span>) =&gt;</span> (&#123;</div><div class="line">    <span class="attr">variables</span>: &#123; episode &#125;</div><div class="line">  &#125;)</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> withCharacter(<span class="function">(<span class="params">&#123; data: &#123; loading, hero, error &#125; &#125;</span>) =&gt;</span> &#123;</div><div class="line">  <span class="keyword">if</span> (loading) <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Loading<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</div><div class="line">  <span class="keyword">if</span> (error) <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>ERROR<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>;</div><div class="line">  <span class="keyword">return</span> ...<span class="comment">// 具有数据的实际组件;</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>使用 TypeScript 时，同样的例子如下所示：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">"react"</span>;</div><div class="line"><span class="keyword">import</span> gql <span class="keyword">from</span> <span class="string">"graphql-tag"</span>;</div><div class="line"><span class="keyword">import</span> &#123; graphql &#125; <span class="keyword">from</span> <span class="string">"react-apollo"</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> HERO_QUERY = gql<span class="string">`</span></div><div class="line">  query GetCharacter($episode: Episode!) &#123;</div><div class="line">    hero(episode: $episode) &#123;</div><div class="line">      name</div><div class="line">      id</div><div class="line">      friends &#123;</div><div class="line">        name</div><div class="line">        id</div><div class="line">        appearsIn</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">`;</div><div class="line"></div><div class="line">type Hero = &#123;</div><div class="line">  <span class="attr">name</span>: string;</div><div class="line">  id: string;</div><div class="line">  appearsIn: string[];</div><div class="line">  friends: Hero[];</div><div class="line">&#125;;</div><div class="line"></div><div class="line">type Response = &#123;</div><div class="line">  <span class="attr">hero</span>: Hero;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">type InputProps = &#123;</div><div class="line">  <span class="attr">episode</span>: string</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">const</span> withCharacter = graphql&lt;Response, InputProps&gt;(HERO_QUERY, &#123;</div><div class="line">  <span class="attr">options</span>: <span class="function">(<span class="params">&#123; episode &#125;</span>) =&gt;</span> (&#123;</div><div class="line">    <span class="attr">variables</span>: &#123; episode &#125;</div><div class="line">  &#125;),</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> withCharacter(<span class="function">(<span class="params">&#123; data: &#123; loading, hero, error &#125; &#125;</span>) =&gt;</span> &#123;</div><div class="line">  <span class="keyword">if</span> (loading) <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Loading<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</div><div class="line">  <span class="keyword">if</span> (error) <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>ERROR<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>;</div><div class="line">  <span class="keyword">return</span> ...<span class="comment">// 具有数据的实际组件;</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>This is expecially helpful when accessing deeply nested objects that are passed down to the component through props. For example, when adding prop types a project using Flow will begin to surface errors where props being passed are invalid:<br>当访问通过 props 传递给组件的深层嵌套对象时，适用 TypeScript 非常有用的。 例如，当添加 prop 类型时，使用 Flow 的项目将开始报错，显示传递的 props 是无效的：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// @flow</span></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">"react"</span>;</div><div class="line"><span class="keyword">import</span> ApolloClient, &#123; createNetworkInterface &#125; <span class="keyword">from</span> <span class="string">"apollo-client"</span>;</div><div class="line"><span class="keyword">import</span> &#123; ApolloProvider &#125; <span class="keyword">from</span> <span class="string">"react-apollo"</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> Character <span class="keyword">from</span> <span class="string">"./Character"</span>;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> networkInterface = createNetworkInterface(&#123;</div><div class="line">  <span class="attr">uri</span>: <span class="string">"https://mpjk0plp9.lp.gql.zone/graphql"</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> client = <span class="keyword">new</span> ApolloClient(&#123; networkInterface &#125;);</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> () =&gt;</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">ApolloProvider</span> <span class="attr">client</span>=<span class="string">&#123;client&#125;</span>&gt;</span></span></div><div class="line">    // $ExpectError property `episode`. Property not found in. See: src/Character.js:43</div><div class="line">    <span class="tag">&lt;<span class="name">Character</span> /&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">ApolloProvider</span>&gt;</span>;</div></pre></td></tr></table></figure>
+<h2 id="props">props</h2>
+
+<p>React 与 Apollo 结合的应用最强大的功能之一，便是 <code>props</code> 允许您将操作中的结果数据重新组装成包裹组件所需模型的新的 props。 GraphQL 在允许您从服务端请求您想要的数据方面非常棒，然而客户端仍然需要根据这些结果调整数据模型或进行计算。请求的返回值甚至可以根据操作的状态（即加载中，错误，接收的数据）而有所不同，因此在类型声明中标识这些可能的值非常重要，以确保我们的组件不会有运行时错误。</p>
+<p><code>react-apollo</code> 中的 <code>graphql</code> 包裹器支持手动声明结果 props 的模型。在 Flow 中像这样：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// @flow</span></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">"react"</span>;</div><div class="line"><span class="keyword">import</span> gql <span class="keyword">from</span> <span class="string">"graphql-tag"</span>;</div><div class="line"><span class="keyword">import</span> &#123; graphql &#125; <span class="keyword">from</span> <span class="string">"react-apollo"</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> type &#123; OperationComponent, QueryProps &#125; <span class="keyword">from</span> <span class="string">"react-apollo"</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> HERO_QUERY = gql<span class="string">`</span></div><div class="line">  query GetCharacter($episode: Episode!) &#123;</div><div class="line">    hero(episode: $episode) &#123;</div><div class="line">      name</div><div class="line">      id</div><div class="line">      friends &#123;</div><div class="line">        name</div><div class="line">        id</div><div class="line">        appearsIn</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">`;</div><div class="line"></div><div class="line">type Hero = &#123;</div><div class="line">  <span class="attr">name</span>: string,</div><div class="line">  <span class="attr">id</span>: string,</div><div class="line">  <span class="attr">appearsIn</span>: string[],</div><div class="line">  <span class="attr">friends</span>: Hero[]</div><div class="line">&#125;;</div><div class="line"></div><div class="line">type Response = &#123;</div><div class="line">  <span class="attr">hero</span>: Hero</div><div class="line">&#125;;</div><div class="line"></div><div class="line">type Props = Response &amp; QueryProps;</div><div class="line"></div><div class="line"><span class="keyword">export</span> type InputProps = &#123;</div><div class="line">  <span class="attr">episode</span>: string</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">const</span> withCharacter: OperationComponent&lt;Response, InputProps, Props&gt; = graphql(HERO_QUERY, &#123;</div><div class="line">  <span class="attr">options</span>: <span class="function">(<span class="params">&#123; episode &#125;</span>) =&gt;</span> (&#123;</div><div class="line">    <span class="attr">variables</span>: &#123; episode &#125;</div><div class="line">  &#125;),</div><div class="line">  <span class="attr">props</span>: <span class="function">(<span class="params">&#123; data &#125;</span>) =&gt;</span> (&#123; ...data &#125;)</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> withCharacter(<span class="function">(<span class="params">&#123; loading, hero, error &#125;</span>) =&gt;</span> &#123;</div><div class="line">  <span class="keyword">if</span> (loading) <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Loading<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</div><div class="line">  <span class="keyword">if</span> (error) <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>ERROR<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>;</div><div class="line">  <span class="keyword">return</span> ...<span class="comment">// 具有数据的实际组件;</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>使用 TypeScript 时，同样的例子如下所示：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">"react"</span>;</div><div class="line"><span class="keyword">import</span> gql <span class="keyword">from</span> <span class="string">"graphql-tag"</span>;</div><div class="line"><span class="keyword">import</span> &#123; graphql, NamedProps, QueryProps&#125; <span class="keyword">from</span> <span class="string">"react-apollo"</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> HERO_QUERY = gql<span class="string">`</span></div><div class="line">  query GetCharacter($episode: Episode!) &#123;</div><div class="line">    hero(episode: $episode) &#123;</div><div class="line">      name</div><div class="line">      id</div><div class="line">      friends &#123;</div><div class="line">        name</div><div class="line">        id</div><div class="line">        appearsIn</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">`;</div><div class="line"></div><div class="line">type Hero = &#123;</div><div class="line">  <span class="attr">name</span>: string;</div><div class="line">  id: string;</div><div class="line">  appearsIn: string[];</div><div class="line">  friends: Hero[];</div><div class="line">&#125;;</div><div class="line"></div><div class="line">type Response = &#123;</div><div class="line">  <span class="attr">hero</span>: Hero;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">type WrappedProps = Response &amp; QueryProps;</div><div class="line"></div><div class="line">type InputProps = &#123;</div><div class="line">  <span class="attr">episode</span>: string</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">const</span> withCharacter = graphql&lt;Response, InputProps, WrappedProps&gt;(HERO_QUERY, &#123;</div><div class="line">  <span class="attr">options</span>: <span class="function">(<span class="params">&#123; episode &#125;</span>) =&gt;</span> (&#123;</div><div class="line">    <span class="attr">variables</span>: &#123; episode &#125;</div><div class="line">  &#125;),</div><div class="line">  <span class="attr">props</span>: <span class="function">(<span class="params">&#123; data &#125;</span>) =&gt;</span> (&#123; ...data &#125;)</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> withCharacter(<span class="function">(<span class="params">&#123; loading, hero, error &#125;</span>) =&gt;</span> &#123;</div><div class="line">  <span class="keyword">if</span> (loading) <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Loading<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</div><div class="line">  <span class="keyword">if</span> (error) <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>ERROR<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>;</div><div class="line">  <span class="keyword">return</span> ...<span class="comment">// 具有数据的实际组件;</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>由于声明了响应模型，props 模型以及将传递给客户端的模型的类型，我们可以防止多处的错误。我们在 <code>graphql</code> 包裹器中的选项和 props 函数现在是类型安全的，我们渲染的组件受到保护，我们的组件树已经强制声明了它们所需的 props。 在上述使用 Flow 的示例中，添加如下代码到 <code>props</code> 函数展示错误信息：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> withCharacter: OperationComponent&lt;Response, InputProps, Props&gt; = graphql(HERO_QUERY, &#123;</div><div class="line">  <span class="attr">options</span>: <span class="function">(<span class="params">&#123; episode &#125;</span>) =&gt;</span> (&#123;</div><div class="line">    <span class="attr">variables</span>: &#123; episode &#125;</div><div class="line">  &#125;),</div><div class="line">  <span class="attr">props</span>: <span class="function">(<span class="params">&#123; data, ownProps &#125;</span>) =&gt;</span> (&#123;</div><div class="line">    ...data,</div><div class="line">    <span class="comment">// $ExpectError [string] This type cannot be compared to number</span></div><div class="line">    episode: ownProps.episode &gt; <span class="number">1</span>,</div><div class="line">    <span class="comment">// $ExpectError property `isHero`. Property not found on object type</span></div><div class="line">    isHero: data &amp;&amp; data.hero &amp;&amp; data.hero.isHero</div><div class="line">  &#125;)</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>With this addition, the entirety of the integration between Apollo and React can be statically typed. When combined with the strong tooling each system provides, it can make for a much improved application and developer experience.<br>通过这一补充，可以静态地输入Apollo和React之间的整体整合。 当与每个系统提供的强大的工具相结合时，它可以改善应用程序和开发人员的体验。</p>
+<h2 id="classes-vs-functions">classes 对比 functions</h2>
+
+<p>All of the above examples show wrapping a component which is just a function using the result of a <code>graphql</code> wrapper. Sometimes, components that depend on GraphQL data require state and are formed using the <code>class MyComponent extends React.Component</code> practice. In these use cases, both TypeScript and Flow require adding prop shape to the class instance. In order to support this, <code>react-apollo</code> exports types to support creating result types easily. This is the previous example shortened to show just the component when using Flow:<br>以上所有示例都是使用 <code>graphql</code> 高阶组件包裹函数组件。有时，依赖于 GraphQL 数据的组件需要 state，并使用 <code>class MyComponent extends React.Component</code> 这样的方式声明。在这种场景下，TypeScript 和 Flow 都需要向类实例添加 prop 模型。为了实现这一点，<code>react-apollo</code> 导出的类型可以轻松创建结果类型。简化之前的例子只显示组件，如下是使用 Flow 时的情况：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; ChildProps &#125; <span class="keyword">from</span> <span class="string">"react-apollo"</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> withCharacter: OperationComponent&lt;Response, InputProps&gt; = graphql(HERO_QUERY, &#123;</div><div class="line">  <span class="attr">options</span>: <span class="function">(<span class="params">&#123; episode &#125;</span>) =&gt;</span> (&#123;</div><div class="line">    <span class="attr">variables</span>: &#123; episode &#125;</div><div class="line">  &#125;)</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Character</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">    props: ChildProps&lt;InputProps, Response&gt;;</div><div class="line"></div><div class="line">    render()&#123;</div><div class="line">        <span class="keyword">const</span> &#123; loading, hero, error &#125; = <span class="keyword">this</span>.props.data;</div><div class="line">        <span class="keyword">if</span> (loading) <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Loading<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</div><div class="line">        <span class="keyword">if</span> (error) <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>ERROR<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>;</div><div class="line">        <span class="keyword">return</span> ...<span class="comment">// 具有数据的实际组件;</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>使用 TypeScript 时，同样的例子如下所示：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; ChildProps &#125; <span class="keyword">from</span> <span class="string">"react-apollo"</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> withCharacter = graphql&lt;Response, InputProps&gt;(HERO_QUERY, &#123;</div><div class="line">  <span class="attr">options</span>: <span class="function">(<span class="params">&#123; episode &#125;</span>) =&gt;</span> (&#123;</div><div class="line">    <span class="attr">variables</span>: &#123; episode &#125;</div><div class="line">  &#125;)</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Character</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span>&lt;<span class="title">ChildProps</span>&lt;<span class="title">InputProps</span>, <span class="title">Response</span>&gt;, </span>&#123;&#125;&gt; &#123;</div><div class="line">    render()&#123;</div><div class="line">        <span class="keyword">const</span> &#123; loading, hero, error &#125; = <span class="keyword">this</span>.props.data;</div><div class="line">        <span class="keyword">if</span> (loading) <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Loading<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</div><div class="line">        <span class="keyword">if</span> (error) <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>ERROR<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>;</div><div class="line">        <span class="keyword">return</span> ...<span class="comment">// 具有数据的实际组件;</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="using-name">使用 <code>name</code> 属性</h2>
+
+<p>如果在 <code>graphql</code> 包裹器的配置中使用 <code>name</code> 属性，则需要手动将响应类型附加到 <code>props</code> 函数。 使用 TypeScript 时示例如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; NamedProps, QueryProps &#125; <span class="keyword">from</span> <span class="string">'react-apollo'</span>;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> withCharacter = graphql&lt;Response, InputProps, Prop&gt;(HERO_QUERY, &#123;</div><div class="line">  <span class="attr">name</span>: <span class="string">'character'</span>,</div><div class="line">  <span class="attr">props</span>: <span class="function">(<span class="params">&#123; character, ownProps &#125;: NamedProps&lt;&#123; character: QueryProps &amp; Response &#125;, Props</span>) =&gt;</span> (&#123;</div><div class="line">    ...character,</div><div class="line">    <span class="comment">// $ExpectError [string] This type cannot be compared to number</span></div><div class="line">    episode: ownProps.episode &gt; <span class="number">1</span>,</div><div class="line">    <span class="comment">// $ExpectError property `isHero`. Property not found on object type</span></div><div class="line">    isHero: character &amp;&amp; character.hero &amp;&amp; character.hero.isHero</div><div class="line">  &#125;)</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="more-info">扩展阅读</h2>
+
+<p>有关在 Apollo 中使用 Flow 或 TypeScript 的更多信息，请查看以下文章：</p>
+<ul>
+<li><a href="https://dev-blog.apollodata.com/a-stronger-typed-react-apollo-c43bd52be0d8" target="_blank" rel="external">一个更强大的（强类型）React Apollo</a></li>
+<li><a href="https://dev-blog.apollodata.com/getting-started-with-typescript-and-apollo-a9aa2c7dcf87" target="_blank" rel="external">TypeScript 和 React Apollo 快速上手</a></li>
+</ul>
+
+    </div>
+  </div>
+
+  <div class="pagination">
+    <div class="content-wrapper">
+      
+      
+        <a class="link primary prev"
+          href="cache-updates.html">
+          <span class="icon-arrow-left-alt"></span>
+          <span class="subtitle-pagination">Previous</span>
+          更新 Store
+        </a>
+      
+      
+        <a class="link primary next"
+          href="api.html">
+          <span class="subtitle-pagination">Next</span>
+          API: 综合
+          <span class="icon-arrow-right-alt"></span>
+        </a>
+      
+    </div>
+  </div>
+
+  <div class="github">
+    <a class="link tertiary " href="https://github.com/apollographqlcn/react-docs-cn/tree/master/source/using-with-types.md" target="_blank">
+      <span class="icon-github"></span>Edit on GitHub</a>
+  </div>
+
+  
+</div>
+
+    <script src="/react-docs-cn/script/smooth-scroll.min.js"></script>
+    <script src="/react-docs-cn/script/main.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+    <script>
+      // nectar ninja
+      (function(){
+        var handle = '@meteorjs';
+        var a = document.createElement('script');
+        var m = document.getElementsByTagName('script')[0];
+        a.async = 1;
+        a.src = 'https://nectar.ninja/api/v1/' + handle.slice(1);
+        m.parentNode.insertBefore(a, m);
+      })();
+
+     
+
+      
+
+      
+
+      // search box
+      
+
+      
+    </script>
+  </body>
+</html>

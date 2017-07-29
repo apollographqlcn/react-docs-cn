@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Basic -->
+    <title>从0.x迁移到1.0 | Apollo React 中文文档</title>
+    <meta name="description" content="简易指南。">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png" sizes="16x16 32x32 64x64">
+
+    <!-- Social -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://apollographqlcn.github.io/react-docs-cn">
+    <meta property="og:title" content="从0.x迁移到1.0 | Apollo React 中文文档">
+    <meta property="og:description" content="简易指南。">
+    <meta property="og:image" content="">
+    <meta name="twitter:card" content="summary_image_large">
+    <meta name="twitter:site" content="@apollographqlcn">
+    <meta name="twitter:title" content="从0.x迁移到1.0 | Apollo React 中文文档">
+    <meta name="twitter:description" content="简易指南。">
+    <meta name="twitter:image" content="">
+
+    <!-- Misc -->
+    <meta name="google-site-verification" content="" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,200,300italic,400italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/react-docs-cn/style/style.css">
+  </head>
+  <body class="">
+    
+
+<div class="nav dark">
+  <div class="nav-group">
+    <div class="nav-item show-mobile">
+      <span class="js-sidebar-toggle ">
+        <span class="icon-menu"></span>
+      </span>
+    </div>
+    <div class="nav-item">
+      
+      <a class="logo-wrapper" href="http://dev.apollodata.com/" title="Apollo Developers"  >
+        <img src="images/logo-apollo-space-left.svg" alt="Apollo" class="logo"/><img src="images/logo-apollo-subbrands-developers-space.svg" class="logo-subbrand" alt="Developers"/>
+      </a>
+    </div>
+  </div>
+
+  <div class="nav-group right">
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="https://apollographqlcn.github.io/react-docs-cn/"  >
+          <span>React</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/angular2"  >
+          <span>Angular</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/ios"  >
+          <span>iOS</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/android"  >
+          <span>Android</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/core"  >
+          <span>Vanilla JS</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false separator">
+        <a class="link" href="http://dev.apollodata.com/tools"  >
+          <span>Server</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="https://medium.com/apollo-stack" target=_new >
+          <span>Blog</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/community"  >
+          <span>Community</span>
+        </a>
+      </div>
+    
+  </div>
+</div>
+
+<div class="sidebar">
+  <div class="panel">
+    <div class="panel-item">
+      <a class="" href="http:/dev.apollodata.com/" title="Apollo"  >
+        <span>Apollo Developers</span>
+      </a>
+    </div>
+    
+      <div class="panel-item "">
+        <a class="" href="https://apollographqlcn.github.io/react-docs-cn/"  >
+          <span>React</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/angular2"  >
+          <span>Angular</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/ios"  >
+          <span>iOS</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/android"  >
+          <span>Android</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/core"  >
+          <span>Vanilla JS</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/tools"  >
+          <span>Server</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="https://medium.com/apollo-stack" target=_new >
+          <span>Blog</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/community"  >
+          <span>Community</span>
+        </a>
+      </div>
+    
+  </div>
+
+  <div class="sidebar-content">
+    <div class="topcap">
+      <span class="title-sidebar">Apollo React 中文文档</span>
+      
+    </div>
+
+    
+
+    <ul class="toc">
+      
+        <li>
+          
+          <ul class="list-toc">
+            
+              
+              <li class="item-toc ">
+                <a href="index.html" class="sidebar-link ">
+                  <span>简介</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="initialization.html" class="sidebar-link ">
+                  <span>设置和选项</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="simple-example.html" class="sidebar-link ">
+                  <span>简易示例：Snack</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="example-schema.html" class="sidebar-link ">
+                  <span>完整示例：GitHunt</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc  current">
+                <a href="" class="sidebar-link  current">
+                  <span>迁移到1.0</span>
+                </a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        <li>
+          
+            <div class="heading-toc">Usage</div>
+          
+          <ul class="list-toc">
+            
+              
+              <li class="item-toc ">
+                <a href="queries.html" class="sidebar-link ">
+                  <span>查询</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="mutations.html" class="sidebar-link ">
+                  <span>突变</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="subscriptions.html" class="sidebar-link ">
+                  <span>订阅</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="receiving-updates.html" class="sidebar-link ">
+                  <span>同步服务端数据</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="cache-updates.html" class="sidebar-link ">
+                  <span>更新 Store</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="using-with-types.html" class="sidebar-link ">
+                  <span>使用 TypeScript 和 Flow</span>
+                </a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        <li>
+          
+            <div class="heading-toc">API Reference</div>
+          
+          <ul class="list-toc">
+            
+              
+              <li class="item-toc ">
+                <a href="api.html" class="sidebar-link ">
+                  <span>综合</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="api-graphql.html" class="sidebar-link ">
+                  <span>graphql: 容器</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="api-queries.html" class="sidebar-link ">
+                  <span>graphql: 查询</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="api-mutations.html" class="sidebar-link ">
+                  <span>graphql: 突变</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="api-server.html" class="sidebar-link ">
+                  <span>服务端渲染</span>
+                </a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        <li>
+          
+            <div class="heading-toc">Recipes</div>
+          
+          <ul class="list-toc">
+            
+              
+              <li class="item-toc ">
+                <a href="auth.html" class="sidebar-link ">
+                  <span>认证</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="pagination.html" class="sidebar-link ">
+                  <span>分页</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="optimistic-ui.html" class="sidebar-link ">
+                  <span>Optimistic UI</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="fragments.html" class="sidebar-link ">
+                  <span>使用片段</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="prefetching.html" class="sidebar-link ">
+                  <span>预取数据</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="query-splitting.html" class="sidebar-link ">
+                  <span>Query Splitting</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="react-native.html" class="sidebar-link ">
+                  <span>与 React Native 集成</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="redux.html" class="sidebar-link ">
+                  <span>与 Redux 集成</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="webpack.html" class="sidebar-link ">
+                  <span>Webpack加载器</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="server-side-rendering.html" class="sidebar-link ">
+                  <span>服务端渲染</span>
+                </a>
+              </li>
+            
+          </ul>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="content">
+  <div class="content-wrapper">
+    <div class="header-content">
+      <h1 class="title-page">从0.x迁移到1.0</h1>
+      
+        <div class="subtitle-page">简易指南。</div>
+      
+
+      <div class="page-actions">
+        <div class="actions-group">
+          <a class="btn tertiary small round lowercase" href="https://github.com/apollographqlcn/react-docs-cn/tree/master/source/migration.md" target="_blank"><span class="icon-github"></span> <span>Edit on GitHub</span></a>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="document-formatting">
+      <p>以下是Apollo Client的0.x和1.0版本之间的主要突破性变化。</p>
+<h2 id="fetchMore">fetchMore</h2>
+
+<p><code>fetchMoreResult</code>的结构已经改变了。以前<code>fetchMoreResult</code>用于包含<code>data</code>和<code>loading</code>字段，现在<code>fetchMoreResult</code>是<code>fetchMoreResult.data</code>以前是什么。这意味着你的<code>updateCheck</code>函数必须改变如下对于<code>fetchMore</code>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">updateQuery: <span class="function">(<span class="params">prev, &#123; fetchMoreResult &#125;</span>) =&gt;</span> &#123;</div><div class="line">  <span class="keyword">return</span> <span class="built_in">Object</span>.assign(&#123;&#125;, prev, &#123;</div><div class="line">    <span class="comment">// feed：[... prev.feed，... fetchMoreResult.data.feed]，//这是以前是</span></div><div class="line">    feed: [...prev.feed, ...fetchMoreResult.feed], <span class="comment">//这是它现在要做的</span></div><div class="line">  &#125;);</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+<h2 id="fetchPolicy">fetchPolicy</h2>
+
+<p><code>forceFetch</code>和<code>noFetch</code>查询选项不再可用。相反，它们已被称为 <code>fetchPolicy</code> 的统一API替代。 <code>fetchPolicy</code>接受以下设置：</p>
+<ul>
+<li><code>{ fetchPolicy: &#39;cache-first&#39; }</code>: 这是Apollo Client在没有指定获取策略时使用的默认提取策略。首先，它将尝试从缓存中完成查询。只有缓存查找失败，才能将查询发送到服务器。</li>
+<li><code>{ fetchPolicy: &#39;cache-only&#39; }</code>: 使用此选项，Apollo Client将尝试仅从缓存中完成查询。如果缓存中没有全部数据可用，将抛出一个错误。这相当于前者的<code>noFetch</code>。</li>
+<li><code>{ fetchPolicy: &#39;network-only&#39; }</code>: 使用此选项，Apollo Client将绕过缓存并直接将查询发送到服务器。这相当于前面的<code>forceFetch</code>。</li>
+<li><code>{ fetchPolicy: &#39;cache-and-network&#39; }</code>: 使用此选项，Apollo Client将查询服务器，但在服务器请求未决时，从缓存返回数据，并在服务器响应到来后更新结果背部。</li>
+</ul>
+<h2 id="returnPartialData">returnPartialData</h2>
+
+<p>在 Apollo 1.0 中已经删除了 <code>returnPartialData</code> 查询选项，因为如果在此模式下运行查询，可能难以预测哪些数据可用。</p>
+<p>要用 <code>returnPartialData</code> 替换运行一个查询的功能，建议运行两个单独的查询：</p>
+<ol>
+<li>一个大型查询，一旦加载，就要求在此视图中显示的所有数据。</li>
+<li>只读取您所知道的较大查询的一小部分的小型查询已被缓存。然后可以在加载较大的查询时显示该查询的数据。</li>
+</ol>
+<p>这里有一个例子：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> FullSomethingComponent =&gt; (props) =&gt; &#123;</div><div class="line">  <span class="keyword">if</span> (props.data.loading) &#123;</div><div class="line">    <span class="keyword">return</span> &lt;PreviewSomethingComponent &#123;...props&#125; /&gt;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">const</span> fullQuery = gql`&#123;</div><div class="line">  channel(name: <span class="string">"x"</span>) &#123;</div><div class="line">    name</div><div class="line">    topic</div><div class="line">    messages &#123;</div><div class="line">      text</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;`;</div><div class="line"></div><div class="line"><span class="keyword">const</span> previewQuery = gql`&#123;</div><div class="line">  channel(name: <span class="string">"x"</span>) &#123;</div><div class="line">    name</div><div class="line">    topic</div><div class="line">  &#125;</div><div class="line">&#125;`;</div><div class="line"></div><div class="line"><span class="keyword">const</span> PreviewSomethingComponent =&gt; (props) =&gt; &#123;</div><div class="line">  <span class="keyword">if</span> (props.data.loading) &#123;</div><div class="line">    <span class="comment">// 哎，我们没有这个数据，即使它应该在缓存中。只显示一个加载组件</span></div><div class="line">    <span class="keyword">return</span> (&lt;Loading /&gt;);</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="comment">// 只是渲染通道名称和主题，显示加载微调器的消息，或类似的东西。</span></div><div class="line">  <span class="keyword">return</span> (&lt;div&gt; ... stuff here &lt;/div&gt;);</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">const</span> SomethingComponentWithData = graphql(fullQuery)(FullSomethingComponent);</div><div class="line"></div><div class="line"><span class="keyword">const</span> PreviewSomethingComponentWithData = graphql(previewQuery)(PreviewSomethingComponent);</div></pre></td></tr></table></figure>
+<h2 id="resultTransformer">resultTransformer</h2>
+
+<p>此全局选项允许在返回查询和变更结果之前对Apollo Client进行转换。由于Apollo Client内部的逻辑很少使用和复杂，所以它已被删除。推荐的转换数据的方法是将转换应用于Apollo Client外部。<br>在 <code>react-apollo</code> 中，这可以在 <code>props</code> 选项中完成。</p>
+<h2 id="queryDeduplication">queryDeduplication</h2>
+
+<p>查询重复数据删除是Apollo Client上的全局选项，可确保如果有多个相同的查询，Apollo Client将只向服务器发送一个。它通过在发送之前检查已经在运行中的查询的新查询来实现。</p>
+<p><code>queryDeduplication</code> 默认设置为 <code>true</code>。通过将<code>{queryDeduplication：false}</code>传递给Apollo Client构造函数可以关闭它。</p>
+<h2 id="notifyOnNetworkStatusChange">notifyOnNetworkStatusChange</h2>
+
+<p>布尔 <code>notifyOnNetworkStatusChange</code> 查询选项将在每次网络状态更改时触发新的可观察结果。<br>网络状态指示是否有任何请求正在飞行中用于此查询，并提供有关何种类型的请求（初始加载，重新读取，setVariables，forceFetch）的更多信息。在以前的版本中，如果加载状态改变，Apollo Client将不会在可观察的情况下触发新的结果。有关更多信息，请参阅react-apollo文档。</p>
+<h2 id="reduxRootKey">reduxRootKey</h2>
+
+<p>全局 <code>reduxRootKey</code> 选项已被弃用，现已被删除。 在它的位置应该使用 <code>reduxRootSelector</code>。 如果您不向阿波罗提供您自己的Redux Store，则不需要设置此选项。 <code>reduxRootSelector</code>是可选的。<br>如果提供，它必须是一个返回商店的阿波罗部分的功能，如下所示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">const</span> client = <span class="keyword">new</span> ApolloClient(&#123;</div><div class="line">  <span class="attr">reduxRootSelector</span>: <span class="function">(<span class="params">store</span>) =&gt;</span> store[<span class="string">'myCustomStoreKey'</span>],</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+
+    </div>
+  </div>
+
+  <div class="pagination">
+    <div class="content-wrapper">
+      
+      
+        <a class="link primary prev"
+          href="example-schema.html">
+          <span class="icon-arrow-left-alt"></span>
+          <span class="subtitle-pagination">Previous</span>
+          完整示例：GitHunt
+        </a>
+      
+      
+        <a class="link primary next"
+          href="queries.html">
+          <span class="subtitle-pagination">Next</span>
+          查询
+          <span class="icon-arrow-right-alt"></span>
+        </a>
+      
+    </div>
+  </div>
+
+  <div class="github">
+    <a class="link tertiary " href="https://github.com/apollographqlcn/react-docs-cn/tree/master/source/migration.md" target="_blank">
+      <span class="icon-github"></span>Edit on GitHub</a>
+  </div>
+
+  
+</div>
+
+    <script src="/react-docs-cn/script/smooth-scroll.min.js"></script>
+    <script src="/react-docs-cn/script/main.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+    <script>
+      // nectar ninja
+      (function(){
+        var handle = '@meteorjs';
+        var a = document.createElement('script');
+        var m = document.getElementsByTagName('script')[0];
+        a.async = 1;
+        a.src = 'https://nectar.ninja/api/v1/' + handle.slice(1);
+        m.parentNode.insertBefore(a, m);
+      })();
+
+     
+
+      
+
+      
+
+      // search box
+      
+
+      
+    </script>
+  </body>
+</html>

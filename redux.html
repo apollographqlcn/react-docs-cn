@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Basic -->
+    <title>与 Redux 集成 | Apollo React 中文文档</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png" sizes="16x16 32x32 64x64">
+
+    <!-- Social -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://apollographqlcn.github.io/react-docs-cn">
+    <meta property="og:title" content="与 Redux 集成 | Apollo React 中文文档">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="">
+    <meta name="twitter:card" content="summary_image_large">
+    <meta name="twitter:site" content="@apollographqlcn">
+    <meta name="twitter:title" content="与 Redux 集成 | Apollo React 中文文档">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="">
+
+    <!-- Misc -->
+    <meta name="google-site-verification" content="" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,200,300italic,400italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/react-docs-cn/style/style.css">
+  </head>
+  <body class="">
+    
+
+<div class="nav dark">
+  <div class="nav-group">
+    <div class="nav-item show-mobile">
+      <span class="js-sidebar-toggle ">
+        <span class="icon-menu"></span>
+      </span>
+    </div>
+    <div class="nav-item">
+      
+      <a class="logo-wrapper" href="http://dev.apollodata.com/" title="Apollo Developers"  >
+        <img src="images/logo-apollo-space-left.svg" alt="Apollo" class="logo"/><img src="images/logo-apollo-subbrands-developers-space.svg" class="logo-subbrand" alt="Developers"/>
+      </a>
+    </div>
+  </div>
+
+  <div class="nav-group right">
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="https://apollographqlcn.github.io/react-docs-cn/"  >
+          <span>React</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/angular2"  >
+          <span>Angular</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/ios"  >
+          <span>iOS</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/android"  >
+          <span>Android</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/core"  >
+          <span>Vanilla JS</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false separator">
+        <a class="link" href="http://dev.apollodata.com/tools"  >
+          <span>Server</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="https://medium.com/apollo-stack" target=_new >
+          <span>Blog</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/community"  >
+          <span>Community</span>
+        </a>
+      </div>
+    
+  </div>
+</div>
+
+<div class="sidebar">
+  <div class="panel">
+    <div class="panel-item">
+      <a class="" href="http:/dev.apollodata.com/" title="Apollo"  >
+        <span>Apollo Developers</span>
+      </a>
+    </div>
+    
+      <div class="panel-item "">
+        <a class="" href="https://apollographqlcn.github.io/react-docs-cn/"  >
+          <span>React</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/angular2"  >
+          <span>Angular</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/ios"  >
+          <span>iOS</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/android"  >
+          <span>Android</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/core"  >
+          <span>Vanilla JS</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/tools"  >
+          <span>Server</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="https://medium.com/apollo-stack" target=_new >
+          <span>Blog</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/community"  >
+          <span>Community</span>
+        </a>
+      </div>
+    
+  </div>
+
+  <div class="sidebar-content">
+    <div class="topcap">
+      <span class="title-sidebar">Apollo React 中文文档</span>
+      
+    </div>
+
+    
+
+    <ul class="toc">
+      
+        <li>
+          
+          <ul class="list-toc">
+            
+              
+              <li class="item-toc ">
+                <a href="index.html" class="sidebar-link ">
+                  <span>简介</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="initialization.html" class="sidebar-link ">
+                  <span>设置和选项</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="simple-example.html" class="sidebar-link ">
+                  <span>简易示例：Snack</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="example-schema.html" class="sidebar-link ">
+                  <span>完整示例：GitHunt</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="migration.html" class="sidebar-link ">
+                  <span>迁移到1.0</span>
+                </a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        <li>
+          
+            <div class="heading-toc">Usage</div>
+          
+          <ul class="list-toc">
+            
+              
+              <li class="item-toc ">
+                <a href="queries.html" class="sidebar-link ">
+                  <span>查询</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="mutations.html" class="sidebar-link ">
+                  <span>突变</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="subscriptions.html" class="sidebar-link ">
+                  <span>订阅</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="receiving-updates.html" class="sidebar-link ">
+                  <span>同步服务端数据</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="cache-updates.html" class="sidebar-link ">
+                  <span>更新 Store</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="using-with-types.html" class="sidebar-link ">
+                  <span>使用 TypeScript 和 Flow</span>
+                </a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        <li>
+          
+            <div class="heading-toc">API Reference</div>
+          
+          <ul class="list-toc">
+            
+              
+              <li class="item-toc ">
+                <a href="api.html" class="sidebar-link ">
+                  <span>综合</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="api-graphql.html" class="sidebar-link ">
+                  <span>graphql: 容器</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="api-queries.html" class="sidebar-link ">
+                  <span>graphql: 查询</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="api-mutations.html" class="sidebar-link ">
+                  <span>graphql: 突变</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="api-server.html" class="sidebar-link ">
+                  <span>服务端渲染</span>
+                </a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        <li>
+          
+            <div class="heading-toc">Recipes</div>
+          
+          <ul class="list-toc">
+            
+              
+              <li class="item-toc ">
+                <a href="auth.html" class="sidebar-link ">
+                  <span>认证</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="pagination.html" class="sidebar-link ">
+                  <span>分页</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="optimistic-ui.html" class="sidebar-link ">
+                  <span>Optimistic UI</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="fragments.html" class="sidebar-link ">
+                  <span>使用片段</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="prefetching.html" class="sidebar-link ">
+                  <span>预取数据</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="query-splitting.html" class="sidebar-link ">
+                  <span>Query Splitting</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="react-native.html" class="sidebar-link ">
+                  <span>与 React Native 集成</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc  current">
+                <a href="" class="sidebar-link  current">
+                  <span>与 Redux 集成</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="webpack.html" class="sidebar-link ">
+                  <span>Webpack加载器</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="server-side-rendering.html" class="sidebar-link ">
+                  <span>服务端渲染</span>
+                </a>
+              </li>
+            
+          </ul>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="content">
+  <div class="content-wrapper">
+    <div class="header-content">
+      <h1 class="title-page">与 Redux 集成</h1>
+      
+
+      <div class="page-actions">
+        <div class="actions-group">
+          <a class="btn tertiary small round lowercase" href="https://github.com/apollographqlcn/react-docs-cn/tree/master/source/redux.md" target="_blank"><span class="icon-github"></span> <span>Edit on GitHub</span></a>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="document-formatting">
+      <p>默认情况下，Apollo Client创建自己的内部Redux store 来管理查询及其结果。如果您已经在应用程序的其余部分使用Redux，则可以将客户端与现有存储集成。</p>
+<blockquote>
+<p>注意：虽然这将使Apollo Client将其数据保存在同一个存储中，但您仍然应该使用<a href="/react/higher-order-components.html">graphql container</a> 将数据附加到UI中。如果要在组件中使用Redux和Apollo状态，则需要<em>同时</em>使用<code>graphql</code>的react-apollo 和 react-redux 的<code>connect</code>。</p>
+</blockquote>
+<p>这将让您更好地跟踪应用程序中发生的不同事件，以及客户端和服务器端数据如何更改交错。它也将使用像<a href="https://github.com/zalmoxisus/redux-devtools-extension" target="_blank" rel="external">Redux 开发者工具</a>这样的工具更自然。</p>
+<h2 id="creating-a-store">创建一个 Store</h2>
+
+<p>如果您想使用自己的 Store，您需要从Apollo Client实例中传递 reducer 和中间件；您可以直接将 Store 传递到您的 <code>ApolloProvider</code> 中：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; createStore, combineReducers, applyMiddleware, compose &#125; <span class="keyword">from</span> <span class="string">'redux'</span>;</div><div class="line"><span class="keyword">import</span> &#123; ApolloClient, ApolloProvider &#125; <span class="keyword">from</span> <span class="string">'react-apollo'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> &#123; todoReducer, userReducer &#125; <span class="keyword">from</span> <span class="string">'./reducers'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> client = <span class="keyword">new</span> ApolloClient();</div><div class="line"></div><div class="line"><span class="keyword">const</span> store = createStore(</div><div class="line">  combineReducers(&#123;</div><div class="line">    <span class="attr">todos</span>: todoReducer,</div><div class="line">    <span class="attr">users</span>: userReducer,</div><div class="line">    <span class="attr">apollo</span>: client.reducer(),</div><div class="line">  &#125;),</div><div class="line">  &#123;&#125;, <span class="comment">// 初始状态</span></div><div class="line">  compose(</div><div class="line">      applyMiddleware(client.middleware()),</div><div class="line">      <span class="comment">// 如果您正在使用开发者工具扩展程序，您也可以在这里添加如下代码</span></div><div class="line">      (<span class="keyword">typeof</span> <span class="built_in">window</span>.__REDUX_DEVTOOLS_EXTENSION__ !== <span class="string">'undefined'</span>) ? <span class="built_in">window</span>.__REDUX_DEVTOOLS_EXTENSION__() : <span class="function"><span class="params">f</span> =&gt;</span> f,</div><div class="line">  )</div><div class="line">);</div><div class="line"></div><div class="line">ReactDOM.render(</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">ApolloProvider</span> <span class="attr">store</span>=<span class="string">&#123;store&#125;</span> <span class="attr">client</span>=<span class="string">&#123;client&#125;</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">MyRootComponent</span> /&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">ApolloProvider</span>&gt;</span>,</div><div class="line">  rootEl</div><div class="line">)</div></pre></td></tr></table></figure>
+<p>如果要为客户端reducer使用不同的根密钥（而不是 <code>apollo</code>），请在创建客户端时使用 <code>reduxRootSelector: selector</code> 选项：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> client = <span class="keyword">new</span> ApolloClient(&#123;</div><div class="line">  <span class="attr">reduxRootSelector</span>: <span class="function"><span class="params">state</span> =&gt;</span> state.differentKey,</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">const</span> store = createStore(</div><div class="line">  combineReducers(&#123;</div><div class="line">    <span class="attr">differentKey</span>: client.reducer(),</div><div class="line">  &#125;)</div><div class="line">);</div></pre></td></tr></table></figure>
+<h2 id="using-connect">使用连接</h2>
+
+<p>你可以继续使用<code>react-redux</code>的 <code>connect</code> 高阶组件将状态导入或导出组件。您可以连接GraphQL数据到您的组件之前或之后（或两者都）使用<code>graphql</code>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123; graphql &#125; <span class="keyword">from</span> <span class="string">'react-apollo'</span>;</div><div class="line"><span class="keyword">import</span> &#123; connect &#125; <span class="keyword">from</span> <span class="string">'react-redux'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> &#123; CLONE_LIST &#125; <span class="keyword">from</span> <span class="string">'./mutations'</span>;</div><div class="line"><span class="keyword">import</span> &#123; viewList &#125; <span class="keyword">from</span> <span class="string">'./actions'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> List = <span class="function">(<span class="params">&#123; listId, cloneList &#125;</span>) =&gt;</span> (</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>List ID: &#123;listId&#125; <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;cloneList&#125;</span>&gt;</span>Clone<span class="tag">&lt;/<span class="name">button</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line">);</div><div class="line"></div><div class="line"><span class="keyword">const</span> withCloneList = graphql(CLONE_LIST, &#123;</div><div class="line">  <span class="attr">props</span>: <span class="function">(<span class="params">&#123; ownProps, mutate &#125;</span>) =&gt;</span> (&#123;</div><div class="line">    cloneList() &#123;</div><div class="line">      <span class="keyword">return</span> mutate()</div><div class="line">        .then(<span class="function"><span class="params">result</span> =&gt;</span> &#123;</div><div class="line">          ownProps.onSelectList(result.id);</div><div class="line">        &#125;);</div><div class="line">    &#125;,</div><div class="line">  &#125;),</div><div class="line">&#125;);</div><div class="line"><span class="keyword">const</span> ListWithData = withCloneList(List);</div><div class="line"></div><div class="line"><span class="keyword">const</span> ListWithDataAndState = connect(</div><div class="line">  <span class="function">(<span class="params">state</span>) =&gt;</span> (&#123; <span class="attr">listId</span>: state.list.id &#125;),</div><div class="line">  (dispatch) =&gt; (&#123;</div><div class="line">    onSelectList(id) &#123;</div><div class="line">      dispatch(viewList(id));</div><div class="line">    &#125;</div><div class="line">  &#125;),</div><div class="line">)(ListWithData);</div></pre></td></tr></table></figure>
+<p>这意味着您可以轻松地将变量传递到来自Redux状态的查询，或者调度依赖于服务器端数据的操作。</p>
+
+    </div>
+  </div>
+
+  <div class="pagination">
+    <div class="content-wrapper">
+      
+      
+        <a class="link primary prev"
+          href="react-native.html">
+          <span class="icon-arrow-left-alt"></span>
+          <span class="subtitle-pagination">Previous</span>
+          与 React Native 集成
+        </a>
+      
+      
+        <a class="link primary next"
+          href="webpack.html">
+          <span class="subtitle-pagination">Next</span>
+          Webpack加载器
+          <span class="icon-arrow-right-alt"></span>
+        </a>
+      
+    </div>
+  </div>
+
+  <div class="github">
+    <a class="link tertiary " href="https://github.com/apollographqlcn/react-docs-cn/tree/master/source/redux.md" target="_blank">
+      <span class="icon-github"></span>Edit on GitHub</a>
+  </div>
+
+  
+</div>
+
+    <script src="/react-docs-cn/script/smooth-scroll.min.js"></script>
+    <script src="/react-docs-cn/script/main.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+    <script>
+      // nectar ninja
+      (function(){
+        var handle = '@meteorjs';
+        var a = document.createElement('script');
+        var m = document.getElementsByTagName('script')[0];
+        a.async = 1;
+        a.src = 'https://nectar.ninja/api/v1/' + handle.slice(1);
+        m.parentNode.insertBefore(a, m);
+      })();
+
+     
+
+      
+
+      
+
+      // search box
+      
+
+      
+    </script>
+  </body>
+</html>

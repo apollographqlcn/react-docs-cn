@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Basic -->
+    <title>API: 综合 | Apollo React 中文文档</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png" sizes="16x16 32x32 64x64">
+
+    <!-- Social -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://apollographqlcn.github.io/react-docs-cn">
+    <meta property="og:title" content="API: 综合 | Apollo React 中文文档">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="">
+    <meta name="twitter:card" content="summary_image_large">
+    <meta name="twitter:site" content="@apollographqlcn">
+    <meta name="twitter:title" content="API: 综合 | Apollo React 中文文档">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="">
+
+    <!-- Misc -->
+    <meta name="google-site-verification" content="" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,200,300italic,400italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/react-docs-cn/style/style.css">
+  </head>
+  <body class="">
+    
+
+<div class="nav dark">
+  <div class="nav-group">
+    <div class="nav-item show-mobile">
+      <span class="js-sidebar-toggle ">
+        <span class="icon-menu"></span>
+      </span>
+    </div>
+    <div class="nav-item">
+      
+      <a class="logo-wrapper" href="http://dev.apollodata.com/" title="Apollo Developers"  >
+        <img src="images/logo-apollo-space-left.svg" alt="Apollo" class="logo"/><img src="images/logo-apollo-subbrands-developers-space.svg" class="logo-subbrand" alt="Developers"/>
+      </a>
+    </div>
+  </div>
+
+  <div class="nav-group right">
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="https://apollographqlcn.github.io/react-docs-cn/"  >
+          <span>React</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/angular2"  >
+          <span>Angular</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/ios"  >
+          <span>iOS</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/android"  >
+          <span>Android</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/core"  >
+          <span>Vanilla JS</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false separator">
+        <a class="link" href="http://dev.apollodata.com/tools"  >
+          <span>Server</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="https://medium.com/apollo-stack" target=_new >
+          <span>Blog</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/community"  >
+          <span>Community</span>
+        </a>
+      </div>
+    
+  </div>
+</div>
+
+<div class="sidebar">
+  <div class="panel">
+    <div class="panel-item">
+      <a class="" href="http:/dev.apollodata.com/" title="Apollo"  >
+        <span>Apollo Developers</span>
+      </a>
+    </div>
+    
+      <div class="panel-item "">
+        <a class="" href="https://apollographqlcn.github.io/react-docs-cn/"  >
+          <span>React</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/angular2"  >
+          <span>Angular</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/ios"  >
+          <span>iOS</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/android"  >
+          <span>Android</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/core"  >
+          <span>Vanilla JS</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/tools"  >
+          <span>Server</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="https://medium.com/apollo-stack" target=_new >
+          <span>Blog</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/community"  >
+          <span>Community</span>
+        </a>
+      </div>
+    
+  </div>
+
+  <div class="sidebar-content">
+    <div class="topcap">
+      <span class="title-sidebar">Apollo React 中文文档</span>
+      
+    </div>
+
+    
+
+    <ul class="toc">
+      
+        <li>
+          
+          <ul class="list-toc">
+            
+              
+              <li class="item-toc ">
+                <a href="index.html" class="sidebar-link ">
+                  <span>简介</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="initialization.html" class="sidebar-link ">
+                  <span>设置和选项</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="simple-example.html" class="sidebar-link ">
+                  <span>简易示例：Snack</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="example-schema.html" class="sidebar-link ">
+                  <span>完整示例：GitHunt</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="migration.html" class="sidebar-link ">
+                  <span>迁移到1.0</span>
+                </a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        <li>
+          
+            <div class="heading-toc">Usage</div>
+          
+          <ul class="list-toc">
+            
+              
+              <li class="item-toc ">
+                <a href="queries.html" class="sidebar-link ">
+                  <span>查询</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="mutations.html" class="sidebar-link ">
+                  <span>突变</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="subscriptions.html" class="sidebar-link ">
+                  <span>订阅</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="receiving-updates.html" class="sidebar-link ">
+                  <span>同步服务端数据</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="cache-updates.html" class="sidebar-link ">
+                  <span>更新 Store</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="using-with-types.html" class="sidebar-link ">
+                  <span>使用 TypeScript 和 Flow</span>
+                </a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        <li>
+          
+            <div class="heading-toc">API Reference</div>
+          
+          <ul class="list-toc">
+            
+              
+              <li class="item-toc  current">
+                <a href="" class="sidebar-link  current">
+                  <span>综合</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="api-graphql.html" class="sidebar-link ">
+                  <span>graphql: 容器</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="api-queries.html" class="sidebar-link ">
+                  <span>graphql: 查询</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="api-mutations.html" class="sidebar-link ">
+                  <span>graphql: 突变</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="api-server.html" class="sidebar-link ">
+                  <span>服务端渲染</span>
+                </a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        <li>
+          
+            <div class="heading-toc">Recipes</div>
+          
+          <ul class="list-toc">
+            
+              
+              <li class="item-toc ">
+                <a href="auth.html" class="sidebar-link ">
+                  <span>认证</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="pagination.html" class="sidebar-link ">
+                  <span>分页</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="optimistic-ui.html" class="sidebar-link ">
+                  <span>Optimistic UI</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="fragments.html" class="sidebar-link ">
+                  <span>使用片段</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="prefetching.html" class="sidebar-link ">
+                  <span>预取数据</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="query-splitting.html" class="sidebar-link ">
+                  <span>Query Splitting</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="react-native.html" class="sidebar-link ">
+                  <span>与 React Native 集成</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="redux.html" class="sidebar-link ">
+                  <span>与 Redux 集成</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="webpack.html" class="sidebar-link ">
+                  <span>Webpack加载器</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="server-side-rendering.html" class="sidebar-link ">
+                  <span>服务端渲染</span>
+                </a>
+              </li>
+            
+          </ul>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="content">
+  <div class="content-wrapper">
+    <div class="header-content">
+      <h1 class="title-page">API: 综合</h1>
+      
+
+      <div class="page-actions">
+        <div class="actions-group">
+          <a class="btn tertiary small round lowercase" href="https://github.com/apollographqlcn/react-docs-cn/tree/master/source/api.md" target="_blank"><span class="icon-github"></span> <span>Edit on GitHub</span></a>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="document-formatting">
+      <p>API部分是React Apollo中可用的每个功能的完整参考。如果您刚开始使用React Apollo，那么您应该首先从<a href="queries.html">查询</a>开始阅读“使用”文章，并在需要查找特定方法时回到此API参考。</p>
+<h2 id="core">核心</h2>
+
+<p>这些API不是 <code>React</code> 特定的，但是每个使用Apollo的React开发人员都需要了解它们。</p>
+<h3 id="gql"><code>gql`{ ... }` </code></h3>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; gql &#125; <span class="keyword">from</span> <span class="string">'react-apollo'</span>;</div></pre></td></tr></table></figure>
+<p><code>gql</code> 模板标签是您在Apollo Client应用程序中定义GraphQL查询的方法。它将GraphQL查询解析成<a href="https://github.com/graphql/graphql-js/blob/d92dd9883b76e54babf2b0ffccdab838f04fc46c/src/language/ast.js" target="_blank" rel="external">GraphQL.js AST格式</a>，然后可以由Apollo Client方法使用。每当Apollo Client要求一个GraphQL查询时，您将始终将其包装在一个 <code>gql</code> 模板标签中。</p>
+<p>您可以使用模板字符串插值将仅包含片段的GraphQL文档嵌入另一个GraphQL文档。这允许您在完全不同的文件中的查询定义中使用在代码库的一部分中定义的片段。请参阅下面的示例来演示如何运行。</p>
+<p>为了方便，<code>gql</code>标签从 <code>react-apollo</code> 中的<a href="https://www.npmjs.com/package/graphql-tag" target="_blank" rel="external"><code>graphql-tag</code></a>包中导出。</p>
+<p><strong>例：</strong><br>请注意，在 <code>查询</code> 变量中，我们不仅通过模板字符串插入（<code>$ {fragments}</code>）包含<code>fragments</code>变量，而且我们还在我们的查询中包含了一个<code>foo</code>片段的扩展。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> fragments = gql<span class="string">`</span></div><div class="line">  fragment foo on Foo &#123;</div><div class="line">    a</div><div class="line">    b</div><div class="line">    c</div><div class="line">    ...bar</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  fragment bar on Bar &#123;</div><div class="line">    d</div><div class="line">    e</div><div class="line">    f</div><div class="line">  &#125;</div><div class="line">`;</div><div class="line"></div><div class="line"><span class="keyword">const</span> query = gql<span class="string">`</span></div><div class="line">  query &#123;</div><div class="line">    ...foo</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="subst">$&#123;fragments&#125;</span></div><div class="line">`;</div></pre></td></tr></table></figure>
+<h3 id="ApolloClient"><code>ApolloClient</code></h3>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; ApolloClient &#125; <span class="keyword">from</span> <span class="string">'react-apollo'</span>;</div></pre></td></tr></table></figure>
+<p><code>ApolloClient</code> 实例是Apollo API的核心。它包含您需要与GraphQL数据交互的所有方法，无论您使用哪种集成，您都将使用该类。</p>
+<p>要了解如何创建自己的 <code>ApolloClient</code> 实例，请参阅<a href="initialization.html">初始化文档文章</a>。然后，您将将此实例传递到根<a href="＃ApolloProvider">`<apolloprovider>‘组件</apolloprovider></a>。</p>
+<p>为了方便起见，<code>ApolloClient</code> 由 <code>react-apollo</code> 从核心的Apollo Client包导出。</p>
+<p><a href="../core/apollo-client-api.html#apollo-client">要查看 <code>ApolloClient</code> 类的完整API文档，请访问核心文档站点。</a></p>
+<p><strong>例：</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> client = <span class="keyword">new</span> ApolloClient(&#123;</div><div class="line">  ...</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="createNetworkInterface"><code>createNetworkInterface(config)</code></h3>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; createNetworkInterface &#125; <span class="keyword">from</span> <span class="string">'react-apollo'</span>;</div></pre></td></tr></table></figure>
+<p><code>createNetworkInterface()</code>函数使用提供的配置对象创建一个简单的HTTP网络接口，该对象包括Apollo将用于从中获取GraphQL的URI。</p>
+<p>为了方便起见，<code>createNetworkInterface()</code> 由核心Apollo Client包中的 <code>react-apollo</code> 导出。</p>
+<p><a href="../core/network.html">了解更多关于<code>createNetworkInterface</code>和网络接口的一般情况，请访问核心文档站点。</a></p>
+<p><strong>例：</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> networkInterface = createNetworkInterface(&#123;</div><div class="line">  <span class="attr">uri</span>: <span class="string">'/graphql'</span>,</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="client-management">客户端管理</h2>
+
+<p>React-Apollo包括一个用于将客户机实例提供给React组件树的组件，以及用于检索该客户端实例的更高阶组件。</p>
+<h3 id="ApolloProvider" title="ApolloProvider"><code>&lt;ApolloProvider client={client} /&gt;</code></h3>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; ApolloProvider &#125; <span class="keyword">from</span> <span class="string">'react-apollo'</span>;</div></pre></td></tr></table></figure>
+<p>使GraphView客户端可以通过<code>graphql()</code>函数增强的任何组件。 <code>&lt;ApolloProvider/&gt;</code> 组件与[<code>react-redux</code> <code>&lt;Provider/&gt;</code> component][]相同。它为您使用<a href="#graphql"><code>graphql()</code></a>函数或<a href="#withApollo"><code>withApollo</code></a>函数的所有GraphQL组件提供了一个<a href="../core/apollo-client-api.html#apollo-client"><code>ApolloClient</code></a>实例。您还可以使用 <code>&lt;ApolloProvider/&gt;</code> 组件为您的Redux store 提供除了提供GraphQL客户端。</p>
+<p>如果您不将此组件添加到您的React树的根目录，那么使用Apollo功能增强的组件将无法正常工作。</p>
+<p>要了解有关初始化<a href="../core/apollo-client-api.html#apollo-client"><code>ApolloClient</code></a>的实例的更多信息，请务必阅读<a href="initialization.html">setup and options guide</a>。</p>
+<p><code>&lt;ApolloProvider/&gt;</code>组件需要以下属性：</p>
+<ul>
+<li><code>client</code>：所需的<a href="../core/apollo-client-api.html#apollo-client"><code>ApolloClient</code></a>实例。这个<a href="../core/apollo-client-api.html#apollo-client"><code>ApolloClient</code></a>实例将被所有使用GraphQL能力增强的组件使用。</li>
+<li><code>[store]</code>：这是Redux store的可选实例。如果您选择在这里传入Redux store，那么<code>&lt;ApolloProvider /&gt;</code>也会像[<code>react-redux</code> <code>&lt;Provider/&gt;</code> component][]提供您的Redux store。这意味着你只需要使用一个提供者组件而不是两个！</li>
+</ul>
+<p>如果要直接访问您的组件中由 <code>&lt;ApolloProvider/&gt;</code> 提供的<a href="../core/apollo-client-api.html#apollo-client"><code>ApolloClient</code></a>实例，那么请确保看看<a href="#withApollo"><code>withApollo()</code></a>增强器函数。</p>
+<p><strong>例：</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ReactDOM.render(</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">ApolloProvider</span> <span class="attr">client</span>=<span class="string">&#123;client&#125;</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">MyRootComponent</span> /&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">ApolloProvider</span>&gt;</span>,</div><div class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>),</div><div class="line">);</div></pre></td></tr></table></figure>
+<h3 id="withApollo"><code>withApollo(component)</code></h3>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; withApollo &#125; <span class="keyword">from</span> <span class="string">'react-apollo'</span>;</div></pre></td></tr></table></figure>
+<p>一个简单的增强器，可以直接访问你的<a href="../core/apollo-client-api.html#apollo-client"><code>ApolloClient</code></a>实例。如果您想要使用Apollo做自定义逻辑，这很有用。如拨打一次性查询。通过使用要增强的组件调用此函数，<code>withApollo()</code>将创建一个新的组件，该组件作为<code>client</code>参数传递到<a href="../core/apollo-client-api.html#apollo-client"><code>ApolloClient</code></a>的实例中。</p>
+<p>如果你想知道什么时候使用<code>withApollo()</code>，什么时候使用<a href="#graphql"><code>graphql()</code></a>，答案是大多数时候你会想使用<a href="#graphql"><code>graphql()</code></a>。 <a href="#graphql"><code>graphql()</code></a> 提供了许多使用GraphQL数据所需的高级功能。如果您想要没有任何其他功能的GraphQL客户端，则应该只使用<code>withApollo()</code>。</p>
+<p>如果您的组件树中有一个<a href="#ApolloProvider"><code>&lt;ApolloProvider/&gt;</code></a>组件高于实际提供客户端，这将只能提供访问您的客户端。</p>
+<p><strong>例：</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> withApollo(MyComponent);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyComponent</span>(<span class="params">&#123; client &#125;</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(client);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+    </div>
+  </div>
+
+  <div class="pagination">
+    <div class="content-wrapper">
+      
+      
+        <a class="link primary prev"
+          href="using-with-types.html">
+          <span class="icon-arrow-left-alt"></span>
+          <span class="subtitle-pagination">Previous</span>
+          在 TypeScript 和 Flow 中使用 Apollo
+        </a>
+      
+      
+        <a class="link primary next"
+          href="api-graphql.html">
+          <span class="subtitle-pagination">Next</span>
+          API: graphql 容器
+          <span class="icon-arrow-right-alt"></span>
+        </a>
+      
+    </div>
+  </div>
+
+  <div class="github">
+    <a class="link tertiary " href="https://github.com/apollographqlcn/react-docs-cn/tree/master/source/api.md" target="_blank">
+      <span class="icon-github"></span>Edit on GitHub</a>
+  </div>
+
+  
+</div>
+
+    <script src="/react-docs-cn/script/smooth-scroll.min.js"></script>
+    <script src="/react-docs-cn/script/main.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+    <script>
+      // nectar ninja
+      (function(){
+        var handle = '@meteorjs';
+        var a = document.createElement('script');
+        var m = document.getElementsByTagName('script')[0];
+        a.async = 1;
+        a.src = 'https://nectar.ninja/api/v1/' + handle.slice(1);
+        m.parentNode.insertBefore(a, m);
+      })();
+
+     
+
+      
+
+      
+
+      // search box
+      
+
+      
+    </script>
+  </body>
+</html>

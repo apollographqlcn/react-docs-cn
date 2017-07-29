@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Basic -->
+    <title>Optimistic UI | Apollo React 中文文档</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png" sizes="16x16 32x32 64x64">
+
+    <!-- Social -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://apollographqlcn.github.io/react-docs-cn">
+    <meta property="og:title" content="Optimistic UI | Apollo React 中文文档">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="">
+    <meta name="twitter:card" content="summary_image_large">
+    <meta name="twitter:site" content="@apollographqlcn">
+    <meta name="twitter:title" content="Optimistic UI | Apollo React 中文文档">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="">
+
+    <!-- Misc -->
+    <meta name="google-site-verification" content="" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,200,300italic,400italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/react-docs-cn/style/style.css">
+  </head>
+  <body class="">
+    
+
+<div class="nav dark">
+  <div class="nav-group">
+    <div class="nav-item show-mobile">
+      <span class="js-sidebar-toggle ">
+        <span class="icon-menu"></span>
+      </span>
+    </div>
+    <div class="nav-item">
+      
+      <a class="logo-wrapper" href="http://dev.apollodata.com/" title="Apollo Developers"  >
+        <img src="images/logo-apollo-space-left.svg" alt="Apollo" class="logo"/><img src="images/logo-apollo-subbrands-developers-space.svg" class="logo-subbrand" alt="Developers"/>
+      </a>
+    </div>
+  </div>
+
+  <div class="nav-group right">
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="https://apollographqlcn.github.io/react-docs-cn/"  >
+          <span>React</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/angular2"  >
+          <span>Angular</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/ios"  >
+          <span>iOS</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/android"  >
+          <span>Android</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/core"  >
+          <span>Vanilla JS</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false separator">
+        <a class="link" href="http://dev.apollodata.com/tools"  >
+          <span>Server</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="https://medium.com/apollo-stack" target=_new >
+          <span>Blog</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/community"  >
+          <span>Community</span>
+        </a>
+      </div>
+    
+  </div>
+</div>
+
+<div class="sidebar">
+  <div class="panel">
+    <div class="panel-item">
+      <a class="" href="http:/dev.apollodata.com/" title="Apollo"  >
+        <span>Apollo Developers</span>
+      </a>
+    </div>
+    
+      <div class="panel-item "">
+        <a class="" href="https://apollographqlcn.github.io/react-docs-cn/"  >
+          <span>React</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/angular2"  >
+          <span>Angular</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/ios"  >
+          <span>iOS</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/android"  >
+          <span>Android</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/core"  >
+          <span>Vanilla JS</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/tools"  >
+          <span>Server</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="https://medium.com/apollo-stack" target=_new >
+          <span>Blog</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/community"  >
+          <span>Community</span>
+        </a>
+      </div>
+    
+  </div>
+
+  <div class="sidebar-content">
+    <div class="topcap">
+      <span class="title-sidebar">Apollo React 中文文档</span>
+      
+    </div>
+
+    
+
+    <ul class="toc">
+      
+        <li>
+          
+          <ul class="list-toc">
+            
+              
+              <li class="item-toc ">
+                <a href="index.html" class="sidebar-link ">
+                  <span>简介</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="initialization.html" class="sidebar-link ">
+                  <span>设置和选项</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="simple-example.html" class="sidebar-link ">
+                  <span>简易示例：Snack</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="example-schema.html" class="sidebar-link ">
+                  <span>完整示例：GitHunt</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="migration.html" class="sidebar-link ">
+                  <span>迁移到1.0</span>
+                </a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        <li>
+          
+            <div class="heading-toc">Usage</div>
+          
+          <ul class="list-toc">
+            
+              
+              <li class="item-toc ">
+                <a href="queries.html" class="sidebar-link ">
+                  <span>查询</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="mutations.html" class="sidebar-link ">
+                  <span>突变</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="subscriptions.html" class="sidebar-link ">
+                  <span>订阅</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="receiving-updates.html" class="sidebar-link ">
+                  <span>同步服务端数据</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="cache-updates.html" class="sidebar-link ">
+                  <span>更新 Store</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="using-with-types.html" class="sidebar-link ">
+                  <span>使用 TypeScript 和 Flow</span>
+                </a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        <li>
+          
+            <div class="heading-toc">API Reference</div>
+          
+          <ul class="list-toc">
+            
+              
+              <li class="item-toc ">
+                <a href="api.html" class="sidebar-link ">
+                  <span>综合</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="api-graphql.html" class="sidebar-link ">
+                  <span>graphql: 容器</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="api-queries.html" class="sidebar-link ">
+                  <span>graphql: 查询</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="api-mutations.html" class="sidebar-link ">
+                  <span>graphql: 突变</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="api-server.html" class="sidebar-link ">
+                  <span>服务端渲染</span>
+                </a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        <li>
+          
+            <div class="heading-toc">Recipes</div>
+          
+          <ul class="list-toc">
+            
+              
+              <li class="item-toc ">
+                <a href="auth.html" class="sidebar-link ">
+                  <span>认证</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="pagination.html" class="sidebar-link ">
+                  <span>分页</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc  current">
+                <a href="" class="sidebar-link  current">
+                  <span>Optimistic UI</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="fragments.html" class="sidebar-link ">
+                  <span>使用片段</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="prefetching.html" class="sidebar-link ">
+                  <span>预取数据</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="query-splitting.html" class="sidebar-link ">
+                  <span>Query Splitting</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="react-native.html" class="sidebar-link ">
+                  <span>与 React Native 集成</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="redux.html" class="sidebar-link ">
+                  <span>与 Redux 集成</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="webpack.html" class="sidebar-link ">
+                  <span>Webpack加载器</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="server-side-rendering.html" class="sidebar-link ">
+                  <span>服务端渲染</span>
+                </a>
+              </li>
+            
+          </ul>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="content">
+  <div class="content-wrapper">
+    <div class="header-content">
+      <h1 class="title-page">Optimistic UI</h1>
+      
+
+      <div class="page-actions">
+        <div class="actions-group">
+          <a class="btn tertiary small round lowercase" href="https://github.com/apollographqlcn/react-docs-cn/tree/master/source/optimistic-ui.md" target="_blank"><span class="icon-github"></span> <span>Edit on GitHub</span></a>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="document-formatting">
+      <p>如<a href="mutations.html#optimistic-ui">mutations</a>部分所述，optimistic UI是一种模式，您可以使用它来模拟突变的结果，甚至在从服务器接收响应之前更新UI。一旦从服务器接收到响应，乐观的结果将被丢弃并替换为实际结果。</p>
+<p>乐观的UI提供了一种简单的方法，使您的UI响应更快，同时确保数据在实际响应达到时保持一致。</p>
+<h2 id="“optimistic-basics”">基本 optimistic UI </h2>
+
+<p>假设我们有一个“编辑评论”突变，我们希望UI在用户提交突变时立即更新，而不是等待服务器响应。这是mutate函数提供的 <code>optimisticResponse</code> 参数。</p>
+<p>使用Apollo获取GraphQL数据到UI组件的主要方法是使用查询，因此如果我们希望我们的乐观响应更新UI，我们必须确保返回一个乐观的响应，以更新正确的查询结果。使用<a href="cache-updates.html#dataIdFromObject"><code>dataIdFromObject</code></a> 选项进一步了解如何执行此操作。</p>
+<p>以下是代码中的内容：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">const</span> updateComment = gql<span class="string">`</span></div><div class="line">  mutation updateComment($commentId: ID!, $commentContent: String!) &#123;</div><div class="line">    updateComment(commentId: $commentId, commentContent: $commentContent) &#123;</div><div class="line">      id</div><div class="line">      __typename</div><div class="line">      content</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">`;</div><div class="line"></div><div class="line"><span class="keyword">const</span> CommentPageWithData = graphql(submitComment, &#123;</div><div class="line">  <span class="attr">props</span>: <span class="function">(<span class="params">&#123; ownProps, mutate &#125;</span>) =&gt;</span> (&#123;</div><div class="line">    submit(&#123; commentId, commentContent &#125;) &#123;</div><div class="line">      <span class="keyword">return</span> mutate(&#123;</div><div class="line">        <span class="attr">variables</span>: &#123; commentId, commentContent &#125;,</div><div class="line">        <span class="attr">optimisticResponse</span>: &#123;</div><div class="line">          <span class="attr">__typename</span>: <span class="string">'Mutation'</span>,</div><div class="line">          <span class="attr">updateComment</span>: &#123;</div><div class="line">            <span class="attr">id</span>: commentId,</div><div class="line">            <span class="attr">__typename</span>: <span class="string">'Comment'</span>,</div><div class="line">            <span class="attr">content</span>: commentContent,</div><div class="line">          &#125;,</div><div class="line">        &#125;,</div><div class="line">      &#125;);</div><div class="line">    &#125;,</div><div class="line">  &#125;),</div><div class="line">&#125;)(CommentPage);</div></pre></td></tr></table></figure>
+<p>我们选择 <code>id</code> 和 <code>__typename</code>，因为这是我们的 <code>dataIdFromObject</code> 用来确定一个全局唯一的对象ID。我们需要确保为这些字段提供正确的值，以便阿波罗知道我们所指的对象。</p>
+<h2 id="optimistic-advanced">添加到列表</h2>
+
+<p>在上面的例子中，我们展示了如何使用乐观的突变结果无缝地编辑 Store 中的现有对象。然而，许多突变不只是更新存储中的现有对象，而是插入一个新对象。</p>
+<p>在这种情况下，我们需要指定如何将新数据集成到现有查询中，从而将UI整合到我们的UI中。您可以在有关<a href="cache-updates.html">控制 Store</a> 的文章中详细阅读有关如何做的事情 - 特别是我们可以使用<code>update</code>函数将结果插入到现有查询的结果集中。 <code>update</code>对于乐观的结果和从服务器返回的真实结果的工作方式完全相同，所以就像上面我们只需要添加 <code>optimisticResponse</code> 选项。</p>
+<p>这是 GitHunt 的一个具体例子，它将注释插入现有的注释列表。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123; gql, graphql &#125; <span class="keyword">from</span> <span class="string">'react-apollo'</span>;</div><div class="line"><span class="keyword">import</span> update <span class="keyword">from</span> <span class="string">'immutability-helper'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> CommentAppQuery <span class="keyword">from</span> <span class="string">'../queries/CommentAppQuery'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> SUBMIT_COMMENT_MUTATION = gql<span class="string">`</span></div><div class="line">  mutation submitComment($repoFullName: String!, $commentContent: String!) &#123;</div><div class="line">    submitComment(repoFullName: $repoFullName, commentContent: $commentContent) &#123;</div><div class="line">      postedBy &#123;</div><div class="line">        login</div><div class="line">        html_url</div><div class="line">      &#125;</div><div class="line">      createdAt</div><div class="line">      content</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">`;</div><div class="line"></div><div class="line"><span class="keyword">const</span> CommentsPageWithMutations = graphql(SUBMIT_COMMENT_MUTATION, &#123;</div><div class="line">  props(&#123; ownProps, mutate &#125;) &#123;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">      submit(&#123; repoFullName, commentContent &#125;) &#123;</div><div class="line">        <span class="keyword">return</span> mutate(&#123;</div><div class="line">          <span class="attr">variables</span>: &#123; repoFullName, commentContent &#125;,</div><div class="line">          <span class="attr">optimisticResponse</span>: &#123;</div><div class="line">            <span class="attr">__typename</span>: <span class="string">'Mutation'</span>,</div><div class="line">            <span class="attr">submitComment</span>: &#123;</div><div class="line">              <span class="attr">__typename</span>: <span class="string">'Comment'</span>,</div><div class="line">              <span class="attr">postedBy</span>: ownProps.currentUser,</div><div class="line">              <span class="attr">createdAt</span>: +<span class="keyword">new</span> <span class="built_in">Date</span>,</div><div class="line">              <span class="attr">content</span>: commentContent,</div><div class="line">            &#125;,</div><div class="line">          &#125;,</div><div class="line">          <span class="attr">update</span>: <span class="function">(<span class="params">store, &#123; data: &#123; submitComment &#125; &#125;</span>) =&gt;</span> &#123;</div><div class="line">            <span class="comment">// 从我们的缓存中读取此查询的数据。</span></div><div class="line">            <span class="keyword">const</span> data = store.readQuery(&#123; <span class="attr">query</span>: CommentAppQuery &#125;);</div><div class="line">            <span class="comment">// 将我们的评论从突变添加到最后。</span></div><div class="line">            data.comments.push(submitComment);</div><div class="line">            <span class="comment">// 将我们的数据写回缓存。</span></div><div class="line">            store.writeQuery(&#123; <span class="attr">query</span>: CommentAppQuery, data &#125;);</div><div class="line">          &#125;,</div><div class="line">        &#125;);</div><div class="line">      &#125;,</div><div class="line">    &#125;;</div><div class="line">  &#125;,</div><div class="line">&#125;)(CommentsPage);</div></pre></td></tr></table></figure>
+
+    </div>
+  </div>
+
+  <div class="pagination">
+    <div class="content-wrapper">
+      
+      
+        <a class="link primary prev"
+          href="pagination.html">
+          <span class="icon-arrow-left-alt"></span>
+          <span class="subtitle-pagination">Previous</span>
+          分页
+        </a>
+      
+      
+        <a class="link primary next"
+          href="fragments.html">
+          <span class="subtitle-pagination">Next</span>
+          使用片段
+          <span class="icon-arrow-right-alt"></span>
+        </a>
+      
+    </div>
+  </div>
+
+  <div class="github">
+    <a class="link tertiary " href="https://github.com/apollographqlcn/react-docs-cn/tree/master/source/optimistic-ui.md" target="_blank">
+      <span class="icon-github"></span>Edit on GitHub</a>
+  </div>
+
+  
+</div>
+
+    <script src="/react-docs-cn/script/smooth-scroll.min.js"></script>
+    <script src="/react-docs-cn/script/main.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+    <script>
+      // nectar ninja
+      (function(){
+        var handle = '@meteorjs';
+        var a = document.createElement('script');
+        var m = document.getElementsByTagName('script')[0];
+        a.async = 1;
+        a.src = 'https://nectar.ninja/api/v1/' + handle.slice(1);
+        m.parentNode.insertBefore(a, m);
+      })();
+
+     
+
+      
+
+      
+
+      // search box
+      
+
+      
+    </script>
+  </body>
+</html>

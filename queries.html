@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Basic -->
+    <title>查询 | Apollo React 中文文档</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png" sizes="16x16 32x32 64x64">
+
+    <!-- Social -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://apollographqlcn.github.io/react-docs-cn">
+    <meta property="og:title" content="查询 | Apollo React 中文文档">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="">
+    <meta name="twitter:card" content="summary_image_large">
+    <meta name="twitter:site" content="@apollographqlcn">
+    <meta name="twitter:title" content="查询 | Apollo React 中文文档">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="">
+
+    <!-- Misc -->
+    <meta name="google-site-verification" content="" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,200,300italic,400italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/react-docs-cn/style/style.css">
+  </head>
+  <body class="">
+    
+
+<div class="nav dark">
+  <div class="nav-group">
+    <div class="nav-item show-mobile">
+      <span class="js-sidebar-toggle ">
+        <span class="icon-menu"></span>
+      </span>
+    </div>
+    <div class="nav-item">
+      
+      <a class="logo-wrapper" href="http://dev.apollodata.com/" title="Apollo Developers"  >
+        <img src="images/logo-apollo-space-left.svg" alt="Apollo" class="logo"/><img src="images/logo-apollo-subbrands-developers-space.svg" class="logo-subbrand" alt="Developers"/>
+      </a>
+    </div>
+  </div>
+
+  <div class="nav-group right">
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="https://apollographqlcn.github.io/react-docs-cn/"  >
+          <span>React</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/angular2"  >
+          <span>Angular</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/ios"  >
+          <span>iOS</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/android"  >
+          <span>Android</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/core"  >
+          <span>Vanilla JS</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false separator">
+        <a class="link" href="http://dev.apollodata.com/tools"  >
+          <span>Server</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="https://medium.com/apollo-stack" target=_new >
+          <span>Blog</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/community"  >
+          <span>Community</span>
+        </a>
+      </div>
+    
+  </div>
+</div>
+
+<div class="sidebar">
+  <div class="panel">
+    <div class="panel-item">
+      <a class="" href="http:/dev.apollodata.com/" title="Apollo"  >
+        <span>Apollo Developers</span>
+      </a>
+    </div>
+    
+      <div class="panel-item "">
+        <a class="" href="https://apollographqlcn.github.io/react-docs-cn/"  >
+          <span>React</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/angular2"  >
+          <span>Angular</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/ios"  >
+          <span>iOS</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/android"  >
+          <span>Android</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/core"  >
+          <span>Vanilla JS</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/tools"  >
+          <span>Server</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="https://medium.com/apollo-stack" target=_new >
+          <span>Blog</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/community"  >
+          <span>Community</span>
+        </a>
+      </div>
+    
+  </div>
+
+  <div class="sidebar-content">
+    <div class="topcap">
+      <span class="title-sidebar">Apollo React 中文文档</span>
+      
+    </div>
+
+    
+
+    <ul class="toc">
+      
+        <li>
+          
+          <ul class="list-toc">
+            
+              
+              <li class="item-toc ">
+                <a href="index.html" class="sidebar-link ">
+                  <span>简介</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="initialization.html" class="sidebar-link ">
+                  <span>设置和选项</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="simple-example.html" class="sidebar-link ">
+                  <span>简易示例：Snack</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="example-schema.html" class="sidebar-link ">
+                  <span>完整示例：GitHunt</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="migration.html" class="sidebar-link ">
+                  <span>迁移到1.0</span>
+                </a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        <li>
+          
+            <div class="heading-toc">Usage</div>
+          
+          <ul class="list-toc">
+            
+              
+              <li class="item-toc  current">
+                <a href="" class="sidebar-link  current">
+                  <span>查询</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="mutations.html" class="sidebar-link ">
+                  <span>突变</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="subscriptions.html" class="sidebar-link ">
+                  <span>订阅</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="receiving-updates.html" class="sidebar-link ">
+                  <span>同步服务端数据</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="cache-updates.html" class="sidebar-link ">
+                  <span>更新 Store</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="using-with-types.html" class="sidebar-link ">
+                  <span>使用 TypeScript 和 Flow</span>
+                </a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        <li>
+          
+            <div class="heading-toc">API Reference</div>
+          
+          <ul class="list-toc">
+            
+              
+              <li class="item-toc ">
+                <a href="api.html" class="sidebar-link ">
+                  <span>综合</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="api-graphql.html" class="sidebar-link ">
+                  <span>graphql: 容器</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="api-queries.html" class="sidebar-link ">
+                  <span>graphql: 查询</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="api-mutations.html" class="sidebar-link ">
+                  <span>graphql: 突变</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="api-server.html" class="sidebar-link ">
+                  <span>服务端渲染</span>
+                </a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        <li>
+          
+            <div class="heading-toc">Recipes</div>
+          
+          <ul class="list-toc">
+            
+              
+              <li class="item-toc ">
+                <a href="auth.html" class="sidebar-link ">
+                  <span>认证</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="pagination.html" class="sidebar-link ">
+                  <span>分页</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="optimistic-ui.html" class="sidebar-link ">
+                  <span>Optimistic UI</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="fragments.html" class="sidebar-link ">
+                  <span>使用片段</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="prefetching.html" class="sidebar-link ">
+                  <span>预取数据</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="query-splitting.html" class="sidebar-link ">
+                  <span>Query Splitting</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="react-native.html" class="sidebar-link ">
+                  <span>与 React Native 集成</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="redux.html" class="sidebar-link ">
+                  <span>与 Redux 集成</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="webpack.html" class="sidebar-link ">
+                  <span>Webpack加载器</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="server-side-rendering.html" class="sidebar-link ">
+                  <span>服务端渲染</span>
+                </a>
+              </li>
+            
+          </ul>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="content">
+  <div class="content-wrapper">
+    <div class="header-content">
+      <h1 class="title-page">查询</h1>
+      
+
+      <div class="page-actions">
+        <div class="actions-group">
+          <a class="btn tertiary small round lowercase" href="https://github.com/apollographqlcn/react-docs-cn/tree/master/source/queries.md" target="_blank"><span class="icon-github"></span> <span>Edit on GitHub</span></a>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="document-formatting">
+      <p>本文中，您将学习如何使用 <code>react-apollo</code> 把GraphQL查询结果附加到您的 React UI 上。本指南假设您对 GraphQL 本身有一定的了解，您可以在 <a href="http://graphql.org/docs/queries/" target="_blank" rel="external">graphql.org</a> 上详细查看 GraphQL 查询有关的内容。</p>
+<p>我们的核心价值之一就是“它只是 GraphQL”。当使用 <code>react-apollo</code> 时，您不需要学习关于查询语法的任何特殊的东西，因为所有内容都是标准的 GraphQL。您可以在 GraphiQL 查询 IDE 中输入的任何内容，也可以将其添加到 <code>react-apollo</code> 代码中。</p>
+<h2 id="basics">基本查询</h2>
+
+<p>当我们执行一个基本的查询时，我们可以用一个非常简单的方式使用 <code>graphql</code> 容器。我们只需使用 <code>gql</code> 模板字符串解析我们的查询，然后将其作为第一个参数传递给 <code>graphql</code> 容器。</p>
+<p>例如，在 GitHunt 中，我们要在 <code>Profile</code> 组件中显示当前登录的用户：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React, &#123; Component, PropTypes &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123; gql, graphql &#125; <span class="keyword">from</span> <span class="string">'react-apollo'</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Profile</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123; ... &#125;</div><div class="line"></div><div class="line"><span class="comment">// 我们使用 gql 标签来将查询字符串解析成查询文档</span></div><div class="line"><span class="keyword">const</span> CurrentUserForLayout = gql<span class="string">`</span></div><div class="line">  query CurrentUserForLayout &#123;</div><div class="line">    currentUser &#123;</div><div class="line">      login</div><div class="line">      avatar_url</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">`;</div><div class="line"></div><div class="line"><span class="keyword">const</span> ProfileWithData = graphql(CurrentUserForLayout)(Profile);</div></pre></td></tr></table></figure>
+<p>当我们把 GraphQL 查询文档作为参数调用 <code>graphql</code> 时，会发生两件事情：</p>
+<ol>
+<li>查询是从 Apollo 客户端数据 store 中加载的，如果数据不在 store 中，则向服务端请求；</li>
+<li>我们的组件订阅 store 中的数据，以便如果数据因服务端的突变或某些其他响应而发生变化，则会更新该 store 的数据。</li>
+</ol>
+<p>除了在查询中选择的 <code>currentUser</code> 字段之外，<code>data</code> props 还包含一个名为 <code>loading</code> 的字段，表示当前是否正在从服务端加载该查询的一个布尔值。所以如果我们要声明 <code>propTypes</code>，代码看起来会像这样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Profile.propTypes = &#123;</div><div class="line">  <span class="attr">data</span>: PropTypes.shape(&#123;</div><div class="line">    <span class="attr">loading</span>: PropTypes.bool.isRequired,</div><div class="line">    <span class="attr">currentUser</span>: PropTypes.object,</div><div class="line">  &#125;).isRequired,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>随着时间的变化，<code>data.currentUser</code> props 将随着客户端获取到的当前用户数据而改变。该信息存储在 Apollo 客户端的全局缓存中，因此如果某些其他查询获取有关当前用户的新信息，则此组件将更新以保持一致。您可以在<a href="cache-updates.html">关于缓存更新的文章</a>中阅读有关使缓存获取服务器最新数据的技术的相关信息。</p>
+<h2 id="default-result-props" title="The data prop"><code>data</code> props的结构</h2>
+
+<p>如上所述，<code>graphql</code> 将把查询的结果传递给包裹组件的一个名为 <code>data</code> 的 props 中，它也将传递父容器的所有 props。</p>
+<p>对于查询，<code>data</code> props 的结构如下所示：</p>
+<ul>
+<li><code>...fields</code>: 查询中每个根字段的一个键。</li>
+<li><code>loading</code>: 如果当前查询还在请求中的状态，包括调用 <code>refetch</code> 后，该字段为 <code>true</code>，否则为 <code>false</code>。</li>
+<li><code>error</code>: 一个 ApolloError 对象，表示执行查询时可能发生的错误。</li>
+</ul>
+<p>还有其他更多的方法，您可以阅读关于 <a href="api-queries.html＃graphql-query-data">API 文档中查询</a>的部分。例如，对于像这样的查询：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">query getUserAndLikes($id: ID!) &#123;</div><div class="line">  user(userId: $id) &#123; name &#125;</div><div class="line">  likes(userId: $id) &#123; count &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>你可以得到如下 props：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">data: &#123;</div><div class="line">  <span class="attr">user</span>: &#123; <span class="attr">name</span>: <span class="string">"James"</span> &#125;,</div><div class="line">  <span class="attr">likes</span>: &#123; <span class="attr">count</span>: <span class="number">10</span> &#125;,</div><div class="line">  <span class="attr">loading</span>: <span class="literal">false</span>,</div><div class="line">  <span class="attr">error</span>: <span class="literal">null</span>,</div><div class="line">  <span class="attr">variables</span>: &#123; <span class="attr">id</span>: <span class="string">'asdf'</span> &#125;,</div><div class="line">  refetch() &#123; ... &#125;,</div><div class="line">  fetchMore() &#123; ... &#125;,</div><div class="line">  startPolling() &#123; ... &#125;,</div><div class="line">  stopPolling() &#123; ... &#125;,</div><div class="line">  <span class="comment">// ... 等更多方法</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果你使用 <code>props</code> 选项来指定你的子组件的<a href="＃graphql-props">自定义 <code>props</code></a>，那么这个对象将被作为 <code>data</code> 参数传递给 <code>props</code> 选项。</p>
+<h2 id="graphql-options">变量和选项</h2>
+
+<p>如果要配置查询，可以在 <code>graphql</code> 的第二个参数上提供一个包含 <code>options</code> 键的对象，您的选项将被传递给 <a href="/core/apollo-client-api.html＃watchQuery"><code>ApolloClient.watchQuery</code></a>。如果您的查询需要变量，这是传递他们的方法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 假设我们的个人资料查询需要指定头像大小</span></div><div class="line"><span class="keyword">const</span> CurrentUserForLayout = gql<span class="string">`</span></div><div class="line">  query CurrentUserForLayout($avatarSize: Int!) &#123;</div><div class="line">    currentUser &#123;</div><div class="line">      login</div><div class="line">      avatar_url(avatarSize: $avatarSize)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">`;</div><div class="line"></div><div class="line"><span class="keyword">const</span> ProfileWithData = graphql(CurrentUserForLayout, &#123;</div><div class="line">  <span class="attr">options</span>: &#123; <span class="attr">variables</span>: &#123; <span class="attr">avatarSize</span>: <span class="number">100</span> &#125; &#125;,</div><div class="line">&#125;)(Profile);</div></pre></td></tr></table></figure>
+<h3 id="options-from-props">根据 props 计算</h3>
+
+<p>通常，查询的变量将从包裹组件的 <code>props</code> 中计算出来。无论在应用程序中何处使用组件，调用者都会传递参数。所以 <code>options</code> 可以是将 props 传递给组件的一个功能：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 调用者可以执行以下操作：</span></div><div class="line">&lt;ProfileWithData avatarSize=&#123;<span class="number">300</span>&#125; /&gt;</div><div class="line"></div><div class="line"><span class="comment">// 我们的HOC可能看起来像：</span></div><div class="line"><span class="keyword">const</span> ProfileWithData = graphql(CurrentUserForLayout, &#123;</div><div class="line">  <span class="attr">options</span>: <span class="function">(<span class="params">&#123; avatarSize &#125;</span>) =&gt;</span> (&#123; <span class="attr">variables</span>: &#123; avatarSize &#125; &#125;),</div><div class="line">&#125;)(Profile);</div></pre></td></tr></table></figure>
+<p>默认情况下，<code>graphql</code> 将尝试从 <code>ownProps</code> 的对象中提取任何所需的变量。所以在上面的例子中，我们可以使用更简单的 <code>graphql(CurrentUserForLayout)(Profile);</code>。但是，如果您需要更改变量的名称，计算该值，或者只是希望对变量名进行更明确的定义，那么 <code>options</code> 函数就是用来这样做的。</p>
+<h3 id="other-graphql-options">其他选项</h3>
+
+<p>除了 <code>variables</code> 之外，还有很多其他可以传递的选项，例如 <code>pollInterval</code>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> ProfileWithData = graphql(CurrentUserForLayout, &#123;</div><div class="line">  <span class="comment">// 查看 watchQuery API 以获取您可以在这里提供的选项</span></div><div class="line">  options: &#123; <span class="attr">pollInterval</span>: <span class="number">20000</span> &#125;,</div><div class="line">&#125;)(Profile);</div></pre></td></tr></table></figure>
+<p>如果您使用函数来计算 props 中的选项，则每当 props 更改时，所有这些 <code>options</code> 将自动重新计算。</p>
+<p><a href="api-queries.html#graphql-query-options">阅读API文档中的所有查询选项。</a></p>
+<h2 id="graphql-skip">跳过操作</h2>
+
+<p><code>graphql</code> 容器API是有意设计成完全静态的，所以你不能在运行时动态地改变查询或包裹组件，而不是生成一个新的React组件。但是，有时候，您可能需要执行一些条件判断来根据传入的 props 跳过查询。因此，您可以使用 <code>skip</code> 选项。</p>
+<p>例如，如果您想忽略未通过身份验证的用户的查询，则可以使用此选项：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> ProfileWithData = graphql(CurrentUserForLayout, &#123;</div><div class="line">  <span class="attr">skip</span>: <span class="function">(<span class="params">ownProps</span>) =&gt;</span> !ownProps.authenticated,</div><div class="line">&#125;)(Profile);</div></pre></td></tr></table></figure>
+<p><code>skip</code> 也可以是静态属性：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> ProfileWithData = graphql(CurrentUserForLayout, &#123;</div><div class="line">  <span class="attr">skip</span>: <span class="literal">true</span>,</div><div class="line">&#125;)(Profile);</div></pre></td></tr></table></figure>
+<p>传递 <code>skip</code> 配置值为 true 将完全绕过高阶组件，就好像它根本不存在一样。这也意味着你的子组件根本不会得到一个 <code>data</code>  props ，而且 <code>options</code> 或 <code>props</code> 方法也不会被调用。</p>
+<h2 id="graphql-props">控制子 props</h2>
+
+<p>默认情况下，与查询一起使用的 <code>graphql</code> 将为包裹组件提供一个 <code>data</code> props ，其中包含有关查询状态的各种信息。我们还会看到<a href="mutations.html">突变</a>在 <code>mutate</code> prop 上提供回调。光是使用这些默认的名称就足以编写整个应用程序。</p>
+<p>但是，如果要将您的 UI 组件与 Apollo 分离，并使其在不同的上下文中可复用，您可能需要修改这些默认 props ，并将其包含在自己的自定义对象和函数中。</p>
+<h3 id="graphql-name">更改 prop 名称</h3>
+
+<p>如果要更改默认的 <code>data</code> props 的名称，但保持完全相同的结构，可以使用 <code>graphql</code> 容器的 <code>name</code> 选项。当一个组件通过嵌套的 <code>graphql</code> 容器使用多个查询时，将会变得十分有用，其中 <code>data</code> props 将被覆盖。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React, &#123; Component, PropTypes &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123; gql, graphql &#125; <span class="keyword">from</span> <span class="string">'react-apollo'</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Profile</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123; ... &#125;</div><div class="line"></div><div class="line">Profile.propTypes = &#123;</div><div class="line">  <span class="attr">CurrentUserForLayout</span>: PropTypes.shape(&#123;</div><div class="line">    <span class="attr">loading</span>: PropTypes.bool.isRequired,</div><div class="line">    <span class="attr">currentUser</span>: PropTypes.object,</div><div class="line">  &#125;).isRequired,</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">const</span> CurrentUserForLayout = gql<span class="string">`</span></div><div class="line">  query CurrentUserForLayout &#123;</div><div class="line">    currentUser &#123;</div><div class="line">      login</div><div class="line">      avatar_url</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">`;</div><div class="line"></div><div class="line"><span class="comment">// 我们希望prop被称为 'CurrentUserForLayout' 而不是 data</span></div><div class="line"><span class="keyword">const</span> ProfileWithData = graphql(CurrentUserForLayout, &#123;</div><div class="line">  <span class="attr">name</span>: <span class="string">'CurrentUserForLayout'</span></div><div class="line">&#125;)(Profile);</div></pre></td></tr></table></figure>
+<h3 id="graphql-props-option">任意转换</h3>
+
+<p>如果想要完全控制子组件的 props，请使用 <code>props</code> 选项将查询 <code>data</code> 对象映射到传递给子组件的任意数量的 props ：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">import</span> React, &#123; Component, PropTypes &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123; gql, graphql &#125; <span class="keyword">from</span> <span class="string">'react-apollo'</span>;</div><div class="line"></div><div class="line"><span class="comment">// 在这里，Profile 有一个更通用的 API，它没有耦合到 Apollo 或者我们使用的查询的结构</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Profile</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123; ... &#125;</div><div class="line">Profile.propTypes = &#123;</div><div class="line">  <span class="attr">userLoading</span>: PropTypes.bool.isRequired,</div><div class="line">  <span class="attr">user</span>: PropTypes.object,</div><div class="line">  <span class="attr">refetchUser</span>: PropTypes.func,</div><div class="line">&#125;;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">const</span> CurrentUserForLayout = gql<span class="string">`</span></div><div class="line">  query CurrentUserForLayout &#123;</div><div class="line">    currentUser &#123;</div><div class="line">      login</div><div class="line">      avatar_url</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">`;</div><div class="line"></div><div class="line"><span class="keyword">const</span> ProfileWithData = graphql(CurrentUserForLayout, &#123;</div><div class="line">  <span class="comment">// ownProps 是由父组件调用时传递到 “ProfileWithData” 的 props </span></div><div class="line">  props: <span class="function">(<span class="params">&#123; ownProps, data: &#123; loading, currentUser, refetch &#125; &#125;</span>) =&gt;</span> (&#123;</div><div class="line">    <span class="attr">userLoading</span>: loading,</div><div class="line">    <span class="attr">user</span>: currentUser,</div><div class="line">    <span class="attr">refetchUser</span>: refetch,</div><div class="line">  &#125;),</div><div class="line">&#125;)(Profile);</div></pre></td></tr></table></figure>
+<p>这样的使用方式可以实现您的展示组件(<code>Profile</code>)和 Apollo 之间的完美解耦。</p>
+<h2 id="full-api">完整API</h2>
+
+<p>有关 React Apollo 支持的 GraphQL 查询的所有选项和功能的详细信息，请务必查看<a href="api-queries.html">关于 <code>graphql()</code> 查询的 API 参考</a>。</p>
+
+    </div>
+  </div>
+
+  <div class="pagination">
+    <div class="content-wrapper">
+      
+      
+        <a class="link primary prev"
+          href="migration.html">
+          <span class="icon-arrow-left-alt"></span>
+          <span class="subtitle-pagination">Previous</span>
+          从0.x迁移到1.0
+        </a>
+      
+      
+        <a class="link primary next"
+          href="mutations.html">
+          <span class="subtitle-pagination">Next</span>
+          突变
+          <span class="icon-arrow-right-alt"></span>
+        </a>
+      
+    </div>
+  </div>
+
+  <div class="github">
+    <a class="link tertiary " href="https://github.com/apollographqlcn/react-docs-cn/tree/master/source/queries.md" target="_blank">
+      <span class="icon-github"></span>Edit on GitHub</a>
+  </div>
+
+  
+</div>
+
+    <script src="/react-docs-cn/script/smooth-scroll.min.js"></script>
+    <script src="/react-docs-cn/script/main.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+    <script>
+      // nectar ninja
+      (function(){
+        var handle = '@meteorjs';
+        var a = document.createElement('script');
+        var m = document.getElementsByTagName('script')[0];
+        a.async = 1;
+        a.src = 'https://nectar.ninja/api/v1/' + handle.slice(1);
+        m.parentNode.insertBefore(a, m);
+      })();
+
+     
+
+      
+
+      
+
+      // search box
+      
+
+      
+    </script>
+  </body>
+</html>

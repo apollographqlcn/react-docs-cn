@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Basic -->
+    <title>同步服务端数据 | Apollo React 中文文档</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png" sizes="16x16 32x32 64x64">
+
+    <!-- Social -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://apollographqlcn.github.io/react-docs-cn">
+    <meta property="og:title" content="同步服务端数据 | Apollo React 中文文档">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="">
+    <meta name="twitter:card" content="summary_image_large">
+    <meta name="twitter:site" content="@apollographqlcn">
+    <meta name="twitter:title" content="同步服务端数据 | Apollo React 中文文档">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="">
+
+    <!-- Misc -->
+    <meta name="google-site-verification" content="" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,200,300italic,400italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/react-docs-cn/style/style.css">
+  </head>
+  <body class="">
+    
+
+<div class="nav dark">
+  <div class="nav-group">
+    <div class="nav-item show-mobile">
+      <span class="js-sidebar-toggle ">
+        <span class="icon-menu"></span>
+      </span>
+    </div>
+    <div class="nav-item">
+      
+      <a class="logo-wrapper" href="http://dev.apollodata.com/" title="Apollo Developers"  >
+        <img src="images/logo-apollo-space-left.svg" alt="Apollo" class="logo"/><img src="images/logo-apollo-subbrands-developers-space.svg" class="logo-subbrand" alt="Developers"/>
+      </a>
+    </div>
+  </div>
+
+  <div class="nav-group right">
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="https://apollographqlcn.github.io/react-docs-cn/"  >
+          <span>React</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/angular2"  >
+          <span>Angular</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/ios"  >
+          <span>iOS</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/android"  >
+          <span>Android</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/core"  >
+          <span>Vanilla JS</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false separator">
+        <a class="link" href="http://dev.apollodata.com/tools"  >
+          <span>Server</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="https://medium.com/apollo-stack" target=_new >
+          <span>Blog</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/community"  >
+          <span>Community</span>
+        </a>
+      </div>
+    
+  </div>
+</div>
+
+<div class="sidebar">
+  <div class="panel">
+    <div class="panel-item">
+      <a class="" href="http:/dev.apollodata.com/" title="Apollo"  >
+        <span>Apollo Developers</span>
+      </a>
+    </div>
+    
+      <div class="panel-item "">
+        <a class="" href="https://apollographqlcn.github.io/react-docs-cn/"  >
+          <span>React</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/angular2"  >
+          <span>Angular</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/ios"  >
+          <span>iOS</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/android"  >
+          <span>Android</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/core"  >
+          <span>Vanilla JS</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/tools"  >
+          <span>Server</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="https://medium.com/apollo-stack" target=_new >
+          <span>Blog</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/community"  >
+          <span>Community</span>
+        </a>
+      </div>
+    
+  </div>
+
+  <div class="sidebar-content">
+    <div class="topcap">
+      <span class="title-sidebar">Apollo React 中文文档</span>
+      
+    </div>
+
+    
+
+    <ul class="toc">
+      
+        <li>
+          
+          <ul class="list-toc">
+            
+              
+              <li class="item-toc ">
+                <a href="index.html" class="sidebar-link ">
+                  <span>简介</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="initialization.html" class="sidebar-link ">
+                  <span>设置和选项</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="simple-example.html" class="sidebar-link ">
+                  <span>简易示例：Snack</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="example-schema.html" class="sidebar-link ">
+                  <span>完整示例：GitHunt</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="migration.html" class="sidebar-link ">
+                  <span>迁移到1.0</span>
+                </a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        <li>
+          
+            <div class="heading-toc">Usage</div>
+          
+          <ul class="list-toc">
+            
+              
+              <li class="item-toc ">
+                <a href="queries.html" class="sidebar-link ">
+                  <span>查询</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="mutations.html" class="sidebar-link ">
+                  <span>突变</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="subscriptions.html" class="sidebar-link ">
+                  <span>订阅</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc  current">
+                <a href="" class="sidebar-link  current">
+                  <span>同步服务端数据</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="cache-updates.html" class="sidebar-link ">
+                  <span>更新 Store</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="using-with-types.html" class="sidebar-link ">
+                  <span>使用 TypeScript 和 Flow</span>
+                </a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        <li>
+          
+            <div class="heading-toc">API Reference</div>
+          
+          <ul class="list-toc">
+            
+              
+              <li class="item-toc ">
+                <a href="api.html" class="sidebar-link ">
+                  <span>综合</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="api-graphql.html" class="sidebar-link ">
+                  <span>graphql: 容器</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="api-queries.html" class="sidebar-link ">
+                  <span>graphql: 查询</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="api-mutations.html" class="sidebar-link ">
+                  <span>graphql: 突变</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="api-server.html" class="sidebar-link ">
+                  <span>服务端渲染</span>
+                </a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        <li>
+          
+            <div class="heading-toc">Recipes</div>
+          
+          <ul class="list-toc">
+            
+              
+              <li class="item-toc ">
+                <a href="auth.html" class="sidebar-link ">
+                  <span>认证</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="pagination.html" class="sidebar-link ">
+                  <span>分页</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="optimistic-ui.html" class="sidebar-link ">
+                  <span>Optimistic UI</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="fragments.html" class="sidebar-link ">
+                  <span>使用片段</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="prefetching.html" class="sidebar-link ">
+                  <span>预取数据</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="query-splitting.html" class="sidebar-link ">
+                  <span>Query Splitting</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="react-native.html" class="sidebar-link ">
+                  <span>与 React Native 集成</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="redux.html" class="sidebar-link ">
+                  <span>与 Redux 集成</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="webpack.html" class="sidebar-link ">
+                  <span>Webpack加载器</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="server-side-rendering.html" class="sidebar-link ">
+                  <span>服务端渲染</span>
+                </a>
+              </li>
+            
+          </ul>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="content">
+  <div class="content-wrapper">
+    <div class="header-content">
+      <h1 class="title-page">同步服务端数据</h1>
+      
+
+      <div class="page-actions">
+        <div class="actions-group">
+          <a class="btn tertiary small round lowercase" href="https://github.com/apollographqlcn/react-docs-cn/tree/master/source/receiving-updates.md" target="_blank"><span class="icon-github"></span> <span>Edit on GitHub</span></a>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="document-formatting">
+      <p>Apollo 客户端缓存查询结果，然后在某些情况下使用此缓存来解析查询。您可以通过配置查询数据时使用的 <a href="api-queries.html＃graphql-config-options-fetchPolicy">fetchPolicy</a> 来控制此行为。但是，如果我们的缓存中的信息过时会发生什么？如果服务端的信息发生变化，我们如何确保更新缓存？我们的UI将如何更新以反映这些新信息的变化？本节将尝试解答这些问题。</p>
+<p>您可以设置一些策略，以确保 Apollo 客户端最终与服务端可用的信息保持一致。比如：手动查询，轮询查询和GraphQL订阅。</p>
+<h2 id="refetch">Refetch</h2>
+
+<p><code>Refetch</code> 是强制部分缓存响应服务端可用信息的最简单方法。本质上，refetch 强制执行一个查询，立即再次请求服务端，绕过缓存。此查询的结果与所有其他查询结果一样，可更新缓存中可用的信息，从而更新页面上的所有查询结果。</p>
+<p>例如，在 GitHunt 项目中，我们可能有如下组件实现：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123; graphql, gql &#125; <span class="keyword">from</span> <span class="string">'react-apollo'</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Feed</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">  onRefreshClicked() &#123;</div><div class="line">    <span class="keyword">this</span>.props.data.refetch();</div><div class="line">  &#125;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">const</span> FeedEntries = gql<span class="string">`</span></div><div class="line">  query FeedEntries($type: FeedType!, $offset: Int, $limit: Int) &#123;</div><div class="line">    feed($type: NEW, offset: $offset, limit: $limit) &#123;</div><div class="line">      createdAt</div><div class="line">      commentCount</div><div class="line">      score</div><div class="line">      id</div><div class="line">      respository &#123;</div><div class="line">        # etc.</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">`;</div><div class="line"></div><div class="line"><span class="keyword">const</span> FeedWithData = graphql(FeedEntries)(Feed);</div></pre></td></tr></table></figure>
+<p>假设我们在页面上有一个“刷新”按钮，当该按钮被点击时，在我们的组件上调用 <code>onRefreshClicked</code> 方法。我们有一个方法 <code>this.props.data.refetch</code>，它允许我们重新获取与 <code>feed</code> 组件相关联的查询。这意味着，不会从缓存中解析有关 <code>feed</code> 字段的信息，因此查询请求将直接到达服务端，并使用新的结果更新缓存。</p>
+<p>如果服务端有某种更新（例如，添加到 Feed 中的新代码仓库），Apollo 客户端的 store 将获得更新，UI将根据需要重新呈现。</p>
+<h3 id="when-to-refetch">何时 refetch</h3>
+
+<p>为使 refetch 策略成功，您需要知道何时重新获取查询，所幸 refetch 的使用场景很少。</p>
+<ol>
+<li><strong>手动刷新</strong>：许多应用程序提供一种方式让用户通过刷新按钮或下拉手势手动请求更新其数据视图，<code>refetch</code> 非常适合这种情况。</li>
+<li><strong>响应事件</strong>：有时，您知道事件何时发生，将有可能会使数据无效。例如，您可能会有某种事件推送机制，告诉您数据可能已更改。因此，<code>refetch</code> 是可以避免不必要的轮询的最佳方式。</li>
+<li><strong>突变后</strong>：Apollo 提供了<a href="cache-updates.html">一些方法</a>，以确保 store 在突变后是最新的，但最简单的方法是完全重新读取相关查询。在这种情况下，除了在查询本身使用 <code>refetch</code> 方法之外，还可以使用 <a href="api-mutations.html＃graphql-mutation-options-refetchQueries">refetchQueries</a> 选项执行突变。</li>
+</ol>
+<p>但是，在某些情况下，响应用户输入或更改 UI 的变更并无必要，例如，如果某些<em>其他</em>用户决定将代码仓库插入到 GitHunt Feed 中，并且我们需要展示这条数据。我们的客户不知道这已经发生了，直到刷新页面才会看到新的 Feed 项。该问题的解决方案之一便是轮询。</p>
+<h3 id="polling">轮询</h3>
+
+<p>如果您的查询结果可能会频繁变更，并且您想要查看相对较新的视图，则可以考虑轮询。轮询在特定的时间间隔内被触发，与 refetch 相似。</p>
+<p>继续我们的 refetch 示例，我们可以通过在查询中添加一个选项来添加轮询间隔：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> FeedWithData = graphql(FeedEntries, &#123;</div><div class="line">  <span class="attr">options</span>: &#123; <span class="attr">pollInterval</span>: <span class="number">20000</span> &#125;,</div><div class="line">&#125;)(Feed);</div></pre></td></tr></table></figure>
+<p>查询的 <code>pollInterval</code> 选项设置该查询将被重新执行的时间间隔（以毫秒为单位）。在上述例子中，Apollo 会每隔二十秒处理一次这个查询，确保您的UI在任何时刻都只有20秒过时。</p>
+<p>一般来说，您的轮询间隔不应小于10秒，否则容易对您的服务器造成大量负载。如果您需要立即在 UI 中反映数据变化，则应使用 <a href="#subscriptions">GraphQL 订阅</a>。</p>
+<h2 id="订阅"><a href="#订阅" class="headerlink" title="订阅"></a>订阅</h2><p>订阅可让您的 UI 获得近实时更新。与轮询不同，订阅是基于推送的，这意味着服务端在更新可用时立即将其推送到客户端。订阅比轮询更难设置，但它们允许对更新进行更细粒度的控制，更新时间更快，并可能减少服务端的负载。</p>
+<p>基于上面的 feedEntry 示例，我们可以通过添加对 <code>score</code> 字段的订阅来实时更新该字段：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">const</span> SUBSCRIPTION_QUERY = gql<span class="string">`</span></div><div class="line">  subscription scoreUpdates ($entryIds: [Int])&#123;</div><div class="line">    newScore(entryIds: $entryIds)&#123;</div><div class="line">      id</div><div class="line">      score</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">`;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Feed</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">  componentWillReceiveProps(newProps) &#123;</div><div class="line">    <span class="keyword">if</span> (!newProps.data.loading) &#123;</div><div class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.unsubscribe) &#123;</div><div class="line">        <span class="keyword">if</span> (newProps.data.feed !== <span class="keyword">this</span>.props.data.feed) &#123;</div><div class="line">          <span class="comment">// 如果 Feed 已更改，我们需要在重新订阅之前取消订阅</span></div><div class="line">          <span class="keyword">this</span>.unsubscribe();</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">          <span class="comment">// 我们设置激活了一个带正确参数的订阅</span></div><div class="line">          <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      <span class="keyword">const</span> entryIds = newProps.data.feed.map(<span class="function"><span class="params">item</span> =&gt;</span> item.id);</div><div class="line"></div><div class="line">      <span class="keyword">this</span>.unsubscribe = newProps.data.subscribeToMore(&#123;</div><div class="line">        <span class="attr">document</span>: SUBSCRIPTION_QUERY,</div><div class="line">        <span class="attr">variables</span>: &#123; entryIds &#125;,</div><div class="line"></div><div class="line">        <span class="comment">// 奇迹发生的地方</span></div><div class="line">        updateQuery: <span class="function">(<span class="params">previousResult, &#123; subscriptionData &#125;</span>) =&gt;</span> &#123;</div><div class="line">          <span class="keyword">const</span> newScoreEntry = subscriptionData.data.newScore;</div><div class="line"></div><div class="line">          <span class="keyword">const</span> newResult = clonedeep(previousResult); <span class="comment">// 不可变状态！</span></div><div class="line"></div><div class="line">          <span class="comment">// 更新受影响的条目的 score</span></div><div class="line">          newResult.feed = newResult.feed.forEach(<span class="function"><span class="params">entry</span> =&gt;</span> &#123;</div><div class="line">            <span class="keyword">if</span>(entry.id === newScoreEntry.id) &#123;</div><div class="line">              entry.score = newScoreEntry.score;</div><div class="line">              <span class="keyword">return</span>;</div><div class="line">            &#125;</div><div class="line">          &#125;);</div><div class="line"></div><div class="line">          <span class="keyword">return</span> newResult;</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">onError</span>: <span class="function">(<span class="params">err</span>) =&gt;</span> <span class="built_in">console</span>.error(err),</div><div class="line">      &#125;);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在上面的示例中，我们通过订阅列出当前显示在组件中的 Feed 条目的所有 ID，来保留 Feed 组件中所有条目的 score 信息。每次更新 score 时，服务端将发送包含条目 ID 和新 score 的单个响应。</p>
+<p><code>subscribeToMore</code> 是一种通过订阅更新单个查询结果的方便的方法。每次新的订阅结果返回时，传递给 <code>subscribeToMore</code> 的 <code>updateQuery</code> 函数都会立即执行，它负责更新查询结果。<code>subscribeToMore</code> 返回取消订阅处理程序。</p>
+<p><code>subscribeToMore</code> 订阅在其依赖查询停止时自动停止，因此我们不需要手动取消订阅。如果 props 改变了，我们需要手动取消订阅，并使用不同的变量设置进行新的订阅。</p>
+<p>要更深入地了解 GraphQL 中的订阅，您可以在我们的<a href="https://dev-blog.apollodata.com/graphql-subscriptions-in-apollo-client-9a2457f015fb" target="_blank" rel="external">博客文章</a>找到该主题。</p>
+
+    </div>
+  </div>
+
+  <div class="pagination">
+    <div class="content-wrapper">
+      
+      
+        <a class="link primary prev"
+          href="subscriptions.html">
+          <span class="icon-arrow-left-alt"></span>
+          <span class="subtitle-pagination">Previous</span>
+          订阅
+        </a>
+      
+      
+        <a class="link primary next"
+          href="cache-updates.html">
+          <span class="subtitle-pagination">Next</span>
+          更新 Store
+          <span class="icon-arrow-right-alt"></span>
+        </a>
+      
+    </div>
+  </div>
+
+  <div class="github">
+    <a class="link tertiary " href="https://github.com/apollographqlcn/react-docs-cn/tree/master/source/receiving-updates.md" target="_blank">
+      <span class="icon-github"></span>Edit on GitHub</a>
+  </div>
+
+  
+</div>
+
+    <script src="/react-docs-cn/script/smooth-scroll.min.js"></script>
+    <script src="/react-docs-cn/script/main.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+    <script>
+      // nectar ninja
+      (function(){
+        var handle = '@meteorjs';
+        var a = document.createElement('script');
+        var m = document.getElementsByTagName('script')[0];
+        a.async = 1;
+        a.src = 'https://nectar.ninja/api/v1/' + handle.slice(1);
+        m.parentNode.insertBefore(a, m);
+      })();
+
+     
+
+      
+
+      
+
+      // search box
+      
+
+      
+    </script>
+  </body>
+</html>

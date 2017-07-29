@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Basic -->
+    <title>订阅 | Apollo React 中文文档</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png" sizes="16x16 32x32 64x64">
+
+    <!-- Social -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://apollographqlcn.github.io/react-docs-cn">
+    <meta property="og:title" content="订阅 | Apollo React 中文文档">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="">
+    <meta name="twitter:card" content="summary_image_large">
+    <meta name="twitter:site" content="@apollographqlcn">
+    <meta name="twitter:title" content="订阅 | Apollo React 中文文档">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="">
+
+    <!-- Misc -->
+    <meta name="google-site-verification" content="" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,200,300italic,400italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/react-docs-cn/style/style.css">
+  </head>
+  <body class="">
+    
+
+<div class="nav dark">
+  <div class="nav-group">
+    <div class="nav-item show-mobile">
+      <span class="js-sidebar-toggle ">
+        <span class="icon-menu"></span>
+      </span>
+    </div>
+    <div class="nav-item">
+      
+      <a class="logo-wrapper" href="http://dev.apollodata.com/" title="Apollo Developers"  >
+        <img src="images/logo-apollo-space-left.svg" alt="Apollo" class="logo"/><img src="images/logo-apollo-subbrands-developers-space.svg" class="logo-subbrand" alt="Developers"/>
+      </a>
+    </div>
+  </div>
+
+  <div class="nav-group right">
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="https://apollographqlcn.github.io/react-docs-cn/"  >
+          <span>React</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/angular2"  >
+          <span>Angular</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/ios"  >
+          <span>iOS</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/android"  >
+          <span>Android</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/core"  >
+          <span>Vanilla JS</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false separator">
+        <a class="link" href="http://dev.apollodata.com/tools"  >
+          <span>Server</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="https://medium.com/apollo-stack" target=_new >
+          <span>Blog</span>
+        </a>
+      </div>
+    
+      
+      <div class="nav-item show-desktop false ">
+        <a class="link" href="http://dev.apollodata.com/community"  >
+          <span>Community</span>
+        </a>
+      </div>
+    
+  </div>
+</div>
+
+<div class="sidebar">
+  <div class="panel">
+    <div class="panel-item">
+      <a class="" href="http:/dev.apollodata.com/" title="Apollo"  >
+        <span>Apollo Developers</span>
+      </a>
+    </div>
+    
+      <div class="panel-item "">
+        <a class="" href="https://apollographqlcn.github.io/react-docs-cn/"  >
+          <span>React</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/angular2"  >
+          <span>Angular</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/ios"  >
+          <span>iOS</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/android"  >
+          <span>Android</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/core"  >
+          <span>Vanilla JS</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/tools"  >
+          <span>Server</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="https://medium.com/apollo-stack" target=_new >
+          <span>Blog</span>
+        </a>
+      </div>
+    
+      <div class="panel-item "">
+        <a class="" href="http://dev.apollodata.com/community"  >
+          <span>Community</span>
+        </a>
+      </div>
+    
+  </div>
+
+  <div class="sidebar-content">
+    <div class="topcap">
+      <span class="title-sidebar">Apollo React 中文文档</span>
+      
+    </div>
+
+    
+
+    <ul class="toc">
+      
+        <li>
+          
+          <ul class="list-toc">
+            
+              
+              <li class="item-toc ">
+                <a href="index.html" class="sidebar-link ">
+                  <span>简介</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="initialization.html" class="sidebar-link ">
+                  <span>设置和选项</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="simple-example.html" class="sidebar-link ">
+                  <span>简易示例：Snack</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="example-schema.html" class="sidebar-link ">
+                  <span>完整示例：GitHunt</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="migration.html" class="sidebar-link ">
+                  <span>迁移到1.0</span>
+                </a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        <li>
+          
+            <div class="heading-toc">Usage</div>
+          
+          <ul class="list-toc">
+            
+              
+              <li class="item-toc ">
+                <a href="queries.html" class="sidebar-link ">
+                  <span>查询</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="mutations.html" class="sidebar-link ">
+                  <span>突变</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc  current">
+                <a href="" class="sidebar-link  current">
+                  <span>订阅</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="receiving-updates.html" class="sidebar-link ">
+                  <span>同步服务端数据</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="cache-updates.html" class="sidebar-link ">
+                  <span>更新 Store</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="using-with-types.html" class="sidebar-link ">
+                  <span>使用 TypeScript 和 Flow</span>
+                </a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        <li>
+          
+            <div class="heading-toc">API Reference</div>
+          
+          <ul class="list-toc">
+            
+              
+              <li class="item-toc ">
+                <a href="api.html" class="sidebar-link ">
+                  <span>综合</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="api-graphql.html" class="sidebar-link ">
+                  <span>graphql: 容器</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="api-queries.html" class="sidebar-link ">
+                  <span>graphql: 查询</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="api-mutations.html" class="sidebar-link ">
+                  <span>graphql: 突变</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="api-server.html" class="sidebar-link ">
+                  <span>服务端渲染</span>
+                </a>
+              </li>
+            
+          </ul>
+        </li>
+      
+        <li>
+          
+            <div class="heading-toc">Recipes</div>
+          
+          <ul class="list-toc">
+            
+              
+              <li class="item-toc ">
+                <a href="auth.html" class="sidebar-link ">
+                  <span>认证</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="pagination.html" class="sidebar-link ">
+                  <span>分页</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="optimistic-ui.html" class="sidebar-link ">
+                  <span>Optimistic UI</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="fragments.html" class="sidebar-link ">
+                  <span>使用片段</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="prefetching.html" class="sidebar-link ">
+                  <span>预取数据</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="query-splitting.html" class="sidebar-link ">
+                  <span>Query Splitting</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="react-native.html" class="sidebar-link ">
+                  <span>与 React Native 集成</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="redux.html" class="sidebar-link ">
+                  <span>与 Redux 集成</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="webpack.html" class="sidebar-link ">
+                  <span>Webpack加载器</span>
+                </a>
+              </li>
+            
+              
+              <li class="item-toc ">
+                <a href="server-side-rendering.html" class="sidebar-link ">
+                  <span>服务端渲染</span>
+                </a>
+              </li>
+            
+          </ul>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="content">
+  <div class="content-wrapper">
+    <div class="header-content">
+      <h1 class="title-page">订阅</h1>
+      
+
+      <div class="page-actions">
+        <div class="actions-group">
+          <a class="btn tertiary small round lowercase" href="https://github.com/apollographqlcn/react-docs-cn/tree/master/source/subscriptions.md" target="_blank"><span class="icon-github"></span> <span>Edit on GitHub</span></a>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="document-formatting">
+      <p>除了使用查询获取数据和使用突变修改数据之外，GraphQL 规范将很快制定第三种操作类型，称为 <code>subscription（订阅）</code>。您可以<a href="https://github.com/facebook/graphql/blob/master/rfcs/Subscriptions.md" target="_blank" rel="external">阅读 GitHub 上的 RFC</a>。虽然规范可能会在最终定稿之前发生细微变化，但您可以现在就使用 Apollo 实现订阅功能。</p>
+<p>GraphQL 订阅是将数据从服务端推送到选择从服务端监听实时消息的客户端的一种方法。订阅与查询类似，因为它们都指定一组传递给客户端的字段，而不是立即返回单个答案，每次在服务器上发生特定事件时都会发送结果。</p>
+<p>订阅常见的使用场景是向客户端通知特定事件，例如创建新对象，更新字段等。</p>
+<h2 id="overview">概述</h2>
+
+<p>GraphQL 订阅必须在 Schema 中定义，和查询和突变一样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">type Subscription &#123;</div><div class="line">  commentAdded(repoFullName: <span class="built_in">String</span>!): Comment</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在客户端上，订阅的查询语句与其他操作类似：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">subscription onCommentAdded($repoFullName: <span class="built_in">String</span>!)&#123;</div><div class="line">  commentAdded(repoFullName: $repoFullName)&#123;</div><div class="line">    id</div><div class="line">    content</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>客户端收到的响应如下：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"data"</span>: &#123;</div><div class="line">    <span class="attr">"commentAdded"</span>: &#123;</div><div class="line">      <span class="attr">"id"</span>: <span class="string">"123"</span>,</div><div class="line">      <span class="attr">"content"</span>: <span class="string">"Hello!"</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在上面的例子中，每向 GitHunt 上指定代码仓库添加一条评论，服务端将发送一个新的响应结果。请注意，上述代码仅在 Schema 中定义 GraphQL 订阅。阅读<a href="#subscriptions-client">在客户端上设置订阅</a>和<a href="http://dev.apollodata.com/tools/graphql-subscriptions/index.html" target="_blank" rel="external">设置服务端的 GraphQL 订阅</a>，了解如何为您的应用添加订阅。</p>
+<h3 id="when-to-use">何时使用订阅</h3>
+
+<p>在大多数情况下，保持客户端更新的最佳方式实际上是使用轮询或手动调用。那什么时候订阅会是更好的选择呢？通常订阅在以下情况下特别有用：</p>
+<ol>
+<li>初始状态数据很大，但增量变化集较小。可以使用查询获取初始状态，然后通过订阅进行更新。</li>
+<li>在某些特定的情况下，您比较在意低延迟更新，比如用户期望能在几秒钟内接收新消息的聊天应用。</li>
+</ol>
+<p>Apollo 或 GraphQL 的未来版本可能包括对实时查询的支持，这将是一种低延迟的替代轮询的方案，但目前而言，GraphQL 中一般的实时查询只支持一些偏实验的设置。</p>
+<h2 id="subscriptions-client">客户端设置</h2>
+
+<p>GraphQL 订阅最流行的传输方式是 <a href="https://github.com/apollographql/subscriptions-transport-ws" target="_blank" rel="external"><code>subscriptions-transport-ws</code></a>。此包由 Apollo 社区开发维护，但可以与任何客户端或服务端 GraphQL 实现一起使用。在本文中，我们将介绍如何在客户端进行设置，但前提是您需要有一个服务端实现。您可以<a href="/tools/graphql-subscriptions/setup.html">阅读关于如何使用JavaScript 服务端订阅</a>，或者如果您使用了 GraphQL 后端服务，比如 <a href="https://www.graph.cool/docs/tutorials/worldchat-subscriptions-example-ui0eizishe/" target="_blank" rel="external">Graphcool</a> 或 <a href="https://scaphold.io/blog/2016/11/09/build-realtime-apps-with-subs.html" target="_blank" rel="external">Scaphold</a>，即可享受开箱即用的订阅。</p>
+<p>我们来看看如何向 Apollo 客户端添加对这个传输方式的支持。</p>
+<p>首先，从 npm 安装<code>subscriptions-transport-ws</code>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install --save subscriptions-transport-ws</div></pre></td></tr></table></figure>
+<p>然后，初始化一个 GraphQL 订阅传输在客户端的实例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; SubscriptionClient &#125; <span class="keyword">from</span> <span class="string">'subscriptions-transport-ws'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> wsClient = <span class="keyword">new</span> SubscriptionClient(<span class="string">`ws://localhost:5000/`</span>, &#123;</div><div class="line">  <span class="attr">reconnect</span>: <span class="literal">true</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>然后，使用 <code>addGraphQLSubscriptions</code> 函数扩展现有的 Apollo 客户端网络接口：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; ApolloClient, createNetworkInterface &#125; <span class="keyword">from</span> <span class="string">'react-apollo'</span>;</div><div class="line"><span class="keyword">import</span> &#123; SubscriptionClient, addGraphQLSubscriptions &#125; <span class="keyword">from</span> <span class="string">'subscriptions-transport-ws'</span>;</div><div class="line"></div><div class="line"><span class="comment">// 创建一个普通的网络接口：</span></div><div class="line"><span class="keyword">const</span> networkInterface = createNetworkInterface(&#123;</div><div class="line">  <span class="attr">uri</span>: <span class="string">'http://localhost:3000/graphql'</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 使用 WebSocket 扩展网络接口</span></div><div class="line"><span class="keyword">const</span> networkInterfaceWithSubscriptions = addGraphQLSubscriptions(</div><div class="line">  networkInterface,</div><div class="line">  wsClient</div><div class="line">);</div><div class="line"></div><div class="line"><span class="comment">// 最后，使用修改的网络接口创建您的 ApolloClient 实例</span></div><div class="line"><span class="keyword">const</span> client = <span class="keyword">new</span> ApolloClient(&#123;</div><div class="line">  <span class="attr">networkInterface</span>: networkInterfaceWithSubscriptions</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>现在，查询和突变将按照 HTTP 正常进行，但订阅将通过 websocket 传输完成。</p>
+<h2 id="subscribe-to-more">subscribeToMore</h2>
+
+<p>使用 GraphQL 订阅，您的客户端将从服务器获取推送提醒，您应该选择最适合您的应用程序的模式：</p>
+<ul>
+<li>将其用作通知，并在其触发时运行所需的任何逻辑，例如提醒用户或重新获取数据</li>
+<li>使用与通知一起发送的数据，并将其直接合并到 store（既有查询会自动通知）</li>
+</ul>
+<p>用 <code>subscribeToMore</code>，您可以轻松地实现后者。</p>
+<p><code>subscribeToMore</code> 是一个可用于 <code>react-apollo</code> 的每个查询结果的函数。它的工作原理就像 <a href="/reactions/cache-updates.html＃fetchMore"><code>fetchMore</code></a>，不同之处在于每次订阅结果返回时都会调用更新函数，而不是只调用一次。</p>
+<p>这是常规查询：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; CommentsPage &#125; <span class="keyword">from</span> <span class="string">'./comments-page.js'</span>;</div><div class="line"><span class="keyword">import</span> &#123; graphql &#125; <span class="keyword">from</span> <span class="string">'react-apollo'</span>;</div><div class="line"><span class="keyword">import</span> gql <span class="keyword">from</span> <span class="string">'graphql-tag'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> COMMENT_QUERY = gql<span class="string">`</span></div><div class="line">    query Comment($repoName: String!) &#123;</div><div class="line">      entry(repoFullName: $repoName) &#123;</div><div class="line">        comments &#123;</div><div class="line">          id</div><div class="line">          content</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">`;</div><div class="line"></div><div class="line"><span class="keyword">const</span> withData = graphql(COMMENT_QUERY, &#123;</div><div class="line">    <span class="attr">name</span>: <span class="string">'comments'</span>,</div><div class="line">    <span class="attr">options</span>: <span class="function">(<span class="params">&#123; params &#125;</span>) =&gt;</span> (&#123;</div><div class="line">        <span class="attr">variables</span>: &#123;</div><div class="line">            <span class="attr">repoName</span>: <span class="string">`<span class="subst">$&#123;params.org&#125;</span>/<span class="subst">$&#123;params.repoName&#125;</span>`</span></div><div class="line">        &#125;,</div><div class="line">    &#125;)</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> CommentsPageWithData = withData(CommentsPage);</div></pre></td></tr></table></figure>
+<p>现在，我们来为其添加订阅。</p>
+<p>添加一个名为 <code>subscribeToNewComments</code> 的函数，它将使用 <code>subscribeToMore</code> 订阅，并使用 <code>updateQuery</code> 获取的新数据更新查询 store。</p>
+<p>请注意，<code>updateQuery</code> 回调必须返回与初始查询数据相同结构的对象，否则新数据将不会被合并。这里的新注释被推入 <code>entry</code> 的 <code>comments</code> 列表中：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> COMMENTS_SUBSCRIPTION = gql<span class="string">`</span></div><div class="line">    subscription onCommentAdded($repoFullName: String!)&#123;</div><div class="line">      commentAdded(repoFullName: $repoFullName)&#123;</div><div class="line">        id</div><div class="line">        content</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">`;</div><div class="line"></div><div class="line"><span class="keyword">const</span> withData = graphql(COMMENT_QUERY, &#123;</div><div class="line">    <span class="attr">name</span>: <span class="string">'comments'</span>,</div><div class="line">    <span class="attr">options</span>: <span class="function">(<span class="params">&#123; params &#125;</span>) =&gt;</span> (&#123;</div><div class="line">        <span class="attr">variables</span>: &#123;</div><div class="line">            <span class="attr">repoName</span>: <span class="string">`<span class="subst">$&#123;params.org&#125;</span>/<span class="subst">$&#123;params.repoName&#125;</span>`</span></div><div class="line">        &#125;,</div><div class="line">    &#125;),</div><div class="line">    <span class="attr">props</span>: <span class="function"><span class="params">props</span> =&gt;</span> &#123;</div><div class="line">        <span class="keyword">return</span> &#123;</div><div class="line">            <span class="attr">subscribeToNewComments</span>: <span class="function"><span class="params">params</span> =&gt;</span> &#123;</div><div class="line">                <span class="keyword">return</span> props.comments.subscribeToMore(&#123;</div><div class="line">                    <span class="attr">document</span>: COMMENTS_SUBSCRIPTION,</div><div class="line">                    <span class="attr">variables</span>: &#123;</div><div class="line">                        <span class="attr">repoName</span>: params.repoFullName,</div><div class="line">                    &#125;,</div><div class="line">                    <span class="attr">updateQuery</span>: <span class="function">(<span class="params">prev, &#123;subscriptionData&#125;</span>) =&gt;</span> &#123;</div><div class="line">                        <span class="keyword">if</span> (!subscriptionData.data) &#123;</div><div class="line">                            <span class="keyword">return</span> prev;</div><div class="line">                        &#125;</div><div class="line"></div><div class="line">                        <span class="keyword">const</span> newFeedItem = subscriptionData.data.commentAdded;</div><div class="line"></div><div class="line">                        <span class="keyword">return</span> <span class="built_in">Object</span>.assign(&#123;&#125;, prev, &#123;</div><div class="line">                            <span class="attr">entry</span>: &#123;</div><div class="line">                                <span class="attr">comments</span>: [newFeedItem, ...prev.entry.comments]</div><div class="line">                            &#125;</div><div class="line">                        &#125;);</div><div class="line">                    &#125;</div><div class="line">                &#125;);</div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line">    &#125;,</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>通过使用订阅变量调用 <code>subscribeToNewComments</code> 函数来启动实际订阅：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">CommentsPage</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">    <span class="keyword">static</span> propTypes = &#123;</div><div class="line">        <span class="attr">repoFullName</span>: PropTypes.string.isRequired,</div><div class="line">        <span class="attr">subscribeToNewComments</span>: PropTypes.func.isRequired,</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    componentWillMount() &#123;</div><div class="line">        <span class="keyword">this</span>.props.subscribeToNewComments(&#123;</div><div class="line">            <span class="attr">repoFullName</span>: <span class="keyword">this</span>.props.repoFullName,</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="authentication">通过 WebSocket 认证</h2>
+
+<p>在许多情况下，必须先对客户端进行认证，然后才能接收订阅结果。为此，<code>SubscriptionClient</code> 构造函数接受一个 <code>connectionParams</code> 字段，该字段传递一个自定义对象，在设置任何订阅之前可以被服务端用来验证连接。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;SubscriptionClient&#125; <span class="keyword">from</span> <span class="string">'subscriptions-transport-ws'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> wsClient = <span class="keyword">new</span> SubscriptionClient(<span class="string">`ws://localhost:5000/`</span>, &#123;</div><div class="line">    <span class="attr">reconnect</span>: <span class="literal">true</span>,</div><div class="line">    <span class="attr">connectionParams</span>: &#123;</div><div class="line">        <span class="attr">authToken</span>: user.authToken,</div><div class="line">    &#125;,</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<blockquote>
+<p>除了身份认证，您还可以使用 <code>connectionParams</code> 设置您可能需要的其他配置选项，并使用 <a href="/tools/graphql-subscriptions/index.html">SubscriptionsServer</a> 在服务端检查其有效性。</p>
+</blockquote>
+
+    </div>
+  </div>
+
+  <div class="pagination">
+    <div class="content-wrapper">
+      
+      
+        <a class="link primary prev"
+          href="mutations.html">
+          <span class="icon-arrow-left-alt"></span>
+          <span class="subtitle-pagination">Previous</span>
+          突变
+        </a>
+      
+      
+        <a class="link primary next"
+          href="receiving-updates.html">
+          <span class="subtitle-pagination">Next</span>
+          同步服务端数据
+          <span class="icon-arrow-right-alt"></span>
+        </a>
+      
+    </div>
+  </div>
+
+  <div class="github">
+    <a class="link tertiary " href="https://github.com/apollographqlcn/react-docs-cn/tree/master/source/subscriptions.md" target="_blank">
+      <span class="icon-github"></span>Edit on GitHub</a>
+  </div>
+
+  
+</div>
+
+    <script src="/react-docs-cn/script/smooth-scroll.min.js"></script>
+    <script src="/react-docs-cn/script/main.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+    <script>
+      // nectar ninja
+      (function(){
+        var handle = '@meteorjs';
+        var a = document.createElement('script');
+        var m = document.getElementsByTagName('script')[0];
+        a.async = 1;
+        a.src = 'https://nectar.ninja/api/v1/' + handle.slice(1);
+        m.parentNode.insertBefore(a, m);
+      })();
+
+     
+
+      
+
+      
+
+      // search box
+      
+
+      
+    </script>
+  </body>
+</html>
