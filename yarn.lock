@@ -69,6 +69,10 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "http://r.cnpmjs.org/amdefine/download/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
+ansi-regex@^0.2.0, ansi-regex@^0.2.1:
+  version "0.2.1"
+  resolved "http://r.cnpmjs.org/ansi-regex/download/ansi-regex-0.2.1.tgz#0d8e946967a3d8143f93e24e298525fc1b2235f9"
+
 ansi-regex@^2.0.0:
   version "2.1.1"
   resolved "http://r.cnpmjs.org/ansi-regex/download/ansi-regex-2.1.1.tgz#c3b33ab5ee360d86e0e628f0468ae7ef27d654df"
@@ -76,6 +80,10 @@ ansi-regex@^2.0.0:
 ansi-regex@^3.0.0:
   version "3.0.0"
   resolved "http://r.cnpmjs.org/ansi-regex/download/ansi-regex-3.0.0.tgz#ed0317c322064f79466c02966bddb605ab37d998"
+
+ansi-styles@^1.1.0:
+  version "1.1.0"
+  resolved "http://r.cnpmjs.org/ansi-styles/download/ansi-styles-1.1.0.tgz#eaecbf66cd706882760b2f4691582b8f55d7a7de"
 
 ansi-styles@^2.2.1:
   version "2.2.1"
@@ -222,7 +230,11 @@ block-stream@*:
   dependencies:
     inherits "~2.0.0"
 
-bluebird@^3.0.6, bluebird@^3.2.2, bluebird@^3.4.0, bluebird@^3.5.0:
+bluebird@^2.6.2:
+  version "2.11.0"
+  resolved "http://r.cnpmjs.org/bluebird/download/bluebird-2.11.0.tgz#534b9033c022c9579c56ba3b3e5a5caafbb650e1"
+
+bluebird@^3.0.6, bluebird@^3.2.2, bluebird@^3.4.0:
   version "3.5.0"
   resolved "http://r.cnpmjs.org/bluebird/download/bluebird-3.5.0.tgz#791420d7f551eea2897453a8a77653f96606d67c"
 
@@ -301,6 +313,16 @@ center-align@^0.1.1:
   dependencies:
     align-text "^0.1.3"
     lazy-cache "^1.0.3"
+
+chalk@^0.5.1:
+  version "0.5.1"
+  resolved "http://r.cnpmjs.org/chalk/download/chalk-0.5.1.tgz#663b3a648b68b55d04690d49167aa837858f2174"
+  dependencies:
+    ansi-styles "^1.1.0"
+    escape-string-regexp "^1.0.0"
+    has-ansi "^0.1.0"
+    strip-ansi "^0.3.0"
+    supports-color "^0.2.0"
 
 chalk@^1.1.1, chalk@^1.1.3:
   version "1.1.3"
@@ -622,6 +644,10 @@ end-stream@~0.1.0:
   dependencies:
     write-stream "~0.4.3"
 
+ent@^2.2.0:
+  version "2.2.0"
+  resolved "http://r.cnpmjs.org/ent/download/ent-2.2.0.tgz#e964219325a21d05f44466a2f686ed6ce5f5dd1d"
+
 entities@1.0:
   version "1.0.0"
   resolved "http://r.cnpmjs.org/entities/download/entities-1.0.0.tgz#b2987aa3821347fcde642b24fdfc9e4fb712bf26"
@@ -668,7 +694,7 @@ escape-html@~1.0.3:
   version "1.0.3"
   resolved "http://r.cnpmjs.org/escape-html/download/escape-html-1.0.3.tgz#0258eae4d3d0c0974de1c169188ef0051d1d1988"
 
-escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.5:
+escape-string-regexp@^1.0.0, escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.5:
   version "1.0.5"
   resolved "http://r.cnpmjs.org/escape-string-regexp/download/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
 
@@ -989,6 +1015,12 @@ har-validator@~4.2.1:
     ajv "^4.9.1"
     har-schema "^1.0.5"
 
+has-ansi@^0.1.0:
+  version "0.1.0"
+  resolved "http://r.cnpmjs.org/has-ansi/download/has-ansi-0.1.0.tgz#84f265aae8c0e6a88a12d7022894b7568894c62e"
+  dependencies:
+    ansi-regex "^0.2.0"
+
 has-ansi@^2.0.0:
   version "2.0.0"
   resolved "http://r.cnpmjs.org/has-ansi/download/has-ansi-2.0.0.tgz#34f5049ce1ecdf2b0649af3ef24e45ed35416d91"
@@ -1024,14 +1056,13 @@ hexo-cli@^1.0.2:
     tildify "^1.2.0"
 
 hexo-deployer-git@^3.3.0:
-  version "0.3.0"
-  resolved "http://r.cnpmjs.org/hexo-deployer-git/download/hexo-deployer-git-0.3.0.tgz#ae14f98d5568b19c9b45fd4d32338ac708951dca"
+  version "0.0.2"
+  resolved "http://r.cnpmjs.org/hexo-deployer-git/download/hexo-deployer-git-0.0.2.tgz#55f91e3a1a7196689e8544cbf870b6edf81259d2"
   dependencies:
-    bluebird "^3.5.0"
-    chalk "^1.1.3"
-    hexo-fs "^0.1.6"
-    hexo-util "^0.6.0"
-    moment "^2.18.0"
+    chalk "^0.5.1"
+    hexo-fs "^0.1.0"
+    hexo-util "^0.1.0"
+    moment "^2.8.4"
     swig "^1.4.2"
 
 hexo-front-matter@^0.2.2:
@@ -1040,7 +1071,7 @@ hexo-front-matter@^0.2.2:
   dependencies:
     js-yaml "^3.6.1"
 
-hexo-fs@^0.1.5, hexo-fs@^0.1.6:
+hexo-fs@^0.1.0:
   version "0.1.6"
   resolved "http://r.cnpmjs.org/hexo-fs/download/hexo-fs-0.1.6.tgz#f980ccc3bc79d0fb92eddbd887bc20a56500d03f"
   dependencies:
@@ -1150,6 +1181,14 @@ hexo-server@^0.2.0:
     opn "^4.0.0"
     serve-static "^1.10.0"
 
+hexo-util@^0.1.0:
+  version "0.1.7"
+  resolved "http://r.cnpmjs.org/hexo-util/download/hexo-util-0.1.7.tgz#fdc84e1bf21b19c4c8695424585aa9f13ecd6353"
+  dependencies:
+    bluebird "^2.6.2"
+    ent "^2.2.0"
+    highlight.js "^8.6.0"
+
 hexo-util@^0.6.0:
   version "0.6.0"
   resolved "http://r.cnpmjs.org/hexo-util/download/hexo-util-0.6.0.tgz#b5719cc2d44d9d45522dddcf96143919824b7803"
@@ -1161,9 +1200,9 @@ hexo-util@^0.6.0:
     html-entities "^1.2.0"
     striptags "^2.1.1"
 
-hexo@3.3.5:
-  version "3.3.5"
-  resolved "http://r.cnpmjs.org/hexo/download/hexo-3.3.5.tgz#1cb245f8dde6834c817d8cee233941958cd73fec"
+hexo@3.3.8:
+  version "3.3.8"
+  resolved "http://r.cnpmjs.org/hexo/download/hexo-3.3.8.tgz#c25dcc7a926bedab64ae7e0c3c4c227eb741dc0e"
   dependencies:
     abbrev "^1.0.7"
     archy "^1.0.0"
@@ -1173,7 +1212,7 @@ hexo@3.3.5:
     deep-assign "^2.0.0"
     hexo-cli "^1.0.2"
     hexo-front-matter "^0.2.2"
-    hexo-fs "^0.1.5"
+    hexo-fs "^0.2.0"
     hexo-i18n "^0.2.1"
     hexo-log "^0.1.2"
     hexo-util "^0.6.0"
@@ -1191,6 +1230,10 @@ hexo@3.3.5:
     tildify "^1.2.0"
     titlecase "^1.1.2"
     warehouse "^2.2.0"
+
+highlight.js@^8.6.0:
+  version "8.9.1"
+  resolved "http://r.cnpmjs.org/highlight.js/download/highlight.js-8.9.1.tgz#b8a9c5493212a9392f0222b649c9611497ebfb88"
 
 highlight.js@^9.4.0:
   version "9.12.0"
@@ -1706,7 +1749,7 @@ moment-timezone@^0.5.4:
   dependencies:
     moment ">= 2.9.0"
 
-"moment@>= 2.9.0", moment@^2.10.6, moment@^2.18.0:
+"moment@>= 2.9.0", moment@^2.10.6, moment@^2.8.4:
   version "2.18.1"
   resolved "http://r.cnpmjs.org/moment/download/moment-2.18.1.tgz#c36193dd3ce1c2eed2adb7c802dbbc77a81b1c0f"
 
@@ -2548,6 +2591,12 @@ stringstream@~0.0.4:
   version "0.0.5"
   resolved "http://r.cnpmjs.org/stringstream/download/stringstream-0.0.5.tgz#4e484cd4de5a0bbbee18e46307710a8a81621878"
 
+strip-ansi@^0.3.0:
+  version "0.3.0"
+  resolved "http://r.cnpmjs.org/strip-ansi/download/strip-ansi-0.3.0.tgz#25f48ea22ca79187f3174a4db8759347bb126220"
+  dependencies:
+    ansi-regex "^0.2.1"
+
 strip-ansi@^3.0.0, strip-ansi@^3.0.1:
   version "3.0.1"
   resolved "http://r.cnpmjs.org/strip-ansi/download/strip-ansi-3.0.1.tgz#6a385fb8853d952d5ff05d0e8aaf94278dc63dcf"
@@ -2581,6 +2630,10 @@ strip-json-comments@~2.0.1:
 striptags@^2.1.1:
   version "2.2.1"
   resolved "http://r.cnpmjs.org/striptags/download/striptags-2.2.1.tgz#4c450b708d41b8bf39cf24c49ff234fc6aabfd32"
+
+supports-color@^0.2.0:
+  version "0.2.0"
+  resolved "http://r.cnpmjs.org/supports-color/download/supports-color-0.2.0.tgz#d92de2694eb3f67323973d7ae3d8b55b4c22190a"
 
 supports-color@^2.0.0:
   version "2.0.0"

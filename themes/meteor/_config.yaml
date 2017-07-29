@@ -8,7 +8,7 @@ favicon: images/favicon.png
 
 nav_links:
   'React':
-    url: http://dev.apollodata.com/react
+    url: https://apollographqlcn.github.io/react-docs-cn/
   'Angular':
     url: http://dev.apollodata.com/angular2
   'iOS':
