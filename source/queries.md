@@ -51,7 +51,7 @@ Profile.propTypes = {
 
 <h2 id="default-result-props" title="The data prop">`data` props的结构</h2>
 
-如上所述，`graphql` 将把查询的结果传递给包装组件的一个名为 `data` 的 props 中，它也将传递父容器的所有 props。
+如上所述，`graphql` 将把查询的结果传递给包裹组件的一个名为 `data` 的 props 中，它也将传递父容器的所有 props。
 
 对于查询，`data` props 的结构如下所示：
 
@@ -110,7 +110,7 @@ const ProfileWithData = graphql(CurrentUserForLayout, {
 
 <h3 id="options-from-props">根据 props 计算</h3>
 
-通常，查询的变量将从包装组件的 `props` 中计算出来。无论在应用程序中何处使用组件，调用者都会传递参数。所以 `options` 可以是将 props 传递给组件的一个功能：
+通常，查询的变量将从包裹组件的 `props` 中计算出来。无论在应用程序中何处使用组件，调用者都会传递参数。所以 `options` 可以是将 props 传递给组件的一个功能：
 
 ```js
 // 调用者可以执行以下操作：
@@ -141,7 +141,7 @@ const ProfileWithData = graphql(CurrentUserForLayout, {
 
 <h2 id="graphql-skip">跳过操作</h2>
 
-`graphql` 容器API是有意设计成完全静态的，所以你不能在运行时动态地改变查询或包装组件，而不是生成一个新的React组件。但是，有时候，您可能需要执行一些条件判断来根据传入的 props 跳过查询。因此，您可以使用 `skip` 选项。
+`graphql` 容器API是有意设计成完全静态的，所以你不能在运行时动态地改变查询或包裹组件，而不是生成一个新的React组件。但是，有时候，您可能需要执行一些条件判断来根据传入的 props 跳过查询。因此，您可以使用 `skip` 选项。
 
 例如，如果您想忽略未通过身份验证的用户的查询，则可以使用此选项：
 
@@ -163,7 +163,7 @@ const ProfileWithData = graphql(CurrentUserForLayout, {
 
 <h2 id="graphql-props">控制子 props</h2>
 
-默认情况下，与查询一起使用的 `graphql` 将为包装组件提供一个 `data` props ，其中包含有关查询状态的各种信息。我们还会看到[突变](mutations.html)在 `mutate` prop 上提供回调。光是使用这些默认的名称就足以编写整个应用程序。
+默认情况下，与查询一起使用的 `graphql` 将为包裹组件提供一个 `data` props ，其中包含有关查询状态的各种信息。我们还会看到[突变](mutations.html)在 `mutate` prop 上提供回调。光是使用这些默认的名称就足以编写整个应用程序。
 
 但是，如果要将您的 UI 组件与 Apollo 分离，并使其在不同的上下文中可复用，您可能需要修改这些默认 props ，并将其包含在自己的自定义对象和函数中。
 

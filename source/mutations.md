@@ -35,7 +35,7 @@ GraphQL 突变在一个查询字符串中代表两件事情：
 
 <h2 id="basics">基本突变</h2>
 
-使用 `graphql` 与突变可以很容易地将操作绑定到您的组件。不同于查询，它提供了一个具有大量元数据和方法的复杂对象，突变只能在一个称为 `mutate` 的属性中为包装组件提供一个简单的功能。
+使用 `graphql` 与突变可以很容易地将操作绑定到您的组件。不同于查询，它提供了一个具有大量元数据和方法的复杂对象，突变只能在一个称为 `mutate` 的属性中为包裹组件提供一个简单的功能。
 
 ```js
 import React, { Component, PropTypes } from 'react';
@@ -66,7 +66,7 @@ NewEntry.propTypes = {
 
 大多数突变都需要的参数形如查询使用的变量，您也可以提供其他选项。 [参见API文档中的完整突变选项集](api-mutations.html＃graphql-mutation-options)
 
-最简单的选择是在包装组件中调用它时直接将选项传递给默认的 `mutate` 属性：
+最简单的选择是在包裹组件中调用它时直接将选项传递给默认的 `mutate` 属性：
 
 ```js
 import React, { Component, PropTypes } from 'react';

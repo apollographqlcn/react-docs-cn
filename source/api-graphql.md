@@ -218,9 +218,9 @@ function MyComponent(props) {
 
 <h3 id="graphql-config-withRef">`config.withRef`</h3>
 
-通过将`config.withRef`设置为true，您可以使用高阶GraphQL组件实例上的 `getWrappedInstance` 方法从高阶GraphQL组件获取包装组件的实例。
+通过将`config.withRef`设置为true，您可以使用高阶GraphQL组件实例上的 `getWrappedInstance` 方法从高阶GraphQL组件获取包裹组件的实例。
 
-当您想要调用函数或访问在包装组件的类实例上定义的属性时，可能需要将其设置为true。
+当您想要调用函数或访问在包裹组件的类实例上定义的属性时，可能需要将其设置为true。
 
 下面你可以看到一个这个行为的例子。
 
