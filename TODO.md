@@ -1,5 +1,8 @@
 Review List
-- [x] index.md (zhenyong)
+- [ ] Introduction (zhenyong)
+- [x] Usage
+- [ ] API Reference WIP
+- [ ] Recipes
 
 同步原仓库：
 - [x] Jul 21, 2017 e0c457d
