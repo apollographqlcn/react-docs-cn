@@ -20,7 +20,7 @@ query getPerson {
 
 Apollo 片段有两种主要用途：
   - 在多个查询，突变或订阅之间共享字段。
-  - 打破您的查询，让您可以将现场访问与其使用的位置进行共同定位。
+  - 打破你的查询，让你可以将现场访问与其使用的位置进行共同定位。
 
 在本文中，我们将概述两者的模式;我们还将使用[`graphql-anywhere`](https://github.com/apollographql/graphql-anywhere)和[`graphql-tag`](https://github.com/apollographql/graphql-tag)中的实用程序旨在帮助我们，特别是第二个问题。
 
@@ -77,11 +77,11 @@ export const COMMENT_QUERY = gql`
 `;
 ```
 
-您可以在GitHunt [这里](https://github.com/apollographql/GitHunt-React/blob/master/ui/routes/CommentsPage.js)查看 `CommentsPage` 的完整源代码。
+你可以在GitHunt [这里](https://github.com/apollographql/GitHunt-React/blob/master/ui/routes/CommentsPage.js)查看 `CommentsPage` 的完整源代码。
 
 <h2 id="colocating-fragments">协调片段</h2>
 
-GraphQL的一个关键优点是响应数据的树状特征，在许多情况下，这些属性反映了您渲染的组件层次结构。这与GraphQL对片段的支持相结合，可以让您将查询分开，使得查询获取的各个字段位于使用该字段的代码旁边。
+GraphQL的一个关键优点是响应数据的树状特征，在许多情况下，这些属性反映了你渲染的组件层次结构。这与GraphQL对片段的支持相结合，可以让你将查询分开，使得查询获取的各个字段位于使用该字段的代码旁边。
 
 虽然这种技术并不总是有意义的（例如，GraphQL架构并不总是由UI要求驱动），但是如果这样做，可以使用Apollo客户端中的一些模式来充分利用它。
 

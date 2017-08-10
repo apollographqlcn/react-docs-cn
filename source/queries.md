@@ -2,9 +2,9 @@
 title: 查询
 ---
 
-本文中，您将学习如何使用 `react-apollo` 把GraphQL查询结果附加到您的 React UI 上。本指南假设您对 GraphQL 本身有一定的了解，您可以在 [graphql.org](http://graphql.org/docs/queries/) 上详细查看 GraphQL 查询有关的内容。
+本文中，你将学习如何使用 `react-apollo` 把GraphQL查询结果附加到你的 React UI 上。本指南假设你对 GraphQL 本身有一定的了解，你可以在 [graphql.org](http://graphql.org/docs/queries/) 上详细查看 GraphQL 查询有关的内容。
 
-我们的核心价值之一就是“它只是 GraphQL”。当使用 `react-apollo` 时，您不需要学习关于查询语法的任何特殊的东西，因为所有内容都是标准的 GraphQL。您可以在 GraphiQL 查询 IDE 中输入的任何内容，也可以将其添加到 `react-apollo` 代码中。
+我们的核心价值之一就是“它只是 GraphQL”。当使用 `react-apollo` 时，你不需要学习关于查询语法的任何特殊的东西，因为所有内容都是标准的 GraphQL。你可以在 GraphiQL 查询 IDE 中输入的任何内容，也可以将其添加到 `react-apollo` 代码中。
 
 <h2 id="basics">基本查询</h2>
 
@@ -47,7 +47,7 @@ Profile.propTypes = {
 };
 ```
 
-随着时间的变化，`data.currentUser` props 将随着客户端获取到的当前用户数据而改变。该信息存储在 Apollo 客户端的全局缓存中，因此如果某些其他查询获取有关当前用户的新信息，则此组件将更新以保持一致。您可以在[关于缓存更新的文章](cache-updates.html)中阅读有关使缓存获取服务器最新数据的技术的相关信息。
+随着时间的变化，`data.currentUser` props 将随着客户端获取到的当前用户数据而改变。该信息存储在 Apollo 客户端的全局缓存中，因此如果某些其他查询获取有关当前用户的新信息，则此组件将更新以保持一致。你可以在[关于缓存更新的文章](cache-updates.html)中阅读有关使缓存获取服务器最新数据的技术的相关信息。
 
 <h2 id="default-result-props" title="The data prop">`data` props的结构</h2>
 
@@ -59,7 +59,7 @@ Profile.propTypes = {
 - `loading`: 如果当前查询还在请求中的状态，包括调用 `refetch` 后，该字段为 `true`，否则为 `false`。
 - `error`: 一个 ApolloError 对象，表示执行查询时可能发生的错误。
 
-还有其他更多的方法，您可以阅读关于 [API 文档中查询](api-queries.html＃graphql-query-data)的部分。例如，对于像这样的查询：
+还有其他更多的方法，你可以阅读关于 [API 文档中查询](api-queries.html＃graphql-query-data)的部分。例如，对于像这样的查询：
 
 ```graphql
 query getUserAndLikes($id: ID!) {
@@ -89,7 +89,7 @@ data: {
 
 <h2 id="graphql-options">变量和选项</h2>
 
-如果要配置查询，可以在 `graphql` 的第二个参数上提供一个包含 `options` 键的对象，您的选项将被传递给 [`ApolloClient.watchQuery`](/core/apollo-client-api.html＃watchQuery)。如果您的查询需要变量，这是传递他们的方法：
+如果要配置查询，可以在 `graphql` 的第二个参数上提供一个包含 `options` 键的对象，你的选项将被传递给 [`ApolloClient.watchQuery`](/core/apollo-client-api.html＃watchQuery)。如果你的查询需要变量，这是传递他们的方法：
 
 ```js
 // 假设我们的个人资料查询需要指定头像大小
@@ -122,7 +122,7 @@ const ProfileWithData = graphql(CurrentUserForLayout, {
 })(Profile);
 ```
 
-默认情况下，`graphql` 将尝试从 `ownProps` 的对象中提取任何所需的变量。所以在上面的例子中，我们可以使用更简单的 `graphql(CurrentUserForLayout)(Profile);`。但是，如果您需要更改变量的名称，计算该值，或者只是希望对变量名进行更明确的定义，那么 `options` 函数就是用来这样做的。
+默认情况下，`graphql` 将尝试从 `ownProps` 的对象中提取任何所需的变量。所以在上面的例子中，我们可以使用更简单的 `graphql(CurrentUserForLayout)(Profile);`。但是，如果你需要更改变量的名称，计算该值，或者只是希望对变量名进行更明确的定义，那么 `options` 函数就是用来这样做的。
 
 <h3 id="other-graphql-options">其他选项</h3>
 
@@ -130,20 +130,20 @@ const ProfileWithData = graphql(CurrentUserForLayout, {
 
 ```js
 const ProfileWithData = graphql(CurrentUserForLayout, {
-  // 查看 watchQuery API 以获取您可以在这里提供的选项
+  // 查看 watchQuery API 以获取你可以在这里提供的选项
   options: { pollInterval: 20000 },
 })(Profile);
 ```
 
-如果您使用函数来计算 props 中的选项，则每当 props 更改时，所有这些 `options` 将自动重新计算。
+如果你使用函数来计算 props 中的选项，则每当 props 更改时，所有这些 `options` 将自动重新计算。
 
 [阅读API文档中的所有查询选项。](api-queries.html#graphql-query-options)
 
 <h2 id="graphql-skip">跳过操作</h2>
 
-`graphql` 容器API是有意设计成完全静态的，所以你不能在运行时动态地改变查询或包裹组件，而不是生成一个新的React组件。但是，有时候，您可能需要执行一些条件判断来根据传入的 props 跳过查询。因此，您可以使用 `skip` 选项。
+`graphql` 容器API是有意设计成完全静态的，所以你不能在运行时动态地改变查询或包裹组件，而不是生成一个新的React组件。但是，有时候，你可能需要执行一些条件判断来根据传入的 props 跳过查询。因此，你可以使用 `skip` 选项。
 
-例如，如果您想忽略未通过身份验证的用户的查询，则可以使用此选项：
+例如，如果你想忽略未通过身份验证的用户的查询，则可以使用此选项：
 
 ```js
 const ProfileWithData = graphql(CurrentUserForLayout, {
@@ -165,7 +165,7 @@ const ProfileWithData = graphql(CurrentUserForLayout, {
 
 默认情况下，与查询一起使用的 `graphql` 将为包裹组件提供一个 `data` props ，其中包含有关查询状态的各种信息。我们还会看到[突变](mutations.html)在 `mutate` prop 上提供回调。光是使用这些默认的名称就足以编写整个应用程序。
 
-但是，如果要将您的 UI 组件与 Apollo 分离，并使其在不同的上下文中可复用，您可能需要修改这些默认 props ，并将其包含在自己的自定义对象和函数中。
+但是，如果要将你的 UI 组件与 Apollo 分离，并使其在不同的上下文中可复用，你可能需要修改这些默认 props ，并将其包含在自己的自定义对象和函数中。
 
 <h3 id="graphql-name">更改 prop 名称</h3>
 
@@ -236,7 +236,7 @@ const ProfileWithData = graphql(CurrentUserForLayout, {
 })(Profile);
 ```
 
-这样的使用方式可以实现您的展示组件(`Profile`)和 Apollo 之间的完美解耦。
+这样的使用方式可以实现你的展示组件(`Profile`)和 Apollo 之间的完美解耦。
 
 <h2 id="full-api">完整API</h2>
 

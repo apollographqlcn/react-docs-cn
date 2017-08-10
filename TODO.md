@@ -1,6 +1,7 @@
 Review List
 - [ ] Introduction (zhenyong)
     + [x] index.md 
+    + [x] initialization.md
 - [x] Usage
 - [ ] API Reference WIP
 - [ ] Recipes

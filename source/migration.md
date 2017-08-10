@@ -35,7 +35,7 @@ updateQuery: (prev, { fetchMoreResult }) => {
 要用 `returnPartialData` 替换运行一个查询的功能，建议运行两个单独的查询：
 
 1. 一个大型查询，一旦加载，就要求在此视图中显示的所有数据。
-2. 只读取您所知道的较大查询的一小部分的小型查询已被缓存。然后可以在加载较大的查询时显示该查询的数据。
+2. 只读取你所知道的较大查询的一小部分的小型查询已被缓存。然后可以在加载较大的查询时显示该查询的数据。
 
 这里有一个例子：
 
@@ -98,8 +98,8 @@ const PreviewSomethingComponentWithData = graphql(previewQuery)(PreviewSomething
 
 <h2 id="reduxRootKey">reduxRootKey</h2>
 
-全局 `reduxRootKey` 选项已被弃用，现已被删除。 在它的位置应该使用 `reduxRootSelector`。 如果您不向阿波罗提供您自己的Redux Store，则不需要设置此选项。 `reduxRootSelector`是可选的。
-如果提供，它必须是一个返回商店的阿波罗部分的功能，如下所示：
+全局 `reduxRootKey` 选项已被弃用，现已被删除。 在它的位置应该使用 `reduxRootSelector`。 如果你不向Appollo提供你自己的Redux Store，则不需要设置此选项。 `reduxRootSelector`是可选的。
+如果提供，它必须是一个返回商店的Appollo部分的功能，如下所示：
 
 ```js
 

@@ -3,7 +3,7 @@ sidebar_title: 综合
 title: "API: 综合"
 ---
 
-API部分是React Apollo中可用的每个功能的完整参考。如果您刚开始使用React Apollo，那么您应该首先从[查询](queries.html)开始阅读“使用”文章，并在需要查找特定方法时回到此API参考。
+API部分是React Apollo中可用的每个功能的完整参考。如果你刚开始使用React Apollo，那么你应该首先从[查询](queries.html)开始阅读“使用”文章，并在需要查找特定方法时回到此API参考。
 
 <h2 id="core">核心</h2>
 
@@ -15,9 +15,9 @@ API部分是React Apollo中可用的每个功能的完整参考。如果您刚�
 import { gql } from 'react-apollo';
 ```
 
-`gql` 模板标签是您在Apollo Client应用程序中定义GraphQL查询的方法。它将GraphQL查询解析成[GraphQL.js AST格式] []，然后可以由Apollo Client方法使用。每当Apollo Client要求一个GraphQL查询时，您将始终将其包装在一个 `gql` 模板标签中。
+`gql` 模板标签是你在Apollo Client应用程序中定义GraphQL查询的方法。它将GraphQL查询解析成[GraphQL.js AST格式] []，然后可以由Apollo Client方法使用。每当Apollo Client要求一个GraphQL查询时，你将始终将其包装在一个 `gql` 模板标签中。
 
-您可以使用模板字符串插值将仅包含片段的GraphQL文档嵌入另一个GraphQL文档。这允许您在完全不同的文件中的查询定义中使用在代码库的一部分中定义的片段。请参阅下面的示例来演示如何运行。
+你可以使用模板字符串插值将仅包含片段的GraphQL文档嵌入另一个GraphQL文档。这允许你在完全不同的文件中的查询定义中使用在代码库的一部分中定义的片段。请参阅下面的示例来演示如何运行。
 
 为了方便，`gql`标签从 `react-apollo` 中的[`graphql-tag`][]包中导出。
 
@@ -58,9 +58,9 @@ const query = gql`
 import { ApolloClient } from 'react-apollo';
 ```
 
-`ApolloClient` 实例是Apollo API的核心。它包含您需要与GraphQL数据交互的所有方法，无论您使用哪种集成，您都将使用该类。
+`ApolloClient` 实例是Apollo API的核心。它包含你需要与GraphQL数据交互的所有方法，无论你使用哪种集成，你都将使用该类。
 
-要了解如何创建自己的 `ApolloClient` 实例，请参阅[初始化文档文章](initialization.html)。然后，您将将此实例传递到根[`<ApolloProvider />'组件](＃ApolloProvider)。
+要了解如何创建自己的 `ApolloClient` 实例，请参阅[初始化文档文章](initialization.html)。然后，你将将此实例传递到根[`<ApolloProvider />'组件](＃ApolloProvider)。
 
 为了方便起见，`ApolloClient` 由 `react-apollo` 从核心的Apollo Client包导出。
 
@@ -104,18 +104,18 @@ React-Apollo包括一个用于将客户机实例提供给React组件树的组件
 import { ApolloProvider } from 'react-apollo';
 ```
 
-使GraphView客户端可以通过`graphql()`函数增强的任何组件。 `<ApolloProvider/>` 组件与[`react-redux` `<Provider/>` component][]相同。它为您使用[`graphql()`](#graphql)函数或[`withApollo`](#withApollo)函数的所有GraphQL组件提供了一个[`ApolloClient`][]实例。您还可以使用 `<ApolloProvider/>` 组件为您的Redux store 提供除了提供GraphQL客户端。
+使GraphView客户端可以通过`graphql()`函数增强的任何组件。 `<ApolloProvider/>` 组件与[`react-redux` `<Provider/>` component][]相同。它为你使用[`graphql()`](#graphql)函数或[`withApollo`](#withApollo)函数的所有GraphQL组件提供了一个[`ApolloClient`][]实例。你还可以使用 `<ApolloProvider/>` 组件为你的Redux store 提供除了提供GraphQL客户端。
 
-如果您不将此组件添加到您的React树的根目录，那么使用Apollo功能增强的组件将无法正常工作。
+如果你不将此组件添加到你的React树的根目录，那么使用Apollo功能增强的组件将无法正常工作。
 
 要了解有关初始化[`ApolloClient`][]的实例的更多信息，请务必阅读[setup and options guide](initialization.html)。
 
 `<ApolloProvider/>`组件需要以下属性：
 
 - `client`：所需的[`ApolloClient`][]实例。这个[`ApolloClient`][]实例将被所有使用GraphQL能力增强的组件使用。
-- `[store]`：这是Redux store的可选实例。如果您选择在这里传入Redux store，那么`<ApolloProvider />`也会像[`react-redux` `<Provider/>` component][]提供您的Redux store。这意味着你只需要使用一个提供者组件而不是两个！
+- `[store]`：这是Redux store的可选实例。如果你选择在这里传入Redux store，那么`<ApolloProvider />`也会像[`react-redux` `<Provider/>` component][]提供你的Redux store。这意味着你只需要使用一个提供者组件而不是两个！
 
-如果要直接访问您的组件中由 `<ApolloProvider/>` 提供的[`ApolloClient`][]实例，那么请确保看看[`withApollo()`](#withApollo)增强器函数。
+如果要直接访问你的组件中由 `<ApolloProvider/>` 提供的[`ApolloClient`][]实例，那么请确保看看[`withApollo()`](#withApollo)增强器函数。
 
 [`react-redux` `<Provider/>` 组件]: https://github.com/reactjs/react-redux/blob/master/docs/api.md#provider-store
 [`ApolloClient`]: ../core/apollo-client-api.html#apollo-client
@@ -137,11 +137,11 @@ ReactDOM.render(
 import { withApollo } from 'react-apollo';
 ```
 
-一个简单的增强器，可以直接访问你的[`ApolloClient`][]实例。如果您想要使用Apollo做自定义逻辑，这很有用。如拨打一次性查询。通过使用要增强的组件调用此函数，`withApollo()`将创建一个新的组件，该组件作为`client`参数传递到[`ApolloClient`][]的实例中。
+一个简单的增强器，可以直接访问你的[`ApolloClient`][]实例。如果你想要使用Apollo做自定义逻辑，这很有用。如拨打一次性查询。通过使用要增强的组件调用此函数，`withApollo()`将创建一个新的组件，该组件作为`client`参数传递到[`ApolloClient`][]的实例中。
 
-如果你想知道什么时候使用`withApollo()`，什么时候使用[`graphql()`](#graphql)，答案是大多数时候你会想使用[`graphql()`](#graphql)。 [`graphql()`](#graphql) 提供了许多使用GraphQL数据所需的高级功能。如果您想要没有任何其他功能的GraphQL客户端，则应该只使用`withApollo()`。
+如果你想知道什么时候使用`withApollo()`，什么时候使用[`graphql()`](#graphql)，答案是大多数时候你会想使用[`graphql()`](#graphql)。 [`graphql()`](#graphql) 提供了许多使用GraphQL数据所需的高级功能。如果你想要没有任何其他功能的GraphQL客户端，则应该只使用`withApollo()`。
 
-如果您的组件树中有一个[`<ApolloProvider/>`](#ApolloProvider)组件高于实际提供客户端，这将只能提供访问您的客户端。
+如果你的组件树中有一个[`<ApolloProvider/>`](#ApolloProvider)组件高于实际提供客户端，这将只能提供访问你的客户端。
 
 [`ApolloClient`]: ../core/apollo-client-api.html#apollo-client
 

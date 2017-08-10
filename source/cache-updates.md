@@ -4,7 +4,7 @@ title: 更新 Store
 
 Apollo 的核心任务中重要的有两个：执行查询和突变，并缓存结果。
 
-得益于 Apollo 的 store 设计，查询或突变的结果能在所有必要的地方更新您的 UI。在大多数情况下，这个过程会被自动执行，而在某些情况下，您需要手动指定客户端执行更新。
+得益于 Apollo 的 store 设计，查询或突变的结果能在所有必要的地方更新你的 UI。在大多数情况下，这个过程会被自动执行，而在某些情况下，你需要手动指定客户端执行更新。
 
 <h2 id="normalization">使用 `dataIdFromObject` 范式化缓存</h2>
 
@@ -13,9 +13,9 @@ Apollo 基于如下两点执行缓存：
 1. GraphQL 查询文档的结构及其响应。
 2. 从服务端返回的对象的标识。
 
-基于对象标识将缓存扁平化称为缓存范式化。您可以在我们的博客文章 ["GraphQL 概念可视化"](https://medium.com/apollo-stack/the-concepts-of-graphql-bc68bd819be3) 中详细阅读我们的缓存模型。
+基于对象标识将缓存扁平化称为缓存范式化。你可以在我们的博客文章 ["GraphQL 概念可视化"](https://medium.com/apollo-stack/the-concepts-of-graphql-bc68bd819be3) 中详细阅读我们的缓存模型。
 
-默认情况下，Apollo 基于两个属性来标识对象：`__typename` 和一个 ID 字段，可以是 `id` 或 `_id`。客户端会自动将 `__typename` 字段添加到查询中，因此您必须确保获取 `id` 字段（如果有的话）。
+默认情况下，Apollo 基于两个属性来标识对象：`__typename` 和一个 ID 字段，可以是 `id` 或 `_id`。客户端会自动将 `__typename` 字段添加到查询中，因此你必须确保获取 `id` 字段（如果有的话）。
 
 ```js
 // 该结果...
@@ -29,12 +29,12 @@ Apollo 基于如下两点执行缓存：
 'Person:1234'
 ```
 
-如果要指定 Apollo 对服务端返回的对象如何标识和去重，您还可以指定一个自定义函数，从各个对象中生成 ID，并将其作为 [`ApolloClient` 构造函数](initialization.html＃creation-client)中的 `dataIdFromObject` 值。
+如果要指定 Apollo 对服务端返回的对象如何标识和去重，你还可以指定一个自定义函数，从各个对象中生成 ID，并将其作为 [`ApolloClient` 构造函数](initialization.html＃creation-client)中的 `dataIdFromObject` 值。
 
 ```js
 import { ApolloClient } from 'react-apollo';
 
-// 如果您的数据库具有所有类型对象的唯一 ID，您可以如下提供一个简易的函数
+// 如果你的数据库具有所有类型对象的唯一 ID，你可以如下提供一个简易的函数
 const client = new ApolloClient({
   dataIdFromObject: o => o.id
 });
@@ -77,15 +77,15 @@ mutation {
 }
 ```
 
-如果两个结果的 `id` 字段匹配，那么我们的 UI 中的 `score` 字段将自动更新！尽可能利用此特性能使您的突变结果更新之前查询获取的相应数据。其中一个简单的技巧是使用 [片段](fragments.html) 来共享查询和突变之间的字段。
+如果两个结果的 `id` 字段匹配，那么我们的 UI 中的 `score` 字段将自动更新！尽可能利用此特性能使你的突变结果更新之前查询获取的相应数据。其中一个简单的技巧是使用 [片段](fragments.html) 来共享查询和突变之间的字段。
 
 <h2 id="after-mutations">突变后的更新</h2>
 
-在某些情况下，只需使用 `dataIdFromObject` 即可更新应用 UI。例如，如果要在不重写整个列表的情况下将对象添加到对象列表中，或者如果存在无法指定对象标识符的某些对象，则 Apollo 客户端无法为您更新现有查询。请继续阅读下文以了解您可以使用的其他方法。
+在某些情况下，只需使用 `dataIdFromObject` 即可更新应用 UI。例如，如果要在不重写整个列表的情况下将对象添加到对象列表中，或者如果存在无法指定对象标识符的某些对象，则 Apollo 客户端无法为你更新现有查询。请继续阅读下文以了解你可以使用的其他方法。
 
 <h3 id="refetchQueries">`refetchQueries`</h3>
 
-`refetchQueries` 是更新缓存的最简单方法。使用 `refetchQueries`，您可以指定一个或多个要在突变完成后执行的查询，以便重新获取可能受突变影响的部分 store 的数据：
+`refetchQueries` 是更新缓存的最简单方法。使用 `refetchQueries`，你可以指定一个或多个要在突变完成后执行的查询，以便重新获取可能受突变影响的部分 store 的数据：
 
 ```javascript
 mutate({
@@ -128,7 +128,7 @@ mutate({
 
 <h3 id="directAccess">`update`</h3>
 
-使用 `update` 可以完全控制缓存，从而可以根据您喜欢的任意方式更改数据模型。如果要在查询后更新缓存，那么推荐 `update` 方法。[这里](http://dev.apollodata.com/react/api-mutations.html#graphql-mutation-options-update)能找到完整示意。
+使用 `update` 可以完全控制缓存，从而可以根据你喜欢的任意方式更改数据模型。如果要在查询后更新缓存，那么推荐 `update` 方法。[这里](http://dev.apollodata.com/react/api-mutations.html#graphql-mutation-options-update)能找到完整示意。
 
 ```javascript
 import CommentAppQuery from '../queries/CommentAppQuery';
@@ -172,15 +172,15 @@ const CommentsPageWithMutations = graphql(SUBMIT_COMMENT_MUTATION, {
 
 **注意：我们建议使用更灵活的 `update` API而不是 `updateQueries`。 `updateQueries` API将来可能会被废弃。**
 
-顾名思义，`updateQueries` 可以根据突变的结果来更新你的 UI。再次重申：大多数情况下，只要对象ID与您的商店中已存在的ID相匹配，您的 UI 会根据突变结果自动更新。更多有关如何利用此功能的信息，请参阅上述[`范式化`](#normalization)文档。
+顾名思义，`updateQueries` 可以根据突变的结果来更新你的 UI。再次重申：大多数情况下，只要对象ID与你的商店中已存在的ID相匹配，你的 UI 会根据突变结果自动更新。更多有关如何利用此功能的信息，请参阅上述[`范式化`](#normalization)文档。
 
-但是，如果使用突变删除或添加项目至列表，或无法为相关对象指定对象标识符，则必须使用 `updateQueries` 确保您的 UI 正确反映了更新。
+但是，如果使用突变删除或添加项目至列表，或无法为相关对象指定对象标识符，则必须使用 `updateQueries` 确保你的 UI 正确反映了更新。
 
 我们将以 GitHunt 中的评论页为例。当我们提交一个新的评论时，“提交”按钮将触发一个突变，往服务端的评论“列表”中添加一条新的评论。实际上，服务端并不知道有这样一个列表 - 它只是知道向 SQL 中的 `comments` 表中添加一些数据，所以服务端无法告诉我们确切的结果。最初获取注释列表的查询也无法预知该条新评论，因此 Apollo 无法自动将其添加到列表中。
 
 在这种情况下，我们可以使用 `updateQueries` 来确保更新查询结果，同时更新 Apollo 的范式化缓存，使所有内容保持一致。
 
-如果您熟悉Redux，请将 `updateQueries` 选项作为 reducer，除了直接更新 store 之外，还能更新查询结果的结构，这意味着我们不必关心 store 内部是如何工作的。
+如果你熟悉Redux，请将 `updateQueries` 选项作为 reducer，除了直接更新 store 之外，还能更新查询结果的结构，这意味着我们不必关心 store 内部是如何工作的。
 
 我们通过 `CommentsPage` 组件可以调用的函数 prop 来封装这个突变。代码如下所示：
 
@@ -297,7 +297,7 @@ mutate({
 
 **注意：我们建议使用更灵活的 `update` API 而不是 `reducer`。`reducer` API 将来可能会被废弃。**
 
-`updateQueries` 和 `update` 只能根据突变的结果来更新其他查询，`reducer` 选项可以让您根据任何 Apollo 操作更新查询结果，包括其他查询、突变或订阅的结果。它就像 Redux 的 reducer 处理非规范化的查询结果：
+`updateQueries` 和 `update` 只能根据突变的结果来更新其他查询，`reducer` 选项可以让你根据任何 Apollo 操作更新查询结果，包括其他查询、突变或订阅的结果。它就像 Redux 的 reducer 处理非规范化的查询结果：
 
 ```javascript
 import update from 'immutability-helper';
@@ -329,13 +329,13 @@ const CommentsPageWithData = graphql(CommentsPageQuery, {
 })(CommentsPage);
 ```
 
-您可以看到，`reducer` 选项可用于实现与 `updateQueries` 相同的目的，但它更灵活，适用于任何类型的 Apollo 操作，而不仅仅是突变。例如，可以基于一个查询的结果来更新另一查询的结果。
+你可以看到，`reducer` 选项可用于实现与 `updateQueries` 相同的目的，但它更灵活，适用于任何类型的 Apollo 操作，而不仅仅是突变。例如，可以基于一个查询的结果来更新另一查询的结果。
 
 > 目前还无法在 reducer 中处理 Abollo 内部以外的自定义的 Redux action。有关详细信息，请参阅[这里](https://github.com/apollographql/apollo-client/issues/1013)。
 
 **什么时候应该使用 update vs. reducer vs. updateQueries vs. refetchQueries？**
 
-只要突变结果不足以单独推断出缓存的所有变更，则应该使用`refetchQueries`。如果额外的请求花销和可能的请求冗余并不是您的应用程序所关注的，这在原型设计过程中很常见，则 `refetchQueries` 也是一个非常好的选择。与 `update`，`updateQueries` 和 `reducer` 相比，`refetchQueries` 是最容易编写和维护的。
+只要突变结果不足以单独推断出缓存的所有变更，则应该使用`refetchQueries`。如果额外的请求花销和可能的请求冗余并不是你的应用程序所关注的，这在原型设计过程中很常见，则 `refetchQueries` 也是一个非常好的选择。与 `update`，`updateQueries` 和 `reducer` 相比，`refetchQueries` 是最容易编写和维护的。
 
 `updateQueries`，`reducer` 和 `update` 都提供相似的功能，它们依次被引入，每个都试图解决前一个存在的缺陷。虽然目前这三个 API 都可以使用，但我们强烈建议尽可能使用 `update`，因为将来可能会弃用其他两个 API（`updateQueries` 和 `reducer`）。我们推崇 `update`，是因为它的 API 是这三个中最强大和最容易理解的。我们考虑弃用 `reducer` 和 `updateQueries` 的原因是它们都依赖于客户端的内部状态，这使得它们在不借助外部方法的情况下，比 `update` 更难理解和维护。
 
@@ -403,13 +403,13 @@ return fetchMore({
 
 这里，`fetchMore` 查询与与该组件相关的查询相同。我们的 `updateQuery` 会返回新的 Feed 项，并将它们附加到我们之前请求的 Feed 项中。如此一来，UI 将会更新，Feed 将包含下一页展示的项！
 
-尽管 `fetchMore` 通常用于分页，但还有许多其他适用的情况。例如，假设您有一个项目列表（例如，协作待办事项列表），并且有办法获取一定时间间隔后更新的项目。那么，您不必重新获取整个待办事项列表即可获取更新：您可以合并 `fetchMore` 中新增的项，只要您的 `updateQuery` 函数正确地合并了新结果即可。
+尽管 `fetchMore` 通常用于分页，但还有许多其他适用的情况。例如，假设你有一个项目列表（例如，协作待办事项列表），并且有办法获取一定时间间隔后更新的项目。那么，你不必重新获取整个待办事项列表即可获取更新：你可以合并 `fetchMore` 中新增的项，只要你的 `updateQuery` 函数正确地合并了新结果即可。
 
 <h3 id="connection-directive">`@connection` 指令</h3>
 
 默认情况下，`fetchMore` 的结果将根据执行的初始查询及其参数存储在缓存中。正因如此，如果不知道初始查询的变量，则很难知道其在缓存中的位置，从而运行命令式更新，这通常发生在查询的执行与 store 更新不在同一处的情况下。
 
-为了使查询结果具有可靠的缓存位置，Apollo 客户端在1.6版本中引入了 `@connection` 指令，可用于为结果指定一个自定义存储键。要使用 `@connection` 指令，只需将该指令添加到您想要自定义存储键的查询语句中，并提供参数 `key` 来指定存储键。除了 `key` 参数之外，您还可以添加可选的过滤器参数，该参数接收一个查询参数名称数组，以包含在生成的自定义存储键中。
+为了使查询结果具有可靠的缓存位置，Apollo 客户端在1.6版本中引入了 `@connection` 指令，可用于为结果指定一个自定义存储键。要使用 `@connection` 指令，只需将该指令添加到你想要自定义存储键的查询语句中，并提供参数 `key` 来指定存储键。除了 `key` 参数之外，你还可以添加可选的过滤器参数，该参数接收一个查询参数名称数组，以包含在生成的自定义存储键中。
 
 ```
 const query = gql`query Feed($type: FeedType!, $offset: Int, $limit: Int) {
@@ -445,7 +445,7 @@ client.writeQuery({
 
 <h2 id="cacheRedirect">使用 `customResolvers` 重定向缓存</h2>
 
-在某些情况下，查询会以不同的键请求客户端 store 中已存在的数据。一个非常常见的例子是您的 UI 同时拥有使用相同数据的列表视图和详细视图。列表视图可能会运行以下查询：
+在某些情况下，查询会以不同的键请求客户端 store 中已存在的数据。一个非常常见的例子是你的 UI 同时拥有使用相同数据的列表视图和详细视图。列表视图可能会运行以下查询：
 
 ```
 query ListView {
@@ -488,7 +488,7 @@ const client = new ApolloClient({
 
 > 注意：只要功能相同，也可以使用自定义的 `dataIdFromObject` 方法。
 
-Apollo 客户端将使用自定义解析器的返回值来查找其缓存中的项目。必须使用 `toIdValue` 来表示返回的值，且该值应该能被解析执行为一个 id，而不是一个标量值或一个对象。此示例中的 `Query` 键是您的根查询类型名称。
+Apollo 客户端将使用自定义解析器的返回值来查找其缓存中的项目。必须使用 `toIdValue` 来表示返回的值，且该值应该能被解析执行为一个 id，而不是一个标量值或一个对象。此示例中的 `Query` 键是你的根查询类型名称。
 
 若要弄清你应该在 `__typename` 属性中存放的值是什么，在 GraphiQL 中运行如下查询并获取 `__typename` 字段：
 
@@ -508,7 +508,7 @@ query DetailView {
 }
 ```
 
-返回的值（类型的名称）是您应该放入 `__typename` 属性中的值。
+返回的值（类型的名称）是你应该放入 `__typename` 属性中的值。
 
 亦可返回一个 ID 列表：
 

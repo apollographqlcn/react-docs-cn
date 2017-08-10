@@ -12,11 +12,11 @@ title: "API: 服务端渲染"
 import { getDataFromTree } from 'react-apollo';
 ```
 
-此函数将遍历您的React树，以查找使用 `graphql()` 增强的任何组件。它将采用查询的组件，执行查询，并返回承诺，以便在所有查询已解决时通知您。这个承诺解决了没有价值。您将无法查看找到的查询返回的数据。
+此函数将遍历你的React树，以查找使用 `graphql()` 增强的任何组件。它将采用查询的组件，执行查询，并返回承诺，以便在所有查询已解决时通知你。这个承诺解决了没有价值。你将无法查看找到的查询返回的数据。
 
-当使用[`react-dom/server` 的方法][]像 `renderToString` 或 `renderToStaticMarkup` 渲染时执行`getDataFromTree`后，Apollo缓存将被启动，您的组件将使用缓存中的获取数据进行渲染。您也可以选择使用`react-apollo` [`renderToStringWithData()`](#renderToStringWithData) 方法，该方法将调用此函数，然后调用[`react-dom/server`的 `renderToString`][]。
+当使用[`react-dom/server` 的方法][]像 `renderToString` 或 `renderToStaticMarkup` 渲染时执行`getDataFromTree`后，Apollo缓存将被启动，你的组件将使用缓存中的获取数据进行渲染。你也可以选择使用`react-apollo` [`renderToStringWithData()`](#renderToStringWithData) 方法，该方法将调用此函数，然后调用[`react-dom/server`的 `renderToString`][]。
 
-如果其中一个查询失败，承诺将不会拒绝，直到所有查询都已解决或拒绝。在这一点上，我们将拒绝从 `getDataFromTree` 返回的承诺，其中的错误属性为`error.queryErrors`，它是我们执行的查询中的所有错误的数组。在这一点上，您可能会决定是否渲染树（如果是，错误的组件将处于加载状态），或者渲染错误页面并在客户端上进行完全重新渲染。
+如果其中一个查询失败，承诺将不会拒绝，直到所有查询都已解决或拒绝。在这一点上，我们将拒绝从 `getDataFromTree` 返回的承诺，其中的错误属性为`error.queryErrors`，它是我们执行的查询中的所有错误的数组。在这一点上，你可能会决定是否渲染树（如果是，错误的组件将处于加载状态），或者渲染错误页面并在客户端上进行完全重新渲染。
 
 有关更多信息，请参阅[服务端渲染的技巧](server-side-rendering.html)。
 
