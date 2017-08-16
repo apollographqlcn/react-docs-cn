@@ -201,15 +201,15 @@ export default graphql(gql`query { ... }`)(MyComponent);
 
 <h3 id="graphql-query-data-fetchMore">`data.fetchMore(options)`</h3>
 
-`data.fetchMore` 功能可以让您对查询组件进行分页。要了解有关 `data.fetchMore` 的分页的更多信息，请务必阅读[分页](pagination.html)配方，其中包含有关如何使用React Apollo进行分页的有用插图。
+`data.fetchMore` 功能可以让您对查询组件进行分页。要了解更多有关使用 `data.fetchMore` 分页的信息，请务必阅读[分页](pagination.html)说明，其中包含如何使用 React Apollo 进行分页的有用插图。
 
-`data.fetchMore`返回一旦解决执行查询更多数据的查询已解决的承诺。
+`data.fetchMore` 返回一个 Promise，一旦请求更多数据的查询 resolve，该 Promise 立即 resolve。
 
-`data.fetchMore`函数使用一个`options`对象参数。 `options`参数可能需要以下属性：
+`data.fetchMore` 函数使用一个 `options` 对象作为参数。`options` 参数可能具有以下属性：
 
-- `[query]`：这是使用`gql` GraphQL标签创建的可选GraphQL文档。如果你指定一个`query`，那么当你调用`data.fetchMore`的时候，那个查询将被提取。如果没有指定`query`，那么将使用`graphql()`HOC的查询。
-- `[variables]`：您可能提供的可选变量将与`query`选项或`graphql()`HOC中的查询一起使用（取决于您是否指定了一个`query`）。
-- `updateQuery(previousResult, { fetchMoreResult, queryVariables })`：这是您定义的必需的函数，实际上将更新您的分页列表。第一个参数`previousResult`将是您在`graphql()`函数中定义的查询返回的先前数据。第二个参数是一个具有两个属性`fetchMoreResult`和`queryVariables`的对象。 `fetchMoreResult`是新的fetch返回的数据，它使用`data`和`variables`选项从`data.fetchMore`。 `queryVariables`是获取更多数据时使用的变量。使用这些参数，您应该返回一个与您在 `graphql()` 函数中定义的GraphQL查询相同形状的新数据对象。请参阅下面的示例，并确保阅读具有完整示例的[分页](pagination.html) 配方。
+- `[query]`：这是使用 `gql` GraphQL 标签创建的可选 GraphQL 文档。如果你指定了一个 `query`，那么当你调用 `data.fetchMore` 的时候，该查询将被执行。如果没有指定 `query`，那么将使用 `graphql()` 高阶组件的查询。
+- `[variables]`：作为一个可选变量，将与 `query` 选项或 `graphql()` 高阶组件中的查询一起使用（取决于您是否指定了一个 `query`）。
+- `updateQuery(previousResult, { fetchMoreResult, queryVariables })`：这是由您定义的必要函数，将会实际更新您的分页列表。第一个参数`previousResult` 将会是您在 `graphql()` 函数中定义的查询返回的之前的数据。第二个参数是一个具有两个属性 `fetchMoreResult` 和 `queryVariables` 的对象。`fetchMoreResult` 是新请求返回的数据，它由 `data.fetchMore` 的 `query` 和 `variables` 选项得来。 `queryVariables` 是请求更多数据时使用的变量。通过指定这些参数，您将会得到一个服务端返回的新的数据对象，该对象与您在 `graphql()` 函数中定义的 GraphQL 查询具有相同形式。请参考下面的示例，并确保阅读具有完整示例的[分页](pagination.html) 说明。
 
 **例：**
 
@@ -218,7 +218,7 @@ data.fetchMore({
   updateQuery: (previousResult, { fetchMoreResult, queryVariables }) => {
     return {
       ...previousResult,
-      // 将新的Feed数据添加到旧Feed数据的末尾。
+      // 将新的 Feed 数据添加到旧的 Feed 数据的末尾。
       feed: [...previousResult.feed, ...fetchMoreResult.feed],
     };
   },
@@ -227,18 +227,18 @@ data.fetchMore({
 
 <h3 id="graphql-query-data-subscribeToMore">`data.subscribeToMore(options)`</h3>
 
-此功能将设置订阅，每当服务器发送订阅发布时触发更新。这需要在服务器上设置订阅才能正常工作。查看[订阅指南](http://dev.apollodata.com/react/receiving-updates.html#Subscriptions) 和[subscriptions-transport-ws](https://github.com/apollographql/subscriptions-transport-ws) 和[graphql-subscriptions](https://github.com/apollographql/graphql-subscriptions) 获取此设置的更多信息。
+该函数将设置一个订阅，每当服务器发送订阅发布时将触发更新。这需要在服务器上设置订阅才能正常工作。查看[订阅指南](receiving-updates.html#Subscriptions) ，[subscriptions-transport-ws](https://github.com/apollographql/subscriptions-transport-ws) 和 [graphql-subscriptions](https://github.com/apollographql/graphql-subscriptions) 获取更多相关信息。
 
-该函数返回一个`unsubscribe`函数处理程序，可以在以后取消订阅。
+该函数返回一个 `unsubscribe` 函数处理器，用以在之后取消订阅。
 
-通常的做法是在`componentWillReceiveProps`中包装`subscribeToMore`调用，并在原始查询完成后执行订阅。为确保订阅不会多次创建，您可以将其附加到组件实例。有关详细信息，请参阅示例。
+通常的做法是将 `subscribeToMore` 封装到 `componentWillReceiveProps` 中供组件调用，并在原始查询完成后执行订阅。为确保订阅不会被多次创建，您可以将其附加到组件实例。更多详细信息，请参考示例。
 
-- `[document]`：Document是一个必需的属性，它接受用`graphql-tag`的`gql`模板字符串标签创建的GraphQL订阅。它应该包含一个GraphQL订阅操作，并返回数据。
-- `[variables]`：您可能提供的可选变量将与`document`选项一起使用。
-- `[updateQuery]`：每次服务器发送更新时运行的可选功能。这将修改HOC查询的结果。第一个参数`previousResult`将是您在`graphql()`函数中定义的查询返回的先前数据。第二个参数是一个具有两个属性的对象。 `subscriptionData`是订阅的结果。 `variables`是与订阅查询一起使用的变量对象。使用这些参数，您应该返回一个与您在`graphql()`函数中定义的GraphQL查询相同形状的新数据对象。这与[`fetchMore`](#graphql-query-data-fetchMore)回调类似。或者，您可以使用[reducer](http://dev.apollodata.com/react/cache-updates.html#resultReducers)作为你的`graphql()`函数的[options](http://dev.apollodata.com/react/queries.html#graphql-options)的一部分来更新查询。
+- `[document]`：Document 是一个必需的属性，它接受用 `graphql-tag` 的 `gql` 模板字符串标签创建的 GraphQL 订阅文档。它应该包含一个指定返回数据的 GraphQL 订阅操作。
+- `[variables]`：作为可选变量将与 `document` 选项一起使用。
+- `[updateQuery]`：每次服务器发送更新时运行的可选函数。它将修改高阶组件查询的结果。第一个参数 `previousResult` 将是您在 `graphql()` 函数中定义的查询之前返回的数据。第二个参数是一个具有两个属性的对象。`subscriptionData`是订阅的结果。 `variables` 是与订阅查询一起使用的变量对象。使用这些参数，您应该返回一个与您在 `graphql()` 函数中定义的 GraphQL 查询相同形状的新的数据对象。这与 [`fetchMore`](#graphql-query-data-fetchMore) 回调类似。或者，您可以使用 [reducer](cache-updates.html#resultReducers) 作为你的 `graphql()` 函数的[options](queries.html#graphql-options) 的一部分来更新查询。
 - `[onError]`：一个可选的错误回调。
 
-为了使用订阅结果更新查询的商店，您必须在`graphql()`函数中指定`subscribeToMore` 的 `updateQuery`选项或 `reducer` 选项。
+如果要使用订阅结果更新查询的 store，您必须在 `graphql()` 函数中指定 `subscribeToMore` 的 `updateQuery` 选项或 `reducer` 选项。
 
 **例：**
 
@@ -260,7 +260,7 @@ class SubscriptionComponent extends Component {
       this.unsubscribe = nextProps.data.subscribeToMore({
         document: gql`subscription {...}`,
         updateQuery: (previousResult, { subscriptionData, variables }) => {
-          // 使用subscriptionData执行previousResult的更新
+          // 使用 subscriptionData 执行 previousResult 的更新
           return updatedResult;
         }
       });
