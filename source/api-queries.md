@@ -1,13 +1,13 @@
 ---
 sidebar_title: "graphql: 查询"
-title: "API: 具有查询的graphql容器"
+title: "API: 具备查询功能的 graphql 容器"
 ---
 
-> 本文特别关于使用 `graphql()` 更高阶组件的查询。要查看适用于所有操作的选项，请参阅[一般graphql容器API文档](/react/api-graphql.html)。
+> 本文详细介绍 `graphql()` 高阶组件的查询使用。要查看关于所有操作的选项，请参阅[一般graphql容器API文档](api-graphql.html)。
 
-您传递到 `graphql()` 函数的操作决定了组件的行为方式。如果您将查询传递到`graphql()`函数中，那么您的组件将获取该查询并反应性地侦听商店中查询的更新。
+您传递给 `graphql()` 函数的操作决定了组件的行为方式。如果您将查询传递到 `graphql()` 函数中，那么您的组件将执行该查询并响应监听 store 中查询的更新。
 
-使用`graphql()`函数的查询的示例组件：
+使用 `graphql()` 函数执行查询的示例组件：
 
 ```js
 export default graphql(gql`
@@ -30,11 +30,11 @@ function TodoApp({ data: { todos } }) {
 }
 ```
 
-要更自然地使用 `graphql()` 函数查询查询，请务必阅读[查询文档文章](queries.html)。有关查询的 `graphql()` 函数支持的所有功能的技术概述，请继续。
+ 有关 `graphql()` 函数查询的理论概述，请阅读[查询文档](queries.html)。要了解 `graphql()` 函数支持的所有有关查询的功能，请往下读。
 
 <h2 id="graphql-query-data">`props.data`</h2>
 
-在使用 `graphql()` 时创建的高阶组件会将一个`data`的参数提供给你的组件。像这样：
+使用 `graphql()` 创建的高阶组件会将一个 `data` 参数传给你的组件。像这样：
 
 ```js
 render() {
@@ -42,7 +42,7 @@ render() {
 }
 ```
 
-`data` 属性包含从查询中提取的数据，另外还有一些其他有用的信息和功能来控制GraphQL连接的组件的生命周期。所以例如，如果我们有一个如下所示的查询：
+`data` 属性包含从查询中获取的数据，另外还有一些有用的属性和方法，可以用来控制 GraphQL 连接组件的生命周期。例如，我们有一个如下所示的查询：
 
 ```graphql
 {
@@ -51,20 +51,20 @@ render() {
 }
 ```
 
-你的 `data` 属性会包含以下数据：
+你的 `data` prop 将会包含此数据：
 
 ```js
 render() {
   const { data } = this.props;
 
-  console.log(data.viewer); // <- 您的查询为 `viewer` 返回的数据。
-  console.log(data.todos); // <- 您的查询为 `todos` 返回的数据。
+  console.log(data.viewer); // <- 查询 `viewer` 返回的数据。
+  console.log(data.todos); // <- 查询 `todos` 返回的数据。
 }
 ```
 
-`data` 属性有一些其他有用的属性，可以直接从`data`访问。例如`data.loading`或`data.error`。这些属性如下所述。
+`data` prop 还有一些有用的属性，可以直接从 `data` 对象访问。例如 `data.loading` 或 `data.error`。
 
-确保在渲染之前始终检查您的组件中的 `data.loading` 和 `data.error`。包含应用程序数据的 `data.todos` 等属性可能在您的组件正在执行初始抓取时未定义。检查 `data.loading` 和 `data.error` 可以帮助您避免任何未定义数据的问题。此类检查可能如下所示：
+具体来说，首先要确保在渲染之前始终检查您的组件中的 `data.loading` 和 `data.error` 属性，因为包含应用数据的 `data.todos` 等属性，在您的组件正在执行初始查询时可能尚未定义。检查 `data.loading` 和 `data.error` 可以帮助您避免任何未定义数据的问题。此类检查可能如下所示：
 
 ```js
 render() {
@@ -87,11 +87,11 @@ render() {
 
 <h3 id="graphql-query-data-loading">`data.loading`</h3>
 
-一个布尔值，表示该组件当前是否正在运行查询请求。这意味着使用您的网络接口发送查询请求，我们还没有得到回复。使用此属性渲染加载组件。
+这是一个表示该组件当前是否正在执行查询请求的布尔值。该值为真时，意味着正在使用您的网络接口发送查询请求，并且还没有得到响应。一般使用此属性渲染 loading 组件。
 
-但是，只是因为`data.loading`值为true，这并不意味着你不会有数据。例如，如果你已经有`data.todos`，但是你想从你的API中获取最新的todos`data.loading`可能是真的，但是你仍然会有你之前的请求的todos。
+但是，如果 `data.loading` 值为 true，并不意味着您没有数据。举个例子，如果您已经有 `data.todos` 数据，但是你想从你的 API 中获取最新的 todos，此时，`data.loading` 可能为真，但是你仍然能访问你之前请求的 todos。
 
-您的查询可能存在多种不同的网络状态。如果要查看组件的网络状态更详细，请参阅[`data.networkStatus`](#graphql-query-data-networkStatus)。
+您请求的查询可能存在多种不同的网络状态。如果要更详细地了解组件的网络状态，请参阅 [`data.networkStatus`](#graphql-query-data-networkStatus)。
 
 **例：**
 
@@ -109,7 +109,7 @@ export default graphql(gql`query { ... }`)(MyComponent);
 
 <h3 id="graphql-query-data-error">`data.error`</h3>
 
-如果发生错误，那么该属性将是[`ApolloError`][]的一个实例。如果您不处理此错误，您将在控制台中收到一条警告信息：`"Unhandled (in react-apollo) Error: ..."`。
+如果请求发生错误，那么该属性将被赋值为 [`ApolloError`][] 的一个实例。如果您不处理此错误，您将在控制台中收到一条警告信息：`"Unhandled (in react-apollo) Error: ..."`。
 
 [`ApolloError`]: /core/apollo-client-api.html#ApolloError
 
@@ -129,18 +129,18 @@ export default graphql(gql`query { ... }`)(MyComponent);
 
 <h3 id="graphql-query-data-networkStatus">`data.networkStatus`</h3>
 
-如果要根据网络状态显示不同的加载指示符（或根本没有指示符），则 `data.networkStatus` 非常有用，因为它提供了与[`data.loading`](#graphql-query-data-loading)。 `data.networkStatus`是一个在1到8之间具有不同数字值的枚举。这些数值各自表示不同的网络状态。
+如果要根据网络状态显示不同的加载指示符（或根本没有指示符），则 `data.networkStatus` 非常有用，因为它为组件提供了比 [`data.loading`](#graphql-query-data-loading) 更详细的有关网络状态的信息。`data.networkStatus` 的值类型是一个1至8之间不同数字值的枚举，这些数值各自表示不同的网络状态。
 
-1. `loading`：查询从未在之前运行，请求现在处于待处理状态。即使从高速缓存返回结果，查询仍然具有此网络状态，但是查询也被调度。
-2. `setVariables`：如果查询的变量发生变化，网络请求被触发，则网络状态将为`setVariables`，直到该查询的结果返回。当[`options.variables`](＃graphql-query-options-variables)对其查询进行更改时，React用户会看到这一点。
-3. `fetchMore`：表示在这个查询中调用了`fetchMore`，所创建的网络请求目前正在运行。
-4. `refetch`：这意味着`refetch`在一个查询中被调用，并且refetch请求当前正在运行。
-5. 没用。
-6. `poll`：表示轮询查询当前正在运行。因此，例如，如果您每10秒钟轮询一次查询，那么当轮询请求发送但未解决时，网络状态将每10秒切换到 `poll`。
-7. `ready`：这个查询没有请求正在运行，没有发生错误。一切都好。
-8. `error`：此查询没有请求正在运行，但检测到一个或多个错误。
+1. `loading`：查询运行之后，且请求仍处于待处理状态。即使在高速缓存中命中结果，查询请求仍然具有此网络状态，但是查询已被调度。
+2. `setVariables`：如果查询的变量发生变化，且网络请求被触发，则网络状态为 `setVariables`，直到该查询的结果返回。当 [`options.variables`](＃graphql-query-options-variables) 对查询进行更改时，React 用户会感受到这一点。
+3. `fetchMore`：表示在这个查询中调用了 `fetchMore`，并且所创建的网络请求当前正在运行。
+4. `refetch`：这意味着 `refetch` 在该查询中被调用，并且 refetch 请求当前正在运行。
+5. 未用到。
+6. `poll`：表示当前轮询查询正在运行。因此，假设如果您每10秒钟轮询一次查询，那么当轮询请求发送但未解决时，网络状态将每10秒切换到 `poll`。
+7. `ready`：当前查询没有请求正在运行，且没有发生错误，一切安好。
+8. `error`：当前查询没有请求正在运行，但检测到一个或多个错误。
 
-如果网络状态小于7，则相当于[`data.loading`](#graphql-query-data-loading)为真。实际上，您可以用 `data.networkStatus < 7` 替换所有的`data.loading`检查，尽管看不出有什么区别，但建议您使用`data.loading'。
+如果网络状态小于7，则相当于 [`data.loading`](#graphql-query-data-loading) 为真。实际上，您可以用 `data.networkStatus < 7` 替换所有的 `data.loading` 检查，尽管没有什么区别，但建议您使用 `data.loading`。
 
 **例：**
 
@@ -160,7 +160,7 @@ export default graphql(gql`query { ... }`)(MyComponent);
 
 <h3 id="graphql-query-data-variables">`data.variables`</h3>
 
-Apollo用来从GraphQL端点获取数据的变量。如果要根据用于向服务器发出请求的变量呈现某些信息，此属性将非常有用。
+Apollo 用来从 GraphQL 端点获取数据的变量。如果要根据向服务端发送请求的变量呈现某些信息，此属性将非常有用。
 
 **例：**
 
@@ -179,11 +179,11 @@ export default graphql(gql`query { ... }`)(MyComponent);
 
 <h3 id="graphql-query-data-refetch">`data.refetch(variables)`</h3>
 
-强制您的组件重新获取您在 `graphql()` 函数中定义的查询。当您要重新加载组件中的数据时，此方法很有用，或者在错误后重试一次抓取。
+强制您的组件重新执行您在 `graphql()` 函数中定义的查询。当您要重新加载组件中的数据，或者在错误发生后重试请求时，此方法将会很有用。
 
-`data.refetch` 返回一个承诺，一旦查询执行结束，就会从你的API中获取的新数据解析出来。如果查询失败，承诺将拒绝。
+`data.refetch` 返回一个 promise，一旦查询执行结束，就会将你的 API 中获取的新数据解析出来。如果查询失败，promise 将会 reject。
 
-`data.refetch` 函数接受一个 `variables` 对象参数。 `variables`参数将替换HOC（根据你是否指定了一个`query`）选项来查询你所定义的查询`graphql（）`函数。
+`data.refetch` 函数接收一个 `variables` 对象参数。`variables` 参数将替换查询选项或 `graphql（）` 高阶组件（根据你是否指定了一个 `query`）选项来重新请求您在 `graphql（）` 函数中定义的查询。
 
 **例：**
 
