@@ -2,7 +2,7 @@
 title: 订阅
 ---
 
-除了使用查询获取数据和使用突变修改数据之外，GraphQL 规范将很快制定第三种操作类型，称为 `subscription（订阅）`。您可以[阅读 GitHub 上的 RFC](https://github.com/facebook/graphql/blob/master/rfcs/Subscriptions.md)。虽然规范可能会在最终定稿之前发生细微变化，但您可以现在就使用 Apollo 实现订阅功能。
+除了使用查询获取数据和使用突变修改数据之外，GraphQL 规范将很快制定第三种操作类型，称为 `subscription（订阅）`。你可以[阅读 GitHub 上的 RFC](https://github.com/facebook/graphql/blob/master/rfcs/Subscriptions.md)。虽然规范可能会在最终定稿之前发生细微变化，但你可以现在就使用 Apollo 实现订阅功能。
 
 GraphQL 订阅是将数据从服务端推送到选择从服务端监听实时消息的客户端的一种方法。订阅与查询类似，因为它们都指定一组传递给客户端的字段，而不是立即返回单个答案，每次在服务器上发生特定事件时都会发送结果。
 
@@ -42,20 +42,20 @@ subscription onCommentAdded($repoFullName: String!){
 }
 ```
 
-在上面的例子中，每向 GitHunt 上指定代码仓库添加一条评论，服务端将发送一个新的响应结果。请注意，上述代码仅在 Schema 中定义 GraphQL 订阅。阅读[在客户端上设置订阅](#subscriptions-client)和[设置服务端的 GraphQL 订阅](http://dev.apollodata.com/tools/graphql-subscriptions/index.html)，了解如何为您的应用添加订阅。
+在上面的例子中，每向 GitHunt 上指定代码仓库添加一条评论，服务端将发送一个新的响应结果。请注意，上述代码仅在 Schema 中定义 GraphQL 订阅。阅读[在客户端上设置订阅](#subscriptions-client)和[设置服务端的 GraphQL 订阅](http://dev.apollodata.com/tools/graphql-subscriptions/index.html)，了解如何为你的应用添加订阅。
 
 <h3 id="when-to-use">何时使用订阅</h3>
 
 在大多数情况下，保持客户端更新的最佳方式实际上是使用轮询或手动调用。那什么时候订阅会是更好的选择呢？通常订阅在以下情况下特别有用：
 
 1. 初始状态数据很大，但增量变化集较小。可以使用查询获取初始状态，然后通过订阅进行更新。
-2. 在某些特定的情况下，您比较在意低延迟更新，比如用户期望能在几秒钟内接收新消息的聊天应用。
+2. 在某些特定的情况下，你比较在意低延迟更新，比如用户期望能在几秒钟内接收新消息的聊天应用。
 
 Apollo 或 GraphQL 的未来版本可能包括对实时查询的支持，这将是一种低延迟的替代轮询的方案，但目前而言，GraphQL 中一般的实时查询只支持一些偏实验的设置。
 
 <h2 id="subscriptions-client">客户端设置</h2>
 
-GraphQL 订阅最流行的传输方式是 [`subscriptions-transport-ws`](https://github.com/apollographql/subscriptions-transport-ws)。此包由 Apollo 社区开发维护，但可以与任何客户端或服务端 GraphQL 实现一起使用。在本文中，我们将介绍如何在客户端进行设置，但前提是您需要有一个服务端实现。您可以[阅读关于如何使用JavaScript 服务端订阅](/tools/graphql-subscriptions/setup.html)，或者如果您使用了 GraphQL 后端服务，比如 [Graphcool](https://www.graph.cool/docs/tutorials/worldchat-subscriptions-example-ui0eizishe/) 或 [Scaphold](https://scaphold.io/blog/2016/11/09/build-realtime-apps-with-subs.html)，即可享受开箱即用的订阅。
+GraphQL 订阅最流行的传输方式是 [`subscriptions-transport-ws`](https://github.com/apollographql/subscriptions-transport-ws)。此包由 Apollo 社区开发维护，但可以与任何客户端或服务端 GraphQL 实现一起使用。在本文中，我们将介绍如何在客户端进行设置，但前提是你需要有一个服务端实现。你可以[阅读关于如何使用JavaScript 服务端订阅](/tools/graphql-subscriptions/setup.html)，或者如果你使用了 GraphQL 后端服务，比如 [Graphcool](https://www.graph.cool/docs/tutorials/worldchat-subscriptions-example-ui0eizishe/) 或 [Scaphold](https://scaphold.io/blog/2016/11/09/build-realtime-apps-with-subs.html)，即可享受开箱即用的订阅。
 
 我们来看看如何向 Apollo 客户端添加对这个传输方式的支持。
 
@@ -91,7 +91,7 @@ const networkInterfaceWithSubscriptions = addGraphQLSubscriptions(
   wsClient
 );
 
-// 最后，使用修改的网络接口创建您的 ApolloClient 实例
+// 最后，使用修改的网络接口创建你的 ApolloClient 实例
 const client = new ApolloClient({
   networkInterface: networkInterfaceWithSubscriptions
 });
@@ -101,12 +101,12 @@ const client = new ApolloClient({
 
 <h2 id="subscribe-to-more">subscribeToMore</h2>
 
-使用 GraphQL 订阅，您的客户端将从服务器获取推送提醒，您应该选择最适合您的应用程序的模式：
+使用 GraphQL 订阅，你的客户端将从服务器获取推送提醒，你应该选择最适合你的应用程序的模式：
 
 * 将其用作通知，并在其触发时运行所需的任何逻辑，例如提醒用户或重新获取数据
 * 使用与通知一起发送的数据，并将其直接合并到 store（既有查询会自动通知）
 
-用 `subscribeToMore`，您可以轻松地实现后者。
+用 `subscribeToMore`，你可以轻松地实现后者。
 
 `subscribeToMore` 是一个可用于 `react-apollo` 的每个查询结果的函数。它的工作原理就像 [`fetchMore`](/reactions/cache-updates.html＃fetchMore)，不同之处在于每次订阅结果返回时都会调用更新函数，而不是只调用一次。
 
@@ -223,4 +223,4 @@ const wsClient = new SubscriptionClient(`ws://localhost:5000/`, {
 });
 ```
 
-> 除了身份认证，您还可以使用 `connectionParams` 设置您可能需要的其他配置选项，并使用 [SubscriptionsServer](/tools/graphql-subscriptions/index.html) 在服务端检查其有效性。
+> 除了身份认证，你还可以使用 `connectionParams` 设置你可能需要的其他配置选项，并使用 [SubscriptionsServer](/tools/graphql-subscriptions/index.html) 在服务端检查其有效性。

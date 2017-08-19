@@ -2,13 +2,13 @@
 title: 认证
 ---
 
-除非您正在加载的所有数据都是完全公开的，否则您的应用程序有某种用户，帐户和权限系统。如果不同的用户在应用程序中具有不同的权限，那么您需要一种告诉服务器哪个用户与每个请求相关联的方法。
+除非你正在加载的所有数据都是完全公开的，否则你的应用程序有某种用户，帐户和权限系统。如果不同的用户在应用程序中具有不同的权限，那么你需要一种告诉服务器哪个用户与每个请求相关联的方法。
 
 Apollo Client配有可插拔的[HTTP网络接口](/core/network.html)，其中包含多个验证选项。
 
 ## Cookie
 
-如果您的应用程序是基于浏览器的，并且您正在使用Cookie进行登录和会话管理（后端），则可以轻松地将网络界面与每个请求一起发送。你只需要传递凭据选项。例如`{ credentials: 'same-origin' }`如下所示，如果您的后端服务器是相同的域，或者如果您的后端是不同的域，则`{ credentials: 'include' }`。
+如果你的应用程序是基于浏览器的，并且你正在使用Cookie进行登录和会话管理（后端），则可以轻松地将网络界面与每个请求一起发送。你只需要传递凭据选项。例如`{ credentials: 'same-origin' }`如下所示，如果你的后端服务器是相同的域，或者如果你的后端是不同的域，则`{ credentials: 'include' }`。
 
 ```js
 const networkInterface = createNetworkInterface({
@@ -38,7 +38,7 @@ app.use(cors(corsOptions));
 
 ## Header
 
-在使用HTTP时识别自己的另一种常见方法是沿着授权头发送。 Apollo网络接口具有中间件功能，可让您在发送到服务器之前修改请求。为每个HTTP请求添加一个`authorization`标签是很容易的。在这个例子中，每次发送请求时，我们都会从`localStorage`中拉取登录凭证：
+在使用HTTP时识别自己的另一种常见方法是沿着授权头发送。 Apollo网络接口具有中间件功能，可让你在发送到服务器之前修改请求。为每个HTTP请求添加一个`authorization`标签是很容易的。在这个例子中，每次发送请求时，我们都会从`localStorage`中拉取登录凭证：
 
 ```js
 import { ApolloClient, createNetworkInterface } from 'react-apollo';

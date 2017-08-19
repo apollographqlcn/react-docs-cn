@@ -46,4 +46,4 @@ const FeedEntryWithApollo = withApollo(FeedEntry);
 2. 号召性用语按钮的路线
 3. 应用程序的一个子区域的所有数据，即可在该区域内导航
 
-如果您有其他一些想法，请发送PR到这篇文章，也许添加一些更多的代码片段。预取的一种特殊形式是[服务端 Store 水化](/react/server-side-rendering.html#store-rehydration)，因此您可能还会考虑比首页加载实际需要更多的数据，以使其他数据交互更快。
+如果你有其他一些想法，请发送PR到这篇文章，也许添加一些更多的代码片段。预取的一种特殊形式是[服务端 Store 水化](/react/server-side-rendering.html#store-rehydration)，因此你可能还会考虑比首页加载实际需要更多的数据，以使其他数据交互更快。

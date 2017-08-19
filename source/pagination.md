@@ -2,17 +2,17 @@
 title: 分页
 ---
 
-通常，您将在应用程序中看到一些视图，您需要显示包含太多数据的列表，以便一次性提取或显示。分页是这个问题的最常见的解决方案，Apollo Client具有内置的功能，使其变得非常简单。
+通常，你将在应用程序中看到一些视图，你需要显示包含太多数据的列表，以便一次性提取或显示。分页是这个问题的最常见的解决方案，Apollo Client具有内置的功能，使其变得非常简单。
 
-基本上有两种获取分页数据的方法：编号页面和光标。还有两种显示分页数据的方法：离散页面和无限滚动。要更深入地解释不同之处，以及何时可以使用一个对象，我们建议您阅读我们关于该主题的博文：[了解分页](https://medium.com/apollo-stack/understanding-pagination-rest-graphql-and-relay-b10f835549e7)。
+基本上有两种获取分页数据的方法：编号页面和光标。还有两种显示分页数据的方法：离散页面和无限滚动。要更深入地解释不同之处，以及何时可以使用一个对象，我们建议你阅读我们关于该主题的博文：[了解分页](https://medium.com/apollo-stack/understanding-pagination-rest-graphql-and-relay-b10f835549e7)。
 
 在本文中，我们将介绍使用Apollo实现这两种方法的技术细节。
 
 <h2 id="fetch-more">使用 `fetchMore`</h2>
 
-在Apollo中，最简单的分页方法是使用一个叫做[`fetchMore`](cache-updates.html#fetchMore)的函数，它由`graphql`高阶组件的`data` prop提供，这基本上允许您执行一个新的GraphQL查询并将结果合并到原始结果中。
+在Apollo中，最简单的分页方法是使用一个叫做[`fetchMore`](cache-updates.html#fetchMore)的函数，它由`graphql`高阶组件的`data` prop提供，这基本上允许你执行一个新的GraphQL查询并将结果合并到原始结果中。
 
-您可以指定要用于新查询的查询和变量，以及如何将新查询结果与客户端上的现有数据进行合并。你如何确定将决定你正在实施什么样的分页。
+你可以指定要用于新查询的查询和变量，以及如何将新查询结果与客户端上的现有数据进行合并。你如何确定将决定你正在实施什么样的分页。
 
 <h2 id="numbered-pages">基于偏移量</h2>
 
@@ -57,7 +57,7 @@ const FeedWithData = graphql(FEED_QUERY, {
       currentUser,
       loadMoreEntries() {
         return fetchMore({
-          // 查询： ...（您可以指定一个不同的查询，默认情况下使用FEED_QUERY）
+          // 查询： ...（你可以指定一个不同的查询，默认情况下使用FEED_QUERY）
           variables: {
             // 我们可以弄清楚要使用哪个偏移量，因为它与进给长度相匹配，但是我们也可以使用状态或者先前的变量来计算（参见下面的光标示例）
             offset: feed.length,
@@ -80,7 +80,7 @@ const FeedWithData = graphql(FEED_QUERY, {
 
 你可以看到，`fetchMore` 可以通过`props`函数的`data`参数访问到。所以我们的演示组件可以不知道Apollo，我们使用`props`定义一个简单的 “load more” 函数，名为`loadMoreEntries`，可以由子组件`Feed`调用。这样，如果我们需要改变分页逻辑，我们就不需要改变 `Feed` 组件了。
 
-在上面的例子中，`loadMoreEntries`是一个函数，它调用`fetchMore`，把当前feed的长度作为一个变量。默认情况下，`fetchMore`更多的会使用原来的`query`，所以我们只是传入新的变量。一旦从服务器返回新数据，`updateQuery`函数用于将它与现有数据进行合并，这将导致您的UI组件重新渲染扩展列表。
+在上面的例子中，`loadMoreEntries`是一个函数，它调用`fetchMore`，把当前feed的长度作为一个变量。默认情况下，`fetchMore`更多的会使用原来的`query`，所以我们只是传入新的变量。一旦从服务器返回新数据，`updateQuery`函数用于将它与现有数据进行合并，这将导致你的UI组件重新渲染扩展列表。
 
 以下是从UI组件调用`loadMoreEntries`函数的方式：
 
@@ -158,7 +158,7 @@ const CommentsWithData = graphql(Comment, {
 
 <h2 id="relay-cursors">Relay 式的游标分页</h2>
 
-Relay 作为另一个流行的GraphQL客户端，对分页查询的输入和输出有所了解，所以人们有时会根据 Relay 的需要构建服务器的分页模型。如果您有一个服务器设计为使用[Relay 游标连接](https://facebook.github.io/relay/graphql/connections.htm) 规范，您也可以从Apollo Client 正常调用该服务器。
+Relay 作为另一个流行的GraphQL客户端，对分页查询的输入和输出有所了解，所以人们有时会根据 Relay 的需要构建服务器的分页模型。如果你有一个服务器设计为使用[Relay 游标连接](https://facebook.github.io/relay/graphql/connections.htm) 规范，你也可以从Apollo Client 正常调用该服务器。
 
 使用Relay 式的游标非常类似于基于游标的基本分页。主要区别在于影响游标位置的查询响应的格式。
 

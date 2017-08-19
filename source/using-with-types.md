@@ -3,9 +3,9 @@ title: 在 TypeScript 和 Flow 中使用 Apollo
 sidebar_title: 使用 TypeScript 和 Flow
 ---
 
-随着应用程序规模的增长，您可能会需要引入一个类型系统来提升开发效率。Apollo 同时支持 Flow 和 TypeScript 两种类型定义系统。 `apollo-client` 和 `react-apollo` 都在它们的 npm 包中包含了类型定义，所以在你的项目中引入这些库后，类型定义文件也都安装好了。
+随着应用程序规模的增长，你可能会需要引入一个类型系统来提升开发效率。Apollo 同时支持 Flow 和 TypeScript 两种类型定义系统。 `apollo-client` 和 `react-apollo` 都在它们的 npm 包中包含了类型定义，所以在你的项目中引入这些库后，类型定义文件也都安装好了。
 
-本篇文档假设您已经在项目中配置好了 Flow 或 TypeScript，如果没有的话请查看 [Flow](https://flow.org/en/docs/install/) 或 [TypeScript](https://github.com/Microsoft/TypeScript-React-Conversion-Guide#typescript-react-conversion-guide) 的配置文档。
+本篇文档假设你已经在项目中配置好了 Flow 或 TypeScript，如果没有的话请查看 [Flow](https://flow.org/en/docs/install/) 或 [TypeScript](https://github.com/Microsoft/TypeScript-React-Conversion-Guide#typescript-react-conversion-guide) 的配置文档。
 
 <h2 id="operation-result">操作结果</h2>
 
@@ -235,7 +235,7 @@ export default () =>
 
 <h2 id="props">props</h2>
 
-React 与 Apollo 结合的应用最强大的功能之一，便是 `props` 允许您将操作中的结果数据重新组装成包裹组件所需模型的新的 props。 GraphQL 在允许您从服务端请求您想要的数据方面非常棒，然而客户端仍然需要根据这些结果调整数据模型或进行计算。请求的返回值甚至可以根据操作的状态（即加载中，错误，接收的数据）而有所不同，因此在类型声明中标识这些可能的值非常重要，以确保我们的组件不会有运行时错误。
+React 与 Apollo 结合的应用最强大的功能之一，便是 `props` 允许你将操作中的结果数据重新组装成包裹组件所需模型的新的 props。 GraphQL 在允许你从服务端请求你想要的数据方面非常棒，然而客户端仍然需要根据这些结果调整数据模型或进行计算。请求的返回值甚至可以根据操作的状态（即加载中，错误，接收的数据）而有所不同，因此在类型声明中标识这些可能的值非常重要，以确保我们的组件不会有运行时错误。
 
 `react-apollo` 中的 `graphql` 包裹器支持手动声明结果 props 的模型。在 Flow 中像这样：
 
