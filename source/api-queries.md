@@ -1,6 +1,6 @@
 ---
 sidebar_title: "graphql: 查询"
-title: "API: 具备查询功能的 graphql 容器"
+title: "API: 带查询的 graphql 容器"
 ---
 
 > 本文详细介绍 `graphql()` 高阶组件的查询使用。要查看关于所有操作的选项，请参阅[一般graphql容器API文档](api-graphql.html)。
@@ -275,22 +275,22 @@ class SubscriptionComponent extends Component {
 
 <h3 id="graphql-query-data-startPolling">`data.startPolling(interval)`</h3>
 
-此函数将设置间隔，并在每次间隔时间间隔发送提取请求。该函数只有一个整数参数，允许您配置希望以毫秒为单位执行查询的频率。换句话说，`interval` 参数表示轮询之间的毫秒数。
+该函数将设置一个时间间隔，每隔一段固定时间便发送请求。该函数只有一个整数参数，允许您配置以毫秒为单位执行查询的频率。换句话说，`interval` 参数表示轮询之间的毫秒数。
 
-轮询是将UI中的数据保存在新鲜空间中的好方法。通过每5000毫秒（例如5秒钟）重新获取数据，您可以有效地模拟实时数据，而无需建立实时后端。
+轮询是将UI中的数据保持更新的好方法。通过每5000毫秒（例如5秒钟）重新获取数据，您可以有效地模拟实时数据，而无需建立实时后端。
 
-如果您的查询已经在轮询时调用`data.startPolling`，那么当前的轮询过程将被取消，并且以指定的时间间隔开始一个新进程。
+当查询已经在执行轮询时，如果你调用 `data.startPolling`，那么当前的轮询操作将被取消，并且以指定的时间间隔开始一个新的轮询操作。
 
-您也可以使用[`options.pollInterval`](#graphql-config-options-pollInterval)在您的组件挂载后立即开始轮询。如果您不需要任意地启动和停止轮询，建议您使用[`options.pollInterval`](#graphql-config-options-pollInterval)。
+您也可以使用 [`options.pollInterval`](#graphql-config-options-pollInterval)，在您的组件挂载后立即开始轮询。如果您不需要任意地启动和停止轮询，建议您使用 [`options.pollInterval`](#graphql-config-options-pollInterval)。
 
-如果你将`interval`设置为0，那么这意味着没有轮询，而不是每个JavaScript事件循环勾选执行一个请求。
+如果你将 `interval` 设置为0，那么这意味着没有轮询，而不是每个 JavaScript 事件循环滴答均执行一次请求。
 
 **例：**
 
 ```js
 class MyComponent extends Component {
   componentDidMount() {
-    // 在这种具体情况下，您可能需要使用`options.pollInterval`。
+    // 在这种具体情况下，您可能需要使用 `options.pollInterval`。
     this.props.data.startPolling(1000);
   }
 
@@ -304,7 +304,7 @@ export default graphql(gql`query { ... }`)(MyComponent);
 
 <h3 id="graphql-query-data-stopPolling">`data.stopPolling()`</h3>
 
-通过调用此函数，您将停止任何当前的轮询过程。在您调用`data.startPolling`之前，您的查询将不会再次轮询。
+通过调用此函数，您可以终止任意当前正在执行的轮询操作。在您调用 `data.startPolling` 之前，您的查询将不会再次发起轮询。
 
 **例：**
 
@@ -333,17 +333,17 @@ export default graphql(gql`query { ... }`)(MyComponent);
 
 <h3 id="graphql-query-data-updateQuery">`data.updateQuery(updaterFn)`</h3>
 
-此功能允许您在任何突变，订阅或提取的上下文之前更新查询的数据。该函数只需要一个单独的参数，这将是另一个函数。参数函数具有以下特征：
+该函数允许您在任何突变，订阅或请求的上下文之外更新查询的数据。该函数只接收另一个函数作为它单独的参数。函数参数具有以下特征：
 
 ```
 (previousResult, { variables }) => nextResult
 ```
 
-第一个参数将是存储中当前存在的查询的数据，并且您将返回具有相同形状的新数据对象。该新数据对象将被写入存储，并且跟踪该数据的任何组件将被反应地更新。
+第一个参数是 store 中当前存在的查询的数据，并且您期望返回具有相同形状的新数据对象。该新数据对象将被写入 store，并且跟踪该数据的任何组件都将会响应更新。
 
-第二个参数是一个具有单个属性`variables`的对象。 `variables` 属性允许你在从store中读取 `previousResult` 时查看正在使用的变量。
+第二个参数是一个具有单个属性 `variables` 的对象。`variables` 属性允许你从 store 中读取 `previousResult` 时查看其使用的变量。
 
-此方法将*不*更新服务器上的任何东西。它只会更新客户端缓存中的数据，如果您重新加载JavaScript环境，则更新将消失。
+此方法*不会*更新服务器上的任何东西。它只会更新客户端缓存中的数据，如果您重新加载 JavaScript 环境，则更新将消失。
 
 **例：**
 
@@ -358,9 +358,9 @@ data.updateQuery((previousResult) => ({
 
 返回用于配置如何获取和更新查询的选项对象的对象或函数。
 
-如果`config.options`是一个函数，那么它将以组件的道具为第一个参数。
+如果 `config.options` 是一个函数，那么它将以组件的 props 为第一个参数。
 
-可用于此对象的选项取决于您作为 `graphql()` 的第一个参数传入的操作类型。以下参考文献将记录您的操作是查询时哪些选项可用。要查看其他可用于不同操作的选项，请参阅[`config.options`](api-graphql.html#graphql-config-options)的通用文档。
+可用于此对象的选项取决于您为 `graphql()` 的第一个参数传入的操作类型。以下参考文档将记录您的操作是查询时哪些选项可用。要查看其他用于不同操作的选项，请参阅 [`config.options`](api-graphql.html#graphql-config-options) 的通用文档。
 
 **例：**
 
@@ -382,7 +382,9 @@ export default graphql(gql`{ ... }`, {
 
 <h3 id="graphql-config-options-variables">`options.variables`</h3>
 
-执行查询操作时将使用的变量。这些变量应与查询定义接受的变量相对应。如果你定义`config.options`作为一个函数，那么你可以从你的道具计算你的变量。
+The variables that will be used when executing the query operation. These variables should correspond with the variables that your query definition accepts. If you define config.options as a function then you may compute your variables from your props.
+
+执行查询操作时将使用的变量。这些变量应与查询定义接受的变量相对应。如果你定义 `config.options` 为一个函数，那么你可以从你的 props 计算你的变量。
 
 **例：**
 
@@ -403,18 +405,18 @@ export default graphql(gql`
 
 <h3 id="graphql-config-options-fetchPolicy">`options.fetchPolicy`</h3>
 
-`fetchPolicy` 是一个选项，可让您指定组件如何与Apollo数据缓存进行交互。默认情况下，您的组件将首先尝试从缓存中读取，如果查询的完整数据位于缓存中，则Apollo将从缓存中简单地返回数据。如果您的查询的完整数据在缓存中为*not*，则Apollo将使用您的网络接口执行您的请求。通过更改此选项，您可以更改此行为。
+`fetchPolicy` 是一个选项，可让您指定组件如何与 Apollo 数据缓存进行交互。默认情况下，您的组件将首先尝试从缓存中读取数据，如果查询的完整数据位于缓存中，则 Apollo 将从缓存中直接返回该数据。如果您的查询的完整数据*不*在缓存中，则 Apollo 将使用您的网络接口执行您的请求。通过更改此选项，您可以更改默认行为。
 
-`fetchPolicy`有效值有：
+`fetchPolicy` 有效值有：
 
-- `cache-first`：这是我们始终尝试从缓存中读取数据的默认值。如果完成查询所需的所有数据都在缓存中，那么该数据将被返回。如果缓存结果不可用，Apollo将仅从网络中提取。此提取策略旨在最大限度地减少渲染组件时发送的网络请求数。
-- `cache-and-network`：这个提取策略将让Apollo首先尝试从缓存中读取数据。如果完成查询所需的所有数据都在缓存中，那么该数据将被返回。但是，无论您的缓存中是否存在完整数据，`fetchPolicy`将*始终*执行与网络接口的查询不同于`cache-first`，只有当查询数据不在缓存中时，才执行查询。该提取策略优化用户获得快速响应，同时还要尝试将高速缓存的数据与服务器数据保持一致，但需要额外的网络请求。
-- `network-only`：此提取策略将*永远不会*从缓存中返回初始数据。相反，它将始终使用您的网络接口向服务器发出请求。该提取策略优化了与服务器的数据一致性，但是在可用时立即响应用户的代价。
-- `cache-only`：这个抓取策略将*永远不会*使用你的网络接口执行查询。相反，它将始终尝试从缓存中读取。如果查询的数据不存在于缓存中，则会抛出错误。此提取策略允许您只与本地客户端缓存中的数据进行交互，而不会发生任何网络请求，从而保持组件快速，但意味着您的本地数据可能与服务器上的数据不一致。如果您只对Apollo Client缓存中的数据进行交互感兴趣，那么请务必查看您的[`ApolloClient`][]实例中可用的[`readQuery()`][]和[`readFragment()`][]实例。
+- `cache-first`：作为默认值，在该策略下，我们始终尝试从缓存中读取数据。如果完成查询所需的所有数据都在缓存中，那么该数据将被返回。如果缓存结果不可用，Apollo 将只会从网络中请求。该请求策略旨在最大限度地减少渲染组件时发送的网络请求数。
+- `cache-and-network`：该请求策略将让 Apollo 首先尝试从缓存中读取数据。如果完成查询所需的所有数据都在缓存中，那么该数据将被返回。但是，无论您的缓存中是否存在完整数据，`fetchPolicy` 将*始终*通过网络接口执行查询，不同于 `cache-first`，只有当查询数据不在缓存中时，才执行查询。该请求策略优化使得用户获得快速响应，同时尝试将高速缓存的数据与服务器数据保持一致，但需要额外的网络请求。
+- `network-only`：该请求策略将*永远不会*从缓存中返回初始数据。相反，它将始终使用您的网络接口向服务器发出请求。该请求策略优化是为了与服务器的数据保持一致，但是牺牲了响应在可用时立即返回给用户的及时性。
+- `cache-only`：该请求策略将*永远不会*使用你的网络接口执行查询。相反，它将始终尝试从缓存中读取数据。如果查询的数据不存在于缓存中，则会抛出错误。该请求策略允许您只与本地客户端缓存中的数据进行交互，而不会发生任何网络请求，从而保持组件快速响应，但意味着您的本地数据可能与服务器上的数据不一致。如果您只对 Apollo Client 缓存中的数据进行交互感兴趣，那么请务必查阅您的 [`ApolloClient`][] 实例中可用的 [`readQuery()`][] 和 [`readFragment()`][] 方法。
 
-[`readQuery()`]: ../core/apollo-client-api.html#ApolloClient.readQuery
-[`readFragment()`]: ../core/apollo-client-api.html#ApolloClient.readFragment
-[`ApolloClient`]: ../core/apollo-client-api.html#apollo-client
+[`readQuery()`]: /core/apollo-client-api.html#ApolloClient.readQuery
+[`readFragment()`]: /core/apollo-client-api.html#ApolloClient.readFragment
+[`ApolloClient`]: /core/apollo-client-api.html#apollo-client
 
 **例：**
 
@@ -426,11 +428,11 @@ export default graphql(gql`query { ... }`, {
 
 <h3 id="graphql-config-options-pollInterval">`options.pollInterval`</h3>
 
-您要开始轮询的间隔（以毫秒为单位）。无论何时经过这个毫秒数，您的查询将使用网络接口执行，另一个执行将使用配置的毫秒数进行调度。
+表示您要开始轮询的间隔（以毫秒为单位）。无论何时经过这个毫秒数，您的查询将使用网络接口执行，下一个执行将使用配置的毫秒数进行调度。
 
-当组件挂载时，此选项将立即开始轮询您的查询。如果要动态启动和停止轮询，则可以使用[`data.startPolling`](#graphql-query-data-startPolling)和[`data.stopPolling`](#graphql-query-data-stopPolling)。
+当组件挂载时，此选项将立即开始轮询您的查询。如果要动态启动和停止轮询，则可以使用 [`data.startPolling`](#graphql-query-data-startPolling) 和 [`data.stopPolling`](#graphql-query-data-stopPolling)。
 
-如果将`options.pollInterval`设置为0，那么这意味着每个JavaScript事件循环都不会执行轮询，而不是执行请求。
+如果将 `options.pollInterval` 设置为0，那么这意味着不会执行轮询，每个 JavaScript 事件循环滴答都不会执行请求。
 
 **例：**
 
@@ -442,7 +444,7 @@ export default graphql(gql`query { ... }`, {
 
 <h3 id="graphql-config-options-notifyOnNetworkStatusChange">`options.notifyOnNetworkStatusChange`</h3>
 
-是否更新网络状态或网络错误会触发组件的重新渲染。
+更新网络状态或网络错误是否会触发组件的重新渲染。
 
 默认值为 `false`。
 

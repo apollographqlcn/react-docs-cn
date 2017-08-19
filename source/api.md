@@ -141,7 +141,7 @@ import { withApollo } from 'react-apollo';
 
 如果您想知道什么时候使用 `withApollo()`，什么时候使用 [`graphql()`](#graphql)，答案是大多数时候您将使用 [`graphql()`](#graphql)。 [`graphql()`](#graphql) 提供了许多使用 GraphQL 数据所需的高级功能。如果您想要一个没有任何附加功能的 GraphQL 客户端，则应该使用 `withApollo()`。
 
-如果您的组件树中有一个高于实际提供客户端实例的 [`<ApolloProvider/>`](#ApolloProvider) 组件，它将只能访问该客户端。
+如果您的组件树中有一个层级高于实际提供客户端实例的 [`<ApolloProvider/>`](#ApolloProvider) 组件，它将只能访问该客户端。
 
 [`ApolloClient`]: /core/apollo-client-api.html#apollo-client
 
