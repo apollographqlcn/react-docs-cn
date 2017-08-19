@@ -8,7 +8,7 @@
   "dependencies": {
     "handlebars": "^4.0.5",
     "hexo": "3.3.8",
-    "hexo-deployer-git": "^3.3.0",
+    "hexo-deployer-git": "^0.3.1",
     "hexo-generator-archive": "^0.1.2",
     "hexo-generator-category": "^0.1.2",
     "hexo-generator-index": "^0.2.0",
@@ -21,7 +21,7 @@
     "showdown": "^1.4.2"
   },
   "devDependencies": {
-    "dtrace-provider": "^1.8.3",
+    "dtrace-provider": "^0.8.5",
     "hexo-s3-deploy": "^1.2.1"
   },
   "scripts": {
