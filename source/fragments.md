@@ -2,7 +2,7 @@
 title: 使用片段
 ---
 
-[GraphQL片段](http://graphql.org/learn/queries/#fragments) 是一个共享的查询逻辑片段。
+[GraphQL 片段](http://graphql.org/learn/queries/#fragments) 是一个代码间共享的查询逻辑片段。
 
 ```graphql
 fragment NameParts on Person {
@@ -18,11 +18,11 @@ query getPerson {
 }
 ```
 
-Apollo 片段有两种主要用途：
-  - 在多个查询，突变或订阅之间共享字段。
-  - 打破你的查询，让你可以将现场访问与其使用的位置进行共同定位。
+Apollo 的片段主要有两种用途：
+- 在多个查询，突变或订阅之间共享字段。
+- 打破你的查询，让你可以将现场访问与其使用的位置进行共同定位。
 
-在本文中，我们将概述两者的模式;我们还将使用[`graphql-anywhere`](https://github.com/apollographql/graphql-anywhere)和[`graphql-tag`](https://github.com/apollographql/graphql-tag)中的实用程序旨在帮助我们，特别是第二个问题。
+在本文中，我们将分别概述这两者的模式；我们还将使用 [`graphql-anywhere`](https://github.com/apollographql/graphql-anywhere) 和 [`graphql-tag`](https://github.com/apollographql/graphql-tag) 中的公共方法来提供帮助，特别是在第二种情况下。
 
 <h2 id="reusing-fragments">复用片段</h2>
 
