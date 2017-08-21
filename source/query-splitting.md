@@ -1,19 +1,20 @@
 ---
-title: Query Splitting
+title: 查询分割
 ---
 
-Prefetching is an easy way to make your applications UI feel faster. You can use mouse events to predict the data that could be needed.
-This is powerful and works perfectly on the browser, but can not be applied to a mobile device.
+预取是使应用 UI 体验更快的简单方法。您可以根据鼠标事件预测可能需要的数据。
+这个功能在浏览器上很强大，并且运行完好，但不能应用于移动设备。
 
-One solution for improving the UI experience would be the usage of fragments to preload more data in a query, but loading huge amounts of data (that you probably never show to the user) is expensive.
+改进 UI 体验的一个解决方案是使用片段来预先加载查询中的更多数据，但是加载大量（您可能永远不会向用户展示的）数据是非常昂贵的。
 
-An other way would be the splitting of huge queries into two smaller queries:
-- The first one could load data which is already in the store. This means that it can be displayed instantly.
-- The second query could load data which is not in the store yet and must be fetched from the server first.
+另一种方式是将巨大的查询分解成两个较小的查询：
+- 第一个可以加载已经存在于 store 中的数据。这意味着它可以立即显示。
+- 第二个查询可以加载尚未在 store 中的数据，并且必须立即从服务器中获取数据。
 
-This solution gives you the benefit of not fetching too much data, as well as the possibility to show some part of the views data before the server responds.
+该方案的好处是可以让您不用获取太多数据，并且在服务器响应之前显示部分视图数据。
 
-Lets say you have the following schema:
+假设你有以下 schema：
+
 ```graphql
 type Series {
   id: Int!
@@ -35,11 +36,12 @@ type Query {
 }
 ```
 
-And you have two Views:
-1. Series Overview: List of all Series with their description and cover
-2. Series DetailView: Detail View of a Series with its description, cover and a list of episodes
+并且你有两个视图：
+1. 系列概述：所有系列的列表及其描述和封面
+2. 系列详情：某个系列的详情视图及其描述，封面和剧集列表
 
-The query for the Series Overview would look like the following:
+系列概述的查询可能如下所示：
+
 ```graphql
 query seriesOverviewData {
   series {
@@ -51,7 +53,8 @@ query seriesOverviewData {
 }
 ```
 
-The queries for the Series DetailView would look like this:
+系列详情的查询可能如下所示：
+
 ```graphql
 query seriesDetailData($seriesId: Int!) {
   oneSeries(id: $seriesId) {
@@ -76,14 +79,13 @@ query seriesEpisodes($seriesId: Int!) {
 }
 ```
 
-By adding a [custom resolver](cache-updates.html#cacheRedirect) for the `oneSeries` field (and having dataIdFromObject function which normalizes the cache), the data can be resolved instantly from the store without a server round trip.
+通过为 `oneSeries` 字段添加一个[自定义解析器](cache-updates.html#cacheRedirect)（并且使用 dataIdFromObject 函数范式化缓存），可以从 store 立即解析数据，而无需服务器往返。
 
 ```javascript
 import ApolloClient, { toIdValue } from 'apollo-client'
 
-// ... your NetworkInterface declaration
-// and also VERY important: Your dataIdFromObject declaration
-
+// ... 你的 NetworkInterface 声明
+// 还有非常重要的：你的 dataIdFromObject 声明
 
 const client = new ApolloClient({
   networkInterface,
@@ -96,7 +98,8 @@ const client = new ApolloClient({
 })
 ```
 
-A component for the second view that implements the two queries could look like this:
+实现两个查询的第二个视图的组件可能如下所示：
+
 ```jsx
 import React, { PropTypes, } from 'react'
 import { gql, graphql, compose, } from 'react-apollo'
@@ -178,4 +181,4 @@ export default SeriesDetailView
 
 ```
 
-Unfortunately if the user would now visit the second view without ever visiting the first view this would result in two network requests (since the data for the first query is not in the store yet). By using a [`BatchedNetworkInterface`](/core/apollo-client-api.html#BatchedNetworkInterface) those two queries can be send to the server in one network request.
+不巧的是，如果用户现在先访问第二个视图，而没有访问过第一个视图，这将导致两个网络请求（因为第一个查询的数据不在 store 中）。通过使用 [`BatchedNetworkInterface`](http://dev.apollodata.com/core/apollo-client-api.html#BatchedNetworkInterface)，这两个查询可以合并到同一个网络请求中，然后才发送给服务器。
