@@ -218,7 +218,7 @@ const CommentsWithData = graphql(CommentsQuery, {
 ```
 
 <h2 id="connection-directive">`@connection` 指令</h2>
-当使用分页查询时，累积查询的结果可能难以在 store 中查找，因为传递给查询的参数用于标识默认的 store 键，但通常在执行查询的代码之外无法访问到。这对于命令式的 store 更新是有问题的，因为没有用于更新目标的可靠的 store 键。要引导 Apollo 客户端为分页查询使用可靠的 store 键，您可以使用可选的 `@ connection` 指令为部分查询指定 store 键。例如，如果我们想要提前提供一个可靠的 store 键，我们可以调整我们的查询以使用 `@connection` 指令：
+当使用分页查询时，累积查询的结果可能难以在 store 中查找，因为传递给查询的参数用于标识默认的 store 键，但通常在执行查询的代码之外无法访问到。这对于命令式的 store 更新是有问题的，因为没有用于更新目标的可靠的 store 键。要引导 Apollo 客户端为分页查询使用可靠的 store 键，你可以使用可选的 `@ connection` 指令为部分查询指定 store 键。例如，如果我们想要提前提供一个可靠的 store 键，我们可以调整我们的查询以使用 `@connection` 指令：
 ```
 const FEED_QUERY = gql`
   query Feed($type: FeedType!, $offset: Int, $limit: Int) {
