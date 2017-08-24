@@ -111,7 +111,7 @@ export default graphql(gql`query { ... }`)(MyComponent);
 
 如果请求发生错误，那么该属性将被赋值为 [`ApolloError`][] 的一个实例。如果你不处理此错误，你将在控制台中收到一条警告信息：`"Unhandled (in react-apollo) Error: ..."`。
 
-[`ApolloError`]: /core/apollo-client-api.html#ApolloError
+[`ApolloError`]: http://dev.apollodata.com/core/apollo-client-api.html#ApolloError
 
 **例：**
 
@@ -414,9 +414,9 @@ export default graphql(gql`
 - `network-only`：该请求策略将*永远不会*从缓存中返回初始数据。相反，它将始终使用你的网络接口向服务器发出请求。该请求策略优化是为了与服务器的数据保持一致，但是牺牲了响应在可用时立即返回给用户的及时性。
 - `cache-only`：该请求策略将*永远不会*使用你的网络接口执行查询。相反，它将始终尝试从缓存中读取数据。如果查询的数据不存在于缓存中，则会抛出错误。该请求策略允许你只与本地客户端缓存中的数据进行交互，而不会发生任何网络请求，从而保持组件快速响应，但意味着你的本地数据可能与服务器上的数据不一致。如果你只对 Apollo Client 缓存中的数据进行交互感兴趣，那么请务必查阅你的 [`ApolloClient`][] 实例中可用的 [`readQuery()`][] 和 [`readFragment()`][] 方法。
 
-[`readQuery()`]: /core/apollo-client-api.html#ApolloClient.readQuery
-[`readFragment()`]: /core/apollo-client-api.html#ApolloClient.readFragment
-[`ApolloClient`]: /core/apollo-client-api.html#apollo-client
+[`readQuery()`]: http://dev.apollodata.com/core/apollo-client-api.html#ApolloClient.readQuery
+[`readFragment()`]: http://dev.apollodata.com/core/apollo-client-api.html#ApolloClient.readFragment
+[`ApolloClient`]: http://dev.apollodata.com/core/apollo-client-api.html#apollo-client
 
 **例：**
 

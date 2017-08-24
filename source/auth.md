@@ -4,7 +4,7 @@ title: 认证
 
 除非你正在加载的所有数据都是完全公开的，否则你的应用应该有某种用户，帐户和权限系统。如果不同的用户在应用中具有不同的权限，那么你需要一种让服务器知道每个请求与哪个用户相关联的方法。
 
-Apollo 客户端配有可插拔的 [HTTP 网络接口](/core/network.html)，其中包含多个验证选项。
+Apollo 客户端配有可插拔的 [HTTP 网络接口](http://dev.apollodata.com/core/network.html)，其中包含多个验证选项。
 
 ## Cookie
 

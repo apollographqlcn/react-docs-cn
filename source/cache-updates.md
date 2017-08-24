@@ -42,7 +42,7 @@ const client = new ApolloClient({
 
 这些 ID 允许 Apollo 客户端指定所有查询获取特定对象以更新该部分 store。
 
-如果要获取 dataIdFromObjectFunction（例如使用 [`readFragment` 函数](/core/apollo-client-api.html＃ApolloClient\.readFragment)），可以以`client.dataIdFromObject` 方式访问它。
+如果要获取 dataIdFromObjectFunction（例如使用 [`readFragment` 函数](http://dev.apollodata.com/core/apollo-client-api.html＃ApolloClient\.readFragment)），可以以`client.dataIdFromObject` 方式访问它。
 
 ```js
 const person = {

@@ -89,7 +89,7 @@ data: {
 
 <h2 id="graphql-options">变量和选项</h2>
 
-如果要配置查询，可以在 `graphql` 的第二个参数上提供一个包含 `options` 键的对象，你的选项将被传递给 [`ApolloClient.watchQuery`](/core/apollo-client-api.html＃watchQuery)。如果你的查询需要变量，这是传递他们的方法：
+如果要配置查询，可以在 `graphql` 的第二个参数上提供一个包含 `options` 键的对象，你的选项将被传递给 [`ApolloClient.watchQuery`](http://dev.apollodata.com/core/apollo-client-api.html＃watchQuery)。如果你的查询需要变量，这是传递他们的方法：
 
 ```js
 // 假设我们的个人资料查询需要指定头像大小

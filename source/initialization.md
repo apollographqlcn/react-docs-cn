@@ -18,7 +18,7 @@ npm install react-apollo --save
 
 <h2 id="creation-client">创建客户端</h2>
 
-先创建一个[`ApolloClient`](/core/apollo-client-api.html＃constructor)实例，并将其指向你的 GraphQL 服务器：
+先创建一个[`ApolloClient`](http://dev.apollodata.com/core/apollo-client-api.html＃constructor)实例，并将其指向你的 GraphQL 服务器：
 
 ```js
 import { ApolloClient } from 'react-apollo';
@@ -28,7 +28,7 @@ import { ApolloClient } from 'react-apollo';
 const client = new ApolloClient();
 ```
 
-客户端支持各种[配置](/core/apollo-client-api.html＃构造函数)，特别要注意的是，如果要更改 GraphQL 服务器的 URL，你可以创建一个自定义的[`NetworkInterface](/core/apollo-client-api.html#NetworkInterface)：
+客户端支持各种[配置](http://dev.apollodata.com/core/apollo-client-api.html＃构造函数)，特别要注意的是，如果要更改 GraphQL 服务器的 URL，你可以创建一个自定义的[`NetworkInterface](http://dev.apollodata.com/core/apollo-client-api.html#NetworkInterface)：
 
 ```js
 import { ApolloClient, createNetworkInterface } from 'react-apollo';

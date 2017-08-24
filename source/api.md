@@ -64,7 +64,7 @@ import { ApolloClient } from 'react-apollo';
 
 为了方便起见，`ApolloClient` 由 `react-apollo` 从 Apollo 客户端的核心包导出。
 
-[要查看 `ApolloClient` 类的完整 API 文档，请访问核心文档站点。](/core/apollo-client-api.html#apollo-client)
+[要查看 `ApolloClient` 类的完整 API 文档，请访问核心文档站点。](http://dev.apollodata.com/core/apollo-client-api.html#apollo-client)
 
 **例：**
 
@@ -84,7 +84,7 @@ import { createNetworkInterface } from 'react-apollo';
 
 为了方便起见，`createNetworkInterface()` 由 Apollo 客户端的核心包 `react-apollo` 导出。
 
-[了解更多关于 `createNetworkInterface` 和网络接口的信息，请访问核心文档站点。](/core/network.html)
+[了解更多关于 `createNetworkInterface` 和网络接口的信息，请访问核心文档站点。](http://dev.apollodata.com/core/network.html)
 
 **例：**
 
@@ -118,7 +118,7 @@ import { ApolloProvider } from 'react-apollo';
 如果要直接访问你的组件中由 `<ApolloProvider />` 提供的 [`ApolloClient`][] 实例，那么请务必查看 [`withApollo()`](#withApollo) 增强器函数。
 
 [`react-redux` `<Provider />` 组件]: https://github.com/reactjs/react-redux/blob/master/docs/api.md#provider-store
-[`ApolloClient`]: /core/apollo-client-api.html#apollo-client
+[`ApolloClient`]: http://dev.apollodata.com/core/apollo-client-api.html#apollo-client
 
 **例：**
 
@@ -143,7 +143,7 @@ import { withApollo } from 'react-apollo';
 
 如果你的组件树中有一个层级高于实际提供客户端实例的 [`<ApolloProvider/>`](#ApolloProvider) 组件，它将只能访问该客户端。
 
-[`ApolloClient`]: /core/apollo-client-api.html#apollo-client
+[`ApolloClient`]: http://dev.apollodata.com/core/apollo-client-api.html#apollo-client
 
 **例：**
 

@@ -19,20 +19,20 @@ sidebar_categories:
     - simple-example
     - example-schema
     - migration
-  Usage:
+  使用:
     - queries
     - mutations
     - subscriptions
     - receiving-updates
     - cache-updates
     - using-with-types
-  API Reference:
+  API 参考:
     - api
     - api-graphql
     - api-queries
     - api-mutations
     - api-server
-  Recipes:
+  技巧:
     - auth
     - pagination
     - optimistic-ui

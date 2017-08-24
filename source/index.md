@@ -57,8 +57,8 @@ Apollo 经过专门设计，可以跟目前 React 开发者使用的工具很好
 这个文档网站是特别针对 React 的，但 Apollo 已为每个客户端平台提供了实现：
 
 - JavaScript
-   - [Angular](/angular)
-   - [纯 JS](/core)
+   - [Angular](http://dev.apollodata.com/angular)
+   - [纯 JS](http://dev.apollodata.com/core)
 - 原生移动平台
    - [原生 iOS (Swift)](http://dev.apollodata.com/ios/)
    - [原生 Android (Java)](https://github.com/apollographql/apollo-android)
