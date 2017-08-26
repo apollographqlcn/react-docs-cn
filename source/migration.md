@@ -1,25 +1,32 @@
 ---
 title: 从0.x迁移到1.0
 sidebar_title: 迁移到1.0
-description: 简易指南。
+description: 简易指南
 ---
 
+Here are the main breaking changes between the 0.x and 1.0 versions of Apollo Client.
 以下是Apollo Client的0.x和1.0版本之间的主要突破性变化。
 
 <h2 id="fetchMore">fetchMore</h2>
-
+The structure of fetchMoreResult has been changed. Previously fetchMoreResult used to contain data and loading fields, now fetchMoreResult is what fetchMoreResult.data used to be. This means your updateQueries function has to change as follows for fetchMore:
 `fetchMoreResult`的结构已经改变了。以前`fetchMoreResult`用于包含`data`和`loading`字段，现在`fetchMoreResult`是`fetchMoreResult.data`以前是什么。这意味着你的`updateCheck`函数必须改变如下对于`fetchMore`：
 
 ```js
 updateQuery: (prev, { fetchMoreResult }) => {
   return Object.assign({}, prev, {
-    // feed：[... prev.feed，... fetchMoreResult.data.feed]，//这是以前是
-    feed: [...prev.feed, ...fetchMoreResult.feed], //这是它现在要做的
+    // feed：[... prev.feed，... fetchMoreResult.data.feed]，// 以前的写法
+    feed: [...prev.feed, ...fetchMoreResult.feed], // 现在的写法
   });
 },
 ```
 
 <h2 id="fetchPolicy">fetchPolicy</h2>
+The forceFetch and noFetch query options are no longer available. Instead, they have been replaced with a unified API called fetchPolicy. fetchPolicy accepts the following settings:
+
+{ fetchPolicy: 'cache-first' }: This is the default fetch policy that Apollo Client uses when no fetch policy is specified. First it will try to fulfill the query from the cache. Only if the cache lookup fails will a query be sent to the server.
+{ fetchPolicy: 'cache-only' }: With this option, Apollo Client will try to fulfill the query from the cache only. If not all data is available in the cache, an error will be thrown. This is equivalent to the former noFetch.
+{ fetchPolicy: 'network-only' }: With this option, Apollo Client will bypass the cache and directly send the query to the server. This is equivalent to the former forceFetch.
+{ fetchPolicy: 'cache-and-network' }: With this option, Apollo Client will query the server, but return data from the cache while the server request is pending, and later update the result when the server response has come back.
 
 `forceFetch`和`noFetch`查询选项不再可用。相反，它们已被称为 `fetchPolicy` 的统一API替代。 `fetchPolicy`接受以下设置：
 
@@ -29,6 +36,13 @@ updateQuery: (prev, { fetchMoreResult }) => {
 - `{ fetchPolicy: 'cache-and-network' }`: 使用此选项，Apollo Client将查询服务器，但在服务器请求未决时，从缓存返回数据，并在服务器响应到来后更新结果背部。
 
 <h2 id="returnPartialData">returnPartialData</h2>
+The returnPartialData query option has been removed in Apollo 1.0 because it could be hard to predict what data would be available if a query was run in this mode.
+
+To replace the function of running one query with returnPartialData, it is recommended to run two separate queries:
+
+A large query that asks for all the data you want to display in this view once it’s loaded.
+A small query that fetches only a subset of the larger query that you know is already cached. This query’s data can then be displayed while the larger query is loading.
+Here’s an example:
 
 在 Apollo 1.0 中已经删除了 `returnPartialData` 查询选项，因为如果在此模式下运行查询，可能难以预测哪些数据可用。
 
@@ -81,23 +95,32 @@ const PreviewSomethingComponentWithData = graphql(previewQuery)(PreviewSomething
 ```
 
 <h2 id="resultTransformer">resultTransformer</h2>
+This global option allowed applying a transform to Apollo Client before it returned query and mutation results. Because it was rarely used and complicated the logic inside Apollo Client, it has been removed. The recommended way to transform data is to apply the transform outside of Apollo Client.
+In react-apollo this can be done inside the props option.
 
 此全局选项允许在返回查询和变更结果之前对Apollo Client进行转换。由于Apollo Client内部的逻辑很少使用和复杂，所以它已被删除。推荐的转换数据的方法是将转换应用于Apollo Client外部。
 在 `react-apollo` 中，这可以在 `props` 选项中完成。
 
 <h2 id="queryDeduplication">queryDeduplication</h2>
+Query deduplication is a global option on Apollo Client ensures that if there are multiple identical queries, Apollo Client will only send one to the server. It does this by checking a new query against queries already in flight before sending it.
+
+queryDeduplication is set to true by default. It can be turned off by passing {queryDeduplication: false} to the Apollo Client constructor.
 
 查询重复数据删除是Apollo Client上的全局选项，可确保如果有多个相同的查询，Apollo Client将只向服务器发送一个。它通过在发送之前检查已经在运行中的查询的新查询来实现。
 
 `queryDeduplication` 默认设置为 `true`。通过将`{queryDeduplication：false}`传递给Apollo Client构造函数可以关闭它。
 
 <h2 id="notifyOnNetworkStatusChange">notifyOnNetworkStatusChange</h2>
+The boolean notifyOnNetworkStatusChange query option will trigger a new observable result every time the network status changes.
+Network status indicates if any request is currently in flight for this query, and provides more information about what type of request it is (initial loading, refetch, setVariables, forceFetch). In previous versions, Apollo Client would not trigger a new result on the observable if loading status changed. For more information, refer to the react-apollo documentation.
+
 
 布尔 `notifyOnNetworkStatusChange` 查询选项将在每次网络状态更改时触发新的可观察结果。
 网络状态指示是否有任何请求正在飞行中用于此查询，并提供有关何种类型的请求（初始加载，重新读取，setVariables，forceFetch）的更多信息。在以前的版本中，如果加载状态改变，Apollo Client将不会在可观察的情况下触发新的结果。有关更多信息，请参阅react-apollo文档。
 
 <h2 id="reduxRootKey">reduxRootKey</h2>
-
+The global reduxRootKey option was deprecated and has now been removed. In its place reduxRootSelector should be used. If you are not providing your own Redux store to Apollo, you do not need to set this option. reduxRootSelector is optional.
+If provided, it must be a function which returns the Apollo part of the store like so:
 全局 `reduxRootKey` 选项已被弃用，现已被删除。 在它的位置应该使用 `reduxRootSelector`。 如果你不向Appollo提供你自己的Redux Store，则不需要设置此选项。 `reduxRootSelector`是可选的。
 如果提供，它必须是一个返回商店的Appollo部分的功能，如下所示：
 

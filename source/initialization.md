@@ -24,11 +24,11 @@ npm install react-apollo --save
 import { ApolloClient } from 'react-apollo';
 
 // 默认情况下，该客户端将发送查询同个域名下的
-// `/ graphql` 路径
+// `/graphql` 路径
 const client = new ApolloClient();
 ```
 
-客户端支持各种[配置](http://dev.apollodata.com/core/apollo-client-api.html＃构造函数)，特别要注意的是，如果要更改 GraphQL 服务器的 URL，你可以创建一个自定义的[`NetworkInterface](http://dev.apollodata.com/core/apollo-client-api.html#NetworkInterface)：
+客户端支持各种[配置](http://dev.apollodata.com/core/apollo-client-api.html＃构造函数)，特别要注意的是，如果要更改 GraphQL 服务器的 URL，你可以创建一个自定义的 [`NetworkInterface](http://dev.apollodata.com/core/apollo-client-api.html#NetworkInterface)：
 
 ```js
 import { ApolloClient, createNetworkInterface } from 'react-apollo';

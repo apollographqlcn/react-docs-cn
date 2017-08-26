@@ -1,20 +1,20 @@
 ---
 title: React Apollo
 sidebar_title: 简介
-description: Apollo Client 会管理好 React 应用的后台 GraphQ L 数据，不用你自己操心。
+description: Apollo 客户端会管理好 React 应用的后台 GraphQL 数据，不用你自己操心。
 ---
 
-这是一份官方指南，指导你如何在 React 或 React Native 应用中借助 [react-apollo](https://github.com/apollographql/react-apollo) 来使用 Graphql。通过 React-Apollo 将 GraphQL 查询绑定到 React 组件，这种方式既简便又强大，因为它帮你做好数据的请求和管理，然后你就可以专心开发 UI。同时，它提供丰富的钩子方法和扩展机制，让你完全可控。
+这是一份官方指南，指导你如何在 React 或 React Native 应用中借助 [react-apollo](https://github.com/apollographql/react-apollo) 来使用 GraphQL。通过 React-Apollo 将 GraphQL 查询绑定到 React 组件，这种方式既简便又强大，因为它帮你做好数据的请求和管理，然后你就可以专心开发 UI。同时，它提供丰富的钩子方法和扩展机制，让你完全可控。
 
-关注 GitHub 上的仓库：[React-Apollo](https://github.com/apollographql/react-apollo)，[Apollo Client](https://github.com/apollographql/apollo-client) 和 [这docs site](https://github.com/apollographql/react-docs)。
+关注 GitHub 上的仓库：[React-Apollo](https://github.com/apollographql/react-apollo)，[Apollo 客户端](https://github.com/apollographql/apollo-client) 和 [本文档](https://github.com/apollographql/react-docs)。
 
 <h2 id="tutorials">快速入门</h2>
 
-如果你熟悉 Web 开发，但以前没有用过 GraphQL 或 Apollo，不怕，这里有一套简明教程和例子，花几个小时，你就可以成为高级 GraphQL 开发了！如果你熟悉 Graphql，则可以直接进入[安装](initialization.html)。
+如果你熟悉 Web 开发，但以前没有用过 GraphQL 或 Apollo，不怕，这里有一套简明教程和例子，花几个小时，你就可以成为高级 GraphQL 开发了！如果你熟悉 GraphQL，则可以直接进入[安装](initialization.html)。
 
 <h3 id="simple-example"> [1.简单的例子](simple-example.html)</h3>
 
-快速进入一个简单 app，展示一个用 React Native 与 Apollo 开发的界面。这就是在 Apollo Client 主页上看到的 app，不过多了一些操作交互的建议，还有更详细的代码解释。
+快速进入一个简单 app，展示一个用 React Native 与 Apollo 开发的界面。这就是在 Apollo 客户端主页上看到的 app，不过多了一些操作交互的建议，还有更详细的代码解释。
 
 <h3 id="full-stack-graphql"> [2.全栈 GraphQL + React 教程](https://dev-blog.apollodata.com/full-stack-react-graphql-tutorial-582ac8d24e3b#.cwvxzphyc)</h3>
 
@@ -30,7 +30,7 @@ description: Apollo Client 会管理好 React 应用的后台 GraphQ L 数据，
 
 <h2 id="compatibility">兼容工具</h2>
 
-Apollo Client 的首要设计原则就是兼容你正在使用的前后端工具。维护人员关注解决这些难题：GraphQL 缓存、请求管理、UI 更新，如果对其他方面有任何技术需求或者不同偏好，我们希望也能做到位。
+Apollo 客户端的首要设计原则就是兼容你正在使用的前后端工具。维护人员关注解决这些难题：GraphQL 缓存、请求管理、UI 更新，如果对其他方面有任何技术需求或者不同偏好，我们希望也能做到位。
 
 <h3 id="react-toolbox">React 工具</h3>
 
@@ -38,9 +38,9 @@ Apollo 经过专门设计，可以跟目前 React 开发者使用的工具很好
 
 - **React Native 和 Expo**：Apollo 在 React Native 中开箱即用。它甚至预装在 [Expo Sketch](https://sketch.expo.io/H1QdWZUjg) 中，因此你可以在浏览器中直接构建一个 React Native + Apollo 的应用。
 
-- ** Redux **：Apollo Client 内部使用 Redux，你可以将其[集成到现有 store](redux.html)，使用你喜欢的 Redux 工具，例如 dev tools 或 数据存储持久库。你还可以将 Apollo 与任何其他数据管理库（如 MobX）一起使用。
+- ** Redux **：Apollo 客户端内部使用 Redux，你可以将其[集成到现有 store](redux.html)，使用你喜欢的 Redux 工具，例如 dev tools 或 数据存储持久库。你还可以将 Apollo 与任何其他数据管理库（如 MobX）一起使用。
 
-- ** React Router **：Apollo Client 完全独立于路由，这意味着你可以使用任何版本的 [React Router](https://github.com/ReactTraining/react-router) 或其他适合 React 的路由库。另外搭建[服务器端渲染](http://dev.apollodata.com/react/server-side-rendering.html)也特别简单。
+- ** React Router **：Apollo 客户端完全独立于路由，这意味着你可以使用任何版本的 [React Router](https://github.com/ReactTraining/react-router) 或其他适合 React 的路由库。另外搭建[服务器端渲染](http://dev.apollodata.com/react/server-side-rendering.html)也特别简单。
 
 - ** Recompose **：借助 [Recompose](https://github.com/acdlite/recompose)，React-Apollo 的高阶组件可以与各种工具结合，为组件增强功能。 读读[如何使用它来加载状态和变量](https://dev-blog.apollodata.com/simplify-your-react-components-with-apollo-and-recompose-8b9e302dea51#.z7tbkf8er)、[mutations](https://medium.com/front-end-developers/how-i-write-mutations-in-apollo-w-recompose-1c0ab06ef4ea#.iobufopba) 以及[与 Redux container 相结合](https：/ /medium.com/welikegraphql/use-of-recompose-in-universal-react-apollo-example-3d1f89bc945b#.dtxnibu0w)。
 
@@ -65,7 +65,7 @@ Apollo 经过专门设计，可以跟目前 React 开发者使用的工具很好
 
 <h2 id="goals">项目目标</h2>
 
-Apollo Client 是 GraphQL 的 JavaScript 客户端。我们让 Apollo Client 做到：
+Apollo 客户端是 GraphQL 的 JavaScript 客户端。我们让 Apollo 客户端做到：
 
 1. **增量可用**，你可以在已有的 JavaScript 应用中，对于某一部分 UI 使用 GraphQL。
 2. **通用兼容**，Apollo 可以接受各种不同构建运行的 GraphQL 服务器，以及任何 GraphQL schema。
@@ -73,7 +73,7 @@ Apollo Client 是 GraphQL 的 JavaScript 客户端。我们让 Apollo Client 做
 4. **专为交互式应用程序而设计**，因此用户操作后可以立刻看到 UI 改变。
 5. **社区驱动**，所以你可以放心，这个项目会随着需求而不断发展。Apollo 最开始就是跟开发者用户一起开发的，所有项目都开源在 GitHub ，不会有什么你不知道的事情发生。
 
-Apollo Client 不仅仅是简单地向 GraphQL 服务器发起 query，它会分析你的查询及其结果，然后构建客户端缓存，对于后面的 query 和 mutation，缓存也实时更新。这意味着你的 UI 在客户端内部保持一致，并且用最少的查询次数来与服务器上的状态保持完全同步。
+Apollo 客户端不仅仅是简单地向 GraphQL 服务器发起 query，它会分析你的查询及其结果，然后构建客户端缓存，对于后面的 query 和 mutation，缓存也实时更新。这意味着你的 UI 在客户端内部保持一致，并且用最少的查询次数来与服务器上的状态保持完全同步。
 
 <h2 id="comparison">其他 GraphQL 客户端</h2>
 
