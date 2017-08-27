@@ -1,12 +1,12 @@
 ---
 title: 简易示例：Snack
-description: 一个微型应用程序，从我们的GitHunt示例应用程序实现一个视图，你可以直接从浏览器运行和编辑。
+description: 一个小应用，实现了 GitHunt 示例应用中的一个视图，你可以直接从浏览器端运行和编辑。
 ---
 A tiny app that implements one view from our GitHunt example app, that you can run and edit right from your browser.
 
 The easiest way to see what Apollo Client and GraphQL can do for you is to try them for yourself. Below is a simple example of a single React Native view that uses Apollo Client to talk to our hosted example app, GitHunt. We’ve embedded it in the page with the Snack editor from Expo.
 
-查看Apollo Client和GraphQL可以为你做的最简单的方法是自己尝试。以下是单个React Native视图的简单示例，它使用Apollo Client与我们的托管示例应用程序[GitHunt](example-schema.html)进行通信。我们已经在[Expo](https://expo.io)中的[Snack](https://blog.expo.io/sketch-a-playground-forrereate-native-16b2401f44a2)编辑器的页面中嵌入了该页面。
+想要知道 Apollo 客户端和 GraphQL 能为你做什么，最简单的方法是自己尝试一番。以下是单个 React Native 视图的简单示例，它使用 Apollo 客户端与我们的托管示例应用 [GitHunt](example-schema.html) 进行通信。我们已经把 [Expo](https://expo.io) 中的 [Snack](https://blog.expo.io/sketch-a-playground-forrereate-native-16b2401f44a2) 编辑器的页面嵌入了本页。
 
 <div data-snack-id="HkhGxRFhe" data-snack-platform="ios" data-snack-preview="true" style="overflow:hidden;background:#fafafa;border:1px solid rgba(0,0,0,.16);border-radius:4px;height:514px;width:100%"></div>
 <script async src="https://snack.expo.io/embed.js"></script>
@@ -17,12 +17,12 @@ Click the “Tap to Play” button to run the app in the simulator.
 Open the editor in a new window and install the Expo app to run it on your iOS or Android device.
 Either way, the app will automatically reload as you type
 
-首先，让我们来运行应用程序。有两种方法：
+首先，让我们来运行该应用。有两种方法：
 
-1.点击“点击播放”按钮在模拟器中运行应用程序。
-2.在[新窗口](https://snack.expo.io/HkhGxRFhe)中打开编辑器，并安装[Expo app](https://expo.io/)以在iOS或Android设备上运行。
+1. 点击 "Tap to Play" 按钮在模拟器中运行应用程序。
+2. 在[新窗口](https://snack.expo.io/HkhGxRFhe)中打开编辑器，并安装 [Expo app](https://expo.io/) 以在 iOS 或 Android 设备上运行。
 
-无论哪种方式，应用程序将在你键入时自动重新加载。
+无论哪种方式，应用都将在你修改代码时自动重新加载。
 
 <h2 id="first-edit">首次编辑</h2>
 First edit
