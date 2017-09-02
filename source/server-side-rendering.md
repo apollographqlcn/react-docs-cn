@@ -17,7 +17,7 @@ Apollo 提供了两种技术，可让你的应用快速加载，为用户避免�
 
 ```html
 <script>
-  // `initialState` 应该具有 Appollo store 状态的形状。确保只包括必要数据，例如：
+  // `initialState` 应该具有 Apollo store 状态的形状。确保只包括必要数据，例如：
   // const initialState = {[client.reduxRootKey]: {
   //   data: client.store.getState()[client.reduxRootKey].data
   // }};

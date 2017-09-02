@@ -31,7 +31,7 @@ AppRegistry.registerComponent('MyApplication', () => App);
 
 <h2 id="examples">示例</h2>
 
-这有一些你可能希望参考的在 React Native 中 使用 Appollo 的例子：
+这有一些你可能希望参考的在 React Native 中 使用 Apollo 的例子：
 
 1. dev.apollodata.com 使用的 [“Hello World” 示例](https://github.com/apollographql/frontpage-react-native-app)。
 2. 一个为与 GitHub 的新 GraphQL API 配合使用而构建的 [GitHub API 示例](https://github.com/apollographql/GitHub-GraphQL-API-Example)。

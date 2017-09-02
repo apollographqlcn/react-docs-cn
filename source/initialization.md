@@ -3,7 +3,7 @@ title: 安装和配置
 ---
 <h2 id="installation">安装</h2>
 
-要开始使用 Appollo 和 React，请安装 `react-apollo` npm 包。虽然后面还会安装几个包，不过这个 npm 包足够你起步使用了。
+要开始使用 Apollo 和 React，请安装 `react-apollo` npm 包。虽然后面还会安装几个包，不过这个 npm 包足够你起步使用了。
 
 ```bash
 npm install react-apollo --save
