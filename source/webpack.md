@@ -49,6 +49,10 @@ export default graphql(currentUserQuery)(Profile)
 
 [Jest](https://facebook.github.io/jest/) 不能使用 Webpack 加载器。要在 Jest 中进行相同的转换工作，请使用 [jest-transform-graphql](https://github.com/remind101/jest-transform-graphql)。
 
+## FuseBox
+
+[FuseBox](http://fuse-box.org) 不能使用 Webpack 加载器。要在 FuseBox 中进行相同的转换工作，请使用 [fuse-box-graphql-plugin](https://github.com/otothea/fuse-box-graphql-plugin).
+
 ## 片段
 
 你可以在 .graphql 文件中使用并包含片段，并且让 webpack 为你处理这些依赖关系，这与你在普通 JS 中使用 gql tag 的片段和查询方式类似。

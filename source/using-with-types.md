@@ -347,6 +347,8 @@ export default withCharacter(({ loading, hero, error }) => {
 由于声明了响应模型，props 模型以及将传递给客户端的模型的类型，我们可以防止多处的错误。我们在 `graphql` 包裹器中的选项和 props 函数现在是类型安全的，我们渲染的组件受到保护，我们的组件树已经强制声明了它们所需的 props。 在上述使用 Flow 的示例中，添加如下代码到 `props` 函数展示错误信息：
 
 ```javascript
+// @flow
+
 export const withCharacter: OperationComponent<Response, InputProps, Props> = graphql(HERO_QUERY, {
   options: ({ episode }) => ({
     variables: { episode }
@@ -370,6 +372,8 @@ All of the above examples show wrapping a component which is just a function usi
 以上所有示例都是使用 `graphql` 高阶组件包裹函数组件。有时，依赖于 GraphQL 数据的组件需要 state，并使用 `class MyComponent extends React.Component` 这样的方式声明。在这种场景下，TypeScript 和 Flow 都需要向类实例添加 prop 模型。为了实现这一点，`react-apollo` 导出的类型可以轻松创建结果类型。简化之前的例子只显示组件，如下是使用 Flow 时的情况：
 
 ```javascript
+// @flow
+
 import { ChildProps } from "react-apollo";
 
 const withCharacter: OperationComponent<Response, InputProps> = graphql(HERO_QUERY, {
@@ -378,16 +382,17 @@ const withCharacter: OperationComponent<Response, InputProps> = graphql(HERO_QUE
   })
 });
 
+// flow will infer this type 
 export default class Character extends Component {
-    props: ChildProps<InputProps, Response>;
-
-    render(){
-        const { loading, hero, error } = this.props.data;
-        if (loading) return <div>Loading</div>;
-        if (error) return <h1>ERROR</h1>;
-        return ...// 具有数据的实际组件;
-    }
+  render(){
+    const { loading, hero, error } = this.props.data;
+    if (loading) return <div>Loading</div>;
+    if (error) return <h1>ERROR</h1>;
+    return ...// 具有数据的实际组件;
+  }
 }
+ 
+const CharacterWithData = withCharacter(Character);
 ```
 
 使用 TypeScript 时，同样的例子如下所示：
@@ -402,12 +407,12 @@ const withCharacter = graphql<Response, InputProps>(HERO_QUERY, {
 });
 
 export default class Character extends React.Component<ChildProps<InputProps, Response>, {}> {
-    render(){
-        const { loading, hero, error } = this.props.data;
-        if (loading) return <div>Loading</div>;
-        if (error) return <h1>ERROR</h1>;
-        return ...// 具有数据的实际组件;
-    }
+  render(){
+    const { loading, hero, error } = this.props.data;
+    if (loading) return <div>Loading</div>;
+    if (error) return <h1>ERROR</h1>;
+    return ...// 具有数据的实际组件;
+  }
 }
 ```
 

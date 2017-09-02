@@ -411,7 +411,7 @@ return fetchMore({
 
 为了使查询结果具有可靠的缓存位置，Apollo 客户端在1.6版本中引入了 `@connection` 指令，可用于为结果指定一个自定义存储键。要使用 `@connection` 指令，只需将该指令添加到你想要自定义存储键的查询语句中，并提供参数 `key` 来指定存储键。除了 `key` 参数之外，你还可以添加可选的过滤器参数，该参数接收一个查询参数名称数组，以包含在生成的自定义存储键中。
 
-```
+```javascript
 const query = gql`query Feed($type: FeedType!, $offset: Int, $limit: Int) {
   feed(type: $type, offset: $offset, limit: $limit) @connection(key: "feed", filter: ["type"]) {
     ...FeedEntry
@@ -423,7 +423,7 @@ const query = gql`query Feed($type: FeedType!, $offset: Int, $limit: Int) {
 
 现在我们拥有了一个可靠的 store 键，我们可以很容易地使用 `writeQuery` 来执行一个 store 更新操作，本例中即更新 feed。
 
-```
+```javascript
 client.writeQuery({
   query: gql`
     query Feed($type: FeedType!) {
@@ -473,8 +473,8 @@ query DetailView {
 
 我们知道数据很可能已经在客户端缓存中，但是由于使用不同的查询请求，Apollo 客户端并不知道。为了告诉 Apollo 客户端在哪里查找数据，我们可以定义自定义解析器：
 
-```
-import ApolloClient, { toIdValue } from 'apollo-client';
+```javascript
+import { ApolloClient, toIdValue } from 'apollo-client';
 
 const client = new ApolloClient({
   networkInterface,
@@ -512,7 +512,7 @@ query DetailView {
 
 亦可返回一个 ID 列表：
 
-```
+```javascript
 customResolvers: {
   Query: {
     books: (_, args) => args.ids.map(id =>

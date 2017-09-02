@@ -56,15 +56,6 @@ const client = new ApolloClient({
 
 <h3 id="server-initialization">服务端初始化</h3>
 
-In order to render your application on the server, you need to handle a HTTP request (using a server like Express, and a server-capable Router like React-Router), and then render your application to a string to pass back on the response.
-
-We’ll see how to take your component tree and turn it into a string in the next section, but you’ll need to be a little careful in how you construct your Apollo Client instance on the server to ensure everything works there as well:
-
-When creating an Apollo Client instance on the server, you’ll need to set up you network interface to connect to the API server correctly. This might look different to how you do it on the client, since you’ll probably have to use an absolute URL to the server if you were using a relative URL on the client.
-Since you only want to fetch each query result once, pass the ssrMode: true option to the Apollo Client constructor to avoid repeated force-fetching.
-You need to ensure that you create a new client or store instance for each request, rather than re-using the same client for multiple requests. Otherwise the UI will be getting stale data and you’ll have problems with authentication.
-Once you put that all together, you’ll end up with initialization code that looks like this:
-
 为了在服务器上渲染应用程序，你需要处理 HTTP 请求（使用像 Express 这样的服务端框架和支持服务端运行的路由库，如 React-Router），然后将应用渲染为一个字符串以传回响应。
 
 我们将在下一部分中看到如何使用组件树并将其转换为一个字符串，但是你需要对如何在服务器上构建 Apollo 客户端实例保持谨慎，以确保一切都能工作完好：
@@ -78,45 +69,44 @@ Once you put that all together, you’ll end up with initialization code that lo
 一旦你把它们放在一起，你会得到如下初始化代码：
 
 ```js
-// This example uses React Router v4, although it should work
-// equally well with other routers that support SSR
+// 此示例使用 React Router v4，尽管它也能与支持 SSR 的其他路由库一块工作
 
 import { ApolloClient, createNetworkInterface, ApolloProvider } from 'react-apollo';
 import Express from 'express';
-import { match, RouterContext } from 'react-router';
+import { StaticRouter } from 'react-router';
+import Layout from './routes/Layout';
 
-// 路由文件是客户端和服务器之间良好的共享入口点
-import routes from './routes';
-
-// 请注意，你不必使用任何特定的http服务器，但是我们在这个例子中使用Express
+// 请注意，您不必使用任何特定的 http 服务器，但我们在此示例中使用 Express
 const app = new Express();
 app.use((req, res) => {
 
-  // 此示例使用React Router，尽管它应该与支持SSR的其他路由器同样好
-  match({ routes, location: req.originalUrl }, (error, redirectLocation, renderProps) => {
 
-    const client = new ApolloClient({
-      ssrMode: true,
-      // 请记住，这是SSR服务器将用于连接到API服务器的接口，因此我们需要确保它不被防火墙等
-      networkInterface: createNetworkInterface({
-        uri: 'http://localhost:3010',
-        opts: {
-          credentials: 'same-origin',
-          headers: {
-            cookie: req.header('Cookie'),
-          },
+  const client = new ApolloClient({
+    ssrMode: true,
+    // 请注意，这是 SSR 服务器用于连接到 API 服务器的接口，因此我们需要确保它不被防火墙屏蔽
+    networkInterface: createNetworkInterface({
+      uri: 'http://localhost:3010',
+      opts: {
+        credentials: 'same-origin',
+        headers: {
+          cookie: req.header('Cookie'),
         },
-      }),
-    });
-
-    const app = (
-      <ApolloProvider client={client}>
-        <RouterContext {...renderProps} />
-      </ApolloProvider>
-    );
-
-    // 渲染代码（见下文）
+      },
+    }),
   });
+
+  const context = {};
+
+  // 客户端应用将会替换为 <BrowserRouter>
+  const app = (
+    <ApolloProvider client={client}>
+      <StaticRouter location={req.url} context={context}>
+        <Layout />
+      </StaticRouter>
+    </ApolloProvider>
+  );
+
+  // 渲染代码（下面可见）
 });
 
 app.listen(basePort, () => console.log( // eslint-disable-line no-console
@@ -124,7 +114,65 @@ app.listen(basePort, () => console.log( // eslint-disable-line no-console
 ));
 ```
 
-你可以查看[ GitHunt 应用的 `ui/server.js`](https://github.com/apollographql/GitHunt-React/blob/master/ui/server.js) 以获取完整的代码示例。
+```js
+// ./routes/Layout.js
+
+import { Route, Switch } from 'react-router';
+import { Link } from 'react-router-dom';
+import React from 'react';
+
+// 路由单独定义在一个文件中利于客户端和服务端共用
+import routes from './routes';
+
+const Layout = () =>
+  <div>
+    <nav>
+      <ul>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/another">Another page</Link>
+        </li>
+      </ul>
+    </nav>
+
+    {/* React Router v4 中引入的新的 <Switch>
+       https://reacttraining.com/react-router/web/api/Switch */}
+    <Switch>
+      {routes.map(route => <Route key={route.name} {...route} />)}
+    </Switch>
+  </div>;
+
+export default Layout;
+
+```
+
+```js
+// ./routes/index.js
+
+import MainPage from './MainPage';
+import AnotherPage from './AnotherPage';
+
+const routes = [
+  {
+    path: '/',
+    name: 'home',
+    exact: true,
+    component: MainPage,
+  },
+  {
+    path: '/another',
+    name: 'another',
+    component: AnotherPage,
+  },
+];
+
+export default routes;
+
+```
+
+你可以查看[ GitHunt 应用的 `ui/server.js`](https://github.com/apollographql/GitHunt-React/blob/master/ui/server.js) 以获取完整的代码示例，其使用了 React Router v3，与本例有些许的不同。
 
 接下来我们将看看渲染代码实际上是什么。
 

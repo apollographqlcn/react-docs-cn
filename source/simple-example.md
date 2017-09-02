@@ -157,6 +157,6 @@ function FeedList({ data }) {
 让我们从头开始构建你自己的应用！这有两个教程可供你学习，我们建议按以下顺序进行：
 
 1. [全栈 GraphQL + React 教程](https://dev-blog.apollodata.com/full-stack-react-graphql-tutorial-582ac8d24e3b#.cwvxzphyc)，出自 [Jonas Helfer](https://twitter.com/helferjs)，Apollo 客户端的首席开发人员。
-2. 由 [Graphcool](https://www.graph.cool/) 团队和社区开发的 [How to GraphQL](https://www.howtographql.com/react-apollo/0-introduction/?_ga=2.39244899.1196740127.1503764623-1337620640.1490152813), Graphcool 是一个后端托管平台。
+2. 由 [Graphcool](https://www.graph.cool/) 团队和社区开发的 [How to GraphQL](https://www.howtographql.com/react-apollo/0-introduction/), Graphcool 是一个后端托管平台。
 
 玩的开心！

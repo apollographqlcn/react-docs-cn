@@ -13,7 +13,8 @@ title: 查询
 例如，在 GitHunt 中，我们要在 `Profile` 组件中显示当前登录的用户：
 
 ```js
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { gql, graphql } from 'react-apollo';
 
 class Profile extends Component { ... }
@@ -172,7 +173,8 @@ const ProfileWithData = graphql(CurrentUserForLayout, {
 如果要更改默认的 `data` props 的名称，但保持完全相同的结构，可以使用 `graphql` 容器的 `name` 选项。当一个组件通过嵌套的 `graphql` 容器使用多个查询时，将会变得十分有用，其中 `data` props 将被覆盖。
 
 ```js
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { gql, graphql } from 'react-apollo';
 
 class Profile extends Component { ... }
@@ -204,8 +206,8 @@ const ProfileWithData = graphql(CurrentUserForLayout, {
 如果想要完全控制子组件的 props，请使用 `props` 选项将查询 `data` 对象映射到传递给子组件的任意数量的 props ：
 
 ```js
-
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { gql, graphql } from 'react-apollo';
 
 // 在这里，Profile 有一个更通用的 API，它没有耦合到 Apollo 或者我们使用的查询的结构

@@ -76,7 +76,7 @@ const client = new ApolloClient({
 另一个选择是重新加载页面，也能达到类似的效果。
 
 ```js
-import { withApollo, graphql } from 'react-apollo';
+import { withApollo, graphql, gql } from 'react-apollo';
 import ApolloClient from 'apollo-client';
 
 class Profile extends React.Component {

@@ -123,7 +123,7 @@ const MoreCommentsQuery = gql`
   }
 `;
 
-const CommentsWithData = graphql(Comment, {
+const CommentsWithData = graphql(CommentsQuery, {
   // 这个函数在每次 `data` 变化时都会重新执行，包括 `updateQuery` 之后，这意味着我们的 loadMoreEntries 函数将始终具有正确的游标
   props({ data: { loading, cursor, comments, fetchMore } }) {
     return {
@@ -138,14 +138,14 @@ const CommentsWithData = graphql(Comment, {
           updateQuery: (previousResult, { fetchMoreResult }) => {
             const previousEntry = previousResult.entry;
             const newComments = fetchMoreResult.moreComments.comments;
-
+            const newCursor = fetchMoreResult.moreComments.cursor;
             return {
               // 通过这里返回的 `cursor'，我们将为 `loadMore` 函数更新新的游标。
-              cursor: fetchMoreResult.cursor,
+              cursor: newCursor,
 
               entry: {
                 // 将新的评论放在列表的前面
-                comments: [...newComments, ...previousEntry.entry.comments],
+                comments: [...newComments, ...previousEntry.comments],
               },
             };
           },
@@ -153,7 +153,7 @@ const CommentsWithData = graphql(Comment, {
       },
     };
   },
-})(Feed);
+})(Comments);
 ```
 
 <h2 id="relay-cursors">Relay 式的游标分页</h2>

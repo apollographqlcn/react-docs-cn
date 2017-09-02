@@ -20,9 +20,9 @@ description: Apollo 客户端会管理好 React 应用的后台 GraphQL 数据�
 
 本教程将介绍如何搭建 Apollo Client、编写简单服务器，以及如何将它们连接在一起，这个教程几乎每周都在更新。这是由 React-Apollo 的核心开发者 [Jonas Helfer](https://twitter.com/helferjs) 编写的。
 
-<h3 id="learn-apollo"> [3.学习 Apollo](https://www.learnapollo.com)</h3>
+<h3 id="how-to-graphql">[3. How to GraphQL](https://www.howtographql.com)</h3>
 
-这份社区发起的教程，指导你从零开始构建一个简单的 宠物小精灵 前端应用。有 [React](https://www.learnapollo.com/tutorial-react/react-01) 版，[React Native](https://www.learnapollo.com/tutorial-react-native/react-native-01) 版        和其他平台版本。这个「学习 Apollo」教程是由 [Graphcool](https://www.graph.cool/) 团队和社区进行维护，还提供一个托管的 GraphQL 后端平台，让你不用写一行代码就可以跑 GraphQL 服务器。
+这份社区发起的教程，指导你从零开始构建一个简单的 Hacker News 前端应用。有 [React](https://www.howtographql.com/react-apollo/0-introduction/) 版，还有其他平台版本。这个「How to GraphQL」教程是由 [Graphcool](https://www.graph.cool/) 团队和社区进行维护，还提供一个托管的 GraphQL 后端平台，让你不用写一行代码就可以跑 GraphQL 服务器。
 
 <h3 id="usage-recipes"> [4. 使用与实践](queries.html)</h3>
 
@@ -36,7 +36,7 @@ Apollo 客户端的首要设计原则就是兼容你正在使用的前后端工�
 
 Apollo 经过专门设计，可以跟目前 React 开发者使用的工具很好的结合。下面列举一些：
 
-- **React Native 和 Expo**：Apollo 在 React Native 中开箱即用。它甚至预装在 [Expo Sketch](https://sketch.expo.io/H1QdWZUjg) 中，因此你可以在浏览器中直接构建一个 React Native + Apollo 的应用。
+- **React Native 和 Expo**：Apollo 在 React Native 中开箱即用。它甚至预装在 [Expo Snack](https://sketch.expo.io/H1QdWZUjg) 中，因此你可以在浏览器中直接构建一个 React Native + Apollo 的应用。
 
 - ** Redux **：Apollo 客户端内部使用 Redux，你可以将其[集成到现有 store](redux.html)，使用你喜欢的 Redux 工具，例如 dev tools 或 数据存储持久库。你还可以将 Apollo 与任何其他数据管理库（如 MobX）一起使用。
 

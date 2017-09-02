@@ -38,7 +38,8 @@ GraphQL 突变在一个查询字符串中代表两件事情：
 使用 `graphql` 与突变可以很容易地将操作绑定到你的组件。不同于查询，它提供了一个具有大量元数据和方法的复杂对象，突变只能在一个称为 `mutate` 的属性中为包裹组件提供一个简单的功能。
 
 ```js
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { gql, graphql } from 'react-apollo';
 
 class NewEntry extends Component { ... }
@@ -69,7 +70,8 @@ NewEntry.propTypes = {
 最简单的选择是在包裹组件中调用它时直接将选项传递给默认的 `mutate` 属性：
 
 ```js
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { gql, graphql } from 'react-apollo';
 
 class NewEntry extends Component {
@@ -115,7 +117,8 @@ const NewEntryWithData = graphql(submitRepository, {
 这是一个带上下文的一个组件，现在简单明了，因为它只需要传递一个参数：
 
 ```js
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { gql, graphql } from 'react-apollo';
 
 const NewEntry = ({ submit }) => (
@@ -168,7 +171,8 @@ const ComponentWithMutations = compose(
 你需要做的就只是指定 `optimisticResponse` 选项。这个“假结果”将用于立即更新当前的查询，就像服务器的突变响应一样。Optimistic 补丁存储在缓存中一个单独的位置，所以一旦实际的突变结果返回，相关的 Optimistic 更新将被自动删除，并被替换成真实的响应结果。
 
 ```js
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { gql, graphql } from 'react-apollo';
 
 class CommentPage extends Component { ... }
