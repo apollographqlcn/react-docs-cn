@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 
     <!-- Basic -->
-    <title>设置和选项 | Apollo React 中文文档</title>
+    <title>安装和配置 | Apollo React 中文文档</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="images/favicon.png" sizes="16x16 32x32 64x64">
@@ -12,12 +12,12 @@
     <!-- Social -->
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://apollographqlcn.github.io/react-docs-cn">
-    <meta property="og:title" content="设置和选项 | Apollo React 中文文档">
+    <meta property="og:title" content="安装和配置 | Apollo React 中文文档">
     <meta property="og:description" content="">
     <meta property="og:image" content="">
     <meta name="twitter:card" content="summary_image_large">
     <meta name="twitter:site" content="@apollographqlcn">
-    <meta name="twitter:title" content="设置和选项 | Apollo React 中文文档">
+    <meta name="twitter:title" content="安装和配置 | Apollo React 中文文档">
     <meta name="twitter:description" content="">
     <meta name="twitter:image" content="">
 
@@ -187,7 +187,7 @@
               
               <li class="item-toc  current">
                 <a href="" class="sidebar-link  current">
-                  <span>设置和选项</span>
+                  <span>安装和配置</span>
                 </a>
               </li>
             
@@ -217,7 +217,7 @@
       
         <li>
           
-            <div class="heading-toc">Usage</div>
+            <div class="heading-toc">使用</div>
           
           <ul class="list-toc">
             
@@ -268,7 +268,7 @@
       
         <li>
           
-            <div class="heading-toc">API Reference</div>
+            <div class="heading-toc">API 参考</div>
           
           <ul class="list-toc">
             
@@ -312,7 +312,7 @@
       
         <li>
           
-            <div class="heading-toc">Recipes</div>
+            <div class="heading-toc">技巧</div>
           
           <ul class="list-toc">
             
@@ -333,7 +333,7 @@
               
               <li class="item-toc ">
                 <a href="optimistic-ui.html" class="sidebar-link ">
-                  <span>Optimistic UI</span>
+                  <span>乐观 UI</span>
                 </a>
               </li>
             
@@ -354,7 +354,7 @@
               
               <li class="item-toc ">
                 <a href="query-splitting.html" class="sidebar-link ">
-                  <span>Query Splitting</span>
+                  <span>查询分割</span>
                 </a>
               </li>
             
@@ -375,7 +375,7 @@
               
               <li class="item-toc ">
                 <a href="webpack.html" class="sidebar-link ">
-                  <span>Webpack加载器</span>
+                  <span>Webpack 加载器</span>
                 </a>
               </li>
             
@@ -396,12 +396,12 @@
 <div class="content">
   <div class="content-wrapper">
     <div class="header-content">
-      <h1 class="title-page">设置和选项</h1>
+      <h1 class="title-page">安装和配置</h1>
       
 
       <div class="page-actions">
         <div class="actions-group">
-          <a class="btn tertiary small round lowercase" href="https://github.com/apollographqlcn/react-docs-cn/tree/master/source/initialization.md" target="_blank"><span class="icon-github"></span> <span>Edit on GitHub</span></a>
+          <a class="btn tertiary small round lowercase" href="https://github.com/apollographqlcn/react-docs-cn/tree/master/source/initialization.md" target="_blank"><span class="icon-github"></span> <span>在 GitHub 上编辑本文</span></a>
           
         </div>
       </div>
@@ -410,52 +410,54 @@
     <div class="document-formatting">
       <h2 id="installation">安装</h2>
 
-<p>要开始使用阿波罗和React，请安装“react-apollo”npm软件包。这会导出您需要开始的所有内容，即使在引擎盖下有几个包。</p>
+<p>要开始使用 Apollo 和 React，请安装 <code>react-apollo</code> npm 包。虽然后面还会安装几个包，不过这个 npm 包足够你起步使用了。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install react-apollo --save</div></pre></td></tr></table></figure>
 <blockquote>
-<p>注意：您无需做任何特别的操作，让Apollo Client在React Native中工作，只需像往常一样安装和导入。</p>
+<p>注意：想在 React Native 中使用 Apollo Client，不需要做额外的操作，只需像往常一样安装和导入。</p>
 </blockquote>
-<p>要开始使用Apollo with React，我们需要创建一个“ApolloClient”和“ApolloProvider”。</p>
+<p>要开始在 React 中使用 Apollo，我们需要创建一个 <code>ApolloClient</code> 和 <code>ApolloProvider</code></p>
 <ul>
-<li>“ApolloClient”作为查询结果数据的中央存储库，缓存并分发查询结果。</li>
-<li>“ApolloProvider”使该客户端实例可用于我们的React组件层次结构。</li>
+<li><code>ApolloClient</code> 作为查询结果数据的中心存储，缓存并分发查询结果。</li>
+<li><code>ApolloProvider</code> 使该客户端实例可用于多层的 React 组件中。</li>
 </ul>
 <h2 id="creation-client">创建客户端</h2>
 
-<p>要开始创建一个<a href="/core/apollo-client-api.html＃constructor"><code>ApolloClient</code></a>实例，并将其指向您的GraphQL服务器：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; ApolloClient &#125; <span class="keyword">from</span> <span class="string">'react-apollo'</span>;</div><div class="line"></div><div class="line"><span class="comment">// 默认情况下，该客户端将发送查询</span></div><div class="line"><span class="comment">// `/ graphql`端点在同一台主机上</span></div><div class="line"><span class="keyword">const</span> client = <span class="keyword">new</span> ApolloClient();</div></pre></td></tr></table></figure>
-<p>客户端使用各种<a href="/core/apollo-client-api.html＃构造函数">options</a>，但特别是如果要更改GraphQL服务器的URL，可以创建一个自定义的<a href="/core/apollo-client-api.html#NetworkInterface">`NetworkInterface</a>：</p>
+<p>先创建一个<a href="http://dev.apollodata.com/core/apollo-client-api.html＃constructor" target="_blank" rel="external"><code>ApolloClient</code></a>实例，并将其指向你的 GraphQL 服务器：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; ApolloClient &#125; <span class="keyword">from</span> <span class="string">'react-apollo'</span>;</div><div class="line"></div><div class="line"><span class="comment">// 默认情况下，该客户端将发送查询同个域名下的</span></div><div class="line"><span class="comment">// `/graphql` 路径</span></div><div class="line"><span class="keyword">const</span> client = <span class="keyword">new</span> ApolloClient();</div></pre></td></tr></table></figure>
+<p>客户端支持各种<a href="http://dev.apollodata.com/core/apollo-client-api.html＃构造函数" target="_blank" rel="external">配置</a>，特别要注意的是，如果要更改 GraphQL 服务器的 URL，你可以创建一个自定义的 <a href="http://dev.apollodata.com/core/apollo-client-api.html#NetworkInterface" target="_blank" rel="external">`NetworkInterface</a>：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; ApolloClient, createNetworkInterface &#125; <span class="keyword">from</span> <span class="string">'react-apollo'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> networkInterface = createNetworkInterface(&#123;</div><div class="line">  <span class="attr">uri</span>: <span class="string">'http://api.example.com/graphql'</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">const</span> client = <span class="keyword">new</span> ApolloClient(&#123;</div><div class="line">  <span class="attr">networkInterface</span>: networkInterface</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p><code>ApolloClient</code>还有一些控制客户端行为的选项，我们将在本指南中看到他们使用的例子。</p>
+<p><code>ApolloClient</code>还有一些控制客户端行为的选项，我们将在本指南中展示一些示例。</p>
 <h2 id="creation-provider">创建提供者</h2>
 
-<p>要将客户端实例连接到组件树，请使用“ApolloProvider”组件。我们建议将“ApolloProvider”放置在您的视图层次结构中的某处，您需要访问GraphQL数据的任何地方。例如，如果您使用React Router，它可能位于根路由组件之外。</p>
+<p>要将客户端实例连接到组件树，请使用 <code>ApolloProvider</code> 组件。我们建议将 <code>ApolloProvider</code> 放置组件层级的高阶部分，也就是放在需要访问 GraphQL 数据的组件之上。例如，如果你使用 React Router，它可能就放在根路由组件之上。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; ApolloClient, ApolloProvider &#125; <span class="keyword">from</span> <span class="string">'react-apollo'</span>;</div><div class="line"></div><div class="line"><span class="comment">// 如上所述创建客户端 </span></div><div class="line"><span class="keyword">const</span> client = <span class="keyword">new</span> ApolloClient();</div><div class="line"></div><div class="line">ReactDOM.render(</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">ApolloProvider</span> <span class="attr">client</span>=<span class="string">&#123;client&#125;</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">MyAppComponent</span> /&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">ApolloProvider</span>&gt;</span>,</div><div class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>)</div><div class="line">)</div></pre></td></tr></table></figure>
 <h2 id="connections-data">请求数据</h2>
 
-<p>“graphql()”容器是推荐的方法来获取数据或进行突变。这是一个React <a href="https://facebook.github.io/react/blog/2016/07/13/mixins-considered-harmful.html#subscriptions-and-side-effects" target="_blank" rel="external">高级组件</a>，并与包裹的组件通过道具。</p>
-<p><code>graphql()</code>的基本用法如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123; gql, graphql &#125; <span class="keyword">from</span> <span class="string">'react-apollo'</span>;</div><div class="line"></div><div class="line"><span class="comment">// MyComponent是一个演示组件，不知道 Apollo</span></div><div class="line"><span class="keyword">const</span> MyComponent = <span class="function">(<span class="params">props</span>) =&gt;</span> (</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line">);</div><div class="line"></div><div class="line"><span class="comment">// 使用`gql`标签初始化GraphQL查询或突变</span></div><div class="line"><span class="keyword">const</span> MyQuery = gql<span class="string">`query &#123; todos &#123; text &#125; &#125;`</span>;</div><div class="line"><span class="keyword">const</span> MyMutation = gql<span class="string">`mutation &#123; addTodo(text: "Test 123") &#123; id &#125; &#125;`</span>;</div><div class="line"></div><div class="line"><span class="comment">// 然后我们可以使用`graphql`将MyQuery返回的查询结果传递给MyComponent作为支持（并将其更新为结果更改）</span></div><div class="line"><span class="keyword">const</span> MyComponentWithData = graphql(MyQuery)(MyComponent);</div><div class="line"></div><div class="line"><span class="comment">// 或者，我们可以将MyMutation的执行绑定到一个prop</span></div><div class="line"><span class="keyword">const</span> MyComponentWithMutation = graphql(MyMutation)(MyComponent);</div></pre></td></tr></table></figure>
-<p>如果您使用React类组件使用<a href="https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841#.nn723s5u2" target="_blank" rel="external">ES2016装饰器</a>，则可能更喜欢使用更简洁的装饰器语法一样：</p>
+<p>推荐使用 <code>graphql()</code> 容器的方式来获取数据或执行 muitation。这是一个React <a href="https://facebook.github.io/react/blog/2016/07/13/mixins-considered-harmful.html#subscriptions-and-side-effects" target="_blank" rel="external">高阶组件</a>，并与被包裹的组件通过 props 通信。</p>
+<p><code>graphql()</code> 的基本用法如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123; gql, graphql &#125; <span class="keyword">from</span> <span class="string">'react-apollo'</span>;</div><div class="line"></div><div class="line"><span class="comment">// MyComponent 是一个纯 UI 组件，跟 Apollo 无关</span></div><div class="line"><span class="keyword">const</span> MyComponent = <span class="function">(<span class="params">props</span>) =&gt;</span> (</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line">);</div><div class="line"></div><div class="line"><span class="comment">// 使用 `gql` 标签初始化GraphQL查询或 mutation</span></div><div class="line"><span class="keyword">const</span> MyQuery = gql<span class="string">`query &#123; todos &#123; text &#125; &#125;`</span>;</div><div class="line"><span class="keyword">const</span> MyMutation = gql<span class="string">`mutation &#123; addTodo(text: "Test 123") &#123; id &#125; &#125;`</span>;</div><div class="line"></div><div class="line"><span class="comment">// 然后我们可以使用 `graphql` 将 MyQuery 返回的查询结果 通过 props给// 传递给 MyComponent（随着数据变化而更新）</span></div><div class="line"><span class="keyword">const</span> MyComponentWithData = graphql(MyQuery)(MyComponent);</div><div class="line"></div><div class="line"><span class="comment">// 或者，我们可以将 MyMutation 的执行绑定到一个 prop</span></div><div class="line"><span class="keyword">const</span> MyComponentWithMutation = graphql(MyMutation)(MyComponent);</div></pre></td></tr></table></figure>
+<p>如果你在 React 组件类使用<a href="https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841#.nn723s5u2" target="_blank" rel="external">ES2016 装饰器</a>，你应该会更喜欢装饰器这种方便的语法，就像下面代码一样：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123; graphql &#125; <span class="keyword">from</span> <span class="string">'react-apollo'</span>;</div><div class="line"></div><div class="line">@graphql(MyQuery)</div><div class="line">@graphql(MyMutation)</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyComponent</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>在本指南中，我们不会使用装饰器语法来使代码更加平易近人，但是可以将任何示例转换为使用装饰器。</p>
-<h2 id="fragment-matcher">在工会和接口上使用Fragments </h2>
+<p>在本指南中，我们不会使用装饰器语法来简化代码，不过你可以把例子的代码改用装饰器的写法。</p>
+<h2 id="fragment-matcher">在 union 和 interface 上使用 Fragment </h2>
 
-<p>默认情况下，Apollo Client不需要任何有关GraphQL架构的知识，这意味着设置和使用任何服务器非常容易，甚至支持最大的模式。然而，由于您对Apollo和GraphQL的使用变得更加复杂，您可能会开始在界面或工会上使用片段。以下是在界面上使用片段的查询示例：</p>
+<p>默认情况下，Apollo Client 不需要任何有关 GraphQL 架构的知识，这意味着非常容易搭建，能在各种服务器下使用，无论你的 shcema 有多复杂都能支持。然而，随着对 Apollo 和 GraphQL 越来越熟练，你可能会开始在 union 或 interface 上使用 Fragment。以下是在 interface 上使用 Fragment 的查询示例：</p>
 <figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">query &#123;</div><div class="line">  all_people &#123;</div><div class="line">    ... <span class="keyword">on</span> Character &#123;</div><div class="line">      <span class="built_in">name</span></div><div class="line">    &#125;</div><div class="line">    ... <span class="keyword">on</span> Jedi &#123;</div><div class="line">      side</div><div class="line">    &#125;</div><div class="line">    ... <span class="keyword">on</span> Droid &#123;</div><div class="line">      model</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>在上面的查询中，<code>all_people</code>返回类型为<code>Character []</code>的结果。 “Jedi”和“Droid”可以是“Character”的具体类型，但是在客户端上没有办法知道没有关于模式的一些信息。默认情况下，Apollo Client将使用启发式片段匹配器，如果结果包含其选择集中的所有字段，则假定片段匹配，并且在任何字段丢失时不匹配。这在大多数情况下起作用，但这也意味着Apollo Client无法检查您的服务器响应，并且无法使用<code>update</code>，<code>updateQuery</code>，<code>writeQuery</code>手动将无效数据写入商店，等等</p>
-<p>以下部分说明如何将必要的架构知识传递给Apollo Client，因此可以将工会和接口在将其写入商店之前进行准确匹配和结果验证。</p>
-<p>为了支持结合验证和在工会和接口上的准确的片段匹配，可以使用一个名为“IntrospectionFragmentMatcher”的特殊片段匹配器。要设置，请按照以下三个步骤：</p>
-<p>1.查询您的服务器/架构以获取关于联合和接口的必要信息：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  __schema &#123;</div><div class="line">    types &#123;</div><div class="line">      kind</div><div class="line">      name</div><div class="line">      possibleTypes &#123;</div><div class="line">        name</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>2.使用刚获得的信息创建一个新的IntrospectionFragment匹配器（您可以根据需要过滤任何不属于INTERFACE或UNION的类型）：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; IntrospectionFragmentMatcher &#125; <span class="keyword">from</span> <span class="string">'react-apollo'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> myFragmentMatcher = <span class="keyword">new</span> IntrospectionFragmentMatcher(&#123;</div><div class="line">  <span class="attr">introspectionQueryResultData</span>: &#123;</div><div class="line">    <span class="attr">__schema</span>: &#123;</div><div class="line">      <span class="attr">types</span>: [</div><div class="line">        &#123;</div><div class="line">          <span class="attr">kind</span>: <span class="string">"INTERFACE"</span>,</div><div class="line">          <span class="attr">name</span>: <span class="string">"Character"</span>,</div><div class="line">          <span class="attr">possibleTypes</span>: [</div><div class="line">            &#123; <span class="attr">name</span>: <span class="string">"Jedi"</span> &#125;,</div><div class="line">            &#123; <span class="attr">name</span>: <span class="string">"Droid"</span> &#125;,</div><div class="line">          ],</div><div class="line">        &#125;, <span class="comment">// //这只是一个例子，把你自己的INTERFACE和UNION类型放在这里！</span></div><div class="line">      ],</div><div class="line">    &#125;,</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>在上面的查询中，<code>all_people</code> 返回类型为 <code>Character []</code> 的结果。 <code>Jedi</code> 和 <code>Droid</code> 可以是 <code>Character</code> 的具体类型，但是在客户端上没有办法知道关于 schema 的信息。默认情况下，Apollo Client 将使用启发式 fragment 匹配器，如果返回的结果包含了 fragment 的字段集合则表示匹配，如果返回数据少了一些字段，则表示不匹配。这在大多数情况下是靠谱的，但这也意味着Apollo Client 无法检查你的服务器返回结果，当你使用 <code>update</code>，<code>updateQuery</code>，<code>writeQuery</code> 手动将无效数据写入 store 时也没法告诉你。</p>
+<p>以下部分说明如何将必要的 schema 信息告诉 Apollo Client，然后 union 和 interface 就可以准确匹配，在数据写入 store 前对结果校验。</p>
+<p>为了支持结果校验和在 union 和 interfaces 上准确地匹配 fragment，可以使用一个名为 <code>IntrospectionFragmentMatcher</code> 的特殊 fragment 匹配器。请按照以下三个步骤来使用：</p>
 <ol>
-<li>在建造期间将新建的“IntrospectionFragmentMatcher”传递给Apollo Client：</li>
+<li>查询你的 服务器/schema，获取关于 union 和 interface 的必要信息：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  __schema &#123;</div><div class="line">    types &#123;</div><div class="line">      kind</div><div class="line">      name</div><div class="line">      possibleTypes &#123;</div><div class="line">        name</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>2.使用刚获得的信息创建一个新的 IntrospectionFragment 匹配器（你可以根据需要过滤 INTERFACE 或 UNION 类型）：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; IntrospectionFragmentMatcher &#125; <span class="keyword">from</span> <span class="string">'react-apollo'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> myFragmentMatcher = <span class="keyword">new</span> IntrospectionFragmentMatcher(&#123;</div><div class="line">  <span class="attr">introspectionQueryResultData</span>: &#123;</div><div class="line">    <span class="attr">__schema</span>: &#123;</div><div class="line">      <span class="attr">types</span>: [</div><div class="line">        &#123;</div><div class="line">          <span class="attr">kind</span>: <span class="string">"INTERFACE"</span>,</div><div class="line">          <span class="attr">name</span>: <span class="string">"Character"</span>,</div><div class="line">          <span class="attr">possibleTypes</span>: [</div><div class="line">            &#123; <span class="attr">name</span>: <span class="string">"Jedi"</span> &#125;,</div><div class="line">            &#123; <span class="attr">name</span>: <span class="string">"Droid"</span> &#125;,</div><div class="line">          ],</div><div class="line">        &#125;, <span class="comment">// 这只是一个例子，把你自己的 INTERFACE 和 UNION 类型放在这里！</span></div><div class="line">      ],</div><div class="line">    &#125;,</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<ol>
+<li>将新建的 <code>IntrospectionFragmentMatcher</code> 传递给 Apollo Client 构造器：</li>
 </ol>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> client = <span class="keyword">new</span> ApolloClient(&#123;</div><div class="line">  <span class="attr">fragmentMatcher</span>: myFragmentMatcher,</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>如果在模式中有任何与联合或接口类型相关的更改，则必须相应地更新片段匹配器。为了保持此信息的自动更新，我们建议您设置构建步骤，从模式中提取必要的信息，并将其作为JSON文件包含在客户端软件包中，并从构建片段匹配器时导入。</p>
-<p>（注意：如果任何人已经建立了一个建立步骤，请考虑在这里的文档制作公关，与社区的其他人分享您的说明！）</p>
+<p>如果 schema 更新了 union 或 interface 类型，则必须相应地更新 fragment 匹配器。为了保证信息的自动更新，我们建议你设置构建程序，从 schema 中提取必要的信息，并将其作为 JSON 文件包含在客户端软件包中，在构建 fragment 匹配器时可以传入。</p>
+<p>（注意：如果有人已经搭建了一些构建程序，请考虑在这份文档发起 PR，与社区伙伴分享你的经验！）</p>
 
     </div>
   </div>

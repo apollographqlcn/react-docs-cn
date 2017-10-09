@@ -187,7 +187,7 @@
               
               <li class="item-toc ">
                 <a href="initialization.html" class="sidebar-link ">
-                  <span>设置和选项</span>
+                  <span>安装和配置</span>
                 </a>
               </li>
             
@@ -217,7 +217,7 @@
       
         <li>
           
-            <div class="heading-toc">Usage</div>
+            <div class="heading-toc">使用</div>
           
           <ul class="list-toc">
             
@@ -268,7 +268,7 @@
       
         <li>
           
-            <div class="heading-toc">API Reference</div>
+            <div class="heading-toc">API 参考</div>
           
           <ul class="list-toc">
             
@@ -312,7 +312,7 @@
       
         <li>
           
-            <div class="heading-toc">Recipes</div>
+            <div class="heading-toc">技巧</div>
           
           <ul class="list-toc">
             
@@ -333,7 +333,7 @@
               
               <li class="item-toc ">
                 <a href="optimistic-ui.html" class="sidebar-link ">
-                  <span>Optimistic UI</span>
+                  <span>乐观 UI</span>
                 </a>
               </li>
             
@@ -354,7 +354,7 @@
               
               <li class="item-toc ">
                 <a href="query-splitting.html" class="sidebar-link ">
-                  <span>Query Splitting</span>
+                  <span>查询分割</span>
                 </a>
               </li>
             
@@ -375,7 +375,7 @@
               
               <li class="item-toc ">
                 <a href="webpack.html" class="sidebar-link ">
-                  <span>Webpack加载器</span>
+                  <span>Webpack 加载器</span>
                 </a>
               </li>
             
@@ -401,57 +401,56 @@
 
       <div class="page-actions">
         <div class="actions-group">
-          <a class="btn tertiary small round lowercase" href="https://github.com/apollographqlcn/react-docs-cn/tree/master/source/fragments.md" target="_blank"><span class="icon-github"></span> <span>Edit on GitHub</span></a>
+          <a class="btn tertiary small round lowercase" href="https://github.com/apollographqlcn/react-docs-cn/tree/master/source/fragments.md" target="_blank"><span class="icon-github"></span> <span>在 GitHub 上编辑本文</span></a>
           
         </div>
       </div>
     </div>
 
     <div class="document-formatting">
-      <p><a href="http://graphql.org/learn/queries/#fragments" target="_blank" rel="external">GraphQL片段</a> 是一个共享的查询逻辑片段。</p>
+      <p><a href="http://graphql.org/learn/queries/#fragments" target="_blank" rel="external">GraphQL 片段</a> 是一个代码间共享的查询逻辑片段。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">fragment NameParts on Person &#123;</div><div class="line">  firstName</div><div class="line">  lastName</div><div class="line">&#125;</div><div class="line"></div><div class="line">query getPerson &#123;</div><div class="line">  people(id: &quot;7&quot;) &#123;</div><div class="line">    ...NameParts</div><div class="line">    avatar(size: LARGE)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>Apollo 片段有两种主要用途：</p>
+<p>Apollo 的片段主要有两种用途：</p>
 <ul>
 <li>在多个查询，突变或订阅之间共享字段。</li>
-<li>打破您的查询，让您可以将现场访问与其使用的位置进行共同定位。</li>
+<li>切分单个查询，让你可以将组件代码和其所需的字段相邻放置。</li>
 </ul>
-<p>在本文中，我们将概述两者的模式;我们还将使用<a href="https://github.com/apollographql/graphql-anywhere" target="_blank" rel="external"><code>graphql-anywhere</code></a>和<a href="https://github.com/apollographql/graphql-tag" target="_blank" rel="external"><code>graphql-tag</code></a>中的实用程序旨在帮助我们，特别是第二个问题。</p>
+<p>在本文中，我们将分别概述这两者的模式；我们还将使用 <a href="https://github.com/apollographql/graphql-anywhere" target="_blank" rel="external"><code>graphql-anywhere</code></a> 和 <a href="https://github.com/apollographql/graphql-tag" target="_blank" rel="external"><code>graphql-tag</code></a> 中的公共方法来提供帮助，特别是在第二种情况下。</p>
 <h2 id="reusing-fragments">复用片段</h2>
 
-<p>片段的最直接的使用是在应用程序的各个部分重用部分查询（或突变或订阅）。例如，在评论页面的 GitHunt 中，我们希望在发布评论之后获取相同的字段，因为我们最初的查询。这样，我们可以确保在数据更改时呈现一致的注释对象。</p>
-<p>为此，我们可以简单地分享一个描述我们需要注释的字段的片段：</p>
+<p>片段的最直接的使用场景是在应用的各个部分重用部分查询（或突变，或订阅）。例如，在 GitHunt 项目中，对于评论页，我们希望在发布评论之后，能够获取与最初的查询相同的字段。这样，我们可以确保在数据更改时渲染一致的评论对象。</p>
+<p>为此，我们可以简单地共享一个描述我们所需评论字段的片段：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; gql &#125; <span class="keyword">from</span> <span class="string">'react-apollo'</span>;</div><div class="line"></div><div class="line">CommentsPage.fragments = &#123;</div><div class="line">  <span class="attr">comment</span>: gql<span class="string">`</span></div><div class="line">    fragment CommentsPageComment on Comment &#123;</div><div class="line">      id</div><div class="line">      postedBy &#123;</div><div class="line">        login</div><div class="line">        html_url</div><div class="line">      &#125;</div><div class="line">      createdAt</div><div class="line">      content</div><div class="line">    &#125;</div><div class="line">  `,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>我们把这个片段放在 <code>​​CommentsPage.fragments.comment</code> 上，使用熟悉的 <code>gql</code> 助手来创建它。</p>
-<p>当将时间片段嵌入到查询中时，我们只需在GraphQL中使用 <code>...Name</code> 语法，并将该片段嵌入到查询GraphQL文档中：</p>
+<p>按照惯例，我们把这个片段放在 <code>​​CommentsPage.fragments.comment</code> 里，使用熟悉的 <code>gql</code> 辅助函数来创建它。</p>
+<p>当需要将片段嵌入到查询中时，我们只需在 GraphQL 中使用 <code>...Name</code> 语法，并将该片段嵌入到查询 GraphQL 文本中：</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">const SUBMIT_COMMENT_MUTATION = gql`</div><div class="line">  mutation submitComment(<span class="variable">$repoFullName</span>: String!, <span class="variable">$commentContent</span>: String!) &#123;</div><div class="line">    submitComment(repoFullName: <span class="variable">$repoFullName</span>, commentContent: <span class="variable">$commentContent</span>) &#123;</div><div class="line">      <span class="built_in">..</span>.CommentsPageComment</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="variable">$&#123;CommentsPage.fragments.comment&#125;</span></div><div class="line">`;</div><div class="line"></div><div class="line"><span class="builtin-name">export</span> const COMMENT_QUERY = gql`</div><div class="line">  query Comment(<span class="variable">$repoName</span>: String!) &#123;</div><div class="line">    # <span class="built_in">..</span>.</div><div class="line">    entry(repoFullName: <span class="variable">$repoName</span>) &#123;</div><div class="line">      # <span class="built_in">..</span>.</div><div class="line">      comments &#123;</div><div class="line">        <span class="built_in">..</span>.CommentsPageComment</div><div class="line">      &#125;</div><div class="line">      # <span class="built_in">..</span>.</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="variable">$&#123;CommentsPage.fragments.comment&#125;</span></div><div class="line">`;</div></pre></td></tr></table></figure>
-<p>您可以在GitHunt <a href="https://github.com/apollographql/GitHunt-React/blob/master/ui/routes/CommentsPage.js" target="_blank" rel="external">这里</a>查看 <code>CommentsPage</code> 的完整源代码。</p>
+<p>你可以在<a href="https://github.com/apollographql/GitHunt-React/blob/master/ui/routes/CommentsPage.js" target="_blank" rel="external">这里</a>查看 GitHunt 中 <code>CommentsPage</code> 的完整源代码。</p>
 <h2 id="colocating-fragments">协调片段</h2>
 
-<p>GraphQL的一个关键优点是响应数据的树状特征，在许多情况下，这些属性反映了您渲染的组件层次结构。这与GraphQL对片段的支持相结合，可以让您将查询分开，使得查询获取的各个字段位于使用该字段的代码旁边。</p>
-<p>虽然这种技术并不总是有意义的（例如，GraphQL架构并不总是由UI要求驱动），但是如果这样做，可以使用Apollo客户端中的一些模式来充分利用它。</p>
-<p>在GitHunt中，我们在<a href="https://github.com/apollographql/GitHunt-React/blob/master/ui/routes/FeedPage.js" target="_blank" rel="external"><code>FeedPage</code></a> 上显示了一个例子，它构建了后续视图层次结构：</p>
+<p>GraphQL 还有一个主要优点是响应数据的树状特征，在许多情况下，这些属性反映了你渲染的组件的层次结构。这与 GraphQL 对片段的支持相结合，可以让你将查询切分开，使得查询获取的各个字段位于使用该字段的代码旁边。</p>
+<p>虽然这种技术并不总是有意义的（例如，GraphQL 的 schema 并不总是由 UI 的需求而驱动设计），但是如果这样做，便可以使用 Apollo 客户端中的一些模式来充分利用它。</p>
+<p>在 GitHunt 中，我们在 <a href="https://github.com/apollographql/GitHunt-React/blob/master/ui/routes/FeedPage.js" target="_blank" rel="external"><code>FeedPage</code></a> 上展示了一个例子，它构建了如下的视图结构：</p>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">FeedPage</span></div><div class="line">└── Feed</div><div class="line">    └── FeedEntry</div><div class="line">        ├── RepoInfo</div><div class="line">        └── VoteButtons</div></pre></td></tr></table></figure>
-<p><code>FeedPage</code> 进行查询以获取 <code>Entry</code> 列表，每个子组件需要每个 <code>Entry</code> 的不同子字段。</p>
-<p><code>graphql-anywhere</code> 包为我们提供了一个工具来轻松构建一个单一查询，该查询提供了每个子组件需要的所有字段，并允许轻松地传递组件需要的确切字段。</p>
+<p><code>FeedPage</code> 执行查询以获取 <code>Entry</code> 列表，每个子组件所需的 <code>Entry</code> 又有不同的子字段。</p>
+<p><code>graphql-anywhere</code> 包为我们提供了一个工具来轻松构建一个单一查询，该查询提供了每个子组件需要的所有字段，并允许轻易地为组件传递所需的确切字段。</p>
 <h3 id="creating-fragments">创建片段</h3>
 
-<p>要创建碎片，我们再次使用<code>gql</code>帮助器并附加到 <code>ComponentClass.fragment</code> 的子字段，例如：</p>
+<p>要创建片段，我们需要再次使用 <code>gql</code> 辅助函数并将其赋值给 <code>ComponentClass.fragment</code> 的子字段，例如：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">VoteButtons.fragments = &#123;</div><div class="line">  <span class="attr">entry</span>: gql<span class="string">`</span></div><div class="line">    fragment VoteButtons on Entry &#123;</div><div class="line">      score</div><div class="line">      vote &#123;</div><div class="line">        vote_value</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  `,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p><code>graphql-anywhere</code> 包给我们提供的一个不错的工具是一个<a href="https://facebook.github.io/react/docs/reusable-components.html" target="_blank" rel="external"><code>PropType</code></a> 检查器，我们可以使用它来确保我们确实在组件的 <code>entry</code> 道具中接收这些字段：</p>
+<p><code>graphql-anywhere</code> 包还给我们提供了一个很棒的工具，它是一个 <a href="https://facebook.github.io/react/docs/reusable-components.html" target="_blank" rel="external"><code>PropType</code></a> 检查器，我们可以使用它来确保我们确实能在组件的 <code>entry</code> prop 中接收到这些字段：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; propType &#125; <span class="keyword">from</span> <span class="string">'graphql-anywhere'</span>;</div><div class="line"></div><div class="line">VoteButtons.propTypes = &#123;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">  entry: propType(VoteButtons.fragments.entry).isRequired,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>如果我们的碎片包含子片段，那么我们可以将它们传递给 <code>gql</code> 助手：</p>
+<p>如果我们的片段包含子片段，我们同样可以将它们传递给 <code>gql</code> 辅助函数：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">FeedEntry.fragments = &#123;</div><div class="line">  <span class="attr">entry</span>: gql<span class="string">`</span></div><div class="line">    fragment FeedEntry on Entry &#123;</div><div class="line">      commentCount</div><div class="line">      repository &#123;</div><div class="line">        full_name</div><div class="line">        html_url</div><div class="line">        owner &#123;</div><div class="line">          avatar_url</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">      ...VoteButtons</div><div class="line">      ...RepoInfo</div><div class="line">    &#125;</div><div class="line">    <span class="subst">$&#123;VoteButtons.fragments.entry&#125;</span></div><div class="line">    <span class="subst">$&#123;RepoInfo.fragments.entry&#125;</span></div><div class="line">  `,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <h3 id="filtering-with-fragments">使用片段进行过滤</h3>
 
-<p>我们还可以使用 <code>graphql-anywhere</code> 包从 <code>entry</code> 中过滤出确切的字段，然后再将它们传递给子组件。所以当我们渲染一个 <code>VoteButtons</code> 时，我们可以简单地做：</p>
+<p>我们还可以使用 <code>graphql-anywhere</code> 包从 <code>entry</code> 中过滤出确切的字段，然后再将它们传递给子组件。所以当我们渲染一个 <code>VoteButtons</code> 时，我们可以简单地写：</p>
 <figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; filter &#125; <span class="keyword">from</span> <span class="string">'graphql-anywhere'</span>;</div><div class="line"></div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">VoteButtons</span></span></span></div><div class="line">  <span class="attr">entry</span>=<span class="string">&#123;filter(VoteButtons.fragments.entry,</span> <span class="attr">entry</span>)&#125;</div><div class="line">  <span class="attr">canVote</span>=<span class="string">&#123;loggedIn&#125;</span></div><div class="line">  <span class="attr">onVote</span>=<span class="string">&#123;type</span> =&gt; onVote(&#123;</div><div class="line">    repoFullName: full_name,</div><div class="line">    type,</div><div class="line">  &#125;)&#125;</div><div class="line">/&gt;</div></pre></td></tr></table></figure>
 <p><code>filter()</code> 函数将从片段定义的 <code>entry</code> 中获取完整的字段。</p>
-<h3 id="webpack-importing-fragments" title="Fragments with Webpack">使用 Webpack 时导入片段</h3>
+<h3 id="webpack-importing-fragments" title="Fragments with Webpack">使用 Webpack 导入片段</h3>
 
-<p>当使用<a href="https://github.com/apollographql/graphql-tag/blob/master/loader.js" target="_blank" rel="external">graphql-tag/loader</a>加载 <code>.graphql</code> 文件时，我们可以使用 <code>import</code> 语句包括片段。例如：</p>
-<p>When loading <code>.graphql</code> files with <a href="https://github.com/apollographql/graphql-tag/blob/master/loader.js" target="_blank" rel="external">graphql-tag/loader</a>, we can include fragments using <code>import</code> statements. For example:</p>
+<p>当使用 <a href="https://github.com/apollographql/graphql-tag/blob/master/loader.js" target="_blank" rel="external">graphql-tag/loader</a> 加载 <code>.graphql</code> 文件时，我们可以使用 <code>import</code> 语句引入片段。例如：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#import &quot;./someFragment.graphql&quot;</div></pre></td></tr></table></figure>
-<p>将使 <code>someFragment.graphql</code> 的内容可用于当前文件。有关其他详细信息，请参阅<a href="webpack.html#Fragments">Webpack Fragments</a>部分。</p>
+<p>这将使 <code>someFragment.graphql</code> 的内容应用于当前文件。有关更多详细信息，请参阅 <a href="webpack.html#Fragments">Webpack Fragments</a> 部分。</p>
 
     </div>
   </div>
@@ -464,7 +463,7 @@
           href="optimistic-ui.html">
           <span class="icon-arrow-left-alt"></span>
           <span class="subtitle-pagination">Previous</span>
-          Optimistic UI
+          乐观 UI
         </a>
       
       

@@ -187,7 +187,7 @@
               
               <li class="item-toc ">
                 <a href="initialization.html" class="sidebar-link ">
-                  <span>设置和选项</span>
+                  <span>安装和配置</span>
                 </a>
               </li>
             
@@ -217,7 +217,7 @@
       
         <li>
           
-            <div class="heading-toc">Usage</div>
+            <div class="heading-toc">使用</div>
           
           <ul class="list-toc">
             
@@ -268,7 +268,7 @@
       
         <li>
           
-            <div class="heading-toc">API Reference</div>
+            <div class="heading-toc">API 参考</div>
           
           <ul class="list-toc">
             
@@ -312,7 +312,7 @@
       
         <li>
           
-            <div class="heading-toc">Recipes</div>
+            <div class="heading-toc">技巧</div>
           
           <ul class="list-toc">
             
@@ -333,7 +333,7 @@
               
               <li class="item-toc ">
                 <a href="optimistic-ui.html" class="sidebar-link ">
-                  <span>Optimistic UI</span>
+                  <span>乐观 UI</span>
                 </a>
               </li>
             
@@ -354,7 +354,7 @@
               
               <li class="item-toc ">
                 <a href="query-splitting.html" class="sidebar-link ">
-                  <span>Query Splitting</span>
+                  <span>查询分割</span>
                 </a>
               </li>
             
@@ -375,7 +375,7 @@
               
               <li class="item-toc ">
                 <a href="webpack.html" class="sidebar-link ">
-                  <span>Webpack加载器</span>
+                  <span>Webpack 加载器</span>
                 </a>
               </li>
             
@@ -401,27 +401,27 @@
 
       <div class="page-actions">
         <div class="actions-group">
-          <a class="btn tertiary small round lowercase" href="https://github.com/apollographqlcn/react-docs-cn/tree/master/source/react-native.md" target="_blank"><span class="icon-github"></span> <span>Edit on GitHub</span></a>
+          <a class="btn tertiary small round lowercase" href="https://github.com/apollographqlcn/react-docs-cn/tree/master/source/react-native.md" target="_blank"><span class="icon-github"></span> <span>在 GitHub 上编辑本文</span></a>
           
         </div>
       </div>
     </div>
 
     <div class="document-formatting">
-      <p>您可以使用Apollo与React Native，就像使用React Web一样。</p>
-<p>要将Apollo引入您的应用程序，请从npm安装 <code>react-apollo</code>，并在<a href="initialization.html">设置</a>文章中概述的应用程序中使用它们：</p>
+      <p>你可以在 React Native 中使用 Apollo，就像 React Web 一样。</p>
+<p>要将 Apollo 引入你的应用，请从 npm 安装 <code>react-apollo</code>，并按照<a href="initialization.html">安装和配置</a>文档中所述方式，在你的应用中使用它们：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install react-apollo --save</div></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123; AppRegistry &#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</div><div class="line"><span class="keyword">import</span> &#123; ApolloClient, ApolloProvider &#125; <span class="keyword">from</span> <span class="string">'react-apollo'</span>;</div><div class="line"></div><div class="line"><span class="comment">// 如上所述创建客户端</span></div><div class="line"><span class="keyword">const</span> client = <span class="keyword">new</span> ApolloClient();</div><div class="line"></div><div class="line"><span class="keyword">const</span> App = <span class="function"><span class="params">()</span> =&gt;</span> (</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">ApolloProvider</span> <span class="attr">client</span>=<span class="string">&#123;client&#125;</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">MyRootComponent</span> /&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">ApolloProvider</span>&gt;</span></div><div class="line">);</div><div class="line"></div><div class="line">AppRegistry.registerComponent(<span class="string">'MyApplication'</span>, () =&gt; App);</div></pre></td></tr></table></figure>
-<p>如果您刚开始使用 Apollo with React，您应该阅读<a href="index.html">React guide</a>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123; AppRegistry &#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</div><div class="line"><span class="keyword">import</span> &#123; ApolloClient, ApolloProvider &#125; <span class="keyword">from</span> <span class="string">'react-apollo'</span>;</div><div class="line"></div><div class="line"><span class="comment">// 如上所述创建客户端实例</span></div><div class="line"><span class="keyword">const</span> client = <span class="keyword">new</span> ApolloClient();</div><div class="line"></div><div class="line"><span class="keyword">const</span> App = <span class="function"><span class="params">()</span> =&gt;</span> (</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">ApolloProvider</span> <span class="attr">client</span>=<span class="string">&#123;client&#125;</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">MyRootComponent</span> /&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">ApolloProvider</span>&gt;</span></div><div class="line">);</div><div class="line"></div><div class="line">AppRegistry.registerComponent(<span class="string">'MyApplication'</span>, () =&gt; App);</div></pre></td></tr></table></figure>
+<p>如果你第一次在 React 中使用 Apollo，你应该先阅读 <a href="index.html">React 指南</a>。</p>
 <h2 id="examples">示例</h2>
 
-<p>有一些阿波罗的例子写在React Native中，您可能希望参考：</p>
+<p>这有一些你可能希望参考的在 React Native 中 使用 Apollo 的例子：</p>
 <ol>
-<li>dev.apollodata.com 使用的<a href="https://github.com/apollographql/frontpage-react-native-app" target="_blank" rel="external">“Hello World”示例</a>。</li>
-<li>一个<a href="https://github.com/apollographql/GitHub-GraphQL-API-Example" target="_blank" rel="external">GitHub API示例</a>构建为与GitHub的新GraphQL API配合使用。</li>
+<li>dev.apollodata.com 使用的 <a href="https://github.com/apollographql/frontpage-react-native-app" target="_blank" rel="external">“Hello World” 示例</a>。</li>
+<li>一个为与 GitHub 的新 GraphQL API 配合使用而构建的 <a href="https://github.com/apollographql/GitHub-GraphQL-API-Example" target="_blank" rel="external">GitHub API 示例</a>。</li>
 </ol>
 <blockquote>
-<p>如果你有一个例子来发布在这里，请点击上面的“编辑GitHub”按钮，让我们知道！</p>
+<p>如果你想要在这里发布一个示例，请点击上面的“在 GitHub 上编辑本文”按钮，让我们知道！</p>
 </blockquote>
 
     </div>
@@ -435,7 +435,7 @@
           href="query-splitting.html">
           <span class="icon-arrow-left-alt"></span>
           <span class="subtitle-pagination">Previous</span>
-          Query Splitting
+          查询分割
         </a>
       
       

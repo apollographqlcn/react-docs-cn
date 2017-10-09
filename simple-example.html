@@ -5,7 +5,7 @@
 
     <!-- Basic -->
     <title>简易示例：Snack | Apollo React 中文文档</title>
-    <meta name="description" content="一个微型应用程序，从我们的GitHunt示例应用程序实现一个视图，您可以直接从浏览器运行和编辑。">
+    <meta name="description" content="一个小应用，实现了 GitHunt 示例应用中的一个视图，你可以直接从浏览器端运行和编辑。">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="images/favicon.png" sizes="16x16 32x32 64x64">
 
@@ -13,12 +13,12 @@
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://apollographqlcn.github.io/react-docs-cn">
     <meta property="og:title" content="简易示例：Snack | Apollo React 中文文档">
-    <meta property="og:description" content="一个微型应用程序，从我们的GitHunt示例应用程序实现一个视图，您可以直接从浏览器运行和编辑。">
+    <meta property="og:description" content="一个小应用，实现了 GitHunt 示例应用中的一个视图，你可以直接从浏览器端运行和编辑。">
     <meta property="og:image" content="">
     <meta name="twitter:card" content="summary_image_large">
     <meta name="twitter:site" content="@apollographqlcn">
     <meta name="twitter:title" content="简易示例：Snack | Apollo React 中文文档">
-    <meta name="twitter:description" content="一个微型应用程序，从我们的GitHunt示例应用程序实现一个视图，您可以直接从浏览器运行和编辑。">
+    <meta name="twitter:description" content="一个小应用，实现了 GitHunt 示例应用中的一个视图，你可以直接从浏览器端运行和编辑。">
     <meta name="twitter:image" content="">
 
     <!-- Misc -->
@@ -187,7 +187,7 @@
               
               <li class="item-toc ">
                 <a href="initialization.html" class="sidebar-link ">
-                  <span>设置和选项</span>
+                  <span>安装和配置</span>
                 </a>
               </li>
             
@@ -217,7 +217,7 @@
       
         <li>
           
-            <div class="heading-toc">Usage</div>
+            <div class="heading-toc">使用</div>
           
           <ul class="list-toc">
             
@@ -268,7 +268,7 @@
       
         <li>
           
-            <div class="heading-toc">API Reference</div>
+            <div class="heading-toc">API 参考</div>
           
           <ul class="list-toc">
             
@@ -312,7 +312,7 @@
       
         <li>
           
-            <div class="heading-toc">Recipes</div>
+            <div class="heading-toc">技巧</div>
           
           <ul class="list-toc">
             
@@ -333,7 +333,7 @@
               
               <li class="item-toc ">
                 <a href="optimistic-ui.html" class="sidebar-link ">
-                  <span>Optimistic UI</span>
+                  <span>乐观 UI</span>
                 </a>
               </li>
             
@@ -354,7 +354,7 @@
               
               <li class="item-toc ">
                 <a href="query-splitting.html" class="sidebar-link ">
-                  <span>Query Splitting</span>
+                  <span>查询分割</span>
                 </a>
               </li>
             
@@ -375,7 +375,7 @@
               
               <li class="item-toc ">
                 <a href="webpack.html" class="sidebar-link ">
-                  <span>Webpack加载器</span>
+                  <span>Webpack 加载器</span>
                 </a>
               </li>
             
@@ -398,52 +398,55 @@
     <div class="header-content">
       <h1 class="title-page">简易示例：Snack</h1>
       
-        <div class="subtitle-page">一个微型应用程序，从我们的GitHunt示例应用程序实现一个视图，您可以直接从浏览器运行和编辑。</div>
+        <div class="subtitle-page">一个小应用，实现了 GitHunt 示例应用中的一个视图，你可以直接从浏览器端运行和编辑。</div>
       
 
       <div class="page-actions">
         <div class="actions-group">
-          <a class="btn tertiary small round lowercase" href="https://github.com/apollographqlcn/react-docs-cn/tree/master/source/simple-example.md" target="_blank"><span class="icon-github"></span> <span>Edit on GitHub</span></a>
+          <a class="btn tertiary small round lowercase" href="https://github.com/apollographqlcn/react-docs-cn/tree/master/source/simple-example.md" target="_blank"><span class="icon-github"></span> <span>在 GitHub 上编辑本文</span></a>
           
         </div>
       </div>
     </div>
 
     <div class="document-formatting">
-      <p>查看Apollo Client和GraphQL可以为您做的最简单的方法是自己尝试。以下是单个React Native视图的简单示例，它使用Apollo Client与我们的托管示例应用程序<a href="example-schema.html">GitHunt</a>进行通信。我们已经在<a href="https://expo.io" target="_blank" rel="external">Expo</a>中的<a href="https://blog.expo.io/sketch-a-playground-forrereate-native-16b2401f44a2" target="_blank" rel="external">Snack</a>编辑器的页面中嵌入了该页面。</p>
+      <p>想要知道 Apollo 客户端和 GraphQL 能为你做什么，最简单的方法是自己尝试一番。以下是单个 React Native 视图的简单示例，它使用 Apollo 客户端与我们的托管示例应用 <a href="example-schema.html">GitHunt</a> 进行通信。我们已经把 <a href="https://expo.io" target="_blank" rel="external">Expo</a> 中的 <a href="https://blog.expo.io/sketch-a-playground-forrereate-native-16b2401f44a2" target="_blank" rel="external">Snack</a> 编辑器的页面嵌入了本页。</p>
 <p><div data-snack-id="HkhGxRFhe" data-snack-platform="ios" data-snack-preview="true" style="overflow:hidden;background:#fafafa;border:1px solid rgba(0,0,0,.16);border-radius:4px;height:514px;width:100%"></div></p>
 <script async src="https://snack.expo.io/embed.js"></script>
 
-<p>首先，让我们来运行应用程序。有两种方法：</p>
-<p>1.点击“点击播放”按钮在模拟器中运行应用程序。<br>2.在<a href="https://snack.expo.io/HkhGxRFhe" target="_blank" rel="external">新窗口</a>中打开编辑器，并安装<a href="https://expo.io/" target="_blank" rel="external">Expo app</a>以在iOS或Android设备上运行。</p>
-<p>无论哪种方式，应用程序将在您键入时自动重新加载。</p>
+<p>首先，让我们来运行该应用。有两种方法：</p>
+<ol>
+<li>在模拟器中点击 “Tap to Play” 按钮运行此应用。</li>
+<li>在<a href="https://snack.expo.io/HkhGxRFhe" target="_blank" rel="external">新窗口</a>中打开编辑器，并安装 <a href="https://expo.io/" target="_blank" rel="external">Expo app</a> 以在 iOS 或 Android 设备上运行。</li>
+</ol>
+<p>无论哪种方式，应用都将在你修改代码时自动重新加载。</p>
 <h2 id="first-edit">首次编辑</h2>
 
-<p>幸运的是，这个应用是为了让我们的第一个代码变化而设置的。希望在启动应用程序后，您将看到一个具有某些GitHub存储库的可滚动列表的视图。这是使用GraphQL查询从服务器获取的。我们通过删除<code>stargazers_count</code>前面的<code>#</code>来编辑查询，这样应用程序也会加载GitHub的星号。查询现在应如下所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  feed (type: TOP, limit: 10) &#123;</div><div class="line">    repository &#123;</div><div class="line">      name, owner &#123; login &#125;</div><div class="line"></div><div class="line">      # 取消注释下面的行以获取星号！</div><div class="line">      stargazers_count</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    postedBy &#123; login &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>因为在这个例子中，我们已经开发了这样一个UI，它知道如何显示这些新信息，你应该看到应用程序刷新，并显示每个存储库中的GitHub的数量！</p>
+<p>这个应用是为了让我们练习而特意设置的，因此，在启动应用后，你应该能看到一个展示一些 GitHub 仓库的可滚动列表视图。这些数据是使用 GraphQL 查询从服务端获取的。我们通过移除 <code>stargazers_count</code> 前面的 <code>#</code> 来编辑查询，这样应用也会加载 GitHub 的 star 数。查询现在应如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  feed (type: TOP, limit: 10) &#123;</div><div class="line">    repository &#123;</div><div class="line">      name, owner &#123; login &#125;</div><div class="line"></div><div class="line">      # 取消下一行的注释以获取 star！</div><div class="line">      stargazers_count</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    postedBy &#123; login &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>因为在本例中，我们已经开发了相应的 UI，它知道如何显示这些新信息，你应该会看到应用刷新，并显示每个仓库中的 GitHub star 的数量！</p>
 <h2 id="github-api">多个后端</h2>
 
-<p>GraphQL最酷的一件事是它可以是多个后端之上的抽象层。您以上执行的查询实际上是从两个完全独立的数据源一次加载的：一个存储提交列表的PostgreSQL数据库，以及用于获取有关实际存储库的信息的GitHub REST API。</p>
-<p>让我们验证该应用程序是<em>actually</em>从GitHub读取。选择列表中的一个存储库，例如<a href="https://github.com/apollographql/apollo-client" target="_blank" rel="external">apollographql/apollo-client</a>或<a href="https://github.com/facebook/graphql" target="_blank" rel="external">facebook/graphql</a>，并将其加载。然后，拉下应用程序中的列表以进行刷新。你应该看到数字改变！这是因为我们的GraphQL服务器每次都从真正的GitHub API中提取，并通过一些不错的缓存和ETag处理来避免触发速率限制。</p>
-<h2 id="code-explanation">解释代码</h2>
+<p>GraphQL 最酷的一点是它可以作为多个后端之上的抽象层。你上面执行的查询实际上是从两个完全独立的数据源一次加载的：一个存储提交列表的 PostgreSQL 数据库，以及用于获取相关仓库信息的 GitHub REST API。</p>
+<p>让我们验证一下该应用是<em>真的</em>从 GitHub 读取。选择列表中的一个存储库，例如 <a href="https://github.com/apollographql/apollo-client" target="_blank" rel="external">apollographql/apollo-client</a> 或 <a href="https://github.com/facebook/graphql" target="_blank" rel="external">facebook/graphql</a>，并点下 star。然后，在应用中下拉刷新列表。你应该会看到 star 数字改变了！这是因为我们的 GraphQL 服务端每次都从真实的 GitHub API 中提取数据，并通过一些优化的缓存和 ETag 来控制避免触发请求频率的限制。</p>
+<h2 id="code-explanation">代码详解</h2>
 
-<p>在您离开并使用Apollo构建您自己的令人敬畏的GraphQL应用程序之前，让我们来看看这个简单示例中的代码。</p>
-<p>这一段代码使用 <code>react-apollo</code> 中的 <code>graphql</code> 高阶组件将GraphQL查询结果附加到 <code>Feed</code> 组件：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> FeedWithData = graphql(gql<span class="string">`&#123;</span></div><div class="line">  feed (type: TOP, limit: 10) &#123;</div><div class="line">    repository &#123;</div><div class="line">      name, owner &#123; login &#125;</div><div class="line"></div><div class="line">      # 取消注释下面的行以获取星号！</div><div class="line">      # stargazers_count</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    postedBy &#123; login &#125;</div><div class="line">  &#125;</div><div class="line">&#125;`, &#123; <span class="attr">options</span>: &#123; <span class="attr">notifyOnNetworkStatusChange</span>: <span class="literal">true</span> &#125; &#125;)(Feed);</div></pre></td></tr></table></figure>
-<p>这是React Native渲染的主要 <code>App</code> 组件。它创建一个带有服务器URL的网络接口，初始化一个 <code>ApolloClient</code> 实例，并使用 <code>ApolloProvider</code> 将其附加到我们的React组件树。如果您使用Redux，这应该是熟悉的，因为它类似于Redux提供程序的工作原理。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> </span>&#123;</div><div class="line">  createClient() &#123;</div><div class="line">    <span class="comment">// 使用URL将Apollo Client初始化到我们的服务器</span></div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ApolloClient(&#123;</div><div class="line">      <span class="attr">networkInterface</span>: createNetworkInterface(&#123;</div><div class="line">        <span class="attr">uri</span>: <span class="string">'http://api.githunt.com/graphql'</span>,</div><div class="line">      &#125;),</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      <span class="comment">// 将客户端实例导入到React组件树中</span></div><div class="line">      &lt;ApolloProvider client=&#123;<span class="keyword">this</span>.createClient()&#125;&gt;</div><div class="line">        <span class="xml"><span class="tag">&lt;<span class="name">FeedWithData</span> /&gt;</span></span></div><div class="line">      <span class="tag">&lt;/<span class="name">ApolloProvider</span>&gt;</span></div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>接下来，我们得到一个实际处理一些数据加载问题的组件。大多数情况下，这只是通过 <code>data</code> 行为传递给 <code>feedList</code>，这实际上会显示这些项目。但是，这里还有一个有趣的React Native <code>RefreshControl</code>组件，当您拉下列表时，它使用Apollo内置的 <code>data.refetch</code> 方法来提取数据。它还使用 <code>data.networkStatus</code> 支架显示正确的加载状态，Apollo为我们追踪。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 这里的数据资料来自阿波罗HoC。它有我们要求的数据，还有一些有用的方法，如 refetch().</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Feed</span>(<span class="params">&#123; data &#125;</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> (</div><div class="line">    &lt;ScrollView style=&#123;styles.container&#125; refreshControl=&#123;</div><div class="line">      // 这样可以实现拉拔刷新功能</div><div class="line">      &lt;RefreshControl</div><div class="line">        refreshing=&#123;data.networkStatus === 4&#125;</div><div class="line">        onRefresh=&#123;data.refetch&#125;</div><div class="line">      /&gt;</div><div class="line">    &#125;&gt;</div><div class="line">      &lt;Text style=&#123;styles.title&#125;&gt;GitHunt&lt;/Text&gt;</div><div class="line">      &lt;FeedList data=&#123;data&#125; /&gt;</div><div class="line">      &lt;Text style=&#123;styles.fullApp&#125;&gt;See the full app at www.githunt.com&lt;/Text&gt;</div><div class="line">      &lt;Button</div><div class="line">        buttonStyle=&#123;styles.learnMore&#125;</div><div class="line">        onPress=&#123;goToApolloWebsite&#125;</div><div class="line">        icon=&#123;&#123;name: 'code'&#125;&#125;</div><div class="line">        raised</div><div class="line">        backgroundColor="#22A699"</div><div class="line">        title="Learn more about Apollo"</div><div class="line">      /&gt;</div><div class="line">    &lt;/ScrollView&gt;</div><div class="line">  );</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>最后，我们到达实际显示项目 <code>FeedList</code> 组件的位置。这消耗了阿波罗的 <code>data</code> 支柱，并将其映射到显示列表项。您可以看到，由于GraphQL，我们得到的数据完全符合我们预期的形状。</p>
+<p>在你开始使用 Apollo 构建自个儿棒棒的 GraphQL 应用之前，让我们先来看看这个简单示例中的代码。</p>
+<p>这一段代码使用 <code>react-apollo</code> 中的 <code>graphql</code> 高阶组件将 GraphQL 查询结果附加到 <code>Feed</code> 组件：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> FeedWithData = graphql(gql<span class="string">`&#123;</span></div><div class="line">  feed (type: TOP, limit: 10) &#123;</div><div class="line">    repository &#123;</div><div class="line">      name, owner &#123; login &#125;</div><div class="line"></div><div class="line">      # 取消下一行的注释以获取 star！</div><div class="line">      # stargazers_count</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    postedBy &#123; login &#125;</div><div class="line">  &#125;</div><div class="line">&#125;`, &#123; <span class="attr">options</span>: &#123; <span class="attr">notifyOnNetworkStatusChange</span>: <span class="literal">true</span> &#125; &#125;)(Feed);</div></pre></td></tr></table></figure>
+<p>这是 React Native 渲染的主要 <code>App</code> 组件。它创建了一个带有服务器 URL 的网络接口，初始化一个 <code>ApolloClient</code> 实例，并使用 <code>ApolloProvider</code> 将其附加到我们的 React 组件树。如果你用过 Redux，这对你来说会很熟悉，因为它与 Redux provider 的工作原理相类似。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> </span>&#123;</div><div class="line">  createClient() &#123;</div><div class="line">    <span class="comment">// 使用我们的服务器 URL 初始化 Apollo 客户端</span></div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ApolloClient(&#123;</div><div class="line">      <span class="attr">networkInterface</span>: createNetworkInterface(&#123;</div><div class="line">        <span class="attr">uri</span>: <span class="string">'http://api.githunt.com/graphql'</span>,</div><div class="line">      &#125;),</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      <span class="comment">// 将客户端实例引入 React 组件树中</span></div><div class="line">      &lt;ApolloProvider client=&#123;<span class="keyword">this</span>.createClient()&#125;&gt;</div><div class="line">        <span class="xml"><span class="tag">&lt;<span class="name">FeedWithData</span> /&gt;</span></span></div><div class="line">      <span class="tag">&lt;/<span class="name">ApolloProvider</span>&gt;</span></div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>接下来，我们分析一个实际处理数据加载的组件。大多数情况下，只需通过 <code>data</code> prop 把数据传递给 <code>feedList</code>，它就会展示出这些项目。但是，这里还有一个有趣的 React Native <code>RefreshControl</code> 组件，当你下拉列表时，它使用 Apollo 内置的 <code>data.refetch</code> 方法来提取数据。它还使用了 <code>data.networkStatus</code> 属性显示正确的加载状态，该状态由 Apollo 为我们跟踪处理。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 这里的数据来源于 Apollo 高阶组件。它具有我们所需的数据，还有一些有用的方法，如 refetch().</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Feed</span>(<span class="params">&#123; data &#125;</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> (</div><div class="line">    &lt;ScrollView style=&#123;styles.container&#125; refreshControl=&#123;</div><div class="line">      // 这里可以实现下拉刷新功能</div><div class="line">      &lt;RefreshControl</div><div class="line">        refreshing=&#123;data.networkStatus === 4&#125;</div><div class="line">        onRefresh=&#123;data.refetch&#125;</div><div class="line">      /&gt;</div><div class="line">    &#125;&gt;</div><div class="line">      &lt;Text style=&#123;styles.title&#125;&gt;GitHunt&lt;/Text&gt;</div><div class="line">      &lt;FeedList data=&#123;data&#125; /&gt;</div><div class="line">      &lt;Text style=&#123;styles.fullApp&#125;&gt;See the full app at www.githunt.com&lt;/Text&gt;</div><div class="line">      &lt;Button</div><div class="line">        buttonStyle=&#123;styles.learnMore&#125;</div><div class="line">        onPress=&#123;goToApolloWebsite&#125;</div><div class="line">        icon=&#123;&#123;name: 'code'&#125;&#125;</div><div class="line">        raised</div><div class="line">        backgroundColor="#22A699"</div><div class="line">        title="Learn more about Apollo"</div><div class="line">      /&gt;</div><div class="line">    &lt;/ScrollView&gt;</div><div class="line">  );</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>最后，我们来看实际显示项目的 <code>FeedList</code> 组件。数据来源于 Apollo 的 <code>data</code> prop，并将数据映射到了显示列表项。你可以看到，多亏了 GraphQL，我们得到的数据形状完全符合我们预期。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">FeedList</span>(<span class="params">&#123; data &#125;</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (data.networkStatus === <span class="number">1</span>) &#123;</div><div class="line">    <span class="keyword">return</span> &lt;ActivityIndicator style=&#123;styles.loading&#125; /&gt;;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  if (data.error) &#123;</div><div class="line">    return &lt;Text&gt;Error! &#123;data.error.message&#125;&lt;/Text&gt;;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  return (</div><div class="line">    &lt;List containerStyle=&#123;styles.list&#125;&gt;</div><div class="line">      &#123; data.feed.map((item) =&gt; &#123;</div><div class="line">          const badge = item.repository.stargazers_count &amp;&amp; &#123;</div><div class="line">            value: `☆ $&#123;item.repository.stargazers_count&#125;`,</div><div class="line">            badgeContainerStyle: &#123; right: 10, backgroundColor: '#56579B' &#125;,</div><div class="line">            badgeTextStyle: &#123; fontSize: 12 &#125;,</div><div class="line">          &#125;;</div><div class="line"></div><div class="line">          return &lt;ListItem</div><div class="line">            hideChevron</div><div class="line">            title=&#123;`$&#123;item.repository.owner.login&#125;/$&#123;item.repository.name&#125;`&#125;</div><div class="line">            subtitle=&#123;`Posted by $&#123;item.postedBy.login&#125;`&#125;</div><div class="line">            badge=&#123;badge&#125;</div><div class="line">          /&gt;;</div><div class="line">        &#125;</div><div class="line">      ) &#125;</div><div class="line">    &lt;/List&gt;</div><div class="line">  )</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>现在，您已经看到了构建React Native应用程序所需的所有代码，该应用程序加载了项目列表，并将其显示在具有拉到刷新功能的列表中。正如你所看到的，我们不得不写很少的数据加载代码！我们认为Apollo和GraphQL可以帮助数据加载脱离您的方式，以便您可以比以前更快地构建应用程序。</p>
+<p>现在，你已经浏览了编写 React Native 应用所需的所有代码，该应用加载一个项目列表，并将其显示在具有下拉刷新功能的列表中。正如你所看到的，我们只需写很少的数据加载代码！我们认为 Apollo 和 GraphQL 可以帮助你从数据加载的方式中解脱，方便你更快地编写应用。</p>
 <h2 id="next-steps">下一步</h2>
 
-<p>让我们从头开始构建你自己的应用程序！您有两个教程可以通过，我们建议按以下顺序进行操作：</p>
+<p>让我们从头开始构建你自己的应用！这有两个教程可供你学习，我们建议按以下顺序进行：</p>
 <ol>
-<li><a href="https://dev-blog.apollodata.com/full-stack-react-graphql-tutorial-582ac8d24e3b#.cwvxzphyc" target="_blank" rel="external">Full-Stack GraphQL + React tutorial</a> 来自 <a href="https://twitter.com/helferjs" target="_blank" rel="external">Jonas Helfer</a>，Apollo Client的首席开发人员。</li>
-<li>由<a href="https://www.graph.cool/" target="_blank" rel="external">Graphcool</a>团队和社区开发的<a href="https://www.learnapollo.com" target="_blank" rel="external">Learn Apollo</a>, Graphcool是一个后端托管平台。</li>
+<li><a href="https://dev-blog.apollodata.com/full-stack-react-graphql-tutorial-582ac8d24e3b#.cwvxzphyc" target="_blank" rel="external">全栈 GraphQL + React 教程</a>，出自 <a href="https://twitter.com/helferjs" target="_blank" rel="external">Jonas Helfer</a>，Apollo 客户端的首席开发人员。</li>
+<li>由 <a href="https://www.graph.cool/" target="_blank" rel="external">Graphcool</a> 团队和社区开发的 <a href="https://www.howtographql.com/react-apollo/0-introduction/" target="_blank" rel="external">How to GraphQL</a>, Graphcool 是一个后端托管平台。</li>
 </ol>
 <p>玩的开心！</p>
 
@@ -458,7 +461,7 @@
           href="initialization.html">
           <span class="icon-arrow-left-alt"></span>
           <span class="subtitle-pagination">Previous</span>
-          设置和选项
+          安装和配置
         </a>
       
       

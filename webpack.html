@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 
     <!-- Basic -->
-    <title>Webpack加载器 | Apollo React 中文文档</title>
+    <title>Webpack 加载器 | Apollo React 中文文档</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="images/favicon.png" sizes="16x16 32x32 64x64">
@@ -12,12 +12,12 @@
     <!-- Social -->
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://apollographqlcn.github.io/react-docs-cn">
-    <meta property="og:title" content="Webpack加载器 | Apollo React 中文文档">
+    <meta property="og:title" content="Webpack 加载器 | Apollo React 中文文档">
     <meta property="og:description" content="">
     <meta property="og:image" content="">
     <meta name="twitter:card" content="summary_image_large">
     <meta name="twitter:site" content="@apollographqlcn">
-    <meta name="twitter:title" content="Webpack加载器 | Apollo React 中文文档">
+    <meta name="twitter:title" content="Webpack 加载器 | Apollo React 中文文档">
     <meta name="twitter:description" content="">
     <meta name="twitter:image" content="">
 
@@ -187,7 +187,7 @@
               
               <li class="item-toc ">
                 <a href="initialization.html" class="sidebar-link ">
-                  <span>设置和选项</span>
+                  <span>安装和配置</span>
                 </a>
               </li>
             
@@ -217,7 +217,7 @@
       
         <li>
           
-            <div class="heading-toc">Usage</div>
+            <div class="heading-toc">使用</div>
           
           <ul class="list-toc">
             
@@ -268,7 +268,7 @@
       
         <li>
           
-            <div class="heading-toc">API Reference</div>
+            <div class="heading-toc">API 参考</div>
           
           <ul class="list-toc">
             
@@ -312,7 +312,7 @@
       
         <li>
           
-            <div class="heading-toc">Recipes</div>
+            <div class="heading-toc">技巧</div>
           
           <ul class="list-toc">
             
@@ -333,7 +333,7 @@
               
               <li class="item-toc ">
                 <a href="optimistic-ui.html" class="sidebar-link ">
-                  <span>Optimistic UI</span>
+                  <span>乐观 UI</span>
                 </a>
               </li>
             
@@ -354,7 +354,7 @@
               
               <li class="item-toc ">
                 <a href="query-splitting.html" class="sidebar-link ">
-                  <span>Query Splitting</span>
+                  <span>查询分割</span>
                 </a>
               </li>
             
@@ -375,7 +375,7 @@
               
               <li class="item-toc  current">
                 <a href="" class="sidebar-link  current">
-                  <span>Webpack加载器</span>
+                  <span>Webpack 加载器</span>
                 </a>
               </li>
             
@@ -396,34 +396,35 @@
 <div class="content">
   <div class="content-wrapper">
     <div class="header-content">
-      <h1 class="title-page">Webpack加载器</h1>
+      <h1 class="title-page">Webpack 加载器</h1>
       
 
       <div class="page-actions">
         <div class="actions-group">
-          <a class="btn tertiary small round lowercase" href="https://github.com/apollographqlcn/react-docs-cn/tree/master/source/webpack.md" target="_blank"><span class="icon-github"></span> <span>Edit on GitHub</span></a>
+          <a class="btn tertiary small round lowercase" href="https://github.com/apollographqlcn/react-docs-cn/tree/master/source/webpack.md" target="_blank"><span class="icon-github"></span> <span>在 GitHub 上编辑本文</span></a>
           
         </div>
       </div>
     </div>
 
     <div class="document-formatting">
-      <p>您可以使用Webpack在<code>.graphql</code>文件上加载GraphQL查询。包<code>graphql-tag</code>带有一个容易设置的加载器，并具有一些优点：</p>
+      <p>你可以使用 Webpack 加载 <code>.graphql</code> 文件里的 GraphQL 查询语句。<code>graphql-tag</code> 包自带一个易于配置的加载器，它具有如下优点：</p>
 <ol>
-<li>不要在客户端处理GraphQL 抽象语法树</li>
+<li>不在客户端处理 GraphQL 抽象语法树</li>
 <li>将查询与逻辑分开</li>
 </ol>
-<p>在下面的例子中，我们创建一个名为<code>currentUser.graphql</code>的新文件：</p>
+<p>在下面的例子中，我们创建一个名为 <code>currentUser.graphql</code> 的新文件：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">query CurrentUserForLayout &#123;</div><div class="line">  currentUser &#123;</div><div class="line">    login</div><div class="line">    avatar_url</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>您可以加载此文件在Webpack配置文件中添加规则：</p>
+<p>你可以通过在 Webpack 配置文件中添加规则来加载此文件：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>: &#123;</div><div class="line">  <span class="attr">rules</span>: [</div><div class="line">    &#123;</div><div class="line">      <span class="attr">test</span>: <span class="regexp">/\.(graphql|gql)$/</span>,</div><div class="line">      <span class="attr">exclude</span>: <span class="regexp">/node_modules/</span>,</div><div class="line">      <span class="attr">loader</span>: <span class="string">'graphql-tag/loader'</span>,</div><div class="line">    &#125;,</div><div class="line">  ],</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
-<p>正如你所看到的，<code>.graphql</code>或<code>.gql</code>文件将在导入时被解析：</p>
+<p>正如你所见，<code>.graphql</code> 或 <code>.gql</code> 文件将在导入时被解析：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123; graphql &#125; <span class="keyword">from</span> <span class="string">'react-apollo'</span>;</div><div class="line"><span class="keyword">import</span> currentUserQuery <span class="keyword">from</span> <span class="string">'./currentUser.graphql'</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Profile</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123; ... &#125;</div><div class="line">Profile.propTypes = &#123; ... &#125;;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> graphql(currentUserQuery)(Profile)</div></pre></td></tr></table></figure>
-<h2 id="Jest"><a href="#Jest" class="headerlink" title="Jest"></a>Jest</h2><p><a href="https://facebook.github.io/jest/" target="_blank" rel="external">Jest</a> 不能使用Webpack加载器。要在Jest中进行相同的转换工作，请使用<a href="https://github.com/remind101/jest-transform-graphql" target="_blank" rel="external">jest-transform-graphql</a>。</p>
-<h2 id="片段"><a href="#片段" class="headerlink" title="片段"></a>片段</h2><p>您可以在 .graphql 文件中使用并包含片段，并且让webpack包含这些依赖关系，与在纯JS中使用gql标签的片段和查询方式类似。</p>
+<h2 id="Jest"><a href="#Jest" class="headerlink" title="Jest"></a>Jest</h2><p><a href="https://facebook.github.io/jest/" target="_blank" rel="external">Jest</a> 不能使用 Webpack 加载器。要在 Jest 中进行相同的转换工作，请使用 <a href="https://github.com/remind101/jest-transform-graphql" target="_blank" rel="external">jest-transform-graphql</a>。</p>
+<h2 id="FuseBox"><a href="#FuseBox" class="headerlink" title="FuseBox"></a>FuseBox</h2><p><a href="http://fuse-box.org" target="_blank" rel="external">FuseBox</a> 不能使用 Webpack 加载器。要在 FuseBox 中进行相同的转换工作，请使用 <a href="https://github.com/otothea/fuse-box-graphql-plugin" target="_blank" rel="external">fuse-box-graphql-plugin</a>.</p>
+<h2 id="片段"><a href="#片段" class="headerlink" title="片段"></a>片段</h2><p>你可以在 .graphql 文件中使用并包含片段，并且让 webpack 为你处理这些依赖关系，这与你在普通 JS 中使用 gql tag 的片段和查询方式类似。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#import &quot;./UserInfoFragment.graphql&quot;</div><div class="line"></div><div class="line">query CurrentUserForLayout &#123;</div><div class="line">  currentUser &#123;</div><div class="line">    ...UserInfo</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>看看我们如何从另一个 .graphql 文件导入UserInfo片段（与在JS中导入模块的方法相同）。</p>
-<p>这里是另一个 .graphql 文件中定义片段的示例。</p>
+<p>看看我们如何从一个 .graphql 文件导入 UserInfo 片段（这与你在 JS 中导入模块的方法相同）。</p>
+<p>这是在另一个 .graphql 文件中定义片段的示例：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">fragment UserInfo on User &#123;</div><div class="line">  login</div><div class="line">  avatar_url</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
     </div>

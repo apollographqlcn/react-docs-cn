@@ -187,7 +187,7 @@
               
               <li class="item-toc ">
                 <a href="initialization.html" class="sidebar-link ">
-                  <span>设置和选项</span>
+                  <span>安装和配置</span>
                 </a>
               </li>
             
@@ -217,7 +217,7 @@
       
         <li>
           
-            <div class="heading-toc">Usage</div>
+            <div class="heading-toc">使用</div>
           
           <ul class="list-toc">
             
@@ -268,7 +268,7 @@
       
         <li>
           
-            <div class="heading-toc">API Reference</div>
+            <div class="heading-toc">API 参考</div>
           
           <ul class="list-toc">
             
@@ -312,7 +312,7 @@
       
         <li>
           
-            <div class="heading-toc">Recipes</div>
+            <div class="heading-toc">技巧</div>
           
           <ul class="list-toc">
             
@@ -333,7 +333,7 @@
               
               <li class="item-toc ">
                 <a href="optimistic-ui.html" class="sidebar-link ">
-                  <span>Optimistic UI</span>
+                  <span>乐观 UI</span>
                 </a>
               </li>
             
@@ -354,7 +354,7 @@
               
               <li class="item-toc ">
                 <a href="query-splitting.html" class="sidebar-link ">
-                  <span>Query Splitting</span>
+                  <span>查询分割</span>
                 </a>
               </li>
             
@@ -375,7 +375,7 @@
               
               <li class="item-toc ">
                 <a href="webpack.html" class="sidebar-link ">
-                  <span>Webpack加载器</span>
+                  <span>Webpack 加载器</span>
                 </a>
               </li>
             
@@ -401,69 +401,71 @@
 
       <div class="page-actions">
         <div class="actions-group">
-          <a class="btn tertiary small round lowercase" href="https://github.com/apollographqlcn/react-docs-cn/tree/master/source/server-side-rendering.md" target="_blank"><span class="icon-github"></span> <span>Edit on GitHub</span></a>
+          <a class="btn tertiary small round lowercase" href="https://github.com/apollographqlcn/react-docs-cn/tree/master/source/server-side-rendering.md" target="_blank"><span class="icon-github"></span> <span>在 GitHub 上编辑本文</span></a>
           
         </div>
       </div>
     </div>
 
     <div class="document-formatting">
-      <p>Apollo提供两种技术，可让您的应用程序快速加载，避免不必要的延迟给用户：</p>
+      <p>Apollo 提供了两种技术，可让你的应用快速加载，为用户避免不必要的延迟：</p>
 <ul>
-<li>Store 覆水，允许您的初始查询集立即返回数据，而无需服务器往返。</li>
-<li>服务端渲染，它将服务器上的初始HTML视图发送给客户端。</li>
+<li>Store 覆水，它将允许你的初始查询集立即返回数据，而无需服务端请求。</li>
+<li>服务端渲染，它将服务端渲染好的初始 HTML 视图发送给客户端。</li>
 </ul>
-<p>您可以使用这些技术中的一种或两种来提供更好的用户体验。</p>
+<p>你可以使用这些技术中的一种或两种来提供更好的用户体验。</p>
 <h2 id="store-rehydration">Store 覆水</h2>
 
-<p>对于在客户机上呈现UI之前可以在服务器上执行某些查询的应用程序，Apollo允许设置数据的初始状态。这有时被称为覆水，因为数据被序列化并包含在初始HTML有效载荷中时，数据被“脱水”。</p>
-<p>例如，一个典型的方法是包括一个脚本标签，看起来像这样：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">  <span class="comment">// `initialState` 应该具有阿波罗存储状态的形状。确保只包括数据，例如：</span></div><div class="line">  <span class="comment">// const initialState = &#123;[client.reduxRootKey]: &#123;</span></div><div class="line">  <span class="comment">//   data: client.store.getState()[client.reduxRootKey].data</span></div><div class="line">  <span class="comment">// &#125;&#125;;</span></div><div class="line">  <span class="built_in">window</span>.__APOLLO_STATE__ = initialState;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>然后可以使用从服务器传递的初始状态来重新使用客户端：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> client = <span class="keyword">new</span> ApolloClient(&#123;</div><div class="line">  <span class="attr">initialState</span>: <span class="built_in">window</span>.__APOLLO_STATE__,</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
-<p>我们将在下面看到如何使用Node和<code>react-apollo</code>的服务器渲染功能生成HTML和Apollo商店的状态。但是，如果您通过其他方式呈现HTML，则必须手动生成该状态。</p>
-<p>如果您在Apollo外部使用<a href="redux.html">Redux</a>，并且已经具有存储补液，则应将存储状态传递到<a href="http://redux.js.org/docs/basics/Store.html" target="_blank" rel="external"><code>Store</code>构造函数</a>。</p>
-<p>然后，当客户端运行第一组查询时，数据将立即返回，因为它已经在存储中！</p>
-<p>如果您在某些初始查询中使用<a href="cache-updates.html#forceFetch"><code>forceFetch</code></a>，则可以在初始化期间传递 <code>ssrForceFetchDelay</code> 选项来跳过强制提取，以便即使这些查询也使用缓存运行：</p>
+<p>对于能在客户端渲染 UI 之前于服务端执行查询的应用，Apollo 运行你为其设置数据的初始状态。这有时被称为覆水，因为数据被序列化并被包含在初始 HTML 代码中时，称数据被“脱水”。</p>
+<p>例如，一个典型的方法是包括一个脚本标签，如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">  <span class="comment">// `initialState` 应该具有 Apollo store 状态的形状。确保只包括必要数据，例如：</span></div><div class="line">  <span class="comment">// const initialState = &#123;[client.reduxRootKey]: &#123;</span></div><div class="line">  <span class="comment">//   data: client.store.getState()[client.reduxRootKey].data</span></div><div class="line">  <span class="comment">// &#125;&#125;;</span></div><div class="line">  <span class="built_in">window</span>.__APOLLO_STATE__ = initialState;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>然后可以使用从服务器传来的初始状态来为客户端执行覆水操作：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> client = <span class="keyword">new</span> ApolloClient(&#123;</div><div class="line">  <span class="attr">initialState</span>: <span class="built_in">window</span>.__APOLLO_STATE__,</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>我们将在下面演示如何使用 Node 和 <code>react-apollo</code> 的服务端渲染功能生成 HTML 和 Apollo store 的状态。但是，如果你通过其他方式渲染 HTML，则必须手动生成该状态。</p>
+<p>如果你在 Apollo 外部使用 <a href="redux.html">Redux</a>，并且已经为 store 覆水，则应将 store 状态传递到 <a href="http://redux.js.org/docs/basics/Store.html" target="_blank" rel="external"><code>Store</code> 构造函数</a>。</p>
+<p>然后，当客户端运行第一组查询时，数据将立即返回，因为它已经在 store 中！</p>
+<p>如果你在某些初始查询中使用 <a href="cache-updates.html#forceFetch"><code>forceFetch</code></a>，则可以在初始化期间传递 <code>ssrForceFetchDelay</code> 选项来跳过强制获取，以便即使是这些查询也将使用缓存的数据源：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> client = <span class="keyword">new</span> ApolloClient(&#123;</div><div class="line">  <span class="attr">initialState</span>: <span class="built_in">window</span>.__APOLLO_STATE__,</div><div class="line">  <span class="attr">ssrForceFetchDelay</span>: <span class="number">100</span>,</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <h2 id="server-rendering">服务端渲染</h2>
 
-<p>您可以使用<code>react-apollo</code>中内置的渲染函数在Node服务器上渲染整个基于React的Apollo应用程序。这些功能负责提取渲染组件树所需的所有查询。通常，您可以在HTTP服务器（如<a href="https://expressjs.com" target="_blank" rel="external">Express</a>）中使用这些功能。</p>
-<p>不需要更改客户端查询来支持此操作，因此您的基于Apollo的React UI应支持SSR开箱即用。</p>
+<p>你可以使用 <code>react-apollo</code> 中内置的渲染函数在 Node 服务器上渲染整个基于 React 的 Apollo 应用。这些函数负责获取渲染组件树所需的所有查询。通常，你可以在 HTTP 服务器（如 <a href="https://expressjs.com" target="_blank" rel="external">Express</a>）中使用这些功能。</p>
+<p>不需要更改客户端查询来支持服务端渲染，因此你的基于 Apollo 的 React UI 支持开箱即用的 SSR。</p>
 <h3 id="server-initialization">服务端初始化</h3>
 
-<p>为了在服务器上呈现应用程序，您需要处理HTTP请求（使用像Express这样的服务器和支持服务器的路由器，如React-Router），然后将应用程序渲染为一个字符串以传回响应。</p>
-<p>我们将在下一部分中看到如何使用组件树并将其转换为一个字符串，但是您需要对如何在服务器上构建Apollo Client实例有一点小心，以确保一切都在此处工作：</p>
+<p>为了在服务器上渲染应用程序，你需要处理 HTTP 请求（使用像 Express 这样的服务端框架和支持服务端运行的路由库，如 React-Router），然后将应用渲染为一个字符串以传回响应。</p>
+<p>我们将在下一部分中看到如何使用组件树并将其转换为一个字符串，但是你需要对如何在服务器上构建 Apollo 客户端实例保持谨慎，以确保一切都能工作完好：</p>
 <ol>
-<li><p>当服务器上的<a href="initialization.html">创建Apollo Client实例</a>时，需要设置网络接口才能正确连接到API服务器。这可能与您在客户端上的操作看起来有所不同，因为如果您在客户端上使用相对URL，则可能需要使用绝对URL到服务器。</p>
+<li><p>当在服务器上<a href="initialization.html">创建 Apollo 客户端实例</a>时，需要设置网络接口才能正确连接到 API 服务器。这可能与你在客户端上的操作看起来有所不同，因为如果你在客户端上使用相对 URL，则可能需要在服务端使用绝对 URL。</p>
 </li>
-<li><p>由于您只想获取每个查询结果一次，请将<code>ssrMode: true</code>选项传递给Apollo Client构造函数，以避免重复强制提取。</p>
+<li><p>由于你只需获取每个查询的结果一次，请将 <code>ssrMode: true</code> 选项传递给 Apollo 客户端构造函数，以避免重复强制请求。</p>
 </li>
-<li><p>您需要确保为每个请求创建一个新的客户端或存储实例，而不是为多个请求重新使用相同的客户端。否则，用户界面将变得过时，您将会遇到<a href="auth.html">authentication</a>的问题。</p>
+<li><p>你需要确保为每个请求创建一个新的客户端或 store 实例，而不是为多个请求重复使用同一个客户端。否则，用户界面将变得过时，而且还会遇到<a href="auth.html">认证</a>的问题。</p>
 </li>
 </ol>
 <p>一旦你把它们放在一起，你会得到如下初始化代码：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; ApolloClient, createNetworkInterface, ApolloProvider &#125; <span class="keyword">from</span> <span class="string">'react-apollo'</span>;</div><div class="line"><span class="keyword">import</span> Express <span class="keyword">from</span> <span class="string">'express'</span>;</div><div class="line"><span class="keyword">import</span> &#123; match, RouterContext &#125; <span class="keyword">from</span> <span class="string">'react-router'</span>;</div><div class="line"></div><div class="line"><span class="comment">// 路由文件是客户端和服务器之间良好的共享入口点</span></div><div class="line"><span class="keyword">import</span> routes <span class="keyword">from</span> <span class="string">'./routes'</span>;</div><div class="line"></div><div class="line"><span class="comment">// 请注意，您不必使用任何特定的http服务器，但是我们在这个例子中使用Express</span></div><div class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Express();</div><div class="line">app.use(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</div><div class="line"></div><div class="line">  <span class="comment">// 此示例使用React Router，尽管它应该与支持SSR的其他路由器同样好</span></div><div class="line">  match(&#123; routes, <span class="attr">location</span>: req.originalUrl &#125;, (error, redirectLocation, renderProps) =&gt; &#123;</div><div class="line"></div><div class="line">    <span class="keyword">const</span> client = <span class="keyword">new</span> ApolloClient(&#123;</div><div class="line">      <span class="attr">ssrMode</span>: <span class="literal">true</span>,</div><div class="line">      <span class="comment">// 请记住，这是SSR服务器将用于连接到API服务器的接口，因此我们需要确保它不被防火墙等</span></div><div class="line">      networkInterface: createNetworkInterface(&#123;</div><div class="line">        <span class="attr">uri</span>: <span class="string">'http://localhost:3010'</span>,</div><div class="line">        <span class="attr">opts</span>: &#123;</div><div class="line">          <span class="attr">credentials</span>: <span class="string">'same-origin'</span>,</div><div class="line">          <span class="attr">headers</span>: &#123;</div><div class="line">            <span class="attr">cookie</span>: req.header(<span class="string">'Cookie'</span>),</div><div class="line">          &#125;,</div><div class="line">        &#125;,</div><div class="line">      &#125;),</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    <span class="keyword">const</span> app = (</div><div class="line">      <span class="xml"><span class="tag">&lt;<span class="name">ApolloProvider</span> <span class="attr">client</span>=<span class="string">&#123;client&#125;</span>&gt;</span></span></div><div class="line">        <span class="tag">&lt;<span class="name">RouterContext</span> &#123;<span class="attr">...renderProps</span>&#125; /&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">ApolloProvider</span>&gt;</span></div><div class="line">    );</div><div class="line"></div><div class="line">    // 渲染代码（见下文）</div><div class="line">  &#125;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">app.listen(basePort, () =&gt; console.log( // eslint-disable-line no-console</div><div class="line">  `App Server is now running on http://localhost:$&#123;basePort&#125;`</div><div class="line">));</div></pre></td></tr></table></figure>
-<p>您可以查看<a href="https://github.com/apollographql/GitHunt-React/blob/master/ui/server.js" target="_blank" rel="external">GitHunt应用程序的<code>ui/server.js</code></a> 以获取完整的工作示例。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 此示例使用 React Router v4，尽管它也能与支持 SSR 的其他路由库一块工作</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> &#123; ApolloClient, createNetworkInterface, ApolloProvider &#125; <span class="keyword">from</span> <span class="string">'react-apollo'</span>;</div><div class="line"><span class="keyword">import</span> Express <span class="keyword">from</span> <span class="string">'express'</span>;</div><div class="line"><span class="keyword">import</span> &#123; StaticRouter &#125; <span class="keyword">from</span> <span class="string">'react-router'</span>;</div><div class="line"><span class="keyword">import</span> Layout <span class="keyword">from</span> <span class="string">'./routes/Layout'</span>;</div><div class="line"></div><div class="line"><span class="comment">// 请注意，您不必使用任何特定的 http 服务器，但我们在此示例中使用 Express</span></div><div class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Express();</div><div class="line">app.use(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</div><div class="line"></div><div class="line"></div><div class="line">  <span class="keyword">const</span> client = <span class="keyword">new</span> ApolloClient(&#123;</div><div class="line">    <span class="attr">ssrMode</span>: <span class="literal">true</span>,</div><div class="line">    <span class="comment">// 请注意，这是 SSR 服务器用于连接到 API 服务器的接口，因此我们需要确保它不被防火墙屏蔽</span></div><div class="line">    networkInterface: createNetworkInterface(&#123;</div><div class="line">      <span class="attr">uri</span>: <span class="string">'http://localhost:3010'</span>,</div><div class="line">      <span class="attr">opts</span>: &#123;</div><div class="line">        <span class="attr">credentials</span>: <span class="string">'same-origin'</span>,</div><div class="line">        <span class="attr">headers</span>: &#123;</div><div class="line">          <span class="attr">cookie</span>: req.header(<span class="string">'Cookie'</span>),</div><div class="line">        &#125;,</div><div class="line">      &#125;,</div><div class="line">    &#125;),</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  <span class="keyword">const</span> context = &#123;&#125;;</div><div class="line"></div><div class="line">  <span class="comment">// 客户端应用将会替换为 &lt;BrowserRouter&gt;</span></div><div class="line">  <span class="keyword">const</span> app = (</div><div class="line">    <span class="xml"><span class="tag">&lt;<span class="name">ApolloProvider</span> <span class="attr">client</span>=<span class="string">&#123;client&#125;</span>&gt;</span></span></div><div class="line">      <span class="tag">&lt;<span class="name">StaticRouter</span> <span class="attr">location</span>=<span class="string">&#123;req.url&#125;</span> <span class="attr">context</span>=<span class="string">&#123;context&#125;</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">Layout</span> /&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">StaticRouter</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">ApolloProvider</span>&gt;</span></div><div class="line">  );</div><div class="line"></div><div class="line">  <span class="comment">// 渲染代码（下面可见）</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line">app.listen(basePort, () =&gt; <span class="built_in">console</span>.log( <span class="comment">// eslint-disable-line no-console</span></div><div class="line">  <span class="string">`App Server is now running on http://localhost:<span class="subst">$&#123;basePort&#125;</span>`</span></div><div class="line">));</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">// ./routes/Layout.js</div><div class="line"></div><div class="line">import &#123; Route, Switch &#125; from 'react-router';</div><div class="line">import &#123; Link &#125; from 'react-router-dom';</div><div class="line">import React from 'react';</div><div class="line"></div><div class="line">// 路由单独定义在一个文件中利于客户端和服务端共用</div><div class="line">import routes from './routes';</div><div class="line"></div><div class="line">const Layout = () =&gt;</div><div class="line">  &lt;div&gt;</div><div class="line">    &lt;nav&gt;</div><div class="line">      &lt;ul&gt;</div><div class="line">        &lt;li&gt;</div><div class="line">          &lt;Link to="/"&gt;Home&lt;/Link&gt;</div><div class="line">        &lt;/li&gt;</div><div class="line">        &lt;li&gt;</div><div class="line">          &lt;Link to="/another"&gt;Another page&lt;/Link&gt;</div><div class="line">        &lt;/li&gt;</div><div class="line">      &lt;/ul&gt;</div><div class="line">    &lt;/nav&gt;</div><div class="line"></div><div class="line">    &#123;/* React Router v4 中引入的新的 &lt;Switch&gt;</div><div class="line">       https://reacttraining.com/react-router/web/api/Switch */&#125;</div><div class="line">    &lt;Switch&gt;</div><div class="line">      &#123;routes.map(route =&gt; &lt;Route key=&#123;route.name&#125; &#123;...route&#125; /&gt;)&#125;</div><div class="line">    &lt;/Switch&gt;</div><div class="line">  &lt;/div&gt;;</div><div class="line"></div><div class="line">export default Layout;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ./routes/index.js</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> MainPage <span class="keyword">from</span> <span class="string">'./MainPage'</span>;</div><div class="line"><span class="keyword">import</span> AnotherPage <span class="keyword">from</span> <span class="string">'./AnotherPage'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> routes = [</div><div class="line">  &#123;</div><div class="line">    <span class="attr">path</span>: <span class="string">'/'</span>,</div><div class="line">    <span class="attr">name</span>: <span class="string">'home'</span>,</div><div class="line">    <span class="attr">exact</span>: <span class="literal">true</span>,</div><div class="line">    <span class="attr">component</span>: MainPage,</div><div class="line">  &#125;,</div><div class="line">  &#123;</div><div class="line">    <span class="attr">path</span>: <span class="string">'/another'</span>,</div><div class="line">    <span class="attr">name</span>: <span class="string">'another'</span>,</div><div class="line">    <span class="attr">component</span>: AnotherPage,</div><div class="line">  &#125;,</div><div class="line">];</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> routes;</div></pre></td></tr></table></figure>
+<p>你可以查看<a href="https://github.com/apollographql/GitHunt-React/blob/master/ui/server.js" target="_blank" rel="external"> GitHunt 应用的 <code>ui/server.js</code></a> 以获取完整的代码示例。</p>
 <p>接下来我们将看看渲染代码实际上是什么。</p>
 <h3 id="getDataFromTree">使用 <code>getDataFromTree</code></h3>
 
-<p><code>getDataFromTree</code> 方法使用React树，确定需要哪些查询来渲染它们，然后将其全部获取。如果你有嵌套查询，它会递归地放在整个树上。它返回一个承诺，当您的Apollo Client存储中的数据准备就绪时可以解决。</p>
-<p>在承诺解决之前，您的Apollo Client存储将被完全初始化，这意味着您的应用程序现在将立即呈现（因为所有查询都被预取），并且您可以在响应中返回字符串结果：</p>
+<p><code>getDataFromTree</code> 方法使用 React 树，确定需要哪些查询来渲染它们，然后将其全部获取。如果你有嵌套查询，它会递归地放在整个树上。它返回一个 promise，当你的Apollo 客户端 store 中的数据准备就绪时可以被解析。</p>
+<p>在 promise 解析之前，你的 Apollo 客户端 store 将被完全初始化，这意味着你的应用将立即呈现（因为所有查询都被预取），并且你可以在响应中返回字符串结果：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; getDataFromTree &#125; <span class="keyword">from</span> <span class="string">"react-apollo"</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> client = <span class="keyword">new</span> ApolloClient(....);</div><div class="line"></div><div class="line"><span class="comment">// 请求（见上文）</span></div><div class="line">getDataFromTree(app).then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">  <span class="comment">// 我们准备好渲染真实的DOM</span></div><div class="line">  <span class="keyword">const</span> content = ReactDOM.renderToString(app);</div><div class="line">  <span class="keyword">const</span> initialState = &#123;[client.reduxRootKey]: client.getInitialState()  &#125;;</div><div class="line"></div><div class="line">  <span class="keyword">const</span> html = <span class="xml"><span class="tag">&lt;<span class="name">Html</span> <span class="attr">content</span>=<span class="string">&#123;content&#125;</span> <span class="attr">state</span>=<span class="string">&#123;initialState&#125;</span> /&gt;</span>;</span></div><div class="line"></div><div class="line">  res.status(200);</div><div class="line">  res.send(`<span class="meta">&lt;!doctype html&gt;</span>\n$&#123;ReactDOM.renderToStaticMarkup(html)&#125;`);</div><div class="line">  res.end();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>在这种情况下，您的标记可以看起来像这样：</p>
+<p>在这种情况下，你的 HTML 可能看起来像这样：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Html</span>(<span class="params">&#123; content, state &#125;</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> (</div><div class="line">    &lt;html&gt;</div><div class="line">      &lt;body&gt;</div><div class="line">        &lt;div id="content" dangerouslySetInnerHTML=&#123;&#123; __html: content &#125;&#125; /&gt;</div><div class="line">        &lt;script dangerouslySetInnerHTML=&#123;&#123;</div><div class="line">          __html: `window.__APOLLO_STATE__=$&#123;JSON.stringify(state).replace(/&lt;/g, '\\u003c')&#125;;`,</div><div class="line">        &#125;&#125; /&gt;</div><div class="line">      &lt;/body&gt;</div><div class="line">    &lt;/html&gt;</div><div class="line">  );</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="local-queries">避免本地查询的网络</h3>
+<h3 id="local-queries">避免本地查询的使用外网</h3>
 
-<p>如果您的GraphQL端点位于与您呈现的同一台服务器上，则可能希望在进行SSR查询时避免使用网络。特别是，如果本地主机在您的生产环境（例如Heroku）上进行防火墙，则会对这些查询进行网络请求不起作用。该问题的一个解决方案是<a href="https://github.com/af/apollo-local-query" target="_blank" rel="external">apollo-local-query</a> 模块，它允许您为apollo创建一个实际不使用的 <code>networkInterface</code> 网络。</p>
-<p>If your GraphQL endpoint is on the same server that you’re rendering from, you may want to avoid using the network when making your SSR queries. In particular, if localhost is firewalled on your production environment (eg. Heroku), making network requests for these queries will not work. One solution to this problem is the <a href="https://github.com/af/apollo-local-query" target="_blank" rel="external">apollo-local-query</a> module, which lets you create a <code>networkInterface</code> for apollo that doesn’t actually use the network.</p>
+<p>如果你的 GraphQL 节点与你做服务端渲染的是在同一台服务器上，则可能希望在进行 SSR 查询时避免使用外网。特别是，如果本地主机在你的生产环境（例如 Heroku ）上配置了防火墙，则这些查询的网络请求将不起作用。该问题的一个解决方案是 <a href="https://github.com/af/apollo-local-query" target="_blank" rel="external">apollo-local-query</a> 模块，它允许你为 Apollo 创建一个实际不使用外网的 <code>networkInterface</code>。</p>
 <h3 id="skip-for-ssr">跳过SSR查询</h3>
 
-<p>如果要在SSR期间有意地跳过查询，可以在查询选项中传递<code>ssr: false</code>。通常，这将意味着组件将在服务器上处于加载状态。例如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> withClientOnlyUser = graphql(GET_USER_WITH_ID, &#123;</div><div class="line">  <span class="attr">options</span>: &#123; <span class="attr">ssr</span>: <span class="literal">false</span> &#125;, <span class="comment">// 不会在SSR期间调用</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>如果要在 SSR 期间有意地跳过查询，可以在查询选项中设置 <code>ssr: false</code>。通常，这将意味着该组件在服务器上将处于加载状态。例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> withClientOnlyUser = graphql(GET_USER_WITH_ID, &#123;</div><div class="line">  <span class="attr">options</span>: &#123; <span class="attr">ssr</span>: <span class="literal">false</span> &#125;, <span class="comment">// 不会在 SSR 期间调用</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <h3 id="renderToStringWithData">使用 <code>renderToStringWithData</code></h3>
 
-<p><code>renderToStringWithData</code> 方法简化了上面的内容，只需返回需要渲染的内容字符串即可。所以它略微减少了步数：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 服务器应用程序代码（集成使用）</span></div><div class="line"><span class="keyword">import</span> &#123; renderToStringWithData &#125; <span class="keyword">from</span> <span class="string">"react-apollo"</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> client = <span class="keyword">new</span> ApolloClient(....);</div><div class="line"></div><div class="line"><span class="comment">// 在请求期间</span></div><div class="line">renderToStringWithData(app).then(<span class="function">(<span class="params">content</span>) =&gt;</span> &#123;</div><div class="line">  <span class="keyword">const</span> initialState = &#123;[client.reduxRootKey]: client.getInitialState() &#125;;</div><div class="line">  <span class="keyword">const</span> html = <span class="xml"><span class="tag">&lt;<span class="name">Html</span> <span class="attr">content</span>=<span class="string">&#123;content&#125;</span> <span class="attr">state</span>=<span class="string">&#123;initialState&#125;</span> /&gt;</span>;</span></div><div class="line"></div><div class="line">  res.status(200);</div><div class="line">  res.send(`<span class="meta">&lt;!doctype html&gt;</span>\n$&#123;ReactDOM.renderToStaticMarkup(html)&#125;`);</div><div class="line">  res.end();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p><code>renderToStringWithData</code> 方法简化了上面的内容，只需返回需要渲染的内容字符串即可。所以它略微减少了步骤：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 服务端应用代码（集成使用）</span></div><div class="line"><span class="keyword">import</span> &#123; renderToStringWithData &#125; <span class="keyword">from</span> <span class="string">"react-apollo"</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> client = <span class="keyword">new</span> ApolloClient(....);</div><div class="line"></div><div class="line"><span class="comment">// 在请求期间</span></div><div class="line">renderToStringWithData(app).then(<span class="function">(<span class="params">content</span>) =&gt;</span> &#123;</div><div class="line">  <span class="keyword">const</span> initialState = &#123;[client.reduxRootKey]: client.getInitialState() &#125;;</div><div class="line">  <span class="keyword">const</span> html = <span class="xml"><span class="tag">&lt;<span class="name">Html</span> <span class="attr">content</span>=<span class="string">&#123;content&#125;</span> <span class="attr">state</span>=<span class="string">&#123;initialState&#125;</span> /&gt;</span>;</span></div><div class="line"></div><div class="line">  res.status(200);</div><div class="line">  res.send(`<span class="meta">&lt;!doctype html&gt;</span>\n$&#123;ReactDOM.renderToStaticMarkup(html)&#125;`);</div><div class="line">  res.end();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 
     </div>
   </div>
@@ -476,7 +478,7 @@
           href="webpack.html">
           <span class="icon-arrow-left-alt"></span>
           <span class="subtitle-pagination">Previous</span>
-          Webpack加载器
+          Webpack 加载器
         </a>
       
       

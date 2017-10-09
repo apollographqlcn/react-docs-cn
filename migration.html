@@ -5,7 +5,7 @@
 
     <!-- Basic -->
     <title>从0.x迁移到1.0 | Apollo React 中文文档</title>
-    <meta name="description" content="简易指南。">
+    <meta name="description" content="简易指南">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="images/favicon.png" sizes="16x16 32x32 64x64">
 
@@ -13,12 +13,12 @@
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://apollographqlcn.github.io/react-docs-cn">
     <meta property="og:title" content="从0.x迁移到1.0 | Apollo React 中文文档">
-    <meta property="og:description" content="简易指南。">
+    <meta property="og:description" content="简易指南">
     <meta property="og:image" content="">
     <meta name="twitter:card" content="summary_image_large">
     <meta name="twitter:site" content="@apollographqlcn">
     <meta name="twitter:title" content="从0.x迁移到1.0 | Apollo React 中文文档">
-    <meta name="twitter:description" content="简易指南。">
+    <meta name="twitter:description" content="简易指南">
     <meta name="twitter:image" content="">
 
     <!-- Misc -->
@@ -187,7 +187,7 @@
               
               <li class="item-toc ">
                 <a href="initialization.html" class="sidebar-link ">
-                  <span>设置和选项</span>
+                  <span>安装和配置</span>
                 </a>
               </li>
             
@@ -217,7 +217,7 @@
       
         <li>
           
-            <div class="heading-toc">Usage</div>
+            <div class="heading-toc">使用</div>
           
           <ul class="list-toc">
             
@@ -268,7 +268,7 @@
       
         <li>
           
-            <div class="heading-toc">API Reference</div>
+            <div class="heading-toc">API 参考</div>
           
           <ul class="list-toc">
             
@@ -312,7 +312,7 @@
       
         <li>
           
-            <div class="heading-toc">Recipes</div>
+            <div class="heading-toc">技巧</div>
           
           <ul class="list-toc">
             
@@ -333,7 +333,7 @@
               
               <li class="item-toc ">
                 <a href="optimistic-ui.html" class="sidebar-link ">
-                  <span>Optimistic UI</span>
+                  <span>乐观 UI</span>
                 </a>
               </li>
             
@@ -354,7 +354,7 @@
               
               <li class="item-toc ">
                 <a href="query-splitting.html" class="sidebar-link ">
-                  <span>Query Splitting</span>
+                  <span>查询分割</span>
                 </a>
               </li>
             
@@ -375,7 +375,7 @@
               
               <li class="item-toc ">
                 <a href="webpack.html" class="sidebar-link ">
-                  <span>Webpack加载器</span>
+                  <span>Webpack 加载器</span>
                 </a>
               </li>
             
@@ -398,55 +398,55 @@
     <div class="header-content">
       <h1 class="title-page">从0.x迁移到1.0</h1>
       
-        <div class="subtitle-page">简易指南。</div>
+        <div class="subtitle-page">简易指南</div>
       
 
       <div class="page-actions">
         <div class="actions-group">
-          <a class="btn tertiary small round lowercase" href="https://github.com/apollographqlcn/react-docs-cn/tree/master/source/migration.md" target="_blank"><span class="icon-github"></span> <span>Edit on GitHub</span></a>
+          <a class="btn tertiary small round lowercase" href="https://github.com/apollographqlcn/react-docs-cn/tree/master/source/migration.md" target="_blank"><span class="icon-github"></span> <span>在 GitHub 上编辑本文</span></a>
           
         </div>
       </div>
     </div>
 
     <div class="document-formatting">
-      <p>以下是Apollo Client的0.x和1.0版本之间的主要突破性变化。</p>
+      <p>以下是 Apollo 客户端从0.x到1.0版本之间的主要破坏性变更。</p>
 <h2 id="fetchMore">fetchMore</h2>
 
-<p><code>fetchMoreResult</code>的结构已经改变了。以前<code>fetchMoreResult</code>用于包含<code>data</code>和<code>loading</code>字段，现在<code>fetchMoreResult</code>是<code>fetchMoreResult.data</code>以前是什么。这意味着你的<code>updateCheck</code>函数必须改变如下对于<code>fetchMore</code>：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">updateQuery: <span class="function">(<span class="params">prev, &#123; fetchMoreResult &#125;</span>) =&gt;</span> &#123;</div><div class="line">  <span class="keyword">return</span> <span class="built_in">Object</span>.assign(&#123;&#125;, prev, &#123;</div><div class="line">    <span class="comment">// feed：[... prev.feed，... fetchMoreResult.data.feed]，//这是以前是</span></div><div class="line">    feed: [...prev.feed, ...fetchMoreResult.feed], <span class="comment">//这是它现在要做的</span></div><div class="line">  &#125;);</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+<p><code>fetchMoreResult</code> 的结构已经改变了。以前 <code>fetchMoreResult</code> 用于包含 <code>data</code> 和 <code>loading</code> 字段，现在的 <code>fetchMoreResult</code> 等同于之前的 <code>fetchMoreResult.data</code>。这意味着你的 <code>updateQueries</code> 函数必须针对 <code>fetchMore</code> 做如下修改：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">updateQuery: <span class="function">(<span class="params">prev, &#123; fetchMoreResult &#125;</span>) =&gt;</span> &#123;</div><div class="line">  <span class="keyword">return</span> <span class="built_in">Object</span>.assign(&#123;&#125;, prev, &#123;</div><div class="line">    <span class="comment">// feed：[... prev.feed，... fetchMoreResult.data.feed]，// 之前的写法</span></div><div class="line">    feed: [...prev.feed, ...fetchMoreResult.feed], <span class="comment">// 现在的写法</span></div><div class="line">  &#125;);</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
 <h2 id="fetchPolicy">fetchPolicy</h2>
 
-<p><code>forceFetch</code>和<code>noFetch</code>查询选项不再可用。相反，它们已被称为 <code>fetchPolicy</code> 的统一API替代。 <code>fetchPolicy</code>接受以下设置：</p>
+<p><code>forceFetch</code> 和 <code>noFetch</code> 查询选项不再可用。相反，它们已被一个统一API <code>fetchPolicy</code> 替代。<code>fetchPolicy</code> 接收以下设置：</p>
 <ul>
-<li><code>{ fetchPolicy: &#39;cache-first&#39; }</code>: 这是Apollo Client在没有指定获取策略时使用的默认提取策略。首先，它将尝试从缓存中完成查询。只有缓存查找失败，才能将查询发送到服务器。</li>
-<li><code>{ fetchPolicy: &#39;cache-only&#39; }</code>: 使用此选项，Apollo Client将尝试仅从缓存中完成查询。如果缓存中没有全部数据可用，将抛出一个错误。这相当于前者的<code>noFetch</code>。</li>
-<li><code>{ fetchPolicy: &#39;network-only&#39; }</code>: 使用此选项，Apollo Client将绕过缓存并直接将查询发送到服务器。这相当于前面的<code>forceFetch</code>。</li>
-<li><code>{ fetchPolicy: &#39;cache-and-network&#39; }</code>: 使用此选项，Apollo Client将查询服务器，但在服务器请求未决时，从缓存返回数据，并在服务器响应到来后更新结果背部。</li>
+<li><code>{ fetchPolicy: &#39;cache-first&#39; }</code>: 这是 Apollo 客户端在没有指定获取策略时使用的默认策略。首先，它将尝试从缓存中完成查询。只有缓存查找失败，才将查询发送到服务器。</li>
+<li><code>{ fetchPolicy: &#39;cache-only&#39; }</code>: 使用此选项，Apollo 客户端将尝试仅从缓存中完成查询。如果缓存中没有任何数据可用，将抛出一个错误。这相当于之前的 <code>noFetch</code>。</li>
+<li><code>{ fetchPolicy: &#39;network-only&#39; }</code>: 使用此选项，Apollo 客户端将绕过缓存并直接将查询发送到服务器。这相当于之前的 <code>forceFetch</code>。</li>
+<li><code>{ fetchPolicy: &#39;cache-and-network&#39; }</code>: 使用此选项，Apollo 客户端将查询发送给服务器，但在服务器请求未完结时，从缓存返回数据，并在服务器响应到来后更新结果。</li>
 </ul>
 <h2 id="returnPartialData">returnPartialData</h2>
 
-<p>在 Apollo 1.0 中已经删除了 <code>returnPartialData</code> 查询选项，因为如果在此模式下运行查询，可能难以预测哪些数据可用。</p>
-<p>要用 <code>returnPartialData</code> 替换运行一个查询的功能，建议运行两个单独的查询：</p>
+<p>在 Apollo 1.0 中已经移除了 <code>returnPartialData</code> 查询选项，因为如果在此模式下运行查询，可能难以预测哪些数据可用。</p>
+<p>要用 <code>returnPartialData</code> 替换执行单个查询的功能，建议运行两个单独的查询：</p>
 <ol>
-<li>一个大型查询，一旦加载，就要求在此视图中显示的所有数据。</li>
-<li>只读取您所知道的较大查询的一小部分的小型查询已被缓存。然后可以在加载较大的查询时显示该查询的数据。</li>
+<li>一个大型查询，一旦视图加载，就请求此视图中需要显示的所有数据。</li>
+<li>相对于您已知的已被缓存的较大查询，仅获取其中一小部分的小型查询，然后可以在加载较大的查询时显示该查询的数据。</li>
 </ol>
 <p>这里有一个例子：</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> FullSomethingComponent =&gt; (props) =&gt; &#123;</div><div class="line">  <span class="keyword">if</span> (props.data.loading) &#123;</div><div class="line">    <span class="keyword">return</span> &lt;PreviewSomethingComponent &#123;...props&#125; /&gt;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">const</span> fullQuery = gql`&#123;</div><div class="line">  channel(name: <span class="string">"x"</span>) &#123;</div><div class="line">    name</div><div class="line">    topic</div><div class="line">    messages &#123;</div><div class="line">      text</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;`;</div><div class="line"></div><div class="line"><span class="keyword">const</span> previewQuery = gql`&#123;</div><div class="line">  channel(name: <span class="string">"x"</span>) &#123;</div><div class="line">    name</div><div class="line">    topic</div><div class="line">  &#125;</div><div class="line">&#125;`;</div><div class="line"></div><div class="line"><span class="keyword">const</span> PreviewSomethingComponent =&gt; (props) =&gt; &#123;</div><div class="line">  <span class="keyword">if</span> (props.data.loading) &#123;</div><div class="line">    <span class="comment">// 哎，我们没有这个数据，即使它应该在缓存中。只显示一个加载组件</span></div><div class="line">    <span class="keyword">return</span> (&lt;Loading /&gt;);</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="comment">// 只是渲染通道名称和主题，显示加载微调器的消息，或类似的东西。</span></div><div class="line">  <span class="keyword">return</span> (&lt;div&gt; ... stuff here &lt;/div&gt;);</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">const</span> SomethingComponentWithData = graphql(fullQuery)(FullSomethingComponent);</div><div class="line"></div><div class="line"><span class="keyword">const</span> PreviewSomethingComponentWithData = graphql(previewQuery)(PreviewSomethingComponent);</div></pre></td></tr></table></figure>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> FullSomethingComponent =&gt; (props) =&gt; &#123;</div><div class="line">  <span class="keyword">if</span> (props.data.loading) &#123;</div><div class="line">    <span class="keyword">return</span> &lt;PreviewSomethingComponent &#123;...props&#125; /&gt;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">const</span> fullQuery = gql`&#123;</div><div class="line">  channel(name: <span class="string">"x"</span>) &#123;</div><div class="line">    name</div><div class="line">    topic</div><div class="line">    messages &#123;</div><div class="line">      text</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;`;</div><div class="line"></div><div class="line"><span class="keyword">const</span> previewQuery = gql`&#123;</div><div class="line">  channel(name: <span class="string">"x"</span>) &#123;</div><div class="line">    name</div><div class="line">    topic</div><div class="line">  &#125;</div><div class="line">&#125;`;</div><div class="line"></div><div class="line"><span class="keyword">const</span> PreviewSomethingComponent =&gt; (props) =&gt; &#123;</div><div class="line">  <span class="keyword">if</span> (props.data.loading) &#123;</div><div class="line">    <span class="comment">// 噢噢，我们没有相应数据，即使它应该在缓存中。因此只显示一个加载组件</span></div><div class="line">    <span class="keyword">return</span> (&lt;Loading /&gt;);</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="comment">// 只渲染通道名称和主题，显示加载 spinner 提示，或类似的东西。</span></div><div class="line">  <span class="keyword">return</span> (&lt;div&gt; ... stuff here &lt;/div&gt;);</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">const</span> SomethingComponentWithData = graphql(fullQuery)(FullSomethingComponent);</div><div class="line"></div><div class="line"><span class="keyword">const</span> PreviewSomethingComponentWithData = graphql(previewQuery)(PreviewSomethingComponent);</div></pre></td></tr></table></figure>
 <h2 id="resultTransformer">resultTransformer</h2>
 
-<p>此全局选项允许在返回查询和变更结果之前对Apollo Client进行转换。由于Apollo Client内部的逻辑很少使用和复杂，所以它已被删除。推荐的转换数据的方法是将转换应用于Apollo Client外部。<br>在 <code>react-apollo</code> 中，这可以在 <code>props</code> 选项中完成。</p>
+<p>此全局选项允许在返回查询和突变结果之前对 Apollo 客户端进行转换。由于Apollo 客户端内部的逻辑很少被用到，以及复杂度很高，所以它已被移除。转换数据的推荐方法是将转换应用于 Apollo 客户端外部。<br>在 <code>react-apollo</code> 中，这可以在 <code>props</code> 选项中实现。</p>
 <h2 id="queryDeduplication">queryDeduplication</h2>
 
-<p>查询重复数据删除是Apollo Client上的全局选项，可确保如果有多个相同的查询，Apollo Client将只向服务器发送一个。它通过在发送之前检查已经在运行中的查询的新查询来实现。</p>
-<p><code>queryDeduplication</code> 默认设置为 <code>true</code>。通过将<code>{queryDeduplication：false}</code>传递给Apollo Client构造函数可以关闭它。</p>
+<p>查询去重是 Apollo 客户端上的全局选项，可确保如果有多个相同的查询，Apollo 客户端将只向服务器发送一个。它通过在发送之前检查已经在运行中的查询的新查询来实现。</p>
+<p><code>queryDeduplication</code> 默认被设置为 <code>true</code>。可以通过将 <code>{queryDeduplication：false}</code> 传递给 Apollo 客户端构造函数来关闭它。</p>
 <h2 id="notifyOnNetworkStatusChange">notifyOnNetworkStatusChange</h2>
 
-<p>布尔 <code>notifyOnNetworkStatusChange</code> 查询选项将在每次网络状态更改时触发新的可观察结果。<br>网络状态指示是否有任何请求正在飞行中用于此查询，并提供有关何种类型的请求（初始加载，重新读取，setVariables，forceFetch）的更多信息。在以前的版本中，如果加载状态改变，Apollo Client将不会在可观察的情况下触发新的结果。有关更多信息，请参阅react-apollo文档。</p>
+<p>布尔值 <code>notifyOnNetworkStatusChange</code> 查询选项将在每次网络状态更改时触发一个新的可观察结果。<br>网络状态表明此查询是否有任何请求正在进行中，并提供该请求是何种类型（initial loading，refetch，setVariables，forceFetch）的信息。在之前的版本中，如果加载状态改变，Apollo 客户端将不会触发新的可观察结果。更多有关信息，请参阅 react-apollo 文档。</p>
 <h2 id="reduxRootKey">reduxRootKey</h2>
 
-<p>全局 <code>reduxRootKey</code> 选项已被弃用，现已被删除。 在它的位置应该使用 <code>reduxRootSelector</code>。 如果您不向阿波罗提供您自己的Redux Store，则不需要设置此选项。 <code>reduxRootSelector</code>是可选的。<br>如果提供，它必须是一个返回商店的阿波罗部分的功能，如下所示：</p>
+<p>全局 <code>reduxRootKey</code> 选项已被弃用，现已被移除。现在应该使用 <code>reduxRootSelector</code> 来取代它。如果你不向 Apollo 提供你自己的 Redux Store，则不需要设置此选项。 <code>reduxRootSelector</code> 是可选的。<br>如果提供，它必须是一个返回 store 中 Apollo 部分的函数，如下所示：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">const</span> client = <span class="keyword">new</span> ApolloClient(&#123;</div><div class="line">  <span class="attr">reduxRootSelector</span>: <span class="function">(<span class="params">store</span>) =&gt;</span> store[<span class="string">'myCustomStoreKey'</span>],</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 
     </div>

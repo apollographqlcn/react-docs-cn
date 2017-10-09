@@ -187,7 +187,7 @@
               
               <li class="item-toc ">
                 <a href="initialization.html" class="sidebar-link ">
-                  <span>设置和选项</span>
+                  <span>安装和配置</span>
                 </a>
               </li>
             
@@ -217,7 +217,7 @@
       
         <li>
           
-            <div class="heading-toc">Usage</div>
+            <div class="heading-toc">使用</div>
           
           <ul class="list-toc">
             
@@ -268,7 +268,7 @@
       
         <li>
           
-            <div class="heading-toc">API Reference</div>
+            <div class="heading-toc">API 参考</div>
           
           <ul class="list-toc">
             
@@ -312,7 +312,7 @@
       
         <li>
           
-            <div class="heading-toc">Recipes</div>
+            <div class="heading-toc">技巧</div>
           
           <ul class="list-toc">
             
@@ -333,7 +333,7 @@
               
               <li class="item-toc ">
                 <a href="optimistic-ui.html" class="sidebar-link ">
-                  <span>Optimistic UI</span>
+                  <span>乐观 UI</span>
                 </a>
               </li>
             
@@ -354,7 +354,7 @@
               
               <li class="item-toc ">
                 <a href="query-splitting.html" class="sidebar-link ">
-                  <span>Query Splitting</span>
+                  <span>查询分割</span>
                 </a>
               </li>
             
@@ -375,7 +375,7 @@
               
               <li class="item-toc ">
                 <a href="webpack.html" class="sidebar-link ">
-                  <span>Webpack加载器</span>
+                  <span>Webpack 加载器</span>
                 </a>
               </li>
             
@@ -401,29 +401,29 @@
 
       <div class="page-actions">
         <div class="actions-group">
-          <a class="btn tertiary small round lowercase" href="https://github.com/apollographqlcn/react-docs-cn/tree/master/source/redux.md" target="_blank"><span class="icon-github"></span> <span>Edit on GitHub</span></a>
+          <a class="btn tertiary small round lowercase" href="https://github.com/apollographqlcn/react-docs-cn/tree/master/source/redux.md" target="_blank"><span class="icon-github"></span> <span>在 GitHub 上编辑本文</span></a>
           
         </div>
       </div>
     </div>
 
     <div class="document-formatting">
-      <p>默认情况下，Apollo Client创建自己的内部Redux store 来管理查询及其结果。如果您已经在应用程序的其余部分使用Redux，则可以将客户端与现有存储集成。</p>
+      <p>默认情况下，Apollo 客户端会创建自己的内部 Redux store 来管理查询及其结果。如果你已经在应用的其余部分里使用了 Redux，则可以将客户端与现有 store 集成。</p>
 <blockquote>
-<p>注意：虽然这将使Apollo Client将其数据保存在同一个存储中，但您仍然应该使用<a href="/react/higher-order-components.html">graphql container</a> 将数据附加到UI中。如果要在组件中使用Redux和Apollo状态，则需要<em>同时</em>使用<code>graphql</code>的react-apollo 和 react-redux 的<code>connect</code>。</p>
+<p>注意：虽然这将使 Apollo 客户端将其数据保存在同一个 store 中，但你仍然应该使用 <a href="api-graphql.html">graphql 容器</a> 将数据附加到 UI 中。如果要在同一个组件中使用 Redux 和 Apollo 的状态，则需要<em>同时</em>使用 react-apollo 的 <code>graphql</code> 和 react-redux 的 <code>connect</code>。</p>
 </blockquote>
-<p>这将让您更好地跟踪应用程序中发生的不同事件，以及客户端和服务器端数据如何更改交错。它也将使用像<a href="https://github.com/zalmoxisus/redux-devtools-extension" target="_blank" rel="external">Redux 开发者工具</a>这样的工具更自然。</p>
-<h2 id="creating-a-store">创建一个 Store</h2>
+<p>这将让你更好地跟踪应用中发生的不同事件，以及客户端和服务器端数据如何交错更改。在使用像 <a href="https://github.com/zalmoxisus/redux-devtools-extension" target="_blank" rel="external">Redux 开发者工具</a>这样的工具时将会更加自然。</p>
+<h2 id="creating-a-store">创建一个 store</h2>
 
-<p>如果您想使用自己的 Store，您需要从Apollo Client实例中传递 reducer 和中间件；您可以直接将 Store 传递到您的 <code>ApolloProvider</code> 中：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; createStore, combineReducers, applyMiddleware, compose &#125; <span class="keyword">from</span> <span class="string">'redux'</span>;</div><div class="line"><span class="keyword">import</span> &#123; ApolloClient, ApolloProvider &#125; <span class="keyword">from</span> <span class="string">'react-apollo'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> &#123; todoReducer, userReducer &#125; <span class="keyword">from</span> <span class="string">'./reducers'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> client = <span class="keyword">new</span> ApolloClient();</div><div class="line"></div><div class="line"><span class="keyword">const</span> store = createStore(</div><div class="line">  combineReducers(&#123;</div><div class="line">    <span class="attr">todos</span>: todoReducer,</div><div class="line">    <span class="attr">users</span>: userReducer,</div><div class="line">    <span class="attr">apollo</span>: client.reducer(),</div><div class="line">  &#125;),</div><div class="line">  &#123;&#125;, <span class="comment">// 初始状态</span></div><div class="line">  compose(</div><div class="line">      applyMiddleware(client.middleware()),</div><div class="line">      <span class="comment">// 如果您正在使用开发者工具扩展程序，您也可以在这里添加如下代码</span></div><div class="line">      (<span class="keyword">typeof</span> <span class="built_in">window</span>.__REDUX_DEVTOOLS_EXTENSION__ !== <span class="string">'undefined'</span>) ? <span class="built_in">window</span>.__REDUX_DEVTOOLS_EXTENSION__() : <span class="function"><span class="params">f</span> =&gt;</span> f,</div><div class="line">  )</div><div class="line">);</div><div class="line"></div><div class="line">ReactDOM.render(</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">ApolloProvider</span> <span class="attr">store</span>=<span class="string">&#123;store&#125;</span> <span class="attr">client</span>=<span class="string">&#123;client&#125;</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">MyRootComponent</span> /&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">ApolloProvider</span>&gt;</span>,</div><div class="line">  rootEl</div><div class="line">)</div></pre></td></tr></table></figure>
-<p>如果要为客户端reducer使用不同的根密钥（而不是 <code>apollo</code>），请在创建客户端时使用 <code>reduxRootSelector: selector</code> 选项：</p>
+<p>如果你想使用自己的 store，你需要从 Apollo 客户端实例中为其传递 reducer 和中间件；你可以直接将 store 传递给你的 <code>ApolloProvider</code> 中：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; createStore, combineReducers, applyMiddleware, compose &#125; <span class="keyword">from</span> <span class="string">'redux'</span>;</div><div class="line"><span class="keyword">import</span> &#123; ApolloClient, ApolloProvider &#125; <span class="keyword">from</span> <span class="string">'react-apollo'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> &#123; todoReducer, userReducer &#125; <span class="keyword">from</span> <span class="string">'./reducers'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> client = <span class="keyword">new</span> ApolloClient();</div><div class="line"></div><div class="line"><span class="keyword">const</span> store = createStore(</div><div class="line">  combineReducers(&#123;</div><div class="line">    <span class="attr">todos</span>: todoReducer,</div><div class="line">    <span class="attr">users</span>: userReducer,</div><div class="line">    <span class="attr">apollo</span>: client.reducer(),</div><div class="line">  &#125;),</div><div class="line">  &#123;&#125;, <span class="comment">// 初始状态</span></div><div class="line">  compose(</div><div class="line">      applyMiddleware(client.middleware()),</div><div class="line">      <span class="comment">// 如果你正在使用开发者工具扩展程序，你可以在这里添加如下代码</span></div><div class="line">      (<span class="keyword">typeof</span> <span class="built_in">window</span>.__REDUX_DEVTOOLS_EXTENSION__ !== <span class="string">'undefined'</span>) ? <span class="built_in">window</span>.__REDUX_DEVTOOLS_EXTENSION__() : <span class="function"><span class="params">f</span> =&gt;</span> f,</div><div class="line">  )</div><div class="line">);</div><div class="line"></div><div class="line">ReactDOM.render(</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">ApolloProvider</span> <span class="attr">store</span>=<span class="string">&#123;store&#125;</span> <span class="attr">client</span>=<span class="string">&#123;client&#125;</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">MyRootComponent</span> /&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">ApolloProvider</span>&gt;</span>,</div><div class="line">  rootEl</div><div class="line">)</div></pre></td></tr></table></figure>
+<p>如果要为客户端 reducer 使用不同的根键（而不是 <code>apollo</code>），请在创建客户端实例时使用 <code>reduxRootSelector: selector</code> 选项：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> client = <span class="keyword">new</span> ApolloClient(&#123;</div><div class="line">  <span class="attr">reduxRootSelector</span>: <span class="function"><span class="params">state</span> =&gt;</span> state.differentKey,</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">const</span> store = createStore(</div><div class="line">  combineReducers(&#123;</div><div class="line">    <span class="attr">differentKey</span>: client.reducer(),</div><div class="line">  &#125;)</div><div class="line">);</div></pre></td></tr></table></figure>
-<h2 id="using-connect">使用连接</h2>
+<h2 id="using-connect">使用 connect</h2>
 
-<p>你可以继续使用<code>react-redux</code>的 <code>connect</code> 高阶组件将状态导入或导出组件。您可以连接GraphQL数据到您的组件之前或之后（或两者都）使用<code>graphql</code>：</p>
+<p>你可以继续使用 <code>react-redux</code> 的 <code>connect</code> 高阶组件将状态导入或导出组件。你可以连接 GraphQL 数据到你的组件之前或之后（或两者都）使用 <code>graphql</code>：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123; graphql &#125; <span class="keyword">from</span> <span class="string">'react-apollo'</span>;</div><div class="line"><span class="keyword">import</span> &#123; connect &#125; <span class="keyword">from</span> <span class="string">'react-redux'</span>;</div><div class="line"></div><div class="line"><span class="keyword">import</span> &#123; CLONE_LIST &#125; <span class="keyword">from</span> <span class="string">'./mutations'</span>;</div><div class="line"><span class="keyword">import</span> &#123; viewList &#125; <span class="keyword">from</span> <span class="string">'./actions'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> List = <span class="function">(<span class="params">&#123; listId, cloneList &#125;</span>) =&gt;</span> (</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>List ID: &#123;listId&#125; <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;cloneList&#125;</span>&gt;</span>Clone<span class="tag">&lt;/<span class="name">button</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line">);</div><div class="line"></div><div class="line"><span class="keyword">const</span> withCloneList = graphql(CLONE_LIST, &#123;</div><div class="line">  <span class="attr">props</span>: <span class="function">(<span class="params">&#123; ownProps, mutate &#125;</span>) =&gt;</span> (&#123;</div><div class="line">    cloneList() &#123;</div><div class="line">      <span class="keyword">return</span> mutate()</div><div class="line">        .then(<span class="function"><span class="params">result</span> =&gt;</span> &#123;</div><div class="line">          ownProps.onSelectList(result.id);</div><div class="line">        &#125;);</div><div class="line">    &#125;,</div><div class="line">  &#125;),</div><div class="line">&#125;);</div><div class="line"><span class="keyword">const</span> ListWithData = withCloneList(List);</div><div class="line"></div><div class="line"><span class="keyword">const</span> ListWithDataAndState = connect(</div><div class="line">  <span class="function">(<span class="params">state</span>) =&gt;</span> (&#123; <span class="attr">listId</span>: state.list.id &#125;),</div><div class="line">  (dispatch) =&gt; (&#123;</div><div class="line">    onSelectList(id) &#123;</div><div class="line">      dispatch(viewList(id));</div><div class="line">    &#125;</div><div class="line">  &#125;),</div><div class="line">)(ListWithData);</div></pre></td></tr></table></figure>
-<p>这意味着您可以轻松地将变量传递到来自Redux状态的查询，或者调度依赖于服务器端数据的操作。</p>
+<p>这意味着你可以轻易地将来自 Redux 状态的变量传递给你的查询，或者 dispatch 依赖于服务端数据的 action。</p>
 
     </div>
   </div>
@@ -443,7 +443,7 @@
         <a class="link primary next"
           href="webpack.html">
           <span class="subtitle-pagination">Next</span>
-          Webpack加载器
+          Webpack 加载器
           <span class="icon-arrow-right-alt"></span>
         </a>
       

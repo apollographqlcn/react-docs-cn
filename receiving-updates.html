@@ -187,7 +187,7 @@
               
               <li class="item-toc ">
                 <a href="initialization.html" class="sidebar-link ">
-                  <span>设置和选项</span>
+                  <span>安装和配置</span>
                 </a>
               </li>
             
@@ -217,7 +217,7 @@
       
         <li>
           
-            <div class="heading-toc">Usage</div>
+            <div class="heading-toc">使用</div>
           
           <ul class="list-toc">
             
@@ -268,7 +268,7 @@
       
         <li>
           
-            <div class="heading-toc">API Reference</div>
+            <div class="heading-toc">API 参考</div>
           
           <ul class="list-toc">
             
@@ -312,7 +312,7 @@
       
         <li>
           
-            <div class="heading-toc">Recipes</div>
+            <div class="heading-toc">技巧</div>
           
           <ul class="list-toc">
             
@@ -333,7 +333,7 @@
               
               <li class="item-toc ">
                 <a href="optimistic-ui.html" class="sidebar-link ">
-                  <span>Optimistic UI</span>
+                  <span>乐观 UI</span>
                 </a>
               </li>
             
@@ -354,7 +354,7 @@
               
               <li class="item-toc ">
                 <a href="query-splitting.html" class="sidebar-link ">
-                  <span>Query Splitting</span>
+                  <span>查询分割</span>
                 </a>
               </li>
             
@@ -375,7 +375,7 @@
               
               <li class="item-toc ">
                 <a href="webpack.html" class="sidebar-link ">
-                  <span>Webpack加载器</span>
+                  <span>Webpack 加载器</span>
                 </a>
               </li>
             
@@ -401,15 +401,15 @@
 
       <div class="page-actions">
         <div class="actions-group">
-          <a class="btn tertiary small round lowercase" href="https://github.com/apollographqlcn/react-docs-cn/tree/master/source/receiving-updates.md" target="_blank"><span class="icon-github"></span> <span>Edit on GitHub</span></a>
+          <a class="btn tertiary small round lowercase" href="https://github.com/apollographqlcn/react-docs-cn/tree/master/source/receiving-updates.md" target="_blank"><span class="icon-github"></span> <span>在 GitHub 上编辑本文</span></a>
           
         </div>
       </div>
     </div>
 
     <div class="document-formatting">
-      <p>Apollo 客户端缓存查询结果，然后在某些情况下使用此缓存来解析查询。您可以通过配置查询数据时使用的 <a href="api-queries.html＃graphql-config-options-fetchPolicy">fetchPolicy</a> 来控制此行为。但是，如果我们的缓存中的信息过时会发生什么？如果服务端的信息发生变化，我们如何确保更新缓存？我们的UI将如何更新以反映这些新信息的变化？本节将尝试解答这些问题。</p>
-<p>您可以设置一些策略，以确保 Apollo 客户端最终与服务端可用的信息保持一致。比如：手动查询，轮询查询和GraphQL订阅。</p>
+      <p>Apollo 客户端缓存查询结果，然后在某些情况下使用此缓存来解析查询。你可以通过配置查询数据时使用的 <a href="api-queries.html＃graphql-config-options-fetchPolicy">fetchPolicy</a> 来控制此行为。但是，如果我们的缓存中的信息过时会发生什么？如果服务端的信息发生变化，我们如何确保更新缓存？我们的UI将如何更新以反映这些新信息的变化？本节将尝试解答这些问题。</p>
+<p>你可以设置一些策略，以确保 Apollo 客户端最终与服务端可用的信息保持一致。比如：手动查询，轮询查询和GraphQL订阅。</p>
 <h2 id="refetch">Refetch</h2>
 
 <p><code>Refetch</code> 是强制部分缓存响应服务端可用信息的最简单方法。本质上，refetch 强制执行一个查询，立即再次请求服务端，绕过缓存。此查询的结果与所有其他查询结果一样，可更新缓存中可用的信息，从而更新页面上的所有查询结果。</p>
@@ -419,27 +419,27 @@
 <p>如果服务端有某种更新（例如，添加到 Feed 中的新代码仓库），Apollo 客户端的 store 将获得更新，UI将根据需要重新呈现。</p>
 <h3 id="when-to-refetch">何时 refetch</h3>
 
-<p>为使 refetch 策略成功，您需要知道何时重新获取查询，所幸 refetch 的使用场景很少。</p>
+<p>为使 refetch 策略成功，你需要知道何时重新获取查询，所幸 refetch 的使用场景很少。</p>
 <ol>
 <li><strong>手动刷新</strong>：许多应用程序提供一种方式让用户通过刷新按钮或下拉手势手动请求更新其数据视图，<code>refetch</code> 非常适合这种情况。</li>
-<li><strong>响应事件</strong>：有时，您知道事件何时发生，将有可能会使数据无效。例如，您可能会有某种事件推送机制，告诉您数据可能已更改。因此，<code>refetch</code> 是可以避免不必要的轮询的最佳方式。</li>
+<li><strong>响应事件</strong>：有时，你知道事件何时发生，将有可能会使数据无效。例如，你可能会有某种事件推送机制，告诉你数据可能已更改。因此，<code>refetch</code> 是可以避免不必要的轮询的最佳方式。</li>
 <li><strong>突变后</strong>：Apollo 提供了<a href="cache-updates.html">一些方法</a>，以确保 store 在突变后是最新的，但最简单的方法是完全重新读取相关查询。在这种情况下，除了在查询本身使用 <code>refetch</code> 方法之外，还可以使用 <a href="api-mutations.html＃graphql-mutation-options-refetchQueries">refetchQueries</a> 选项执行突变。</li>
 </ol>
 <p>但是，在某些情况下，响应用户输入或更改 UI 的变更并无必要，例如，如果某些<em>其他</em>用户决定将代码仓库插入到 GitHunt Feed 中，并且我们需要展示这条数据。我们的客户不知道这已经发生了，直到刷新页面才会看到新的 Feed 项。该问题的解决方案之一便是轮询。</p>
 <h3 id="polling">轮询</h3>
 
-<p>如果您的查询结果可能会频繁变更，并且您想要查看相对较新的视图，则可以考虑轮询。轮询在特定的时间间隔内被触发，与 refetch 相似。</p>
+<p>如果你的查询结果可能会频繁变更，并且你想要查看相对较新的视图，则可以考虑轮询。轮询在特定的时间间隔内被触发，与 refetch 相似。</p>
 <p>继续我们的 refetch 示例，我们可以通过在查询中添加一个选项来添加轮询间隔：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> FeedWithData = graphql(FeedEntries, &#123;</div><div class="line">  <span class="attr">options</span>: &#123; <span class="attr">pollInterval</span>: <span class="number">20000</span> &#125;,</div><div class="line">&#125;)(Feed);</div></pre></td></tr></table></figure>
-<p>查询的 <code>pollInterval</code> 选项设置该查询将被重新执行的时间间隔（以毫秒为单位）。在上述例子中，Apollo 会每隔二十秒处理一次这个查询，确保您的UI在任何时刻都只有20秒过时。</p>
-<p>一般来说，您的轮询间隔不应小于10秒，否则容易对您的服务器造成大量负载。如果您需要立即在 UI 中反映数据变化，则应使用 <a href="#subscriptions">GraphQL 订阅</a>。</p>
-<h2 id="订阅"><a href="#订阅" class="headerlink" title="订阅"></a>订阅</h2><p>订阅可让您的 UI 获得近实时更新。与轮询不同，订阅是基于推送的，这意味着服务端在更新可用时立即将其推送到客户端。订阅比轮询更难设置，但它们允许对更新进行更细粒度的控制，更新时间更快，并可能减少服务端的负载。</p>
+<p>查询的 <code>pollInterval</code> 选项设置该查询将被重新执行的时间间隔（以毫秒为单位）。在上述例子中，Apollo 会每隔二十秒处理一次这个查询，确保你的UI在任何时刻都只有20秒过时。</p>
+<p>一般来说，你的轮询间隔不应小于10秒，否则容易对你的服务器造成大量负载。如果你需要立即在 UI 中反映数据变化，则应使用 <a href="#subscriptions">GraphQL 订阅</a>。</p>
+<h2 id="订阅"><a href="#订阅" class="headerlink" title="订阅"></a>订阅</h2><p>订阅可让你的 UI 获得近实时更新。与轮询不同，订阅是基于推送的，这意味着服务端在更新可用时立即将其推送到客户端。订阅比轮询更难设置，但它们允许对更新进行更细粒度的控制，更新时间更快，并可能减少服务端的负载。</p>
 <p>基于上面的 feedEntry 示例，我们可以通过添加对 <code>score</code> 字段的订阅来实时更新该字段：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">const</span> SUBSCRIPTION_QUERY = gql<span class="string">`</span></div><div class="line">  subscription scoreUpdates ($entryIds: [Int])&#123;</div><div class="line">    newScore(entryIds: $entryIds)&#123;</div><div class="line">      id</div><div class="line">      score</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">`;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Feed</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">  componentWillReceiveProps(newProps) &#123;</div><div class="line">    <span class="keyword">if</span> (!newProps.data.loading) &#123;</div><div class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.unsubscribe) &#123;</div><div class="line">        <span class="keyword">if</span> (newProps.data.feed !== <span class="keyword">this</span>.props.data.feed) &#123;</div><div class="line">          <span class="comment">// 如果 Feed 已更改，我们需要在重新订阅之前取消订阅</span></div><div class="line">          <span class="keyword">this</span>.unsubscribe();</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">          <span class="comment">// 我们设置激活了一个带正确参数的订阅</span></div><div class="line">          <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      <span class="keyword">const</span> entryIds = newProps.data.feed.map(<span class="function"><span class="params">item</span> =&gt;</span> item.id);</div><div class="line"></div><div class="line">      <span class="keyword">this</span>.unsubscribe = newProps.data.subscribeToMore(&#123;</div><div class="line">        <span class="attr">document</span>: SUBSCRIPTION_QUERY,</div><div class="line">        <span class="attr">variables</span>: &#123; entryIds &#125;,</div><div class="line"></div><div class="line">        <span class="comment">// 奇迹发生的地方</span></div><div class="line">        updateQuery: <span class="function">(<span class="params">previousResult, &#123; subscriptionData &#125;</span>) =&gt;</span> &#123;</div><div class="line">          <span class="keyword">const</span> newScoreEntry = subscriptionData.data.newScore;</div><div class="line"></div><div class="line">          <span class="keyword">const</span> newResult = clonedeep(previousResult); <span class="comment">// 不可变状态！</span></div><div class="line"></div><div class="line">          <span class="comment">// 更新受影响的条目的 score</span></div><div class="line">          newResult.feed = newResult.feed.forEach(<span class="function"><span class="params">entry</span> =&gt;</span> &#123;</div><div class="line">            <span class="keyword">if</span>(entry.id === newScoreEntry.id) &#123;</div><div class="line">              entry.score = newScoreEntry.score;</div><div class="line">              <span class="keyword">return</span>;</div><div class="line">            &#125;</div><div class="line">          &#125;);</div><div class="line"></div><div class="line">          <span class="keyword">return</span> newResult;</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">onError</span>: <span class="function">(<span class="params">err</span>) =&gt;</span> <span class="built_in">console</span>.error(err),</div><div class="line">      &#125;);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>在上面的示例中，我们通过订阅列出当前显示在组件中的 Feed 条目的所有 ID，来保留 Feed 组件中所有条目的 score 信息。每次更新 score 时，服务端将发送包含条目 ID 和新 score 的单个响应。</p>
 <p><code>subscribeToMore</code> 是一种通过订阅更新单个查询结果的方便的方法。每次新的订阅结果返回时，传递给 <code>subscribeToMore</code> 的 <code>updateQuery</code> 函数都会立即执行，它负责更新查询结果。<code>subscribeToMore</code> 返回取消订阅处理程序。</p>
 <p><code>subscribeToMore</code> 订阅在其依赖查询停止时自动停止，因此我们不需要手动取消订阅。如果 props 改变了，我们需要手动取消订阅，并使用不同的变量设置进行新的订阅。</p>
-<p>要更深入地了解 GraphQL 中的订阅，您可以在我们的<a href="https://dev-blog.apollodata.com/graphql-subscriptions-in-apollo-client-9a2457f015fb" target="_blank" rel="external">博客文章</a>找到该主题。</p>
+<p>要更深入地了解 GraphQL 中的订阅，你可以在我们的<a href="https://dev-blog.apollodata.com/graphql-subscriptions-in-apollo-client-9a2457f015fb" target="_blank" rel="external">博客文章</a>找到该主题。</p>
 
     </div>
   </div>

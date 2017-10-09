@@ -187,7 +187,7 @@
               
               <li class="item-toc ">
                 <a href="initialization.html" class="sidebar-link ">
-                  <span>设置和选项</span>
+                  <span>安装和配置</span>
                 </a>
               </li>
             
@@ -217,7 +217,7 @@
       
         <li>
           
-            <div class="heading-toc">Usage</div>
+            <div class="heading-toc">使用</div>
           
           <ul class="list-toc">
             
@@ -268,7 +268,7 @@
       
         <li>
           
-            <div class="heading-toc">API Reference</div>
+            <div class="heading-toc">API 参考</div>
           
           <ul class="list-toc">
             
@@ -312,7 +312,7 @@
       
         <li>
           
-            <div class="heading-toc">Recipes</div>
+            <div class="heading-toc">技巧</div>
           
           <ul class="list-toc">
             
@@ -333,7 +333,7 @@
               
               <li class="item-toc ">
                 <a href="optimistic-ui.html" class="sidebar-link ">
-                  <span>Optimistic UI</span>
+                  <span>乐观 UI</span>
                 </a>
               </li>
             
@@ -354,7 +354,7 @@
               
               <li class="item-toc ">
                 <a href="query-splitting.html" class="sidebar-link ">
-                  <span>Query Splitting</span>
+                  <span>查询分割</span>
                 </a>
               </li>
             
@@ -375,7 +375,7 @@
               
               <li class="item-toc ">
                 <a href="webpack.html" class="sidebar-link ">
-                  <span>Webpack加载器</span>
+                  <span>Webpack 加载器</span>
                 </a>
               </li>
             
@@ -401,28 +401,28 @@
 
       <div class="page-actions">
         <div class="actions-group">
-          <a class="btn tertiary small round lowercase" href="https://github.com/apollographqlcn/react-docs-cn/tree/master/source/api-server.md" target="_blank"><span class="icon-github"></span> <span>Edit on GitHub</span></a>
+          <a class="btn tertiary small round lowercase" href="https://github.com/apollographqlcn/react-docs-cn/tree/master/source/api-server.md" target="_blank"><span class="icon-github"></span> <span>在 GitHub 上编辑本文</span></a>
           
         </div>
       </div>
     </div>
 
     <div class="document-formatting">
-      <p><code>react-apollo</code> 提供了一些实用程序来帮助服务器端呈现和存储水合。 要了解如何在应用程序中实现服务器端呈现，请务必阅读<a href="server-side-rendering.html">服务器端渲染的技巧</a>。以下仅仅是服务器端渲染中使用的方法的API的参考，而不是教你如何设置的教程。</p>
+      <p><code>react-apollo</code> 提供了一些实用的方法来帮助服务端渲染和 store 注水。要了解如何在应用中实现服务端渲染，请务必阅读<a href="server-side-rendering.html">服务端渲染的方法</a>。以下仅仅是服务端渲染中所使用的方法的 API 参考，而不是教你如何设置的教程。</p>
 <h2 id="getDataFromTree" title="getDataFromTree"><code>getDataFromTree(jsx)</code></h2>
 
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; getDataFromTree &#125; <span class="keyword">from</span> <span class="string">'react-apollo'</span>;</div></pre></td></tr></table></figure>
-<p>此函数将遍历您的React树，以查找使用 <code>graphql()</code> 增强的任何组件。它将采用查询的组件，执行查询，并返回承诺，以便在所有查询已解决时通知您。这个承诺解决了没有价值。您将无法查看找到的查询返回的数据。</p>
-<p>当使用<a href="https://facebook.github.io/react/docs/react-dom-server.html" target="_blank" rel="external"><code>react-dom/server</code> 的方法</a>像 <code>renderToString</code> 或 <code>renderToStaticMarkup</code> 渲染时执行<code>getDataFromTree</code>后，Apollo缓存将被启动，您的组件将使用缓存中的获取数据进行渲染。您也可以选择使用<code>react-apollo</code> <a href="#renderToStringWithData"><code>renderToStringWithData()</code></a> 方法，该方法将调用此函数，然后调用<a href="https://facebook.github.io/react/docs/react-dom-server.html#rendertostring" target="_blank" rel="external"><code>react-dom/server</code>的 <code>renderToString</code></a>。</p>
-<p>如果其中一个查询失败，承诺将不会拒绝，直到所有查询都已解决或拒绝。在这一点上，我们将拒绝从 <code>getDataFromTree</code> 返回的承诺，其中的错误属性为<code>error.queryErrors</code>，它是我们执行的查询中的所有错误的数组。在这一点上，您可能会决定是否渲染树（如果是，错误的组件将处于加载状态），或者渲染错误页面并在客户端上进行完全重新渲染。</p>
-<p>有关更多信息，请参阅<a href="server-side-rendering.html">服务端渲染的技巧</a>。</p>
+<p>此函数将遍历你的 React 树，以查找任何使用 <code>graphql()</code> 增强器的组件。它将找到那些查询组件，执行查询，并返回一个 promise，以便在所有查询已 resolve 时通知你。这个 promise 不会返回任何值。你将无法查看找到的查询返回的数据。</p>
+<p>当使用 <a href="https://facebook.github.io/react/docs/react-dom-server.html" target="_blank" rel="external"><code>react-dom/server</code> 的方法</a>如 <code>renderToString</code> 或 <code>renderToStaticMarkup</code> 渲染模板时，在执行 <code>getDataFromTree</code> 后，Apollo 缓存将被启动，你的组件将使用缓存中已获取的数据进行渲染。你也可以选择使用 <code>react-apollo</code> <a href="#renderToStringWithData"><code>renderToStringWithData()</code></a> 方法，该方法将调用此函数，然后调用 <a href="https://facebook.github.io/react/docs/react-dom-server.html#rendertostring" target="_blank" rel="external"><code>react-dom/server</code>的 <code>renderToString</code></a> 方法。</p>
+<p>如果其中一个查询失败，promise 将不会 reject，直到所有查询都已 resolve 或 reject。这时，我们将使用一个属性为 <code>error.queryErrors</code> 的错误对象 reject 从 <code>getDataFromTree</code> 返回的 promise，该属性是我们执行的查询中所有错误的数组。这时，你再决定是否渲染树（如果是，错误的组件将处于加载状态），或者渲染一个错误页面并在客户端上完全重新渲染。</p>
+<p>有关更多信息，请参阅<a href="server-side-rendering.html">服务端渲染的方法</a>。</p>
 <p><strong>例：</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> jsx = (</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">ApolloProvider</span> <span class="attr">client</span>=<span class="string">&#123;client&#125;</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">MyRootComponent</span>/&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">ApolloProvider</span>&gt;</span></div><div class="line">);</div><div class="line"></div><div class="line">getDataFromTree(jsx)</div><div class="line">  .then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="built_in">console</span>.log(renderToString(jsx));</div><div class="line">  &#125;)</div><div class="line">  .catch(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</div><div class="line">    <span class="built_in">console</span>.error(error);</div><div class="line">  &#125;);</div></pre></td></tr></table></figure>
 <h2 id="renderToStringWithData" title="renderToStringWithData"><br>  <code>renderToStringWithData(jsx)</code><br></h2>
 
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; renderToStringWithData &#125; <span class="keyword">from</span> <span class="string">'react-apollo'</span>;</div></pre></td></tr></table></figure>
-<p>这个函数调用<a href="#getDataFromTree"><code>getDataFromTree()</code></a>，当该函数返回的承诺解析它调用[<code>react-dom/server</code>’s <code>renderToString</code>][]。</p>
-<p>有关更多信息，请参阅<a href="#getDataFromTree"><code>getDataFromTree()</code></a>或<a href="server-side-rendering.html">服务器端渲染的技巧</a>的文档。</p>
+<p>这个函数会调用 <a href="#getDataFromTree"><code>getDataFromTree()</code></a>，当该函数返回的 promise 被 resolve 时，它将调用<a href="https://facebook.github.io/react/docs/react-dom-server.html#rendertostring" target="_blank" rel="external"><code>react-dom/server</code>的 <code>renderToString</code></a> 方法。</p>
+<p>有关更多信息，请参阅 <a href="#getDataFromTree"><code>getDataFromTree()</code></a> 或 <a href="server-side-rendering.html">服务器端渲染的方法</a>文档。</p>
 <p><strong>例：</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">renderToStringWithData(</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">ApolloProvider</span> <span class="attr">client</span>=<span class="string">&#123;client&#125;</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">MyRootComponent</span>/&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">ApolloProvider</span>&gt;</span></div><div class="line">)</div><div class="line">  .then(<span class="function">(<span class="params">html</span>) =&gt;</span> &#123;</div><div class="line">    <span class="built_in">console</span>.log(html);</div><div class="line">  &#125;)</div><div class="line">  .catch(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</div><div class="line">    <span class="built_in">console</span>.error(error);</div><div class="line">  &#125;);</div></pre></td></tr></table></figure>
 
@@ -437,7 +437,7 @@
           href="api-mutations.html">
           <span class="icon-arrow-left-alt"></span>
           <span class="subtitle-pagination">Previous</span>
-          API: 具有突变的graphql容器
+          API: 带突变的graphql容器
         </a>
       
       

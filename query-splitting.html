@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 
     <!-- Basic -->
-    <title>Query Splitting | Apollo React 中文文档</title>
+    <title>查询分割 | Apollo React 中文文档</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="images/favicon.png" sizes="16x16 32x32 64x64">
@@ -12,12 +12,12 @@
     <!-- Social -->
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://apollographqlcn.github.io/react-docs-cn">
-    <meta property="og:title" content="Query Splitting | Apollo React 中文文档">
+    <meta property="og:title" content="查询分割 | Apollo React 中文文档">
     <meta property="og:description" content="">
     <meta property="og:image" content="">
     <meta name="twitter:card" content="summary_image_large">
     <meta name="twitter:site" content="@apollographqlcn">
-    <meta name="twitter:title" content="Query Splitting | Apollo React 中文文档">
+    <meta name="twitter:title" content="查询分割 | Apollo React 中文文档">
     <meta name="twitter:description" content="">
     <meta name="twitter:image" content="">
 
@@ -187,7 +187,7 @@
               
               <li class="item-toc ">
                 <a href="initialization.html" class="sidebar-link ">
-                  <span>设置和选项</span>
+                  <span>安装和配置</span>
                 </a>
               </li>
             
@@ -217,7 +217,7 @@
       
         <li>
           
-            <div class="heading-toc">Usage</div>
+            <div class="heading-toc">使用</div>
           
           <ul class="list-toc">
             
@@ -268,7 +268,7 @@
       
         <li>
           
-            <div class="heading-toc">API Reference</div>
+            <div class="heading-toc">API 参考</div>
           
           <ul class="list-toc">
             
@@ -312,7 +312,7 @@
       
         <li>
           
-            <div class="heading-toc">Recipes</div>
+            <div class="heading-toc">技巧</div>
           
           <ul class="list-toc">
             
@@ -333,7 +333,7 @@
               
               <li class="item-toc ">
                 <a href="optimistic-ui.html" class="sidebar-link ">
-                  <span>Optimistic UI</span>
+                  <span>乐观 UI</span>
                 </a>
               </li>
             
@@ -354,7 +354,7 @@
               
               <li class="item-toc  current">
                 <a href="" class="sidebar-link  current">
-                  <span>Query Splitting</span>
+                  <span>查询分割</span>
                 </a>
               </li>
             
@@ -375,7 +375,7 @@
               
               <li class="item-toc ">
                 <a href="webpack.html" class="sidebar-link ">
-                  <span>Webpack加载器</span>
+                  <span>Webpack 加载器</span>
                 </a>
               </li>
             
@@ -396,39 +396,43 @@
 <div class="content">
   <div class="content-wrapper">
     <div class="header-content">
-      <h1 class="title-page">Query Splitting</h1>
+      <h1 class="title-page">查询分割</h1>
       
 
       <div class="page-actions">
         <div class="actions-group">
-          <a class="btn tertiary small round lowercase" href="https://github.com/apollographqlcn/react-docs-cn/tree/master/source/query-splitting.md" target="_blank"><span class="icon-github"></span> <span>Edit on GitHub</span></a>
+          <a class="btn tertiary small round lowercase" href="https://github.com/apollographqlcn/react-docs-cn/tree/master/source/query-splitting.md" target="_blank"><span class="icon-github"></span> <span>在 GitHub 上编辑本文</span></a>
           
         </div>
       </div>
     </div>
 
     <div class="document-formatting">
-      <p>Prefetching is an easy way to make your applications UI feel faster. You can use mouse events to predict the data that could be needed.<br>This is powerful and works perfectly on the browser, but can not be applied to a mobile device.</p>
-<p>One solution for improving the UI experience would be the usage of fragments to preload more data in a query, but loading huge amounts of data (that you probably never show to the user) is expensive.</p>
-<p>An other way would be the splitting of huge queries into two smaller queries:</p>
+      <p>预取是使应用 UI 体验更快的简单方法。你可以根据鼠标事件预测可能需要的数据。<br>这个功能在浏览器上很强大，并且运行完好，但不能应用于移动设备。</p>
+<p>改进 UI 体验的一个解决方案是使用片段来预先加载查询中的更多数据，但是加载大量（你可能永远不会向用户展示的）数据是非常昂贵的。</p>
+<p>另一个解决方案是将巨大的查询分成两个较小的查询：</p>
 <ul>
-<li>The first one could load data which is already in the store. This means that it can be displayed instantly.</li>
-<li>The second query could load data which is not in the store yet and must be fetched from the server first.</li>
+<li>第一个可以加载已经存在于 store 中的数据。这意味着它可以立即显示。</li>
+<li>第二个查询可以加载尚未在 store 中的数据，并且必须立即从服务器中获取数据。</li>
 </ul>
-<p>This solution gives you the benefit of not fetching too much data, as well as the possibility to show some part of the views data before the server responds.</p>
-<p>Lets say you have the following schema:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">type Series &#123;</div><div class="line">  id: Int!</div><div class="line">  title: String!</div><div class="line">  description: String!</div><div class="line">  episodes: [Episode]!</div><div class="line">  cover: String!</div><div class="line">&#125;</div><div class="line"></div><div class="line">type Episode &#123;</div><div class="line">  id: Int!</div><div class="line">  title: String!</div><div class="line">  cover: String!</div><div class="line">&#125;</div><div class="line"></div><div class="line">type Query &#123;</div><div class="line">  series: [Series!]!</div><div class="line">  oneSeries(id: Int): Series</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>And you have two Views:</p>
+<p>该方案的好处是可以让你不用获取太多数据，并且在服务器响应之前显示部分视图数据。</p>
+<p>假设你有以下 schema：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">type Series &#123;</div><div class="line">  id: Int!</div><div class="line">  title: String!</div><div class="line">  description: String!</div><div class="line">  episodes: [Episode]!</div><div class="line">  cover: String!</div><div class="line">&#125;</div><div class="line"></div><div class="line">type Episode &#123;</div><div class="line">  id: Int!</div><div class="line">  title: String!</div><div class="line">  cover: String!</div><div class="line">&#125;</div><div class="line"></div><div class="line">type Query &#123;</div><div class="line">  series: [Series!]!</div><div class="line">  oneSeries(id: Int): Series</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>并且你有两个视图：</p>
 <ol>
-<li>Series Overview: List of all Series with their description and cover</li>
-<li>Series DetailView: Detail View of a Series with its description, cover and a list of episodes</li>
+<li>系列概述：所有系列的列表及其描述和封面</li>
+<li>系列详情：某个系列的详情视图及其描述，封面和剧集列表</li>
 </ol>
-<p>The query for the Series Overview would look like the following:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">query seriesOverviewData &#123;</div><div class="line">  series &#123;</div><div class="line">    id</div><div class="line">    title</div><div class="line">    description</div><div class="line">    cover</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>The queries for the Series DetailView would look like this:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">query seriesDetailData($seriesId: Int!) &#123;</div><div class="line">  oneSeries(id: $seriesId) &#123;</div><div class="line">    id</div><div class="line">    title</div><div class="line">    description</div><div class="line">    cover</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>系列概述的查询可能如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">query seriesOverviewData &#123;</div><div class="line">  series &#123;</div><div class="line">    id</div><div class="line">    title</div><div class="line">    description</div><div class="line">    cover</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>系列详情的查询可能如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">query seriesDetailData($seriesId: Int!) &#123;</div><div class="line">  oneSeries(id: $seriesId) &#123;</div><div class="line">    id</div><div class="line">    title</div><div class="line">    description</div><div class="line">    cover</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">query seriesEpisodes($seriesId: Int!) &#123;</div><div class="line">  oneSeries(id: $seriesId) &#123;</div><div class="line">    id</div><div class="line">    episodes &#123;</div><div class="line">      id</div><div class="line">      title</div><div class="line">      cover</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>By adding a <a href="cache-updates.html#cacheRedirect">custom resolver</a> for the <code>oneSeries</code> field (and having dataIdFromObject function which normalizes the cache), the data can be resolved instantly from the store without a server round trip.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> ApolloClient, &#123; toIdValue &#125; <span class="keyword">from</span> <span class="string">'apollo-client'</span></div><div class="line"></div><div class="line"><span class="comment">// ... your NetworkInterface declaration</span></div><div class="line"><span class="comment">// and also VERY important: Your dataIdFromObject declaration</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">const</span> client = <span class="keyword">new</span> ApolloClient(&#123;</div><div class="line">  networkInterface,</div><div class="line">  <span class="attr">customResolvers</span>: &#123;</div><div class="line">    <span class="attr">Query</span>: &#123;</div><div class="line">      <span class="attr">oneSeries</span>: <span class="function">(<span class="params">_, &#123; id &#125;</span>) =&gt;</span> toIdValue(dataIdFromObject(&#123; <span class="attr">__typename</span>: <span class="string">'Series'</span>, id &#125;)),</div><div class="line">    &#125;,</div><div class="line">  &#125;,</div><div class="line">  dataIdFromObject,</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p>A component for the second view that implements the two queries could look like this:<br><figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React, &#123; PropTypes, &#125; <span class="keyword">from</span> <span class="string">'react'</span></div><div class="line"><span class="keyword">import</span> &#123; gql, graphql, compose, &#125; <span class="keyword">from</span> <span class="string">'react-apollo'</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> QUERY_SERIES_DETAIL_VIEW = gql<span class="string">`</span></div><div class="line">  query seriesDetailData($seriesId: Int!) &#123;</div><div class="line">    oneSeries(id: $seriesId) &#123;</div><div class="line">      id</div><div class="line">      title</div><div class="line">      description</div><div class="line">      cover</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">`</div><div class="line"></div><div class="line"><span class="keyword">const</span> QUERY_SERIES_EPISODES = gql<span class="string">`</span></div><div class="line">  query seriesEpisodes($seriesId: Int!) &#123;</div><div class="line">    oneSeries(id: $seriesId) &#123;</div><div class="line">      id</div><div class="line">      episodes &#123;</div><div class="line">        id</div><div class="line">        title</div><div class="line">        cover</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">`</div><div class="line"><span class="keyword">const</span> options = <span class="function">(<span class="params">&#123; seriesId, &#125;</span>) =&gt;</span> (&#123; <span class="attr">variables</span>: &#123; seriesId, &#125;, &#125;)</div><div class="line"></div><div class="line"><span class="keyword">const</span> withSeriesDetailData = graphql(QUERY_SERIES_DETAIL_VIEW, &#123;</div><div class="line">  <span class="attr">name</span>: <span class="string">`seriesDetailData`</span>,</div><div class="line">  options,</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="keyword">const</span> withSeriesEpisodes = graphql(QUERY_SERIES_EPISODES, &#123;</div><div class="line">  <span class="attr">name</span>: <span class="string">`seriesWithEpisodesData`</span>,</div><div class="line">  options,</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="keyword">const</span> withData = compose(</div><div class="line">  withSeriesDetailData,</div><div class="line">  withSeriesEpisodes</div><div class="line">)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">SeriesDetailView</span>(<span class="params">&#123; </span></span></div><div class="line">  seriesDetailData: &#123;</div><div class="line">    loading: seriesLoading,</div><div class="line">    oneSeries,</div><div class="line">  &#125;,</div><div class="line">  seriesWithEpisodesData: &#123; </div><div class="line">    loading: episodesLoading,</div><div class="line">    oneSeries: &#123; episodes &#125; = &#123;&#125;,</div><div class="line">  &#125;</div><div class="line">&#125;) &#123;</div><div class="line">  <span class="keyword">return</span> (</div><div class="line">    &lt;div&gt;</div><div class="line">      &lt;h1&gt;&#123;seriesLoading ? `Loading...` : oneSeries.title&#125;&lt;/h1&gt;</div><div class="line">      &lt;img src=&#123;seriesLoading ? `/dummy.jpg` : oneSeries.cover&#125; /&gt;</div><div class="line">      &lt;h2&gt;Episodes&lt;/h2&gt;</div><div class="line">      &lt;ul&gt;</div><div class="line">      &#123;episodesLoading ? &lt;li&gt;Loading...&lt;/li&gt; : episodes.map(episode =&gt; (</div><div class="line">        &lt;li key=&#123;episode.id&#125;&gt;</div><div class="line">          &lt;img src=&#123;episode.cover&#125; /&gt;</div><div class="line">          &lt;a href=&#123;`/episode/$&#123;episode.id&#125;`&#125;&gt;&#123;episode.title&#125;&lt;/a&gt;</div><div class="line">        &lt;/li&gt;</div><div class="line">      ))&#125;</div><div class="line">      &lt;/ul&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">  )</div><div class="line">&#125;</div><div class="line"></div><div class="line">const SeriesDetailViewWithData = withData(SeriesDetailView)</div><div class="line"></div><div class="line">SeriesDetailViewWithData.propTypes = &#123;</div><div class="line">  seriesId: PropTypes.number.isRequired,</div><div class="line">&#125;</div><div class="line"></div><div class="line">export default SeriesDetailView</div></pre></td></tr></table></figure></p>
-<p>Unfortunately if the user would now visit the second view without ever visiting the first view this would result in two network requests (since the data for the first query is not in the store yet). By using a <a href="/core/apollo-client-api.html#BatchedNetworkInterface"><code>BatchedNetworkInterface</code></a> those two queries can be send to the server in one network request.</p>
+<p>通过为 <code>oneSeries</code> 字段添加一个<a href="cache-updates.html#cacheRedirect">自定义解析器</a>（并且使用 dataIdFromObject 函数范式化缓存），可以从 store 立即解析数据，而无需服务器往返。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> ApolloClient, &#123; toIdValue &#125; <span class="keyword">from</span> <span class="string">'apollo-client'</span></div><div class="line"></div><div class="line"><span class="comment">// ... 你的 NetworkInterface 声明</span></div><div class="line"><span class="comment">// 还有非常重要的：你的 dataIdFromObject 声明</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> client = <span class="keyword">new</span> ApolloClient(&#123;</div><div class="line">  networkInterface,</div><div class="line">  <span class="attr">customResolvers</span>: &#123;</div><div class="line">    <span class="attr">Query</span>: &#123;</div><div class="line">      <span class="attr">oneSeries</span>: <span class="function">(<span class="params">_, &#123; id &#125;</span>) =&gt;</span> toIdValue(dataIdFromObject(&#123; <span class="attr">__typename</span>: <span class="string">'Series'</span>, id &#125;)),</div><div class="line">    &#125;,</div><div class="line">  &#125;,</div><div class="line">  dataIdFromObject,</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>实现两个查询的第二个视图的组件可能如下所示：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React, &#123; PropTypes, &#125; <span class="keyword">from</span> <span class="string">'react'</span></div><div class="line"><span class="keyword">import</span> &#123; gql, graphql, compose, &#125; <span class="keyword">from</span> <span class="string">'react-apollo'</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> QUERY_SERIES_DETAIL_VIEW = gql<span class="string">`</span></div><div class="line">  query seriesDetailData($seriesId: Int!) &#123;</div><div class="line">    oneSeries(id: $seriesId) &#123;</div><div class="line">      id</div><div class="line">      title</div><div class="line">      description</div><div class="line">      cover</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">`</div><div class="line"></div><div class="line"><span class="keyword">const</span> QUERY_SERIES_EPISODES = gql<span class="string">`</span></div><div class="line">  query seriesEpisodes($seriesId: Int!) &#123;</div><div class="line">    oneSeries(id: $seriesId) &#123;</div><div class="line">      id</div><div class="line">      episodes &#123;</div><div class="line">        id</div><div class="line">        title</div><div class="line">        cover</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">`</div><div class="line"><span class="keyword">const</span> options = <span class="function">(<span class="params">&#123; seriesId, &#125;</span>) =&gt;</span> (&#123; <span class="attr">variables</span>: &#123; seriesId, &#125;, &#125;)</div><div class="line"></div><div class="line"><span class="keyword">const</span> withSeriesDetailData = graphql(QUERY_SERIES_DETAIL_VIEW, &#123;</div><div class="line">  <span class="attr">name</span>: <span class="string">`seriesDetailData`</span>,</div><div class="line">  options,</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="keyword">const</span> withSeriesEpisodes = graphql(QUERY_SERIES_EPISODES, &#123;</div><div class="line">  <span class="attr">name</span>: <span class="string">`seriesWithEpisodesData`</span>,</div><div class="line">  options,</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="keyword">const</span> withData = compose(</div><div class="line">  withSeriesDetailData,</div><div class="line">  withSeriesEpisodes</div><div class="line">)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">SeriesDetailView</span>(<span class="params">&#123; </span></span></div><div class="line">  seriesDetailData: &#123;</div><div class="line">    loading: seriesLoading,</div><div class="line">    oneSeries,</div><div class="line">  &#125;,</div><div class="line">  seriesWithEpisodesData: &#123; </div><div class="line">    loading: episodesLoading,</div><div class="line">    oneSeries: &#123; episodes &#125; = &#123;&#125;,</div><div class="line">  &#125;</div><div class="line">&#125;) &#123;</div><div class="line">  <span class="keyword">return</span> (</div><div class="line">    &lt;div&gt;</div><div class="line">      &lt;h1&gt;&#123;seriesLoading ? `Loading...` : oneSeries.title&#125;&lt;/h1&gt;</div><div class="line">      &lt;img src=&#123;seriesLoading ? `/dummy.jpg` : oneSeries.cover&#125; /&gt;</div><div class="line">      &lt;h2&gt;Episodes&lt;/h2&gt;</div><div class="line">      &lt;ul&gt;</div><div class="line">      &#123;episodesLoading ? &lt;li&gt;Loading...&lt;/li&gt; : episodes.map(episode =&gt; (</div><div class="line">        &lt;li key=&#123;episode.id&#125;&gt;</div><div class="line">          &lt;img src=&#123;episode.cover&#125; /&gt;</div><div class="line">          &lt;a href=&#123;`/episode/$&#123;episode.id&#125;`&#125;&gt;&#123;episode.title&#125;&lt;/a&gt;</div><div class="line">        &lt;/li&gt;</div><div class="line">      ))&#125;</div><div class="line">      &lt;/ul&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">  )</div><div class="line">&#125;</div><div class="line"></div><div class="line">const SeriesDetailViewWithData = withData(SeriesDetailView)</div><div class="line"></div><div class="line">SeriesDetailViewWithData.propTypes = &#123;</div><div class="line">  seriesId: PropTypes.number.isRequired,</div><div class="line">&#125;</div><div class="line"></div><div class="line">export default SeriesDetailView</div></pre></td></tr></table></figure>
+<p>不巧的是，如果用户现在先访问第二个视图，而没有访问过第一个视图，这将导致两个网络请求（因为第一个查询的数据不在 store 中）。通过使用 <a href="http://dev.apollodata.com/core/apollo-client-api.html#BatchedNetworkInterface" target="_blank" rel="external"><code>BatchedNetworkInterface</code></a>，这两个查询可以合并到同一个网络请求中，然后才发送给服务器。</p>
 
     </div>
   </div>

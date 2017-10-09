@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 
     <!-- Basic -->
-    <title>API: 具有突变的graphql容器 | Apollo React 中文文档</title>
+    <title>API: 带突变的graphql容器 | Apollo React 中文文档</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="images/favicon.png" sizes="16x16 32x32 64x64">
@@ -12,12 +12,12 @@
     <!-- Social -->
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://apollographqlcn.github.io/react-docs-cn">
-    <meta property="og:title" content="API: 具有突变的graphql容器 | Apollo React 中文文档">
+    <meta property="og:title" content="API: 带突变的graphql容器 | Apollo React 中文文档">
     <meta property="og:description" content="">
     <meta property="og:image" content="">
     <meta name="twitter:card" content="summary_image_large">
     <meta name="twitter:site" content="@apollographqlcn">
-    <meta name="twitter:title" content="API: 具有突变的graphql容器 | Apollo React 中文文档">
+    <meta name="twitter:title" content="API: 带突变的graphql容器 | Apollo React 中文文档">
     <meta name="twitter:description" content="">
     <meta name="twitter:image" content="">
 
@@ -187,7 +187,7 @@
               
               <li class="item-toc ">
                 <a href="initialization.html" class="sidebar-link ">
-                  <span>设置和选项</span>
+                  <span>安装和配置</span>
                 </a>
               </li>
             
@@ -217,7 +217,7 @@
       
         <li>
           
-            <div class="heading-toc">Usage</div>
+            <div class="heading-toc">使用</div>
           
           <ul class="list-toc">
             
@@ -268,7 +268,7 @@
       
         <li>
           
-            <div class="heading-toc">API Reference</div>
+            <div class="heading-toc">API 参考</div>
           
           <ul class="list-toc">
             
@@ -312,7 +312,7 @@
       
         <li>
           
-            <div class="heading-toc">Recipes</div>
+            <div class="heading-toc">技巧</div>
           
           <ul class="list-toc">
             
@@ -333,7 +333,7 @@
               
               <li class="item-toc ">
                 <a href="optimistic-ui.html" class="sidebar-link ">
-                  <span>Optimistic UI</span>
+                  <span>乐观 UI</span>
                 </a>
               </li>
             
@@ -354,7 +354,7 @@
               
               <li class="item-toc ">
                 <a href="query-splitting.html" class="sidebar-link ">
-                  <span>Query Splitting</span>
+                  <span>查询分割</span>
                 </a>
               </li>
             
@@ -375,7 +375,7 @@
               
               <li class="item-toc ">
                 <a href="webpack.html" class="sidebar-link ">
-                  <span>Webpack加载器</span>
+                  <span>Webpack 加载器</span>
                 </a>
               </li>
             
@@ -396,12 +396,12 @@
 <div class="content">
   <div class="content-wrapper">
     <div class="header-content">
-      <h1 class="title-page">API: 具有突变的graphql容器</h1>
+      <h1 class="title-page">API: 带突变的graphql容器</h1>
       
 
       <div class="page-actions">
         <div class="actions-group">
-          <a class="btn tertiary small round lowercase" href="https://github.com/apollographqlcn/react-docs-cn/tree/master/source/api-mutations.md" target="_blank"><span class="icon-github"></span> <span>Edit on GitHub</span></a>
+          <a class="btn tertiary small round lowercase" href="https://github.com/apollographqlcn/react-docs-cn/tree/master/source/api-mutations.md" target="_blank"><span class="icon-github"></span> <span>在 GitHub 上编辑本文</span></a>
           
         </div>
       </div>
@@ -409,87 +409,87 @@
 
     <div class="document-formatting">
       <blockquote>
-<p>这篇文章特别关于使用 <code>graphql()</code> 更高阶组件的突变。要查看适用于所有操作的选项，请参阅[一般graphql容器API文档]（/ reactions / api-graphql.html）。</p>
+<p>这篇文章特别讲解 <code>graphql()</code> 高阶组件使如何用突变。要查看适用于所有操作的选项，请参阅 <a href="api-graphql.html">graphql 容器 API 文档</a>。</p>
 </blockquote>
-<p>您传递到 <code>graphql()</code> 函数的操作决定了组件的行为方式。如果您将变量传递到您的 <code>graphql()</code> 函数中，那么Apollo将在您的组件道具中随时设置一个<code>mutate</code> 函数。</p>
-<p>这是一个使用 <code>graphql()</code> 函数的变量的示例组件：</p>
+<p>你传递给 <code>graphql()</code> 函数的操作决定了组件的行为方式。如果你将突变传递到你的 <code>graphql()</code> 函数中，那么 Apollo 将在你的组件 props 中设置一个可以任意调用的 <code>mutate</code> 函数。</p>
+<p>如下是一个使用 <code>graphql()</code> 突变的示例组件：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> graphql(gql<span class="string">`</span></div><div class="line">  mutation TodoCompleteMutation($id: ID!) &#123;</div><div class="line">    completeTodo(id: $id) &#123;</div><div class="line">      id</div><div class="line">      text</div><div class="line">      completed</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">`)(TodoCompleteButton);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">TodoCompleteButton</span>(<span class="params">&#123; todoID, mutate &#125;</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> (</div><div class="line">    &lt;button onClick=&#123;() =&gt; mutate(&#123; variables: &#123; id: todoID &#125; &#125;)&#125;&gt;</div><div class="line">      Complete</div><div class="line">    &lt;/button&gt;</div><div class="line">  );</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>为了更自然地使用<code>graphql()</code>函数的突变概述，请务必阅读<a href="mutations.html">突变文档文章</a>。有关用于突变的 <code>graphql()</code> 函数支持的所有功能的技术概述，请继续。</p>
+<p>为了更好地理解本文所述的使用 <code>graphql()</code> 函数执行突变，请务必先阅读<a href="mutations.html">突变文档</a>。下文是有关用于突变的 <code>graphql()</code> 函数支持的所有功能的技术概述。</p>
 <h2 id="graphql-mutation-mutate"><code>props.mutate</code></h2>
 
-<p>当将变量传递给 <code>graphql()</code> 时创建的高阶组件将为您的组件提供一个名为 <code>mutate</code> 的单个参考。与<code>graphql（）</code>传递查询时所得到的<code>data</code> 属性不同，mutate是一个函数。</p>
-<p><code>mutate</code> 函数实际上将使用网络接口来执行您的突变，从而突变您的数据。<code>mutate</code> 函数还将以您定义的方式更新缓存。</p>
-<p>要了解有关突变如何工作的更多信息，请务必查看<a href="mutations.html">突变使用文档</a>。</p>
-<p><code>mutate</code>函数接受与<a href="#graphql-mutation-options"><code>config.options</code> for mutations</a>相同的选项，所以要确保阅读文档，以了解可以传入 <code>mutate</code> 函数的内容。</p>
-<p><code>mutate</code>函数接受相同选项的原因是它将使用<a href="#graphql-mutation-options"><code>config.options</code></a> <em>by default</em>中的选项。当您将对象传递到<code>mutate</code> 函数中时，您只需覆盖<a href="#graphql-mutation-options"><code>config.options</code></a> 中已有的内容。</p>
+<p>将突变传递给 <code>graphql()</code> 时创建的高阶组件，将为你的组件提供一个名为 <code>mutate</code> 的单个 prop。与 <code>graphql()</code> 传递查询时所得到的 <code>data</code> 属性不同，mutate 是一个函数。</p>
+<p><code>mutate</code> 函数实际上将使用网络接口来执行你的突变，从而改变你的数据。<code>mutate</code> 函数还将以你定义的方式更新缓存。</p>
+<p>要了解更多有关突变如何工作的信息，请务必查阅<a href="mutations.html">突变使用文档</a>。</p>
+<p><code>mutate</code> 函数接受与 <a href="#graphql-mutation-options">突变的 <code>config.options</code></a> 相同的选项，所以要确保阅读本文档，以了解可以传入 <code>mutate</code> 函数的内容。</p>
+<p><code>mutate</code>函数接受相同选项的原因是它将<em>默认</em>使用 <a href="#graphql-mutation-options"><code>config.options</code></a> 中的选项。当你将对象传递到 <code>mutate</code> 函数中时，你只需覆盖 <a href="#graphql-mutation-options"><code>config.options</code></a> 中已有的内容。</p>
 <p><strong>例：</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyComponent</span>(<span class="params">&#123; mutate &#125;</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> (</div><div class="line">    &lt;button onClick=&#123;() =&gt; &#123;</div><div class="line">      mutate(&#123;</div><div class="line">        variables: &#123; foo: 42 &#125;,</div><div class="line">      &#125;);</div><div class="line">    &#125;&#125;&gt;</div><div class="line">      Mutate</div><div class="line">    &lt;/button&gt;</div><div class="line">  );</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> graphql(gql<span class="string">`mutation &#123; ... &#125;`</span>)(MyComponent);</div></pre></td></tr></table></figure>
 <h2 id="graphql-mutation-options"><code>config.options</code></h2>
 
-<p>返回用于配置如何获取和更新查询的选项对象的对象或函数。</p>
-<p>如果<code>config.options</code>是一个函数，那么它将以组件的属性为第一个参数。</p>
-<p>可用于此对象的选项取决于您作为<code>graphql()</code>的第一个参数传入的操作类型。以下参考文献将记录当您的手术发生突变时哪些选项可用。要查看其他可用于不同操作的选项，请参阅<a href="#graphql-config-options"><code>config.options</code></a>的通用文档。</p>
-<p>此选项对象中接受的属性也可以被<a href="#graphql-mutation-mutate"><code>props.mutate</code></a> 函数接受。传入 <code>mutate</code> 函数的任何选项将优先于 <code>config</code> 对象中定义的选项。</p>
+<p>该选项是一个对象或函数，返回用于配置如何请求和更新查询的选项对象。</p>
+<p>如果 <code>config.options</code> 是一个函数，那么它将以组件的 props 为第一个参数。</p>
+<p>可用于此对象的选项取决于你为 <code>graphql()</code> 的第一个参数传入的操作类型。以下参考文档将记录你的操作是突变时哪些选项可用。要查看其他用于不同操作的选项，请参阅 <a href="api-graphql.html#graphql-config-options"><code>config.options</code></a> 的通用文档。</p>
+<p>此选项对象中接受的属性也可以被 <a href="#graphql-mutation-mutate"><code>props.mutate</code></a> 函数接受。传入 <code>mutate</code> 函数的任何选项将优先于 <code>config</code> 对象中定义的选项。</p>
 <p><strong>例：</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> graphql(gql<span class="string">`mutation &#123; ... &#125;`</span>, &#123;</div><div class="line">  <span class="attr">options</span>: &#123;</div><div class="line">    <span class="comment">// 这里填写选项。</span></div><div class="line">  &#125;,</div><div class="line">&#125;)(MyComponent);</div></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> graphql(gql<span class="string">`mutation &#123; ... &#125;`</span>, &#123;</div><div class="line">  <span class="attr">options</span>: <span class="function">(<span class="params">props</span>) =&gt;</span> (&#123;</div><div class="line">    <span class="comment">// 这里根据props计算选项。</span></div><div class="line">  &#125;),</div><div class="line">&#125;)(MyComponent);</div></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyComponent</span>(<span class="params">&#123; mutate &#125;</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> (</div><div class="line">    &lt;button onClick=&#123;() =&gt; &#123;</div><div class="line">      mutate(&#123;</div><div class="line">        // 选项是这里的`props`和组件状态的组件。</div><div class="line">      &#125;);</div><div class="line">    &#125;&#125;&gt;</div><div class="line">      Mutate</div><div class="line">    &lt;/button&gt;</div><div class="line">  )</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> graphql(gql<span class="string">`mutation &#123; ... &#125;`</span>)(MyComponent);</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> graphql(gql<span class="string">`mutation &#123; ... &#125;`</span>, &#123;</div><div class="line">  <span class="attr">options</span>: <span class="function">(<span class="params">props</span>) =&gt;</span> (&#123;</div><div class="line">    <span class="comment">// 这里根据 props 计算选项。</span></div><div class="line">  &#125;),</div><div class="line">&#125;)(MyComponent);</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyComponent</span>(<span class="params">&#123; mutate &#125;</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> (</div><div class="line">    &lt;button onClick=&#123;() =&gt; &#123;</div><div class="line">      mutate(&#123;</div><div class="line">        // 这里的选项来源于组件的 `props` 和 state。</div><div class="line">      &#125;);</div><div class="line">    &#125;&#125;&gt;</div><div class="line">      Mutate</div><div class="line">    &lt;/button&gt;</div><div class="line">  )</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> graphql(gql<span class="string">`mutation &#123; ... &#125;`</span>)(MyComponent);</div></pre></td></tr></table></figure>
 <h3 id="graphql-mutation-options-variables"><code>options.variables</code></h3>
 
-<p>用于执行变异操作的变量。这些变量应该与您的突变定义接受的变量相对应。如果将<code>config.options</code>定义为函数，或者将变量传递到<a href="#graphql-mutation-mutate"><code>props.mutate</code></a> 函数中，那么可以从道具和组件状态计算变量。</p>
+<p>该选项是用于执行突变操作的变量。这些变量应该与你的突变定义接受的变量相对应。如果将 <code>config.options</code> 定义为函数，或者将变量传递到 <a href="#graphql-mutation-mutate"><code>props.mutate</code></a> 函数中，那么可以从组件的 props 和 state 中计算变量。</p>
 <p><strong>例：</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> graphql(gql<span class="string">`</span></div><div class="line">  mutation ($foo: String!, $bar: String!) &#123;</div><div class="line">    ...</div><div class="line">  &#125;</div><div class="line">`, &#123;</div><div class="line">  <span class="attr">options</span>: <span class="function">(<span class="params">props</span>) =&gt;</span> (&#123;</div><div class="line">    <span class="attr">variables</span>: &#123;</div><div class="line">      <span class="attr">foo</span>: props.foo,</div><div class="line">      <span class="attr">bar</span>: props.bar,</div><div class="line">    &#125;,</div><div class="line">  &#125;),</div><div class="line">&#125;)(MyComponent);</div></pre></td></tr></table></figure>
 <h3 id="graphql-mutation-options-optimisticResponse"><code>options.optimisticResponse</code></h3>
 
-<p>通常，当您突变数据时，很容易就可以预测在询问服务器之前，突变的响应是什么。乐观的回应选项可让您通过在突变实际完成之前模拟UI中突变的结果，使您的突变变得更快。</p>
-<p>要了解更多关于乐观数据的好处以及如何使用它，请务必阅读<a href="optimistic-ui.html">Optimistic UI</a> 上的文章。</p>
-<p>这个乐观的响应将与<a href="#graphql-mutation-options-update"><code>options.update</code></a> 和<a href="#graphql-mutation-options-updateQueries"><code>options.updateQueries</code></a> 一起使用，以将更新应用于缓存中在应用实际响应的更新之前将会回滚。</p>
+<p>通常情况下，当你执行突变更改数据时，很容易在请求服务器之前提前预测到，突变的响应是什么。乐观响应选项可让你通过在突变实际完成之前模拟 UI 中突变的结果，使你的突变响应更快。</p>
+<p>要了解更多关于乐观数据的好处以及如何使用它，请务必阅读 <a href="optimistic-ui.html">Optimistic UI</a> 文档。</p>
+<p>这个乐观响应将与 <a href="#graphql-mutation-options-update"><code>options.update</code></a> 和 <a href="#graphql-mutation-options-updateQueries"><code>options.updateQueries</code></a> 一起使用，以将更新应用于缓存中，在应用实际响应的更新之前缓存将会回滚。</p>
 <p><strong>例：</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyComponent</span>(<span class="params">&#123; newText, mutate &#125;</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> (</div><div class="line">    &lt;button onClick=&#123;() =&gt; &#123;</div><div class="line">      mutate(&#123;</div><div class="line">        variables: &#123;</div><div class="line">          text: newText,</div><div class="line">        &#125;,</div><div class="line">        // 乐观的响应包含下面的GraphQL突变文档中包含的所有字段。</div><div class="line">        optimisticResponse: &#123;</div><div class="line">          createTodo: &#123;</div><div class="line">            id: -1, // 一个临时id。服务器返回真实的ID。</div><div class="line">            text: newText,</div><div class="line">            completed: false,</div><div class="line">          &#125;,</div><div class="line">        &#125;,</div><div class="line">      &#125;);</div><div class="line">    &#125;&#125;&gt;</div><div class="line">      Add Todo</div><div class="line">    &lt;/button&gt;</div><div class="line">  );</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> graphql(gql<span class="string">`</span></div><div class="line">  mutation ($text: String!) &#123;</div><div class="line">    createTodo(text: $text) &#123;</div><div class="line">      id</div><div class="line">      text</div><div class="line">      completed</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">`)(MyComponent);</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyComponent</span>(<span class="params">&#123; newText, mutate &#125;</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> (</div><div class="line">    &lt;button onClick=&#123;() =&gt; &#123;</div><div class="line">      mutate(&#123;</div><div class="line">        variables: &#123;</div><div class="line">          text: newText,</div><div class="line">        &#125;,</div><div class="line">        // 乐观响应包含下面的 GraphQL 突变文档中包含的所有字段。</div><div class="line">        optimisticResponse: &#123;</div><div class="line">          createTodo: &#123;</div><div class="line">            id: -1, // 一个临时id。服务器返回真实的ID。</div><div class="line">            text: newText,</div><div class="line">            completed: false,</div><div class="line">          &#125;,</div><div class="line">        &#125;,</div><div class="line">      &#125;);</div><div class="line">    &#125;&#125;&gt;</div><div class="line">      Add Todo</div><div class="line">    &lt;/button&gt;</div><div class="line">  );</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> graphql(gql<span class="string">`</span></div><div class="line">  mutation ($text: String!) &#123;</div><div class="line">    createTodo(text: $text) &#123;</div><div class="line">      id</div><div class="line">      text</div><div class="line">      completed</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">`)(MyComponent);</div></pre></td></tr></table></figure>
 <h3 id="graphql-mutation-options-update"><code>options.update</code></h3>
 
-<p>此选项允许您根据突变的结果更新您的Store。默认情况下，Apollo Client将更新您Store中的所有重叠节点。与您定义的 <code>dataIdFromObject</code> 返回的共享ID相同的任何内容将使用您的突变结果的新字段进行更新。但是，有时这个还不够。有时您可能希望以取决于缓存中当前数据的方式更新缓存。对于这些更新，您可以使用<code>options.update</code>函数。</p>
-<p><code>options.update</code>需要两个参数。第一个是<a href="../core/apollo-client-api.html#DataProxy"><code>DataProxy</code></a>对象的一个​​实例，它有一些方法可以让您与商店中的数据进行交互。第二个是您的突变的响应 - 乐观的响应或服务器返回的实际响应。</p>
-<p>为了更改您的<a href="../core/apollo-client-api.html#DataProxy"><code>DataProxy</code></a>实例上的存储调用方法中的数据，如<a href="../core/apollo-client-api.html#DataProxy.writeQuery"><code>writeQuery</code></a>和<a href="../core/apollo-client-api.html#DataProxy.writeFragment"><code>writeFragment</code></a>。这将更新您的缓存并反应性地重新呈现任何查询受影响数据的GraphQL组件。</p>
-<p>要读取您正在更改的商店中的数据，请确保使用<a href="../core/apollo-client-api.html#DataProxy"><code>DataProxy</code></a>的诸如<a href="../core/apollo-client-api.html#DataProxy.readQuery"><code>readQuery</code></a>和<a href="../core/apollo-client-api.html#DataProxy.readFragment"><code>readFragment</code></a>的方法。</p>
-<p>有关使用<code>options.update</code>函数进行突变之后更新缓存的更多信息，请务必阅读<a href="../core/read-and-write.html#updating-the-cache-after-a-mutation">Apollo Client技术文档相关的主题</a>。</p>
+<p>此选项允许你根据突变的结果更新你的 store。默认情况下，Apollo 客户端将更新你的 store 中的所有重叠节点。与你定义的 <code>dataIdFromObject</code> 返回的 ID 相同的任何内容将使用你的突变结果的新字段进行更新。但是，有时这还不够。有时你可能希望根据缓存中当前的数据以指定方式更新缓存。对于这些更新，你可以使用 <code>options.update</code> 函数。</p>
+<p><code>options.update</code> 需要两个参数。第一个是 <a href="http://dev.apollodata.com/core/apollo-client-api.html#DataProxy" target="_blank" rel="external"><code>DataProxy</code></a> 对象的一个​​实例，它有一些方法可以让你与 store 中的数据进行交互。第二个是你的突变的响应 - 乐观响应或服务器返回的实际响应。</p>
+<p>为了更改你的 store 中的数据，需要调用 <a href="http://dev.apollodata.com/core/apollo-client-api.html#DataProxy" target="_blank" rel="external"><code>DataProxy</code></a> 实例上的方法，如 <a href="http://dev.apollodata.com/core/apollo-client-api.html#DataProxy.writeQuery" target="_blank" rel="external"><code>writeQuery</code></a> 和 <a href="http://dev.apollodata.com/core/apollo-client-api.html#DataProxy.writeFragment" target="_blank" rel="external"><code>writeFragment</code></a>。这将更新你的缓存并重新渲染任何数据受查询影响的 GraphQL 组件。</p>
+<p>要读取你正在更改的 store 中的数据，请确保使用 <a href="http://dev.apollodata.com/core/apollo-client-api.html#DataProxy" target="_blank" rel="external"><code>DataProxy</code></a> 的诸如 <a href="http://dev.apollodata.com/core/apollo-client-api.html#DataProxy.readQuery" target="_blank" rel="external"><code>readQuery</code></a> 和 <a href="http://dev.apollodata.com/core/apollo-client-api.html#DataProxy.readFragment" target="_blank" rel="external"><code>readFragment</code></a> 方法。</p>
+<p>有关更多使用 <code>options.update</code> 函数执行突变之后更新缓存的信息，请务必阅读 <a href="http://dev.apollodata.com/core/read-and-write.html#updating-the-cache-after-a-mutation" target="_blank" rel="external">Apollo 客户端技术文档相关的主题</a>。</p>
 <p><strong>例：</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> query = gql<span class="string">`&#123; todos &#123; ... &#125; &#125;`</span></div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> graphql(gql<span class="string">`</span></div><div class="line">  mutation ($text: String!) &#123;</div><div class="line">    createTodo(text: $text) &#123; ... &#125;</div><div class="line">  &#125;</div><div class="line">`, &#123;</div><div class="line">  <span class="attr">options</span>: &#123;</div><div class="line">    <span class="attr">update</span>: <span class="function">(<span class="params">proxy, &#123; data: &#123; createTodo &#125; &#125;</span>) =&gt;</span> &#123;</div><div class="line">      <span class="keyword">const</span> data = proxy.readQuery(&#123; query &#125;);</div><div class="line">      data.todos.push(createTodo);</div><div class="line">      proxy.writeQuery(&#123; query, data &#125;);</div><div class="line">    &#125;,</div><div class="line">  &#125;,</div><div class="line">&#125;)(MyComponent);</div></pre></td></tr></table></figure>
 <h3 id="graphql-mutation-options-refetchQueries"><code>options.refetchQueries</code></h3>
 
-<p>有时，当您进行突变时，您还需要更新查询中的数据，以便用户可以看到最新的用户界面。有更多细微的方式来更新缓存中的数据，包括<a href="#graphql-mutation-options-updateQueries"><code>options.updateQueries</code></a>和<a href="#graphql-mutation-options-update"><code>options.update</code></a>。但是，您可以通过使用<code>options.refetchQueries</code>以更高的效率更高效地更新缓存中的数据。</p>
-<p><code>options.refetchQueries</code>将使用您的网络接口执行一个或多个查询，然后将这些查询的结果归一化到缓存中。允许您可能会重新提取您之前提取的查询，或者获取全新的查询。</p>
-<p><code>options.refetchQueries</code>是一个字符串或对象的数组。</p>
-<p>如果<code>options.refetchQueries</code>是一个字符串数组，那么Apollo Client将寻找与提供的字符串相同名称的任何查询，并使用它们当前的变量来获取这些查询。因此，例如，如果您有一个名为<code>Comments</code>的查询的GraphQL查询组件（查询可能看起来像：<code>query Comments {...}</code>），并且将包含 <code>Comments</code> 的字符串数组传递给<code>options.refetchQueries</code>，那么<code>Comments</code>查询将被重新执行，当它解析最新的数据将被反映在你的UI中。</p>
-<p>如果<code>options.refetchQueries</code>是一个对象的数组，那么对象必须有两个属性：</p>
+<p>有时，当你进执行突变时，你还需要更新查询中的数据，以便用户可以看到最新的用户界面。有很多细微的方式来更新缓存中的数据，包括 <a href="#graphql-mutation-options-updateQueries"><code>options.updateQueries</code></a> 和 <a href="#graphql-mutation-options-update"><code>options.update</code></a>。但是，你可以通过使用 <code>options.refetchQueries</code> 牺牲一些效率来更可靠地更新缓存中的数据。</p>
+<p><code>options.refetchQueries</code> 将使用你的网络接口执行一个或多个查询，然后将这些查询的结果范式化到缓存中。该选项允许你能重新获取你之前已获取的查询，或者获取全新的查询。</p>
+<p><code>options.refetchQueries</code> 是一个字符串或对象的数组。</p>
+<p>如果 <code>options.refetchQueries</code> 是一个字符串数组，那么 Apollo 客户端将寻找与提供的字符串同名的任意查询，并使用它们当前的变量来获取这些查询。因此，例如，如果你有一个查询名为 <code>Comments</code> 的 GraphQL 查询组件（该查询可能是：<code>query Comments {...}</code>），并且将包含 <code>Comments</code> 的字符串数组传递给 <code>options.refetchQueries</code>，然后 <code>Comments</code> 查询将被重新执行，当它解析完时最新的数据将会自动更新在你的UI中。</p>
+<p>如果 <code>options.refetchQueries</code> 是一个对象的数组，那么对象必须有两个属性：</p>
 <ul>
-<li><code>query</code>: Query是一个必需的属性，它接受使用<code>graphql-tag</code> 的 <code>gql</code> 标记创建的GraphQL查询。它应该包含一个单独的GraphQL查询操作，一旦突变完成，它将被执行。</li>
+<li><code>query</code>: Query 是一个必需的属性，它接受使用 <code>graphql-tag</code> 的 <code>gql</code> 模板字符串标签创建的 GraphQL 查询。它应该包含一个单独的 GraphQL 查询操作，一旦突变完成，它将被执行。</li>
 <li><code>[variables]</code>: 当 <code>query</code> 接受一些变量时，这是一个可选的变量对象。</li>
 </ul>
-<p>如果指定了具有此形状的对象数组，那么Apollo Client将使用它们的变量来提取这些查询。</p>
+<p>如果指定了具有此形状的对象数组，那么 Apollo 客户端将使用其中的变量来重新获取这些查询。</p>
 <p><strong>例：</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> graphql(gql<span class="string">`mutation &#123; ... &#125;`</span>, &#123;</div><div class="line">  <span class="attr">options</span>: &#123;</div><div class="line">    <span class="attr">refetchQueries</span>: [</div><div class="line">      <span class="string">'CommentList'</span>,</div><div class="line">      <span class="string">'PostList'</span>,</div><div class="line">    ],</div><div class="line">  &#125;,</div><div class="line">&#125;)(MyComponent);</div></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; COMMENT_LIST_QUERY &#125; <span class="keyword">from</span> <span class="string">'../components/CommentList'</span>;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> graphql(gql<span class="string">`mutation &#123; ... &#125;`</span>, &#123;</div><div class="line">  <span class="attr">options</span>: <span class="function">(<span class="params">props</span>) =&gt;</span> (&#123;</div><div class="line">    <span class="attr">refetchQueries</span>: [</div><div class="line">      &#123;</div><div class="line">        <span class="attr">query</span>: COMMENT_LIST_QUERY,</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="attr">query</span>: gql<span class="string">`</span></div><div class="line">          query ($id: ID!) &#123;</div><div class="line">            post(id: $id) &#123;</div><div class="line">              commentCount</div><div class="line">            &#125;</div><div class="line">          &#125;</div><div class="line">        `,</div><div class="line">        <span class="attr">variables</span>: &#123;</div><div class="line">          <span class="attr">id</span>: props.postID,</div><div class="line">        &#125;,</div><div class="line">      &#125;,</div><div class="line">    ],</div><div class="line">  &#125;),</div><div class="line">&#125;)(MyComponent);</div></pre></td></tr></table></figure>
 <h3 id="graphql-mutation-options-updateQueries"><code>options.updateQueries</code></h3>
 
-<p><strong>注意：我们建议使用<a href="#graphql-mutation-options-update">update</a> 而不是<code>updateQueries</code>。</strong></p>
-<p>此选项允许您根据突变的结果更新您的 Store。默认情况下，Apollo Client将更新您商店中的所有重叠节点。与您定义的 <code>dataIdFromObject</code> 返回的共享ID相同的任何内容将使用您的突变结果的新字段进行更新。但是，有时这个还不够。有时您可能希望以取决于缓存中当前数据的方式更新缓存。对于这些更新，您可以使用<code>options.updateQueries</code>函数。</p>
-<p><code>options.updateQueries</code>需要一个对象，其中查询名称是关键字，而reducer函数是这些值。如果您熟悉Redux，定义 <code>options.updateQueries</code> reducers与定义Redux reducer非常相似。对象看起来像这样：</p>
+<p><strong>注意：我们建议使用 <a href="#graphql-mutation-options-update">update</a> 而不是 <code>updateQueries</code>。</strong></p>
+<p>默认情况下，Apollo 客户端将更新你的 store 中的所有重叠节点。与你定义的 <code>dataIdFromObject</code> 返回的 ID 相同的任何内容将使用你的突变结果的新字段进行更新。但是，有时这还不够。有时你可能希望根据缓存中当前的数据以指定方式更新缓存。对于这些更新，你可以使用 <code>options.updateQueries</code> 函数。</p>
+<p><code>options.updateQueries</code> 接收一个对象，其中查询名称是键，而 reducer 函数是值。如果你熟悉Redux，定义 <code>options.updateQueries</code> reducers 与定义 Redux reducer 非常相似。该对象看起来像这样：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">Comments</span>: <span class="function">(<span class="params">previousData, &#123; mutationResult, queryVariables &#125;</span>) =&gt;</span> nextData,</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>确保您的<code>options.updateQueries</code>对象的键对应于您在应用程序中的其他位置的实际查询。查询名称将是在指定<code>query</code>操作类型后放置的名称。所以例如在以下查询中：</p>
+<p>请确保你的 <code>options.updateQueries</code> 对象的键与你在应用中实际执行过的查询相对应。查询名称将是在指定 <code>query</code> 操作类型后放置的名称。因此，例如在以下查询中：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">query Comments &#123;</div><div class="line">  entry(id: 5) &#123;</div><div class="line">    comments &#123;</div><div class="line">      ...</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>查询名称将为 <code>Comments</code>。如果您的应用程序中某个地方尚未执行一个名为 <code>Comments</code> 的GraphQL查询，那么reducer函数将永远不会由Apollo运行，<code>options.updateQueries</code> 中的键/值对将被忽略。</p>
-<p>您提供的函数的第一个参数作为对象的值将是您的查询的先前数据。所以如果你的键是 <code>Comments</code>，那么第一个参数将是你的<code>Comments</code>查询返回的最后一个数据对象，或者是使用<code>Comments</code>查询的任何组件呈现的当前对象。</p>
-<p>函数值的第二个参数是具有三个属性的对象：</p>
+<p>查询名称将为 <code>Comments</code>。如果在你的应用中某处尚未执行一个名为 <code>Comments</code> 的 GraphQL 查询，那么 Apollo 将永远不会运行此 reducer 函数，<code>options.updateQueries</code> 中的键/值对将被忽略。</p>
+<p>你提供给该函数的第一个参数，是你的查询的旧数据对象的值。所以如果你的键是 <code>Comments</code>，那么第一个参数将是你的 <code>Comments</code> 查询返回的最后一个数据对象，或者是使用 <code>Comments</code> 查询的任意组件所使用的当前对象。</p>
+<p>函数的第二个参数值是具有三个属性的对象：</p>
 <ul>
-<li><code>mutationResult</code>：<code>mutationResult</code> 属性将表示您在点击服务器后的突变结果。如果你提供了一个<a href="#graphql-mutation-options-optimisticResponse"><code>options.optimisticResponse</code></a>，那么<code>mutationResult</code>可能就是那个对象。</li>
-<li><code>queryVariables</code>：执行查询的最后一组变量。这是有帮助的，因为当您指定查询名称时，它将只更新当前变量集存储中的数据。</li>
-<li><code>queryName</code>：这是您正在更新的查询的名称。它与您为<code>options.updateQueries</code>提供的密钥相同。</li>
+<li><code>mutationResult</code>：<code>mutationResult</code> 属性将表示你请求服务器后的突变结果。如果你提供了一个 <a href="#graphql-mutation-options-optimisticResponse"><code>options.optimisticResponse</code></a>，那么 <code>mutationResult</code> 可能就是那个对象。</li>
+<li><code>queryVariables</code>：执行查询的最后一组变量。这是有用的，因为当你指定查询名称时，它将只更新当前变量集相应的 store 中的数据。</li>
+<li><code>queryName</code>：这是你正在更新的查询的名称。它与你为 <code>options.updateQueries</code> 提供的键同名。</li>
 </ul>
-<p>你的<code>options.updateQueries</code>函数的返回值<em>必须</em>与你的第一个<code>previousData</code>参数的结构相同。但是，你<em>绝不能</em> 更改 <code>previousData</code> 对象。相反，您必须使用更改创建一个新对象。就像Redux reducer。</p>
-<p>要了解有关<code>options.updateQueries</code>的更多信息，请阅读我们的使用说明文件<a href="cache-updates.html#updateQueries">使用<code>updateQueries</code>控制 Store</a>。</p>
+<p>你的 <code>options.updateQueries</code> 函数的返回值<em>必须</em>与你的第一个 <code>previousData</code> 参数的形状相同。但是，你<em>绝不能</em>更改 <code>previousData</code> 对象。相反，你必须根据变更创建一个新对象。就像 Redux reducer。</p>
+<p>要了解更多有关 <code>options.updateQueries</code> 的信息，请阅读我们的关于<a href="cache-updates.html#updateQueries">使用 <code>updateQueries</code> 控制 Store</a> 的文档。</p>
 <p><strong>例：</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> graphql(gql<span class="string">`</span></div><div class="line">  mutation ($text: String!) &#123;</div><div class="line">    submitComment(text: $text) &#123; ... &#125;</div><div class="line">  &#125;</div><div class="line">`, &#123;</div><div class="line">  <span class="attr">options</span>: &#123;</div><div class="line">    <span class="attr">updateQueries</span>: &#123;</div><div class="line">      <span class="attr">Comments</span>: <span class="function">(<span class="params">previousData, &#123; mutationResult &#125;</span>) =&gt;</span> &#123;</div><div class="line">        <span class="keyword">const</span> newComment = mutationResult.data.submitComment;</div><div class="line">        <span class="comment">// 注意我们如何返回一个新的 `previousData` 副本，而不是使它变异。这就像一个Redux reducer！</span></div><div class="line">        <span class="keyword">return</span> &#123;</div><div class="line">          ...previousData,</div><div class="line">          <span class="attr">entry</span>: &#123;</div><div class="line">            ...previousData.entry,</div><div class="line">            <span class="attr">comments</span>: [newComment, ...previousData.entry.comments],</div><div class="line">          &#125;,</div><div class="line">        &#125;;</div><div class="line">      &#125;,</div><div class="line">    &#125;,</div><div class="line">  &#125;,</div><div class="line">&#125;)(MyComponent);</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> graphql(gql<span class="string">`</span></div><div class="line">  mutation ($text: String!) &#123;</div><div class="line">    submitComment(text: $text) &#123; ... &#125;</div><div class="line">  &#125;</div><div class="line">`, &#123;</div><div class="line">  <span class="attr">options</span>: &#123;</div><div class="line">    <span class="attr">updateQueries</span>: &#123;</div><div class="line">      <span class="attr">Comments</span>: <span class="function">(<span class="params">previousData, &#123; mutationResult &#125;</span>) =&gt;</span> &#123;</div><div class="line">        <span class="keyword">const</span> newComment = mutationResult.data.submitComment;</div><div class="line">        <span class="comment">// 注意这里我们将返回一个新的 `previousData` 副本，而不是改变它。这就像一个 Redux reducer！</span></div><div class="line">        <span class="keyword">return</span> &#123;</div><div class="line">          ...previousData,</div><div class="line">          <span class="attr">entry</span>: &#123;</div><div class="line">            ...previousData.entry,</div><div class="line">            <span class="attr">comments</span>: [newComment, ...previousData.entry.comments],</div><div class="line">          &#125;,</div><div class="line">        &#125;;</div><div class="line">      &#125;,</div><div class="line">    &#125;,</div><div class="line">  &#125;,</div><div class="line">&#125;)(MyComponent);</div></pre></td></tr></table></figure>
 
     </div>
   </div>
@@ -502,7 +502,7 @@
           href="api-queries.html">
           <span class="icon-arrow-left-alt"></span>
           <span class="subtitle-pagination">Previous</span>
-          API: 具有查询的graphql容器
+          API: 带查询的 graphql 容器
         </a>
       
       
