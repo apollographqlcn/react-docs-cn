@@ -172,7 +172,7 @@ export default routes;
 
 ```
 
-你可以查看[ GitHunt 应用的 `ui/server.js`](https://github.com/apollographql/GitHunt-React/blob/master/ui/server.js) 以获取完整的代码示例，其使用了 React Router v3，与本例有些许的不同。
+你可以查看[ GitHunt 应用的 `ui/server.js`](https://github.com/apollographql/GitHunt-React/blob/master/ui/server.js) 以获取完整的代码示例。
 
 接下来我们将看看渲染代码实际上是什么。
 
