@@ -86,7 +86,7 @@ data: {
 }
 ```
 
-如果你使用 `props` 选项来指定你的子组件的[自定义 `props`](＃graphql-props)，那么这个对象将被作为 `data` 参数传递给 `props` 选项。
+如果你使用 `props` 选项来指定你的子组件的[自定义 `props`](#graphql-props)，那么这个对象将被作为 `data` 参数传递给 `props` 选项。
 
 <h2 id="graphql-options">变量和选项</h2>
 
