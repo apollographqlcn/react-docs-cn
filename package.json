@@ -18,7 +18,7 @@
     "hexo-renderer-marked": "^0.2.4",
     "hexo-server": "^0.2.0",
     "lodash": "^4.13.1",
-    "showdown": "^1.4.2"
+    "showdown": "^1.9.1"
   },
   "devDependencies": {
     "dtrace-provider": "^0.8.5",
